@@ -1,0 +1,74 @@
+﻿using OTOI_ADD.Code.Class;
+using OTOI_ADD.Code.Function;
+using OTOI_ADD.View.Asset;
+
+namespace OTOI_ADD.Code.Module.Download
+{
+    internal static class DL_OMIE
+    {
+        // HPC Day
+        // https://www.omie.es/sites/default/files/dados/AGNO_2022/MES_12/TXT/INT_MAJ_EV_H_01_12_2022_01_12_2022.TXT
+        // https://www.omie.es/sites/default/files/dados/AGNO_2023/MES_01/TXT/INT_MAJ_EV_H_01_01_2023_01_01_2023.TXT
+
+        // HPC Month
+        // https://www.omie.es/sites/default/files/dados/AGNO_2022/MES_12/TXT/INT_M_PFM_MMM_DEM_1_01_12_2022_31_12_2022.TXT
+        // https://www.omie.es/sites/default/files/dados/AGNO_2023/MES_01/TXT/INT_M_PFM_MMM_DEM_1_01_01_2023_31_01_2023.TXT
+
+        // HM Day
+        // https://www.omie.es/sites/default/files/dados/AGNO_2022/MES_12/TXT/INT_PBC_EV_H_1_01_12_2022_01_12_2022.TXT
+        // https://www.omie.es/sites/default/files/dados/AGNO_2023/MES_01/TXT/INT_PBC_EV_H_1_01_01_2023_01_01_2023.TXT
+
+        // HM Month
+        // https://www.omie.es/sites/default/files/dados/AGNO_2022/MES_12/TXT/INT_PDBC_PRECIO_2_01_12_2022_31_12_2022.TXT
+        // https://www.omie.es/sites/default/files/dados/AGNO_2023/MES_01/TXT/INT_PDBC_PRECIO_2_01_01_2023_31_01_2023.TXT
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="inp"></param>
+        internal static void DLSwitch(InputOMIE inp)
+        {
+            string uribase = "https://www.omie.es/sites/default/files/dados/AGNO_";
+            string uripage = "";
+
+            switch (inp.FID)
+            {
+                case 1:
+                case 2:
+                    uripage = "INT_MAJ_EV_H";
+                    break;
+                case 3:
+                case 4:
+                    uripage = "INT_PBC_EV_H_1";
+                    break;
+            }
+
+            ProcessDL(uribase, uripage, inp);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="uribase"></param>
+        /// <param name="uripage"></param>
+        /// <param name="inp"></param>
+        internal static void ProcessDL(string uribase, string uripage, InputOMIE inp)
+        {
+            string mth, day;
+            string uristr;
+            Uri uri;
+            List<Uri> l_uri = new List<Uri>();
+
+            for (DateTime currDate = inp.DateStart; DateTime.Compare(currDate, inp.DateEnd) <= 0; currDate = currDate.AddDays(1))
+            {
+                mth = Auxiliary.FormatMonth(currDate.Month);
+                day = Auxiliary.FormatDay(currDate.Day);
+                uristr = uribase + currDate.Year + "/MES_" + mth + "/TXT/" + uripage + "_" + day + "_" + mth + "_" + currDate.Year + "_" + day + "_" + mth + "_" + currDate.Year + ".TXT";
+                uri = new Uri(uristr);
+                l_uri.Add(uri);
+            }
+            ProgressDialog pd = new ProgressDialog(inp, l_uri);
+            pd.ShowDialog();
+        }
+    }
+}
