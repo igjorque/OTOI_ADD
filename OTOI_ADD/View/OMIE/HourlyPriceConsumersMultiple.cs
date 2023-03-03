@@ -55,12 +55,12 @@ namespace OTOI_ADD.View.OMIE
 
         private void ca_date_start_Validated(object sender, EventArgs e)
         {
-            Auxiliary.ValidateDateStart(this.ca_date_start, this.ep_error);
+            Auxiliary.ValidateStart(this.ca_date_start, this.ep_error);
         }
 
         private void ca_date_end_Validated(object sender, EventArgs e)
         {
-            Auxiliary.ValidateDateEnd(this.ca_date_end, this.ep_error);
+            Auxiliary.ValidateEnd(this.ca_date_start, this.ca_date_end, this.ep_error);
         }
 
         private void lb_link_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

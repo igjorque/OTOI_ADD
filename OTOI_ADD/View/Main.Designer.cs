@@ -38,9 +38,12 @@
             this.tsmi_HPCM = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_HM = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_HMM = new System.Windows.Forms.ToolStripMenuItem();
-            this.tt_menu = new System.Windows.Forms.ToolTip(this.components);
             this.ts_esios = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_c2_liquicomun = new System.Windows.Forms.ToolStripMenuItem();
+            this.tt_menu = new System.Windows.Forms.ToolTip(this.components);
+            this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.singleGenericToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.multiGenericToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ms_menu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -48,7 +51,8 @@
             // 
             this.ms_menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.archivoToolStripMenuItem,
-            this.editarToolStripMenuItem});
+            this.editarToolStripMenuItem,
+            this.testToolStripMenuItem});
             this.ms_menu.Location = new System.Drawing.Point(0, 0);
             this.ms_menu.Name = "ms_menu";
             this.ms_menu.Size = new System.Drawing.Size(784, 24);
@@ -87,7 +91,7 @@
             this.tsmi_HM,
             this.tsmi_HMM});
             this.ts_omie.Name = "ts_omie";
-            this.ts_omie.Size = new System.Drawing.Size(180, 22);
+            this.ts_omie.Size = new System.Drawing.Size(104, 22);
             this.ts_omie.Text = "OMIE";
             // 
             // tsmi_HPC
@@ -129,15 +133,38 @@
             this.ts_esios.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmi_c2_liquicomun});
             this.ts_esios.Name = "ts_esios";
-            this.ts_esios.Size = new System.Drawing.Size(180, 22);
+            this.ts_esios.Size = new System.Drawing.Size(104, 22);
             this.ts_esios.Text = "ESIOS";
             // 
             // tsmi_c2_liquicomun
             // 
             this.tsmi_c2_liquicomun.Name = "tsmi_c2_liquicomun";
-            this.tsmi_c2_liquicomun.Size = new System.Drawing.Size(180, 22);
+            this.tsmi_c2_liquicomun.Size = new System.Drawing.Size(155, 22);
             this.tsmi_c2_liquicomun.Text = "C2 Liquicomun";
             this.tsmi_c2_liquicomun.Click += new System.EventHandler(this.tsmi_c2_liquicomun_Click);
+            // 
+            // testToolStripMenuItem
+            // 
+            this.testToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.singleGenericToolStripMenuItem,
+            this.multiGenericToolStripMenuItem});
+            this.testToolStripMenuItem.Name = "testToolStripMenuItem";
+            this.testToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
+            this.testToolStripMenuItem.Text = "Test";
+            // 
+            // singleGenericToolStripMenuItem
+            // 
+            this.singleGenericToolStripMenuItem.Name = "singleGenericToolStripMenuItem";
+            this.singleGenericToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.singleGenericToolStripMenuItem.Text = "SingleGeneric";
+            this.singleGenericToolStripMenuItem.Click += new System.EventHandler(this.singleGenericToolStripMenuItem_Click);
+            // 
+            // multiGenericToolStripMenuItem
+            // 
+            this.multiGenericToolStripMenuItem.Name = "multiGenericToolStripMenuItem";
+            this.multiGenericToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.multiGenericToolStripMenuItem.Text = "MultiGeneric";
+            this.multiGenericToolStripMenuItem.Click += new System.EventHandler(this.multiGenericToolStripMenuItem_Click);
             // 
             // Main
             // 
@@ -170,5 +197,8 @@
         private ToolStripMenuItem tsmi_HMM;
         private ToolStripMenuItem ts_esios;
         private ToolStripMenuItem tsmi_c2_liquicomun;
+        private ToolStripMenuItem testToolStripMenuItem;
+        private ToolStripMenuItem singleGenericToolStripMenuItem;
+        private ToolStripMenuItem multiGenericToolStripMenuItem;
     }
 }

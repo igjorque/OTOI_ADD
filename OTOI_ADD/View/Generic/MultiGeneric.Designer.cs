@@ -28,37 +28,39 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lb_separator = new System.Windows.Forms.Label();
             this.ca_date_end = new System.Windows.Forms.DateTimePicker();
+            this.lb_separator = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
-            // lb_separator
-            // 
-            this.lb_separator.AutoSize = true;
-            this.lb_separator.Location = new System.Drawing.Point(331, 218);
-            this.lb_separator.Name = "lb_separator";
-            this.lb_separator.Size = new System.Drawing.Size(12, 15);
-            this.lb_separator.TabIndex = 109;
-            this.lb_separator.Text = "-";
             // 
             // ca_date_end
             // 
             this.ca_date_end.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.ca_date_end.Location = new System.Drawing.Point(349, 214);
+            this.ca_date_end.Location = new System.Drawing.Point(192, 49);
             this.ca_date_end.Name = "ca_date_end";
             this.ca_date_end.Size = new System.Drawing.Size(120, 23);
             this.ca_date_end.TabIndex = 108;
             this.ca_date_end.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
+            // lb_separator
+            // 
+            this.lb_separator.AutoSize = true;
+            this.lb_separator.Location = new System.Drawing.Point(175, 53);
+            this.lb_separator.Name = "lb_separator";
+            this.lb_separator.Size = new System.Drawing.Size(12, 15);
+            this.lb_separator.TabIndex = 109;
+            this.lb_separator.Text = "-";
+            // 
             // MultiGeneric
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(328, 230);
             this.Controls.Add(this.lb_separator);
             this.Controls.Add(this.ca_date_end);
             this.Name = "MultiGeneric";
             this.Text = "MultiGeneric";
+            this.Controls.SetChildIndex(this.ca_date_end, 0);
+            this.Controls.SetChildIndex(this.lb_separator, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -66,7 +68,7 @@
 
         #endregion
 
-        internal Label lb_separator;
         internal DateTimePicker ca_date_end;
+        internal Label lb_separator;
     }
 }

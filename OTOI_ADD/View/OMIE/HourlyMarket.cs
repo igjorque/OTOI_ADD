@@ -53,7 +53,7 @@ namespace OTOI_ADD.View.OMIE
 
         private void ca_date_Validated(object sender, EventArgs e)
         {
-            Auxiliary.ValidateDateStart(this.ca_day, this.ep_error);
+            Auxiliary.ValidateStart(this.ca_day, this.ep_error);
         }
 
         private void lb_link_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

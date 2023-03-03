@@ -1,4 +1,5 @@
 using OTOI_ADD.View.ESIOS;
+using OTOI_ADD.View.Generic;
 using OTOI_ADD.View.OMIE;
 
 namespace OTOI_ADD.View
@@ -150,6 +151,18 @@ namespace OTOI_ADD.View
             }
         }
 
-        
+        private void singleGenericToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SingleGeneric sg = new SingleGeneric();
+            sg.MdiParent = this;
+            sg.Show();
+        }
+
+        private void multiGenericToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MultiGeneric mg = new MultiGeneric();
+            mg.MdiParent = this;
+            mg.Show();
+        }
     }
 }

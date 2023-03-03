@@ -92,12 +92,13 @@ namespace OTOI_ADD.Code.Function
         {
             if (DateTime.Compare(end, DateTime.Today) > 0)
             {
-                return DateTime.Today.AddDays(-1);
+                end = DateTime.Today.AddDays(-1);
             }
-            else
+            if (DateTime.Compare(end, new DateTime(2018, 1, 1)) < 0)
             {
-                return end;
+                end = new DateTime(2018, 1, 1);
             }
+            return end;
         }
         /// <summary>
         /// Formats a month given as a string with 2 characters.
@@ -135,38 +136,7 @@ namespace OTOI_ADD.Code.Function
             }
             return dy;
         }
-        /// <summary>
-        /// Checks if an entered start date is valid. Current criteria: Valid if later than 1/1/2018.
-        /// </summary>
-        /// <param name="ca">Date to validate.</param>
-        /// <returns>True if the date is valid, False otherwise.</returns>
-        internal static bool IsValidCalendarStart(DateTimePicker ca)
-        {
-            if (DateTime.Compare(ca.Value, DateTime.Parse("1/1/2018")) < 0)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
-        /// <summary>
-        /// Checks if an entered start date is valid. Current criteria: Valid if earlier than [Today].
-        /// </summary>
-        /// <param name="ca">Date to validate.</param>
-        /// <returns>True if the date is valid, False otherwise.</returns>
-        internal static bool IsValidCalendarEnd(DateTimePicker ca)
-        {
-            if (DateTime.Compare(ca.Value, DateTime.Today) >= 0)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
+        
         /// <summary>
         /// Opens an URL according to the requesting Form.
         /// </summary>
@@ -180,6 +150,9 @@ namespace OTOI_ADD.Code.Function
                 string url = "";
                 switch (FID)
                 {
+                    case 0:
+                        MessageBox.Show("Formulario genérico.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
                     case 1:
                         url = "https://www.omie.es/es/market-results/daily/average-final-prices/hourly-price-consumers?scope=daily&date=2023-01-01";
                         break;
@@ -245,21 +218,78 @@ namespace OTOI_ADD.Code.Function
                 tt_file.SetToolTip(lb_bt_fileDest, lb_bt_fileDest.Text);
             }
         }
-        internal static void ValidateDateStart(DateTimePicker ca_date_start, ErrorProvider ep_error)
+        /// <summary>
+        /// Checks if an entered start date is valid. Current criteria: Valid if later than 1/1/2018.
+        /// </summary>
+        /// <param name="ca">Date to validate.</param>
+        /// <returns>True if the date is valid, False otherwise.</returns>
+        internal static bool IsValidCalendarStart(DateTimePicker ca)
+        {
+            if (DateTime.Compare(ca.Value, DateTime.Parse("1/1/2018")) < 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+        /// <summary>
+        /// </summary>
+        /// <param name="ca">Date to validate.</param>
+        /// <returns>True if the date is valid, False otherwise.</returns>
+        internal static bool IsValidCalendarEnd(DateTimePicker ca)
+        {
+            if (DateTime.Compare(ca.Value, DateTime.Today) >= 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        /// <summary>
+        /// Checks if an entered start date is valid.
+        /// Current criteria: Valid if earlier than [Today] and later than 1-1-2018.
+        /// </summary>
+        /// <param name="ca_date_start"></param>
+        /// <param name="ep_error"></param>
+        internal static void ValidateStart(DateTimePicker ca_date_start, ErrorProvider ep_error)
         {
             string err = "";
-            if (!IsValidCalendarStart(ca_date_start))
+            if (DateTime.Compare(ca_date_start.Value, DateTime.Parse("1/1/2018")) < 0)
             {
-                err = err + "Fecha introducida no válida. ";
+                err = err + "La fecha inicial debe ser posterior a 1-1-2018. ";
+            }
+            if (DateTime.Compare(ca_date_start.Value, DateTime.Today) >= 0)
+            {
+                err = err + "La fecha inicial debe ser previa a [" + DateTime.Today.ToString() + "]. ";
             }
             ep_error.SetError(ca_date_start, err);
         }
-        internal static void ValidateDateEnd(DateTimePicker ca_date_end, ErrorProvider ep_error)
+
+        /// <summary>
+        /// Checks if an entered end date is valid. 
+        /// Current criteria: Valid if earlier than [Today] and later than 1-1-2018.
+        /// </summary>
+        /// <param name="ca_date_end"></param>
+        /// <param name="ep_error"></param>
+        internal static void ValidateEnd(DateTimePicker ca_date_start, DateTimePicker ca_date_end, ErrorProvider ep_error)
         {
             string err = "";
-            if (!IsValidCalendarStart(ca_date_end))
+            if (DateTime.Compare(ca_date_end.Value, DateTime.Parse("1/1/2018")) < 0)
             {
-                err = err + "Fecha introducida no válida. ";
+                err = err + "La fecha final debe ser posterior a 1-1-2018. ";
+            }
+            if (DateTime.Compare(ca_date_end.Value, DateTime.Today) >= 0)
+            {
+                err = err + "La fecha final debe ser previa a [" + DateTime.Today.ToString() + "]. ";
+            }
+            if (DateTime.Compare(ca_date_start.Value, ca_date_end.Value) > 0)
+            {
+                err = err + "La fecha inicial no puede ser posterior a la fecha final.";
             }
             ep_error.SetError(ca_date_end, err);
         }
