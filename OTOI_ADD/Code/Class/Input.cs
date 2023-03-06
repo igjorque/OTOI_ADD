@@ -21,7 +21,7 @@
 
         public bool Process { get => process; set => process = value; }
 
-        internal Input() 
+        internal Input()
         {
             this.fid = 0;
             this.date_start = DateTime.Today.AddDays(-2);

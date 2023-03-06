@@ -70,6 +70,7 @@
             this.Controls.Add(this.uc_f);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "SingleGeneric";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "SingleGeneric";
             ((System.ComponentModel.ISupportInitialize)(this.ep_error)).EndInit();
             this.ResumeLayout(false);

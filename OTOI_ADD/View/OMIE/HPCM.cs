@@ -1,14 +1,4 @@
-﻿using OTOI_ADD.Code.Function;
-using OTOI_ADD.View.Generic;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using OTOI_ADD.View.Generic;
 
 namespace OTOI_ADD.View.OMIE
 {
@@ -33,7 +23,7 @@ namespace OTOI_ADD.View.OMIE
 
         private void LoadEvents()
         {
-            
+
         }
     }
 }

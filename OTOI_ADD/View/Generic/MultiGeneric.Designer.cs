@@ -58,6 +58,7 @@
             this.Controls.Add(this.lb_separator);
             this.Controls.Add(this.ca_date_end);
             this.Name = "MultiGeneric";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "MultiGeneric";
             this.Controls.SetChildIndex(this.ca_date_end, 0);
             this.Controls.SetChildIndex(this.lb_separator, 0);

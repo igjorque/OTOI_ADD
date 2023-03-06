@@ -1,5 +1,4 @@
 using OTOI_ADD.View.ESIOS;
-using OTOI_ADD.View.Generic;
 using OTOI_ADD.View.OMIE;
 
 namespace OTOI_ADD.View
@@ -9,7 +8,10 @@ namespace OTOI_ADD.View
         /// <summary>
         /// Main form constructor.
         /// </summary>
-        public Main() { InitializeComponent(); }
+        public Main()
+        {
+            InitializeComponent();
+        }
 
         // ----------------------------------------------------------------------------------------- 
         // ------------------------------------------ OMIE ----------------------------------------- 
@@ -33,8 +35,8 @@ namespace OTOI_ADD.View
                 hpc.MdiParent = this;
                 hpc.Show();
             }
-
         }
+
         private void CL_openForm_HPCM(object sender, EventArgs e)
         {
             HPCM hpcm = new HPCM();
