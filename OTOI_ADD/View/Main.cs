@@ -22,21 +22,22 @@ namespace OTOI_ADD.View
         /// <param name="e"></param>
         private void CL_openForm_HPC(object sender, EventArgs e)
         {
-            HourlyPriceConsumers hpc = new HourlyPriceConsumers();
+            HPC hpc = new HPC();
             hpc.Name = "f_hpc";
-            if (FormExists(hpc.Name)) {
+            if (FormExists(hpc.Name))
+            {
                 GiveFocus(hpc.Name);
-            } 
+            }
             else
             {
                 hpc.MdiParent = this;
                 hpc.Show();
             }
-            
+
         }
         private void CL_openForm_HPCM(object sender, EventArgs e)
         {
-            HourlyPriceConsumersMultiple hpcm = new HourlyPriceConsumersMultiple();
+            HPCM hpcm = new HPCM();
             hpcm.Name = "f_hpcm";
             if (FormExists(hpcm.Name))
             {
@@ -57,7 +58,7 @@ namespace OTOI_ADD.View
         /// <param name="e"></param>
         private void CL_openForm_HM(object sender, EventArgs e)
         {
-            HourlyMarket hm = new HourlyMarket();
+            HM hm = new HM();
             hm.Name = "f_hm";
             if (FormExists(hm.Name))
             {
@@ -72,7 +73,7 @@ namespace OTOI_ADD.View
 
         private void CL_openForm_HMM(object sender, EventArgs e)
         {
-            HourlyMarketMultiple hmm = new HourlyMarketMultiple();
+            HMM hmm = new HMM();
             hmm.Name = "f_hmm";
             if (FormExists(hmm.Name))
             {
@@ -89,9 +90,9 @@ namespace OTOI_ADD.View
         // ----------------------------------------- ESIOS ----------------------------------------- 
         // ----------------------------------------------------------------------------------------- 
 
-        private void tsmi_c2_liquicomun_Click(object sender, EventArgs e)
+        private void CL_openForm_C2L(object sender, EventArgs e)
         {
-            C2_Liquicomun c2l = new C2_Liquicomun();
+            C2L c2l = new C2L();
             c2l.Name = "f_c2l";
             if (FormExists(c2l.Name))
             {
@@ -131,6 +132,7 @@ namespace OTOI_ADD.View
                 if (f.Name.Equals(fname))
                 {
                     exists = true;
+                    break;
                 }
             }
             return exists;
@@ -147,22 +149,14 @@ namespace OTOI_ADD.View
                 if (f.Name.Equals(fname))
                 {
                     f.Focus();
+                    return;
                 }
             }
         }
 
-        private void singleGenericToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            SingleGeneric sg = new SingleGeneric();
-            sg.MdiParent = this;
-            sg.Show();
-        }
+        // ----------------------------------------------------------------------------------------- 
+        // ----------------------------------------- TEST ------------------------------------------ 
+        // ----------------------------------------------------------------------------------------- 
 
-        private void multiGenericToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            MultiGeneric mg = new MultiGeneric();
-            mg.MdiParent = this;
-            mg.Show();
-        }
     }
 }

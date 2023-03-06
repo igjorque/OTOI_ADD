@@ -1,14 +1,5 @@
 ﻿using OTOI_ADD.Code.Function;
 using OTOI_ADD.View.Asset;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace OTOI_ADD.View.Generic
 {
@@ -35,19 +26,30 @@ namespace OTOI_ADD.View.Generic
         {
             this.fid = 0;
             InitializeComponent();
+            LoadFields();
             LoadEvents();
         }
+
         public SingleGeneric(int FID)
         {
             this.fid = FID;
             InitializeComponent();
+            LoadFields();
             LoadEvents();
+        }
+
+        private void LoadFields()
+        {
+            this.FormName = "SingleGeneric";
+            this.Start = DateTime.Today.AddDays(-1);
+            this.fb_directory.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            this.sf_file.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
         }
 
         private void LoadEvents()
         {
-            this.Start = DateTime.Today.AddDays(-1);
             this.Process.CheckedChanged += new EventHandler(cb_enabler);
+            this.Accept.Click += new EventHandler(accept);
             this.Cancel.Click += new EventHandler(cancel);
             this.Link.LinkClicked += new LinkLabelLinkClickedEventHandler(link);
             this.Download.Click += new EventHandler(downloadFolder);
@@ -56,18 +58,12 @@ namespace OTOI_ADD.View.Generic
 
         private void cb_enabler(object sender, EventArgs e)
         {
-            if (this.uc_f.cb_process.Checked)
-            {
-                this.uc_f.cb_keepDownload.Enabled = true;
-                this.uc_f.bt_fileDest.Enabled = true;
-                this.uc_f.lb_bt_fileDest.Enabled = true;
-            }
-            else
-            {
-                this.uc_f.cb_keepDownload.Enabled = false;
-                this.uc_f.bt_fileDest.Enabled = false;
-                this.uc_f.lb_bt_fileDest.Enabled = false;
-            }
+            FormManager.DLEnabler(sender, this.uc_f.cb_keepDownload, this.uc_f.bt_fileDest, this.uc_f.lb_bt_downloadDir);
+        }
+
+        private void accept(object sender, EventArgs e)
+        {
+            FormManager.FormAccept(this, this.FID);
         }
 
         private void cancel(object sender, EventArgs e)
@@ -77,12 +73,12 @@ namespace OTOI_ADD.View.Generic
 
         private void link(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Auxiliary.OpenLink(this.FID, this.Link);
+            FormManager.OpenLink(this.FID, this.Link);
         }
 
         private void downloadFolder(object sender, EventArgs e)
         {
-            Auxiliary.DownloadDir(this.fb_directory, this.LBDownload, this.tt_folder);
+            FormManager.DownloadDir(this.fb_directory, this.LBDownload, this.tt_folder);
         }
 
         private void validateStart(object sender, EventArgs e)

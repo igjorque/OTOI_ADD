@@ -20,29 +20,22 @@ namespace OTOI_ADD.View.OMIE
     /// </summary>
     public partial class HPC : SingleGeneric
     {
-        public HPC()
+        public HPC() : base(1)
         {
             InitializeComponent();
+            LoadFields();
             LoadEvents();
         }
-        private void LoadEvents()
+
+        private void LoadFields()
         {
-            this.Accept.Click += new EventHandler(accept);
+            this.FormName = "OMIE";
+            this.Title = "Precio definitivo horario del mecanismo de ajuste a los consumidores en el mercado";
         }
 
-        private void accept(object sender, EventArgs e)
+        private void LoadEvents()
         {
-            InputOMIE inp = new InputOMIE(Auxiliary.InitFields(this.FID,
-                                                     Auxiliary.DateStart(this.Start),
-                                                     Auxiliary.DateEnd(this.Start),
-                                                     this.LBFile.Text,
-                                                     this.LBDownload.Text,
-                                                     this.Keep.Checked,
-                                                     this.Process.Checked
-                                                     )
-                                    );
-            DL_OMIE.DLSwitch(inp);
-            this.Close();
+            
         }
     }
 }

@@ -40,10 +40,8 @@
             this.tsmi_HMM = new System.Windows.Forms.ToolStripMenuItem();
             this.ts_esios = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_c2_liquicomun = new System.Windows.Forms.ToolStripMenuItem();
-            this.tt_menu = new System.Windows.Forms.ToolTip(this.components);
             this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.singleGenericToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.multiGenericToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tt_menu = new System.Windows.Forms.ToolTip(this.components);
             this.ms_menu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -141,30 +139,13 @@
             this.tsmi_c2_liquicomun.Name = "tsmi_c2_liquicomun";
             this.tsmi_c2_liquicomun.Size = new System.Drawing.Size(155, 22);
             this.tsmi_c2_liquicomun.Text = "C2 Liquicomun";
-            this.tsmi_c2_liquicomun.Click += new System.EventHandler(this.tsmi_c2_liquicomun_Click);
+            this.tsmi_c2_liquicomun.Click += new System.EventHandler(this.CL_openForm_C2L);
             // 
             // testToolStripMenuItem
             // 
-            this.testToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.singleGenericToolStripMenuItem,
-            this.multiGenericToolStripMenuItem});
             this.testToolStripMenuItem.Name = "testToolStripMenuItem";
             this.testToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
             this.testToolStripMenuItem.Text = "Test";
-            // 
-            // singleGenericToolStripMenuItem
-            // 
-            this.singleGenericToolStripMenuItem.Name = "singleGenericToolStripMenuItem";
-            this.singleGenericToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.singleGenericToolStripMenuItem.Text = "SingleGeneric";
-            this.singleGenericToolStripMenuItem.Click += new System.EventHandler(this.singleGenericToolStripMenuItem_Click);
-            // 
-            // multiGenericToolStripMenuItem
-            // 
-            this.multiGenericToolStripMenuItem.Name = "multiGenericToolStripMenuItem";
-            this.multiGenericToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.multiGenericToolStripMenuItem.Text = "MultiGeneric";
-            this.multiGenericToolStripMenuItem.Click += new System.EventHandler(this.multiGenericToolStripMenuItem_Click);
             // 
             // Main
             // 
@@ -175,6 +156,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.IsMdiContainer = true;
             this.Name = "Main";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "OTOI - Asistente de Descarga de Datos";
             this.ms_menu.ResumeLayout(false);
             this.ms_menu.PerformLayout();
@@ -198,7 +180,5 @@
         private ToolStripMenuItem ts_esios;
         private ToolStripMenuItem tsmi_c2_liquicomun;
         private ToolStripMenuItem testToolStripMenuItem;
-        private ToolStripMenuItem singleGenericToolStripMenuItem;
-        private ToolStripMenuItem multiGenericToolStripMenuItem;
     }
 }

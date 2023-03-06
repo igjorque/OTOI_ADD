@@ -4,10 +4,6 @@ namespace OTOI_ADD.Code.Function
 {
     internal static class Auxiliary
     {
-        /// <summary>
-        /// Holds the current selected directory.
-        /// </summary>
-        internal static string currDir = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
 
         /// <summary>
         /// Converts the string representing a month to an equivalent integer.
@@ -32,6 +28,7 @@ namespace OTOI_ADD.Code.Function
 
             return month[m.ToLower()];
         }
+
         /// <summary>
         /// Converts the integer representing a month to an equivalent string.
         /// </summary>
@@ -55,16 +52,6 @@ namespace OTOI_ADD.Code.Function
 
             return month.ElementAt(m).Value;
         }
-        /// <summary>
-        /// Obtains the last day for the given month/year.
-        /// </summary>
-        /// <param name="month">Month to get the last day from</param>
-        /// <param name="year">Corresponding year.</param>
-        /// <returns>Last day for the month/year.</returns>
-        internal static int LastDayOfMonth(int month, int year)
-        {
-            return DateTime.DaysInMonth(year, month); ;
-        }
 
         /// <summary>
         /// 
@@ -77,7 +64,8 @@ namespace OTOI_ADD.Code.Function
             {
                 start = DateTime.Today.AddDays(-1);
             }
-            if (DateTime.Compare(start, new DateTime(2018, 1, 1)) < 0){
+            if (DateTime.Compare(start, new DateTime(2018, 1, 1)) < 0)
+            {
                 start = new DateTime(2018, 1, 1);
             }
             return start;
@@ -100,6 +88,7 @@ namespace OTOI_ADD.Code.Function
             }
             return end;
         }
+
         /// <summary>
         /// Formats a month given as a string with 2 characters.
         /// </summary>
@@ -118,6 +107,7 @@ namespace OTOI_ADD.Code.Function
             }
             return mth;
         }
+
         /// <summary>
         /// Formats a day given as a string with 2 characters.
         /// </summary>
@@ -136,7 +126,7 @@ namespace OTOI_ADD.Code.Function
             }
             return dy;
         }
-        
+
         /// <summary>
         /// Opens an URL according to the requesting Form.
         /// </summary>
@@ -173,80 +163,7 @@ namespace OTOI_ADD.Code.Function
             }
             catch (Exception ex)
             {
-                MessageBox.Show("No se ha podido abrir el enlace.\n"+ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        /// <summary>
-        /// Shows the directory selection dialog. If the result is OK, updates the corresponding label and tooltip.
-        /// </summary>
-        /// <param name="fb_directory">Dialog to be shown.</param>
-        /// <param name="lb_bt_downloadDir">Label to be updated.</param>
-        /// <param name="tt_folder">ToolTip to be updated.</param>
-        internal static void DownloadDir(FolderBrowserDialog fb_directory, Label lb_bt_downloadDir, ToolTip tt_folder)
-        {
-            fb_directory.ShowNewFolderButton = true;
-            fb_directory.InitialDirectory = currDir;
-            if (fb_directory.ShowDialog() == DialogResult.OK)
-            {
-                lb_bt_downloadDir.Text = fb_directory.SelectedPath;
-                tt_folder.SetToolTip(lb_bt_downloadDir, lb_bt_downloadDir.Text);
-                currDir = fb_directory.SelectedPath;
-            }
-        }
-        internal static void DLEnabler(object sender, Button bt_downloadDir, Label lb_bt_downloadDir)
-        {
-            CheckBox ch = (CheckBox)sender;
-            if (ch.Checked)
-            {
-                bt_downloadDir.Enabled = true;
-                lb_bt_downloadDir.Enabled = true;
-            }
-            else
-            {
-                bt_downloadDir.Enabled = false;
-                lb_bt_downloadDir.Enabled = false;
-            }
-        }
-        internal static void FileDest(SaveFileDialog sf_file, Label lb_bt_fileDest, ToolTip tt_file)
-        {
-            sf_file.Filter = "CSV file (*.csv)|*.csv|All files (*.*)|*.*";
-            sf_file.RestoreDirectory = true;
-            if (sf_file.ShowDialog() == DialogResult.OK)
-            {
-                lb_bt_fileDest.Text = sf_file.FileName;
-                tt_file.SetToolTip(lb_bt_fileDest, lb_bt_fileDest.Text);
-            }
-        }
-        /// <summary>
-        /// Checks if an entered start date is valid. Current criteria: Valid if later than 1/1/2018.
-        /// </summary>
-        /// <param name="ca">Date to validate.</param>
-        /// <returns>True if the date is valid, False otherwise.</returns>
-        internal static bool IsValidCalendarStart(DateTimePicker ca)
-        {
-            if (DateTime.Compare(ca.Value, DateTime.Parse("1/1/2018")) < 0)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
-        /// <summary>
-        /// </summary>
-        /// <param name="ca">Date to validate.</param>
-        /// <returns>True if the date is valid, False otherwise.</returns>
-        internal static bool IsValidCalendarEnd(DateTimePicker ca)
-        {
-            if (DateTime.Compare(ca.Value, DateTime.Today) >= 0)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
+                MessageBox.Show("No se ha podido abrir el enlace.\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -293,6 +210,7 @@ namespace OTOI_ADD.Code.Function
             }
             ep_error.SetError(ca_date_end, err);
         }
+
         internal static Dictionary<string, object> InitFields(int FID, DateTime start, DateTime end, string file, string download, bool keep, bool process)
         {
             Dictionary<string, object> fields = new Dictionary<string, object>();
@@ -305,6 +223,7 @@ namespace OTOI_ADD.Code.Function
             fields.Add("process", process);
             return fields;
         }
+
         internal static Dictionary<string, object> InitFields(int FID, DateTime start, DateTime end, string download, bool keep, bool unzip)
         {
             Dictionary<string, object> fields = new Dictionary<string, object>();

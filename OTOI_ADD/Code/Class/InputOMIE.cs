@@ -1,31 +1,38 @@
-﻿namespace OTOI_ADD.Code.Class
+﻿using OTOI_ADD.View.Generic;
+
+namespace OTOI_ADD.Code.Class
 {
     internal class InputOMIE : Input
     {
         private string destFile;
-        private bool processFile;
-        
+
+        public string DestFile { get => destFile; }
+
         /// <summary>
         /// Default empty constructor.
         /// </summary>
         public InputOMIE() : base()
         {
             this.destFile = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            this.processFile = false;
         }
 
         /// <summary>
         /// Builds an [Input] object using a Dictionary containing the fields values.
         /// </summary>
         /// <param name="fields">Dictionary that contains one key-value pair per field.</param>
-        public InputOMIE(Dictionary<string, Object> fields) : base((int) fields["FID"], (DateTime) fields["start"], (DateTime) fields["end"], (string) fields["download"], (bool) fields["keep"]) 
+        public InputOMIE(Dictionary<string, Object> fields) : base((int)fields["FID"], (DateTime)fields["start"], (DateTime)fields["end"], (string)fields["download"], (bool)fields["keep"], (bool)fields["process"])
         {
-            this.destFile =  (string) fields["file"];
-            this.processFile = (bool) fields["process"];
+            this.destFile = (string)fields["file"];
         }
 
-        public string DestFile { get => destFile; }
+        public InputOMIE(SingleGeneric sgf) : base(sgf.FID, sgf.Start, sgf.Start, sgf.LBDownload.Text, sgf.Keep.Checked, sgf.Process.Checked)
+        {
+            this.destFile = sgf.LBFile.Text;
+        }
 
-        public bool ProcessFile { get => processFile; }
+        public InputOMIE(MultiGeneric mgf) : base(mgf.FID, mgf.Start, mgf.End, mgf.LBDownload.Text, mgf.Keep.Checked, mgf.Process.Checked)
+        {
+            this.destFile = mgf.LBFile.Text;
+        }
     }
 }

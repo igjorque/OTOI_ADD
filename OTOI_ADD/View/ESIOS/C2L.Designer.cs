@@ -1,6 +1,6 @@
-﻿namespace OTOI_ADD.View.OMIE
+﻿namespace OTOI_ADD.View.ESIOS
 {
-    partial class HMM
+    partial class C2L
     {
         /// <summary>
         /// Required designer variable.
@@ -30,15 +30,14 @@
         {
             this.SuspendLayout();
             // 
-            // HMM
+            // C2L
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(324, 231);
-            this.Name = "HMM";
-            this.Text = "HMM";
+            this.Name = "C2L";
+            this.Text = "C2L";
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 

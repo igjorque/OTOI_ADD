@@ -1,4 +1,5 @@
-﻿using OTOI_ADD.View.Generic;
+﻿using OTOI_ADD.Code.Function;
+using OTOI_ADD.View.Generic;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,14 +17,23 @@ namespace OTOI_ADD.View.OMIE
     /// </summary>
     public partial class HPCM : MultiGeneric
     {
-        public HPCM()
+
+        public HPCM() : base(2)
         {
             InitializeComponent();
+            LoadFields();
             LoadEvents();
         }
+
+        private void LoadFields()
+        {
+            this.FormName = "OMIE";
+            this.Title = "Precio definitivo horario del mecanismo de ajuste a los consumidores en el mercado";
+        }
+
         private void LoadEvents()
         {
-
+            
         }
     }
 }

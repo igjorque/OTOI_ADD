@@ -97,7 +97,7 @@
             // 
             // lb_title
             // 
-            this.lb_title.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lb_title.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lb_title.Location = new System.Drawing.Point(1, 6);
             this.lb_title.Name = "lb_title";
             this.lb_title.Size = new System.Drawing.Size(276, 40);

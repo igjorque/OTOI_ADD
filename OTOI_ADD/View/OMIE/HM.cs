@@ -1,4 +1,5 @@
-﻿using OTOI_ADD.View.Generic;
+﻿using OTOI_ADD.Code.Function;
+using OTOI_ADD.View.Generic;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,14 +17,23 @@ namespace OTOI_ADD.View.OMIE
     /// </summary>
     public partial class HM : SingleGeneric
     {
-        public HM()
+        
+        public HM() : base(3)
         {
             InitializeComponent();
+            LoadFields();
             LoadEvents();
         }
+
+        private void LoadFields()
+        {
+            this.FormName = "OMIE";
+            this.Title = "Precio horario del mercado";
+        }
+
         private void LoadEvents()
         {
-
+            
         }
     }
 }

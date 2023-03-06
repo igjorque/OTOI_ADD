@@ -1,13 +1,4 @@
 ﻿using OTOI_ADD.Code.Function;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace OTOI_ADD.View.Generic
 {
@@ -18,6 +9,7 @@ namespace OTOI_ADD.View.Generic
         public MultiGeneric() : base()
         {
             InitializeComponent();
+            LoadFields();
             LoadEvents();
 
         }
@@ -25,16 +17,20 @@ namespace OTOI_ADD.View.Generic
         public MultiGeneric(int FID) : base(FID)
         {
             InitializeComponent();
+            LoadFields();
             LoadEvents();
         }
 
-        private void LoadEvents()
+        private void LoadFields()
         {
             this.FormName = "MultiGeneric";
             this.Label = "Dias";
             this.Start = DateTime.Today.AddDays(-2);
             this.End = DateTime.Today.AddDays(-1);
+        }
 
+        private void LoadEvents()
+        {
             this.ca_date_end.Validated += new EventHandler(validateEnd);
         }
 
