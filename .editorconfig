@@ -1,4 +1,3 @@
 ﻿[*.cs]
-
 # IDE0059: Asignación innecesaria de un valor
 dotnet_diagnostic.IDE0059.severity = none
