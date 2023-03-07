@@ -69,7 +69,7 @@
             this.bt_accept.Text = "Aceptar";
             this.bt_accept.UseVisualStyleBackColor = true;
             this.bt_accept.Visible = false;
-            this.bt_accept.Click += new System.EventHandler(this.bt_accept_Click);
+            this.bt_accept.Click += new System.EventHandler(this.Bt_accept_Click);
             // 
             // lb_url_value
             // 

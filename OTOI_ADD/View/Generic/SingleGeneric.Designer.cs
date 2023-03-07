@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.uc_f = new OTOI_ADD.View.Asset.Fields();
-            this.sf_directory = new System.Windows.Forms.SaveFileDialog();
             this.sf_file = new System.Windows.Forms.SaveFileDialog();
             this.fb_directory = new System.Windows.Forms.FolderBrowserDialog();
             this.tt_folder = new System.Windows.Forms.ToolTip(this.components);
@@ -80,7 +79,6 @@
         #endregion
         internal ErrorProvider ep_error;
         internal Asset.Fields uc_f;
-        internal SaveFileDialog sf_directory;
         internal SaveFileDialog sf_file;
         internal FolderBrowserDialog fb_directory;
         internal ToolTip tt_folder;

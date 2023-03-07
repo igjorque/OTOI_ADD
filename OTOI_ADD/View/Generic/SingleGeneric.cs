@@ -5,7 +5,7 @@ namespace OTOI_ADD.View.Generic
 {
     public partial class SingleGeneric : Form
     {
-        private int fid;
+        private readonly int fid;
         internal int FID { get => this.fid; }
         internal string FormName { get => this.Text; set => this.Text = value; }
         internal string Title { get => this.uc_f.lb_title.Text; set => this.uc_f.lb_title.Text = value; }
@@ -42,46 +42,54 @@ namespace OTOI_ADD.View.Generic
         {
             this.FormName = "SingleGeneric";
             this.Start = DateTime.Today.AddDays(-1);
-            this.fb_directory.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            this.sf_file.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            this.LBDownload.Text = FormManager.CURR_DIR;
+            this.fb_directory.InitialDirectory = FormManager.CURR_DIR;
+            this.LBFile.Text = FormManager.CURR_FIL;
+            this.sf_file.InitialDirectory = FormManager.CURR_FIL;
         }
 
         private void LoadEvents()
         {
-            this.Process.CheckedChanged += new EventHandler(cb_enabler);
-            this.Accept.Click += new EventHandler(accept);
-            this.Cancel.Click += new EventHandler(cancel);
-            this.Link.LinkClicked += new LinkLabelLinkClickedEventHandler(link);
-            this.Download.Click += new EventHandler(downloadFolder);
-            this.uc_f.ca_date_start.Validated += new EventHandler(validateStart);
+            this.Process.CheckedChanged += new EventHandler(EnableEvent);
+            this.Accept.Click += new EventHandler(AcceptEvent);
+            this.Cancel.Click += new EventHandler(CancelEvent);
+            this.Link.LinkClicked += new LinkLabelLinkClickedEventHandler(LinkEvent);
+            this.Download.Click += new EventHandler(DownloadFolderEvent);
+            this.File.Click += new EventHandler(DownloadFileEvent);
+            this.uc_f.ca_date_start.Validated += new EventHandler(ValidateStartEvent);
         }
 
-        private void cb_enabler(object sender, EventArgs e)
+        private void EnableEvent(object? sender, EventArgs e)
         {
-            FormManager.DLEnabler(sender, this.uc_f.cb_keepDownload, this.uc_f.bt_fileDest, this.uc_f.lb_bt_downloadDir);
+            FormManager.DLEnabler(sender, this.uc_f.cb_keepDownload, this.uc_f.bt_fileDest, this.uc_f.lb_bt_fileDest);
         }
 
-        private void accept(object sender, EventArgs e)
+        private void AcceptEvent(object? sender, EventArgs e)
         {
             FormManager.FormAccept(this, this.FID);
         }
 
-        private void cancel(object sender, EventArgs e)
+        private void CancelEvent(object? sender, EventArgs e)
         {
             this.Close();
         }
 
-        private void link(object sender, LinkLabelLinkClickedEventArgs e)
+        private void LinkEvent(object? sender, LinkLabelLinkClickedEventArgs e)
         {
             FormManager.OpenLink(this.FID, this.Link);
         }
 
-        private void downloadFolder(object sender, EventArgs e)
+        private void DownloadFolderEvent(object? sender, EventArgs e)
         {
             FormManager.DownloadDir(this.fb_directory, this.LBDownload, this.tt_folder);
         }
 
-        private void validateStart(object sender, EventArgs e)
+        private void DownloadFileEvent(object? sender, EventArgs e)
+        {
+            FormManager.DownloadFil(this.sf_file, this.LBFile, this.tt_file);
+        }
+
+        private void ValidateStartEvent(object? sender, EventArgs e)
         {
             Auxiliary.ValidateStart(this.uc_f.ca_date_start, this.ep_error);
         }

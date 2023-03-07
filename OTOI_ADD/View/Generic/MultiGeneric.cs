@@ -31,10 +31,10 @@ namespace OTOI_ADD.View.Generic
 
         private void LoadEvents()
         {
-            this.ca_date_end.Validated += new EventHandler(validateEnd);
+            this.ca_date_end.Validated += new EventHandler(ValidateEndEvent);
         }
 
-        private void validateEnd(object sender, EventArgs e)
+        private void ValidateEndEvent(object? sender, EventArgs e)
         {
             Auxiliary.ValidateEnd(this.UCF.ca_date_start, this.ca_date_end, this.ep_error);
         }
