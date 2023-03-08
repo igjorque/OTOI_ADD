@@ -1,3 +1,4 @@
+using OTOI_ADD.Code.Module.Process;
 using OTOI_ADD.View.ESIOS;
 using OTOI_ADD.View.OMIE;
 
@@ -160,5 +161,19 @@ namespace OTOI_ADD.View
         // ----------------------------------------- TEST ------------------------------------------ 
         // ----------------------------------------------------------------------------------------- 
 
+        private void processToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            List<string> files = new List<string>();
+            files.Add("C:\\Users\\igjorque\\Desktop\\test\\1_3_2023_1_3_2023.txt");
+            ProcessorOMIE.Process(files, 1);
+        }
+
+        private void process2ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            List<string> files = new List<string>();
+            files.Add("C:\\Users\\igjorque\\Desktop\\test\\1_3_2023_1_3_2023.txt");
+            files.Add("C:\\Users\\igjorque\\Desktop\\test\\1_3_2022_1_3_2022.txt");
+            ProcessorOMIE.Process(files, 2);
+        }
     }
 }

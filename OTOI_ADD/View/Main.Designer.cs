@@ -41,7 +41,9 @@
             this.ts_esios = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_c2_liquicomun = new System.Windows.Forms.ToolStripMenuItem();
             this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.processToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tt_menu = new System.Windows.Forms.ToolTip(this.components);
+            this.process2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ms_menu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -143,9 +145,26 @@
             // 
             // testToolStripMenuItem
             // 
+            this.testToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.processToolStripMenuItem,
+            this.process2ToolStripMenuItem});
             this.testToolStripMenuItem.Name = "testToolStripMenuItem";
             this.testToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
             this.testToolStripMenuItem.Text = "Test";
+            // 
+            // processToolStripMenuItem
+            // 
+            this.processToolStripMenuItem.Name = "processToolStripMenuItem";
+            this.processToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.processToolStripMenuItem.Text = "Process";
+            this.processToolStripMenuItem.Click += new System.EventHandler(this.processToolStripMenuItem_Click);
+            // 
+            // process2ToolStripMenuItem
+            // 
+            this.process2ToolStripMenuItem.Name = "process2ToolStripMenuItem";
+            this.process2ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.process2ToolStripMenuItem.Text = "Process 2";
+            this.process2ToolStripMenuItem.Click += new System.EventHandler(this.process2ToolStripMenuItem_Click);
             // 
             // Main
             // 
@@ -180,5 +199,7 @@
         private ToolStripMenuItem ts_esios;
         private ToolStripMenuItem tsmi_c2_liquicomun;
         private ToolStripMenuItem testToolStripMenuItem;
+        private ToolStripMenuItem processToolStripMenuItem;
+        private ToolStripMenuItem process2ToolStripMenuItem;
     }
 }

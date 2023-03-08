@@ -35,31 +35,55 @@ namespace OTOI_ADD.Code.Function
 
         private static void ManageSingleOMIE(Form f)
         {
+            // Cast parameter
             SingleGeneric sgf = (SingleGeneric)f;
+            // Init input
             InputOMIE inp = new (sgf);
+            // Download file
             DL_OMIE.DLSwitch(inp);
-            // Process files
+            // Process file
+
+            // Delete? downloaded files
             Delete(inp);
+            // Show success message
+            MessageBox.Show("Operación completada.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            // Close form
             f.Close();
         }
 
         private static void ManageMultiOMIE(Form f)
         {
+            // Cast parameter
             MultiGeneric mgf = (MultiGeneric)f;
+            // Init input
             InputOMIE inp = new (mgf);
+            // Download files
             DL_OMIE.DLSwitch(inp);
             //Process files
+
+            // Delete? downloaded files
             Delete(inp);
+            // Show success message
+            MessageBox.Show("Operación completada.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            // Close form
             f.Close();
         }
 
         private static void ManageSingleESIOS(Form f)
         {
+            // Cast parameter
             SingleGeneric sgf = (SingleGeneric)f;
+            // Init input
             InputESIOS inp = new (sgf);
+            // Download file
             DL_ESIOS.ProcessDL(inp);
-            //Process files
+            // Process file
+
+            // Delete? downloaded file
             Delete(inp);
+            // Show success message
+            MessageBox.Show("Operación completada.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            // Close form
             f.Close();
         }
 
