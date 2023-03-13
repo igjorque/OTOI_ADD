@@ -4,6 +4,92 @@ namespace OTOI_ADD.Code.Function
 {
     internal static class Auxiliary
     {
+        /// <summary>
+        /// Formats a month given as a string with 2 characters.
+        /// </summary>
+        /// <param name="month">Month as integer to format.</param>
+        /// <returns>Formatted month as a string.</returns>
+        internal static string FormatMonth(int month)
+        {
+            string mth;
+            if (month < 10)
+            {
+                mth = "0" + month;
+            }
+            else
+            {
+                mth = month.ToString();
+            }
+            return mth;
+        }
+
+        /// <summary>
+        /// Formats a day given as a string with 2 characters.
+        /// </summary>
+        /// <param name="day">Day as integer to format.</param>
+        /// <returns>Formatted day as a string.</returns>
+        internal static string FormatDay(int day)
+        {
+            string dy;
+            if (day < 10)
+            {
+                dy = "0" + day;
+            }
+            else
+            {
+                dy = day.ToString();
+            }
+            return dy;
+        }
+
+        /// <summary>
+        /// Checks if an entered start date is valid.
+        /// Current criteria: Valid if earlier than [Today] and later than 1-1-2018.
+        /// </summary>
+        /// <param name="ca_date_start">Start date DateTimePicker control</param>
+        /// <param name="ep_error">Error indicator</param>
+        internal static void ValidateStart(DateTimePicker ca_date_start, ErrorProvider ep_error)
+        {
+            string err = "";
+            if (DateTime.Compare(ca_date_start.Value, DateTime.Parse("1/1/2018")) < 0)
+            {
+                err = err + "La fecha inicial debe ser posterior a 1-1-2018. ";
+            }
+            if (DateTime.Compare(ca_date_start.Value, DateTime.Today) >= 0)
+            {
+                err = err + "La fecha inicial debe ser previa a [" + DateTime.Today.ToString() + "]. ";
+            }
+            ep_error.SetError(ca_date_start, err);
+        }
+
+        /// <summary>
+        /// Checks if an entered end date is valid. 
+        /// Current criteria: Valid if earlier than [Today] and later than 1-1-2018.
+        /// </summary>
+        /// <param name="ca_date_end">End date DateTimePicker control</param>
+        /// <param name="ep_error">Error indicator</param>
+        internal static void ValidateEnd(DateTimePicker ca_date_start, DateTimePicker ca_date_end, ErrorProvider ep_error)
+        {
+            string err = "";
+            if (DateTime.Compare(ca_date_end.Value, DateTime.Parse("1/1/2018")) < 0)
+            {
+                err = err + "La fecha final debe ser posterior a 1-1-2018. ";
+            }
+            if (DateTime.Compare(ca_date_end.Value, DateTime.Today) >= 0)
+            {
+                err = err + "La fecha final debe ser previa a [" + DateTime.Today.ToString() + "]. ";
+            }
+            if (DateTime.Compare(ca_date_start.Value, ca_date_end.Value) > 0)
+            {
+                err = err + "La fecha inicial no puede ser posterior a la fecha final.";
+            }
+            ep_error.SetError(ca_date_start, err);
+            ep_error.SetError(ca_date_end, err);
+        }
+
+        // ---------------------------------------------------------------------------------
+        // -------------------------------- Old Functions ----------------------------------
+        // ---------------------------------------------------------------------------------
 
         /// <summary>
         /// Converts the string representing a month to an equivalent integer.
@@ -89,128 +175,6 @@ namespace OTOI_ADD.Code.Function
             return end;
         }
 
-        /// <summary>
-        /// Formats a month given as a string with 2 characters.
-        /// </summary>
-        /// <param name="month">Month as integer to format.</param>
-        /// <returns>Formatted month as a string.</returns>
-        internal static string FormatMonth(int month)
-        {
-            string mth;
-            if (month < 10)
-            {
-                mth = "0" + month;
-            }
-            else
-            {
-                mth = month.ToString();
-            }
-            return mth;
-        }
-
-        /// <summary>
-        /// Formats a day given as a string with 2 characters.
-        /// </summary>
-        /// <param name="day">Day as integer to format.</param>
-        /// <returns>Formatted day as a string.</returns>
-        internal static string FormatDay(int day)
-        {
-            string dy;
-            if (day < 10)
-            {
-                dy = "0" + day;
-            }
-            else
-            {
-                dy = day.ToString();
-            }
-            return dy;
-        }
-
-        /// <summary>
-        /// Opens an URL according to the requesting Form.
-        /// </summary>
-        /// <param name="FID">Form ID.</param>
-        /// <param name="lb_link">Label to be updated.</param>
-        internal static void OpenLink(int FID, LinkLabel lb_link)
-        {
-            try
-            {
-                lb_link.LinkVisited = true;
-                string url = "";
-                switch (FID)
-                {
-                    case 0:
-                        MessageBox.Show("Formulario genérico.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    case 1:
-                        url = "https://www.omie.es/es/market-results/daily/average-final-prices/hourly-price-consumers?scope=daily&date=2023-01-01";
-                        break;
-                    case 2:
-                        url = "https://www.omie.es/es/market-results/daily/average-final-prices/hourly-price-consumers?scope=daily&date=2023-01-01";
-                        break;
-                    case 3:
-                        url = "https://www.omie.es/es/market-results/daily/daily-market/daily-hourly-price?scope=daily&date=2023-01-01";
-                        break;
-                    case 4:
-                        url = "https://www.omie.es/es/market-results/daily/daily-market/daily-hourly-price?scope=daily&date=2023-01-01";
-                        break;
-                    case 5:
-                        url = "https://www.esios.ree.es/es/descargas?date_type=publicacion&start_date=01-09-2022&end_date=12-01-2023";
-                        break;
-                }
-                System.Diagnostics.Process.Start(new ProcessStartInfo() { FileName = url, UseShellExecute = true });
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("No se ha podido abrir el enlace.\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        /// <summary>
-        /// Checks if an entered start date is valid.
-        /// Current criteria: Valid if earlier than [Today] and later than 1-1-2018.
-        /// </summary>
-        /// <param name="ca_date_start"></param>
-        /// <param name="ep_error"></param>
-        internal static void ValidateStart(DateTimePicker ca_date_start, ErrorProvider ep_error)
-        {
-            string err = "";
-            if (DateTime.Compare(ca_date_start.Value, DateTime.Parse("1/1/2018")) < 0)
-            {
-                err = err + "La fecha inicial debe ser posterior a 1-1-2018. ";
-            }
-            if (DateTime.Compare(ca_date_start.Value, DateTime.Today) >= 0)
-            {
-                err = err + "La fecha inicial debe ser previa a [" + DateTime.Today.ToString() + "]. ";
-            }
-            ep_error.SetError(ca_date_start, err);
-        }
-
-        /// <summary>
-        /// Checks if an entered end date is valid. 
-        /// Current criteria: Valid if earlier than [Today] and later than 1-1-2018.
-        /// </summary>
-        /// <param name="ca_date_end"></param>
-        /// <param name="ep_error"></param>
-        internal static void ValidateEnd(DateTimePicker ca_date_start, DateTimePicker ca_date_end, ErrorProvider ep_error)
-        {
-            string err = "";
-            if (DateTime.Compare(ca_date_end.Value, DateTime.Parse("1/1/2018")) < 0)
-            {
-                err = err + "La fecha final debe ser posterior a 1-1-2018. ";
-            }
-            if (DateTime.Compare(ca_date_end.Value, DateTime.Today) >= 0)
-            {
-                err = err + "La fecha final debe ser previa a [" + DateTime.Today.ToString() + "]. ";
-            }
-            if (DateTime.Compare(ca_date_start.Value, ca_date_end.Value) > 0)
-            {
-                err = err + "La fecha inicial no puede ser posterior a la fecha final.";
-            }
-            ep_error.SetError(ca_date_end, err);
-        }
-
         internal static Dictionary<string, object> InitFields(int FID, DateTime start, DateTime end, string file, string download, bool keep, bool process)
         {
             Dictionary<string, object> fields = new Dictionary<string, object>();
@@ -235,5 +199,6 @@ namespace OTOI_ADD.Code.Function
             fields.Add("unzip", unzip);
             return fields;
         }
+
     }
 }

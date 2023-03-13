@@ -92,6 +92,10 @@ namespace OTOI_ADD.View.Generic
         private void ValidateStartEvent(object? sender, EventArgs e)
         {
             Auxiliary.ValidateStart(this.uc_f.ca_date_start, this.ep_error);
+            if (this.ep_error.GetError(this.uc_f.ca_date_start) == "")
+            {
+                FormManager.STR = this.uc_f.ca_date_start.Value;
+            }
         }
     }
 }

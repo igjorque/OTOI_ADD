@@ -23,9 +23,9 @@ namespace OTOI_ADD.Code.Module.Download
         // https://www.omie.es/sites/default/files/dados/AGNO_2023/MES_01/TXT/INT_PDBC_PRECIO_2_01_01_2023_31_01_2023.TXT
 
         /// <summary>
-        /// 
+        /// Establishes both base URI and specific URI based on the received [Input]
         /// </summary>
-        /// <param name="inp"></param>
+        /// <param name="inp">Form input</param>
         internal static void DLSwitch(InputOMIE inp)
         {
             string uribase = "https://www.omie.es/sites/default/files/dados/AGNO_";
@@ -47,11 +47,11 @@ namespace OTOI_ADD.Code.Module.Download
         }
 
         /// <summary>
-        /// 
+        /// Manages the download process, building an URI list based on the received [Input].
         /// </summary>
-        /// <param name="uribase"></param>
-        /// <param name="uripage"></param>
-        /// <param name="inp"></param>
+        /// <param name="uribase">Base URI</param>
+        /// <param name="uripage">Specific URI</param>
+        /// <param name="inp">Form input</param>
         internal static void ProcessDL(string uribase, string uripage, InputOMIE inp)
         {
             string mth, day;

@@ -21,6 +21,10 @@ namespace OTOI_ADD.Code.Module.Download
                          item identifier  ^                                end date ^--------^                                  start date ^--------^                                                   
         */
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="inp"></param>
         internal static void ProcessDL(InputESIOS inp)
         {
             string yea, mth, day;

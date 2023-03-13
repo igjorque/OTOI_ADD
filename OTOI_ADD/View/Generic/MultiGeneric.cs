@@ -37,6 +37,10 @@ namespace OTOI_ADD.View.Generic
         private void ValidateEndEvent(object? sender, EventArgs e)
         {
             Auxiliary.ValidateEnd(this.UCF.ca_date_start, this.ca_date_end, this.ep_error);
+            if (this.ep_error.GetError(this.ca_date_end) == "")
+            {
+                FormManager.END = this.ca_date_end.Value;
+            }
         }
     }
 }
