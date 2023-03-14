@@ -87,6 +87,18 @@ namespace OTOI_ADD.Code.Function
             ep_error.SetError(ca_date_end, err);
         }
 
+        internal static int DaysDiff(DateTime str, DateTime end)
+        {
+            int diff = 0;
+            DateTime aux = str;
+            while(DateTime.Compare(aux  , end) < 0)
+            {
+                aux = aux.AddDays(1);
+                diff++;
+            }
+            return diff;
+        }
+
         // ---------------------------------------------------------------------------------
         // -------------------------------- Old Functions ----------------------------------
         // ---------------------------------------------------------------------------------

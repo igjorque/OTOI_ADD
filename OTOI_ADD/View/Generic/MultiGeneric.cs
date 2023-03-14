@@ -1,4 +1,5 @@
 ﻿using OTOI_ADD.Code.Function;
+using System.Reflection;
 
 namespace OTOI_ADD.View.Generic
 {
@@ -40,6 +41,10 @@ namespace OTOI_ADD.View.Generic
             if (this.ep_error.GetError(this.ca_date_end) == "")
             {
                 FormManager.END = this.ca_date_end.Value;
+                this.Accept.Enabled = true;
+            } else
+            {
+                this.Accept.Enabled = false;
             }
         }
     }

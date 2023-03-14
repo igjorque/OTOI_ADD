@@ -56,12 +56,19 @@ namespace OTOI_ADD.View.Asset
         /// <param name="l_uri">URI list</param>
         private async void DLProgress_OMIE(InputOMIE inp, List<Uri> l_uri)
         {
-            string file = "";
+            string file = "", auxpath = "";
             this.pb_progress.Minimum = 0;
             this.pb_progress.Maximum = l_uri.Count;
             this.pb_progress.Value = 0;
             this.pb_progress.Step = 1;
-
+            // Prevent user from flooding the default directory (desktop)
+            if (inp.DestDL == Environment.GetFolderPath(Environment.SpecialFolder.Desktop))
+            {
+                auxpath = inp.DestDL + Path.DirectorySeparatorChar + "Omie_"+DateTime.Now.Ticks.ToString();
+                System.IO.Directory.CreateDirectory(auxpath);
+                inp.DestDL = auxpath;
+            }
+            // Download files
             foreach (Uri uri in l_uri)
             {
                 file = FName(uri.ToString().Split("/").Last());
@@ -76,7 +83,7 @@ namespace OTOI_ADD.View.Asset
             }
             this.lb_url_value.Text = "";
             this.lb_url.Text = "";
-            // Process file
+            // Process files
             if (inp.Process)
             {
                 this.Text = "Procesando";

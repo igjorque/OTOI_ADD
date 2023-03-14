@@ -29,16 +29,33 @@ namespace OTOI_ADD.Code.Function
             {
                 case 1: // HPC
                 case 3: // HM
+
                     ManageSingleOMIE(f);
                     break;
                 case 2: // HPCM
                 case 4: // HMM
-                    ManageMultiOMIE(f);
+                    if (PreventMultiDownloadEvent(f)) ManageMultiOMIE(f);
                     break;
                 case 5: // C2L
                     ManageSingleESIOS(f);
                     break;
+                case 6: // C2LM
+                    break;
             }
+        }
+
+        private static bool PreventMultiDownloadEvent(Form f)
+        {
+            bool r = false;
+            MultiGeneric m = (MultiGeneric)f;
+            int diff = Auxiliary.DaysDiff(m.Start, m.End);
+            if (diff > 31)
+            { // Date range too extense
+                DialogResult dr = MessageBox.Show($"Va a descargar {diff} días en datos. ¿Está seguro?", "Atención", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+                if (dr == DialogResult.Yes) r = true;
+            }
+            else { r = true; }
+            return r;
         }
 
         /// <summary>
@@ -50,7 +67,7 @@ namespace OTOI_ADD.Code.Function
             // Cast parameter
             SingleGeneric sgf = (SingleGeneric)f;
             // Init input
-            InputOMIE inp = new (sgf);
+            InputOMIE inp = new(sgf);
             // Download file
             DL_OMIE.DLSwitch(inp);
             // Close form
@@ -66,7 +83,7 @@ namespace OTOI_ADD.Code.Function
             // Cast parameter
             MultiGeneric mgf = (MultiGeneric)f;
             // Init input
-            InputOMIE inp = new (mgf);
+            InputOMIE inp = new(mgf);
             // Download files
             DL_OMIE.DLSwitch(inp);
             // Close form
@@ -82,7 +99,7 @@ namespace OTOI_ADD.Code.Function
             // Cast parameter
             SingleGeneric sgf = (SingleGeneric)f;
             // Init input
-            InputESIOS inp = new (sgf);
+            InputESIOS inp = new(sgf);
             // Download file
             DL_ESIOS.ProcessDL(inp);
             // Process file
@@ -106,9 +123,10 @@ namespace OTOI_ADD.Code.Function
             if (sender == null)
             {
                 ch = new CheckBox();
-            } else
+            }
+            else
             {
-                ch = (CheckBox) sender;
+                ch = (CheckBox)sender;
             }
             if (ch != null && ch.Checked)
             {
@@ -195,7 +213,8 @@ namespace OTOI_ADD.Code.Function
                 int index = CURR_FIL.LastIndexOf("\\"), length = CURR_FIL.Length - index;
                 sf_file.InitialDirectory = CURR_FIL.Remove(index, length);
                 sf_file.FileName = CURR_FIL.Split("\\").Last();
-            } else
+            }
+            else
             {
                 sf_file.InitialDirectory = CURR_DIR;
                 sf_file.FileName = "ejemplo.xls";

@@ -95,6 +95,10 @@ namespace OTOI_ADD.View.Generic
             if (this.ep_error.GetError(this.uc_f.ca_date_start) == "")
             {
                 FormManager.STR = this.uc_f.ca_date_start.Value;
+                this.Accept.Enabled = true;
+            } else
+            {
+                this.Accept.Enabled = false;
             }
         }
     }
