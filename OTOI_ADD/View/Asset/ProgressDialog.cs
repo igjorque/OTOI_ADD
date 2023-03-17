@@ -2,6 +2,7 @@
 using OTOI_ADD.Code.Module.Download;
 using OTOI_ADD.Code.Module.Process;
 using OTOI_ADD.Code.Function;
+using System.IO.Compression;
 
 namespace OTOI_ADD.View.Asset
 {
@@ -56,43 +57,44 @@ namespace OTOI_ADD.View.Asset
         /// <param name="l_uri">URI list</param>
         private async void DLProgress_OMIE(InputOMIE inp, List<Uri> l_uri)
         {
+            DateTime daux = DateTime.Now;
             string file = "", auxpath = "";
             this.pb_progress.Minimum = 0;
             this.pb_progress.Maximum = l_uri.Count;
             this.pb_progress.Value = 0;
             this.pb_progress.Step = 1;
-            // Prevent user from flooding the default directory (desktop)
-            if (inp.DestDL == Environment.GetFolderPath(Environment.SpecialFolder.Desktop))
-            {
-                auxpath = inp.DestDL + Path.DirectorySeparatorChar + "Omie_"+DateTime.Now.Ticks.ToString();
-                System.IO.Directory.CreateDirectory(auxpath);
-                inp.DestDL = auxpath;
-            }
+
+            // Prevent user from flooding the selected directory (default: desktop)
+            auxpath = inp.DestDL + Path.DirectorySeparatorChar + "Omie_" + daux.Day + "-" + daux.Month + "-" + daux.Year + "_" + daux.Hour + "-" + daux.Minute + "-" + daux.Second;
+            Directory.CreateDirectory(auxpath);
+            inp.DestDL = auxpath;
+
             // Download files
             foreach (Uri uri in l_uri)
             {
                 file = FName(uri.ToString().Split("/").Last());
                 this.lb_url_value.Text = file;
                 file = inp.DestDL + Path.DirectorySeparatorChar + file;
-                //file = inp.DestDL + Path.DirectorySeparatorChar + uri.ToString().Split("/").Last();//
-                //this.lb_url_value.Text = uri.ToString().Split("/").Last();//
                 Downloader.Download(file, uri);
                 FILES.Add(file);
                 this.pb_progress.PerformStep();
-                await Task.Delay(25);
+                await Task.Delay(10);
             }
+            this.lb_download.Text = "";
             this.lb_url_value.Text = "";
             this.lb_url.Text = "";
+
             // Process files
             if (inp.Process)
             {
                 this.Text = "Procesando";
-                this.lb_download.Text = FormManager.CURR_FIL;
+                this.lb_download.Text = "Procesando los datos descargados...";
                 this.pb_progress.Maximum = 1;
                 this.pb_progress.Value = 0;
                 ProcessorOMIE.Process(ProgressDialog.FILES, 2);
                 this.pb_progress.PerformStep();
             }
+
             // Delete? downloaded files
             if (inp.Process && !inp.KeepDL)
             {
@@ -101,12 +103,12 @@ namespace OTOI_ADD.View.Asset
                 this.pb_progress.Maximum = 1;
                 this.pb_progress.Value = 0;
                 FormManager.Delete();
+                Directory.Delete(inp.DestDL);
                 this.pb_progress.PerformStep();
             }
             this.Text = "Finalizado";
             this.lb_download.Text = "Operación completada con éxito.";
             this.lb_url.Text = "";
-            this.lb_url_value.Text = "";
             this.bt_accept.Enabled = true;
             this.bt_accept.Visible = true;
         }
@@ -119,18 +121,64 @@ namespace OTOI_ADD.View.Asset
         /// <param name="filename">Destination filename</param>
         private async void DLProgress_ESIOS(InputESIOS inp, Uri uri, string filename)
         {
-            String file = "";
+            List<string> zipContent = new List<string>();
+            string file = "", auxpath = "";
             this.pb_progress.Minimum = 0;
             this.pb_progress.Maximum = 1;
             this.pb_progress.Value = 0;
             this.pb_progress.Step = 1;
 
-            this.lb_url_value.Text = uri.ToString().Split("/").Last();
+            // Prevent user from flooding the selected directory (default: desktop)
+            auxpath = inp.DestDL + Path.DirectorySeparatorChar + "ESIOS_" + inp.DateStart.Month + "-" + inp.DateStart.Year;
+            Directory.CreateDirectory(auxpath);
+            inp.DestDL = auxpath;
+
+            // Build file path
+            this.lb_url_value.Text = "C2 liquicomun - " + inp.DateStart.Month + "/" + inp.DateStart.Year;
             file = inp.DestDL + Path.DirectorySeparatorChar + filename;
+
+            // Download file
             Downloader.Download(file, uri);
             FILES.Add(file);
             this.pb_progress.PerformStep();
             await Task.Delay(25);
+
+            using (ZipArchive archive = ZipFile.OpenRead(file))
+            {
+                foreach (ZipArchiveEntry entry in archive.Entries)
+                {
+                    zipContent.Add(inp.DestDL + Path.DirectorySeparatorChar + entry.Name);
+                }
+            }
+
+            // Unzip?
+            if (inp.Unzip)
+            {
+                this.lb_download.Text = "Extrayendo archivos...";
+                ZipFile.ExtractToDirectory(file, inp.DestDL);
+
+                // Keep?
+                if (!inp.KeepDL)
+                {
+                    this.lb_download.Text = "Eliminando archivo...";
+                    File.Delete(file);
+                }
+
+                // Process?
+                if (inp.Process)
+                {
+                    this.lb_download.Text = "Procesando...";
+                    // TODO: Process ESIOS files.
+                    if (MessageBox.Show("¿Desea eliminar los archivos descomprimidos?", "Atención", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        this.lb_download.Text = "Eliminando archivos descomprimidos...";
+                        foreach (string zf in zipContent)
+                        {
+                            File.Delete(zf);
+                        }
+                    }
+                }
+            }
 
             this.Text = "Finalizado";
             this.lb_download.Text = "";

@@ -163,17 +163,16 @@ namespace OTOI_ADD.View
 
         private void processToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            List<string> files = new List<string>();
-            files.Add("C:\\Users\\igjorque\\Desktop\\test\\1_3_2023_1_3_2023.txt");
-            ProcessorOMIE.Process(files, 1);
+            Test t = new Test();
+            t.MdiParent = this;
+            t.Show();
         }
 
         private void process2ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            List<string> files = new List<string>();
-            files.Add("C:\\Users\\igjorque\\Desktop\\test\\1_3_2023_1_3_2023.txt");
-            files.Add("C:\\Users\\igjorque\\Desktop\\test\\1_3_2022_1_3_2022.txt");
-            ProcessorOMIE.Process(files, 2);
+            C2L c2l = new();
+            c2l.MdiParent = this;
+            c2l.Show();
         }
     }
 }

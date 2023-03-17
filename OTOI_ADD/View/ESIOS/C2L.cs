@@ -1,32 +1,104 @@
-﻿using OTOI_ADD.View.Generic;
+﻿using OTOI_ADD.Code.Function;
+using OTOI_ADD.View.Asset.Control;
+using OTOI_ADD.View.Generic;
 
 namespace OTOI_ADD.View.ESIOS
 {
-    public partial class C2L : SingleGeneric
+    public partial class C2L : Form
     {
-        private static new readonly int FID = 5;
+        private static readonly int fid = 5;
 
-        public C2L() : base(FID)
+        internal int FID { get => fid; }
+        internal DateTime Date { get => MPtoDT(this.mp_date); } 
+        internal string Folder { get => this.lb_bt_downloadDir.Text; }
+        internal bool Unzip { get => this.cb_unzip.Checked; }
+        internal bool Keep { get => this.cb_keep.Checked; }
+        internal bool Process { get => this.cb_process.Checked; }
+        internal string File { get => this.lb_bt_fileDest.Text; }
+
+        public C2L()
         {
             InitializeComponent();
             LoadFields();
-            LoadEvents();
         }
 
         private void LoadFields()
         {
-            this.FormName = "ESIOS";
-            this.Title = "C2 liquicomun";
-            this.Process.Text = "Descomprimir archivos descargados";
-            this.File.Visible = false;
-            this.File.Enabled = false;
-            this.LBFile.Visible = false;
-            this.LBFile.Enabled = false;
+            this.Text = "ESIOS";
+            this.lb_title.Text = "C2 liquicomun";
+            this.mp_date.Value = DateTime.Today.AddMonths(-1);
         }
 
-        private void LoadEvents()
+        private void Mp_date_ValueChanged(object sender, EventArgs e)
         {
+            Auxiliary.ValidateESIOS(this.mp_date, this.ep_error);
+            if (this.ep_error.GetError(this.mp_date) == "")
+            {
+                this.bt_accept.Enabled = true;
+            } 
+            else
+            {
+                this.bt_accept.Enabled = false;
+            }
+        }
 
+        private void Lb_link_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            FormManager.OpenLink(fid, this.lb_link);
+        }
+
+        private void Bt_downloadDir_Click(object sender, EventArgs e)
+        {
+            FormManager.DownloadDir(this.fb_directory, this.lb_bt_downloadDir, this.tt_folder);
+        }
+
+        private void Cb_unzip_CheckedChanged(object sender, EventArgs e)
+        {
+            if (this.cb_unzip.Checked)
+            {
+                this.cb_keep.Enabled = true;
+                this.cb_process.Enabled = true;
+            } 
+            else
+            {
+                this.cb_keep.Enabled = false;
+                this.cb_process.Enabled = false;
+            }
+        }
+
+        private void Cb_process_CheckedChanged(object sender, EventArgs e)
+        {
+            if (this.cb_process.Checked)
+            {
+                this.bt_fileDest.Enabled = true;
+                this.lb_bt_fileDest.Enabled = true;
+            } 
+            else
+            {
+                this.bt_fileDest.Enabled = false;
+                this.lb_bt_fileDest.Enabled = false;
+            }
+        }
+
+        private void Bt_fileDest_Click(object sender, EventArgs e)
+        {
+            FormManager.DownloadFil(this.sf_file, this.lb_bt_fileDest, this.tt_file);
+        }
+
+        private void Bt_accept_Click(object sender, EventArgs e)
+        {
+            FormManager.FormAccept(this, fid);
+        }
+
+        private void bt_cancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private DateTime MPtoDT(MonthPicker mp)
+        {
+            DateTime dx = new(mp.Value.Year, mp.Value.Month, 1);
+            return dx;
         }
     }
 }

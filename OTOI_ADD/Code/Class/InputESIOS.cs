@@ -1,31 +1,30 @@
-﻿using OTOI_ADD.View.Generic;
+﻿using OTOI_ADD.View.ESIOS;
 
 namespace OTOI_ADD.Code.Class
 {
     internal class InputESIOS : Input
     {
+        private bool unzip;
+        private string file;
+
+        internal bool Unzip { get => this.unzip; }
+        internal string File { get => this.file; }
+
         /// <summary>
         /// Default empty constructor.
         /// </summary>
         public InputESIOS() : base() { }
 
         /// <summary>
-        /// Builds an [Input] object using a Dictionary containing the fields values.
-        /// </summary>
-        /// <param name="fields">Dictionary that contains one key-value pair per field.</param>
-        public InputESIOS(Dictionary<string, Object> fields) : base((int)fields["FID"], (DateTime)fields["start"], (DateTime)fields["end"], (string)fields["download"], (bool)fields["keep"], (bool)fields["process"]) { }
-
-        /// <summary>
         /// Builds an [Input] object using a SingleGeneric type form's fields.
         /// </summary>
-        /// <param name="sgf">SingleGeneric form</param>
-        public InputESIOS(SingleGeneric sgf) : base(sgf.FID, sgf.Start, sgf.Start, sgf.LBDownload.Text, sgf.Keep.Checked, sgf.Process.Checked) { }
+        /// <param name="c2l">C2L form</param>
+        public InputESIOS(C2L c2l) : base(c2l.FID, c2l.Date, c2l.Date, c2l.Folder, c2l.Keep, c2l.Process)
+        {
+            this.unzip = c2l.Unzip;
+            this.file = c2l.File;
+        }
 
-        /// <summary>
-        /// Builds an [Input] object using a MultiGeneric type form's fields.
-        /// </summary>
-        /// <param name="mgf">MultiGeneric form</param>
-        public InputESIOS(MultiGeneric mgf) : base(mgf.FID, mgf.Start, mgf.End, mgf.LBDownload.Text, mgf.Keep.Checked, mgf.Process.Checked) { }
     }
 
 

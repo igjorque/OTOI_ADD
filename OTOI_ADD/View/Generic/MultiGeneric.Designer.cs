@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.ca_date_end = new System.Windows.Forms.DateTimePicker();
-            this.lb_separator = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // ca_date_end
@@ -41,35 +40,21 @@
             this.ca_date_end.TabIndex = 108;
             this.ca_date_end.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
-            // lb_separator
-            // 
-            this.lb_separator.AutoSize = true;
-            this.lb_separator.Location = new System.Drawing.Point(175, 53);
-            this.lb_separator.Name = "lb_separator";
-            this.lb_separator.Size = new System.Drawing.Size(12, 15);
-            this.lb_separator.TabIndex = 109;
-            this.lb_separator.Text = "-";
-            // 
             // MultiGeneric
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(324, 231);
-            this.Controls.Add(this.lb_separator);
+            this.ClientSize = new System.Drawing.Size(334, 231);
             this.Controls.Add(this.ca_date_end);
             this.Name = "MultiGeneric";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "MultiGeneric";
             this.Controls.SetChildIndex(this.ca_date_end, 0);
-            this.Controls.SetChildIndex(this.lb_separator, 0);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
         internal DateTimePicker ca_date_end;
-        internal Label lb_separator;
     }
 }

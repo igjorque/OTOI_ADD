@@ -32,7 +32,7 @@ namespace OTOI_ADD.View.Generic
 
         private void LoadEvents()
         {
-            this.ca_date_end.Validated += new EventHandler(ValidateEndEvent);
+            this.ca_date_end.ValueChanged += new EventHandler(ValidateEndEvent);
         }
 
         private void ValidateEndEvent(object? sender, EventArgs e)

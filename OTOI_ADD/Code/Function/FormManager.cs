@@ -2,7 +2,9 @@
 using OTOI_ADD.Code.Module.Download;
 using OTOI_ADD.Code.Module.Process;
 using OTOI_ADD.View.Asset;
+using OTOI_ADD.View.ESIOS;
 using OTOI_ADD.View.Generic;
+using System.Configuration;
 using System.Diagnostics;
 
 namespace OTOI_ADD.Code.Function
@@ -25,11 +27,13 @@ namespace OTOI_ADD.Code.Function
         /// <param name="FID">Form ID</param>
         internal static void FormAccept(Form f, int FID)
         {
+            // Save user input to config
+            AppConfigManager.Save();
+            // Manage forms
             switch (FID)
             {
                 case 1: // HPC
                 case 3: // HM
-
                     ManageSingleOMIE(f);
                     break;
                 case 2: // HPCM
@@ -97,9 +101,9 @@ namespace OTOI_ADD.Code.Function
         private static void ManageSingleESIOS(Form f)
         {
             // Cast parameter
-            SingleGeneric sgf = (SingleGeneric)f;
+            C2L c2l = (C2L) f;
             // Init input
-            InputESIOS inp = new(sgf);
+            InputESIOS inp = new(c2l);
             // Download file
             DL_ESIOS.ProcessDL(inp);
             // Process file

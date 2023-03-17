@@ -76,8 +76,8 @@
             // 
             // bt_cancel
             // 
-            this.bt_cancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.bt_cancel.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.bt_cancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.bt_cancel.ForeColor = System.Drawing.SystemColors.ControlText;
             this.bt_cancel.Location = new System.Drawing.Point(177, 198);
             this.bt_cancel.Name = "bt_cancel";
             this.bt_cancel.Size = new System.Drawing.Size(75, 23);
@@ -87,7 +87,7 @@
             // 
             // bt_accept
             // 
-            this.bt_accept.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.bt_accept.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.bt_accept.Location = new System.Drawing.Point(73, 198);
             this.bt_accept.Name = "bt_accept";
             this.bt_accept.Size = new System.Drawing.Size(75, 23);

@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using OTOI_ADD.View.Asset.Control;
+using System.Diagnostics;
 
 namespace OTOI_ADD.Code.Function
 {
@@ -85,6 +86,17 @@ namespace OTOI_ADD.Code.Function
             }
             ep_error.SetError(ca_date_start, err);
             ep_error.SetError(ca_date_end, err);
+        }
+
+        internal static void ValidateESIOS(MonthPicker mp_date, ErrorProvider ep_error)
+        {
+            DateTime dx = new DateTime(mp_date.Value.Year, mp_date.Value.Month, 1);
+            string err = "";
+            if(DateTime.Compare(dx, DateTime.Today) > 0 || DateTime.Today.Month == dx.Month)
+            {
+                err = "Mes introducido no válido";
+            }
+            ep_error.SetError(mp_date, err);
         }
 
         internal static int DaysDiff(DateTime str, DateTime end)

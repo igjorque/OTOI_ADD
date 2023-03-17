@@ -56,7 +56,7 @@ namespace OTOI_ADD.View.Generic
             this.Link.LinkClicked += new LinkLabelLinkClickedEventHandler(LinkEvent);
             this.Download.Click += new EventHandler(DownloadFolderEvent);
             this.File.Click += new EventHandler(DownloadFileEvent);
-            this.uc_f.ca_date_start.Validated += new EventHandler(ValidateStartEvent);
+            this.uc_f.ca_date_start.ValueChanged += new EventHandler(ValidateStartEvent);
         }
 
         private void EnableEvent(object? sender, EventArgs e)

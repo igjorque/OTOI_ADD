@@ -43,7 +43,7 @@ namespace OTOI_ADD.Code.Module.Download
             Uri uri = new (uristr);
             // end format: 2023-01-12 |||| start format: 2022-09-01
 
-            string filename = $"C2_liquicomun.zip";
+            string filename = $"C2_liquicomun_{mth}-{yea}.zip";
 
             ProgressDialog pd = new (inp, uri, filename);
             pd.ShowDialog();
