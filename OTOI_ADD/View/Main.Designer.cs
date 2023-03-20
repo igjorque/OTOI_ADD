@@ -30,28 +30,32 @@
         {
             this.components = new System.ComponentModel.Container();
             this.ms_menu = new System.Windows.Forms.MenuStrip();
-            this.archivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmi_file = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_exit = new System.Windows.Forms.ToolStripMenuItem();
-            this.editarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ts_omie = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmi_downloads = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmi_omie = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_HPC = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_HPCM = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_HM = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_HMM = new System.Windows.Forms.ToolStripMenuItem();
-            this.ts_esios = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmi_esios = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_c2_liquicomun = new System.Windows.Forms.ToolStripMenuItem();
             this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.processToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tt_menu = new System.Windows.Forms.ToolTip(this.components);
             this.process2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tt_menu = new System.Windows.Forms.ToolTip(this.components);
+            this.tsmi_version = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmi_update = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmi_info = new System.Windows.Forms.ToolStripMenuItem();
             this.ms_menu.SuspendLayout();
             this.SuspendLayout();
             // 
             // ms_menu
             // 
             this.ms_menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.archivoToolStripMenuItem,
-            this.editarToolStripMenuItem,
+            this.tsmi_file,
+            this.tsmi_downloads,
+            this.tsmi_version,
             this.testToolStripMenuItem});
             this.ms_menu.Location = new System.Drawing.Point(0, 0);
             this.ms_menu.Name = "ms_menu";
@@ -59,40 +63,40 @@
             this.ms_menu.TabIndex = 22;
             this.ms_menu.Text = "menuStrip1";
             // 
-            // archivoToolStripMenuItem
+            // tsmi_file
             // 
-            this.archivoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmi_file.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmi_exit});
-            this.archivoToolStripMenuItem.Name = "archivoToolStripMenuItem";
-            this.archivoToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
-            this.archivoToolStripMenuItem.Text = "Archivo";
+            this.tsmi_file.Name = "tsmi_file";
+            this.tsmi_file.Size = new System.Drawing.Size(60, 20);
+            this.tsmi_file.Text = "Archivo";
             // 
             // tsmi_exit
             // 
             this.tsmi_exit.Name = "tsmi_exit";
-            this.tsmi_exit.Size = new System.Drawing.Size(96, 22);
+            this.tsmi_exit.Size = new System.Drawing.Size(180, 22);
             this.tsmi_exit.Text = "Salir";
             this.tsmi_exit.Click += new System.EventHandler(this.tsmi_exit_Click);
             // 
-            // editarToolStripMenuItem
+            // tsmi_downloads
             // 
-            this.editarToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ts_omie,
-            this.ts_esios});
-            this.editarToolStripMenuItem.Name = "editarToolStripMenuItem";
-            this.editarToolStripMenuItem.Size = new System.Drawing.Size(72, 20);
-            this.editarToolStripMenuItem.Text = "Descargas";
+            this.tsmi_downloads.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmi_omie,
+            this.tsmi_esios});
+            this.tsmi_downloads.Name = "tsmi_downloads";
+            this.tsmi_downloads.Size = new System.Drawing.Size(72, 20);
+            this.tsmi_downloads.Text = "Descargas";
             // 
-            // ts_omie
+            // tsmi_omie
             // 
-            this.ts_omie.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmi_omie.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmi_HPC,
             this.tsmi_HPCM,
             this.tsmi_HM,
             this.tsmi_HMM});
-            this.ts_omie.Name = "ts_omie";
-            this.ts_omie.Size = new System.Drawing.Size(104, 22);
-            this.ts_omie.Text = "OMIE";
+            this.tsmi_omie.Name = "tsmi_omie";
+            this.tsmi_omie.Size = new System.Drawing.Size(180, 22);
+            this.tsmi_omie.Text = "OMIE";
             // 
             // tsmi_HPC
             // 
@@ -128,18 +132,18 @@
             this.tsmi_HMM.Text = "Precio energía horario mensual múltiple (HMM)";
             this.tsmi_HMM.Click += new System.EventHandler(this.CL_openForm_HMM);
             // 
-            // ts_esios
+            // tsmi_esios
             // 
-            this.ts_esios.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmi_esios.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmi_c2_liquicomun});
-            this.ts_esios.Name = "ts_esios";
-            this.ts_esios.Size = new System.Drawing.Size(104, 22);
-            this.ts_esios.Text = "ESIOS";
+            this.tsmi_esios.Name = "tsmi_esios";
+            this.tsmi_esios.Size = new System.Drawing.Size(180, 22);
+            this.tsmi_esios.Text = "ESIOS";
             // 
             // tsmi_c2_liquicomun
             // 
             this.tsmi_c2_liquicomun.Name = "tsmi_c2_liquicomun";
-            this.tsmi_c2_liquicomun.Size = new System.Drawing.Size(155, 22);
+            this.tsmi_c2_liquicomun.Size = new System.Drawing.Size(180, 22);
             this.tsmi_c2_liquicomun.Text = "C2 Liquicomun";
             this.tsmi_c2_liquicomun.Click += new System.EventHandler(this.CL_openForm_C2L);
             // 
@@ -166,6 +170,29 @@
             this.process2ToolStripMenuItem.Text = "Process 2";
             this.process2ToolStripMenuItem.Click += new System.EventHandler(this.process2ToolStripMenuItem_Click);
             // 
+            // tsmi_version
+            // 
+            this.tsmi_version.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmi_update,
+            this.tsmi_info});
+            this.tsmi_version.Name = "tsmi_version";
+            this.tsmi_version.Size = new System.Drawing.Size(57, 20);
+            this.tsmi_version.Text = "Versión";
+            // 
+            // tsmi_update
+            // 
+            this.tsmi_update.Name = "tsmi_update";
+            this.tsmi_update.Size = new System.Drawing.Size(180, 22);
+            this.tsmi_update.Text = "Actualizar";
+            this.tsmi_update.Click += new System.EventHandler(this.Tsmi_update_Click);
+            // 
+            // tsmi_info
+            // 
+            this.tsmi_info.Name = "tsmi_info";
+            this.tsmi_info.Size = new System.Drawing.Size(180, 22);
+            this.tsmi_info.Text = "Información";
+            this.tsmi_info.Click += new System.EventHandler(this.Tsmi_info_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -187,19 +214,22 @@
         #endregion
 
         private MenuStrip ms_menu;
-        private ToolStripMenuItem archivoToolStripMenuItem;
-        private ToolStripMenuItem editarToolStripMenuItem;
-        private ToolStripMenuItem ts_omie;
+        private ToolStripMenuItem tsmi_file;
+        private ToolStripMenuItem tsmi_downloads;
+        private ToolStripMenuItem tsmi_omie;
         private ToolStripMenuItem tsmi_exit;
         private ToolStripMenuItem tsmi_HPC;
         private ToolStripMenuItem tsmi_HM;
         private ToolStripMenuItem tsmi_HPCM;
         private ToolTip tt_menu;
         private ToolStripMenuItem tsmi_HMM;
-        private ToolStripMenuItem ts_esios;
+        private ToolStripMenuItem tsmi_esios;
         private ToolStripMenuItem tsmi_c2_liquicomun;
         private ToolStripMenuItem testToolStripMenuItem;
         private ToolStripMenuItem processToolStripMenuItem;
         private ToolStripMenuItem process2ToolStripMenuItem;
+        private ToolStripMenuItem tsmi_version;
+        private ToolStripMenuItem tsmi_update;
+        private ToolStripMenuItem tsmi_info;
     }
 }
