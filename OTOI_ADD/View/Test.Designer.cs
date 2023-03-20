@@ -44,11 +44,11 @@
             // lb_selected
             // 
             this.lb_selected.AutoSize = true;
-            this.lb_selected.Location = new System.Drawing.Point(72, 136);
+            this.lb_selected.Location = new System.Drawing.Point(288, 88);
             this.lb_selected.Name = "lb_selected";
             this.lb_selected.Size = new System.Drawing.Size(63, 15);
             this.lb_selected.TabIndex = 1;
-            this.lb_selected.Text = "VERSION 2";
+            this.lb_selected.Text = "VERSION 3";
             // 
             // Test
             // 
