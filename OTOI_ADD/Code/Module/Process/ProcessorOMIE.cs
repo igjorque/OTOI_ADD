@@ -1,4 +1,5 @@
-﻿using OTOI_ADD.Code.Function;
+﻿using Microsoft.Office.Interop.Excel;
+using OTOI_ADD.Code.Function;
 using Excel = Microsoft.Office.Interop.Excel;
 
 namespace OTOI_ADD.Code.Module.Process
@@ -79,6 +80,9 @@ namespace OTOI_ADD.Code.Module.Process
             int i = 1;
 
             app = new Excel.Application();
+
+            app.DisplayAlerts = false;
+
             books = (Excel.Workbooks) app.Workbooks;
             tbk = app.Workbooks.Add(miss);
 
@@ -92,9 +96,20 @@ namespace OTOI_ADD.Code.Module.Process
                 i++;
             }
 
+            foreach (Worksheet ws in app.Worksheets)
+            {
+                if (ws.Name == "Hoja1")
+                {
+                    ws.Delete();
+                }
+            }
+
             tbk.SaveAs(fpath, Excel.XlFileFormat.xlWorkbookNormal, miss, miss, miss, miss, Excel.XlSaveAsAccessMode.xlNoChange, miss, miss, miss, miss);
             tbk.Close(true, miss, miss);
             books.Close();
+
+            app.DisplayAlerts = true;
+
             app.Quit();
         }
     }
