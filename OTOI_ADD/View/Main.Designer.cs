@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.ms_menu = new System.Windows.Forms.MenuStrip();
             this.tsmi_file = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_exit = new System.Windows.Forms.ToolStripMenuItem();
@@ -40,13 +41,13 @@
             this.tsmi_HMM = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_esios = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_c2_liquicomun = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmi_version = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmi_update = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmi_info = new System.Windows.Forms.ToolStripMenuItem();
             this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.processToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.process2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tt_menu = new System.Windows.Forms.ToolTip(this.components);
-            this.tsmi_version = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmi_update = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmi_info = new System.Windows.Forms.ToolStripMenuItem();
             this.ms_menu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -74,7 +75,7 @@
             // tsmi_exit
             // 
             this.tsmi_exit.Name = "tsmi_exit";
-            this.tsmi_exit.Size = new System.Drawing.Size(180, 22);
+            this.tsmi_exit.Size = new System.Drawing.Size(96, 22);
             this.tsmi_exit.Text = "Salir";
             this.tsmi_exit.Click += new System.EventHandler(this.tsmi_exit_Click);
             // 
@@ -95,7 +96,7 @@
             this.tsmi_HM,
             this.tsmi_HMM});
             this.tsmi_omie.Name = "tsmi_omie";
-            this.tsmi_omie.Size = new System.Drawing.Size(180, 22);
+            this.tsmi_omie.Size = new System.Drawing.Size(104, 22);
             this.tsmi_omie.Text = "OMIE";
             // 
             // tsmi_HPC
@@ -137,38 +138,15 @@
             this.tsmi_esios.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmi_c2_liquicomun});
             this.tsmi_esios.Name = "tsmi_esios";
-            this.tsmi_esios.Size = new System.Drawing.Size(180, 22);
+            this.tsmi_esios.Size = new System.Drawing.Size(104, 22);
             this.tsmi_esios.Text = "ESIOS";
             // 
             // tsmi_c2_liquicomun
             // 
             this.tsmi_c2_liquicomun.Name = "tsmi_c2_liquicomun";
-            this.tsmi_c2_liquicomun.Size = new System.Drawing.Size(180, 22);
+            this.tsmi_c2_liquicomun.Size = new System.Drawing.Size(155, 22);
             this.tsmi_c2_liquicomun.Text = "C2 Liquicomun";
             this.tsmi_c2_liquicomun.Click += new System.EventHandler(this.CL_openForm_C2L);
-            // 
-            // testToolStripMenuItem
-            // 
-            this.testToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.processToolStripMenuItem,
-            this.process2ToolStripMenuItem});
-            this.testToolStripMenuItem.Name = "testToolStripMenuItem";
-            this.testToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
-            this.testToolStripMenuItem.Text = "Test";
-            // 
-            // processToolStripMenuItem
-            // 
-            this.processToolStripMenuItem.Name = "processToolStripMenuItem";
-            this.processToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.processToolStripMenuItem.Text = "Process";
-            this.processToolStripMenuItem.Click += new System.EventHandler(this.processToolStripMenuItem_Click);
-            // 
-            // process2ToolStripMenuItem
-            // 
-            this.process2ToolStripMenuItem.Name = "process2ToolStripMenuItem";
-            this.process2ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.process2ToolStripMenuItem.Text = "Process 2";
-            this.process2ToolStripMenuItem.Click += new System.EventHandler(this.process2ToolStripMenuItem_Click);
             // 
             // tsmi_version
             // 
@@ -182,16 +160,39 @@
             // tsmi_update
             // 
             this.tsmi_update.Name = "tsmi_update";
-            this.tsmi_update.Size = new System.Drawing.Size(180, 22);
+            this.tsmi_update.Size = new System.Drawing.Size(139, 22);
             this.tsmi_update.Text = "Actualizar";
             this.tsmi_update.Click += new System.EventHandler(this.Tsmi_update_Click);
             // 
             // tsmi_info
             // 
             this.tsmi_info.Name = "tsmi_info";
-            this.tsmi_info.Size = new System.Drawing.Size(180, 22);
+            this.tsmi_info.Size = new System.Drawing.Size(139, 22);
             this.tsmi_info.Text = "Información";
             this.tsmi_info.Click += new System.EventHandler(this.Tsmi_info_Click);
+            // 
+            // testToolStripMenuItem
+            // 
+            this.testToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.processToolStripMenuItem,
+            this.process2ToolStripMenuItem});
+            this.testToolStripMenuItem.Name = "testToolStripMenuItem";
+            this.testToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
+            this.testToolStripMenuItem.Text = "Test";
+            // 
+            // processToolStripMenuItem
+            // 
+            this.processToolStripMenuItem.Name = "processToolStripMenuItem";
+            this.processToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
+            this.processToolStripMenuItem.Text = "Process";
+            this.processToolStripMenuItem.Click += new System.EventHandler(this.processToolStripMenuItem_Click);
+            // 
+            // process2ToolStripMenuItem
+            // 
+            this.process2ToolStripMenuItem.Name = "process2ToolStripMenuItem";
+            this.process2ToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
+            this.process2ToolStripMenuItem.Text = "Process 2";
+            this.process2ToolStripMenuItem.Click += new System.EventHandler(this.process2ToolStripMenuItem_Click);
             // 
             // Main
             // 
@@ -200,6 +201,7 @@
             this.ClientSize = new System.Drawing.Size(784, 561);
             this.Controls.Add(this.ms_menu);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
             this.Name = "Main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

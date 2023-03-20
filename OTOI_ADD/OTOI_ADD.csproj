@@ -6,6 +6,8 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
+    <ApplicationIcon>ur_icon.ico</ApplicationIcon>
+    <PackageIcon>ur_icon.ico</PackageIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -18,6 +20,10 @@
       <Isolated>false</Isolated>
       <EmbedInteropTypes>true</EmbedInteropTypes>
     </COMReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="ur_icon.ico" />
   </ItemGroup>
 
   <ItemGroup>
@@ -36,6 +42,10 @@
     <None Update="App.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>App.Designer.cs</LastGenOutput>
+    </None>
+    <None Update="ur_icon.ico">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
     </None>
   </ItemGroup>
 
