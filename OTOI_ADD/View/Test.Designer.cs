@@ -35,7 +35,7 @@
             // mp_selector
             // 
             this.mp_selector.CustomFormat = "MMMM yyyy";
-            this.mp_selector.Location = new System.Drawing.Point(80, 40);
+            this.mp_selector.Location = new System.Drawing.Point(72, 80);
             this.mp_selector.Name = "mp_selector";
             this.mp_selector.Size = new System.Drawing.Size(200, 23);
             this.mp_selector.TabIndex = 0;
@@ -44,11 +44,11 @@
             // lb_selected
             // 
             this.lb_selected.AutoSize = true;
-            this.lb_selected.Location = new System.Drawing.Point(152, 128);
+            this.lb_selected.Location = new System.Drawing.Point(72, 40);
             this.lb_selected.Name = "lb_selected";
-            this.lb_selected.Size = new System.Drawing.Size(38, 15);
+            this.lb_selected.Size = new System.Drawing.Size(63, 15);
             this.lb_selected.TabIndex = 1;
-            this.lb_selected.Text = "label1";
+            this.lb_selected.Text = "VERSION 1";
             // 
             // Test
             // 
