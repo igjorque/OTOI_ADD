@@ -42,7 +42,6 @@
             this.tsmi_esios = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_c2_liquicomun = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_version = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmi_update = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_info = new System.Windows.Forms.ToolStripMenuItem();
             this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.processToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -151,23 +150,15 @@
             // tsmi_version
             // 
             this.tsmi_version.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmi_update,
             this.tsmi_info});
             this.tsmi_version.Name = "tsmi_version";
             this.tsmi_version.Size = new System.Drawing.Size(57, 20);
             this.tsmi_version.Text = "Versión";
             // 
-            // tsmi_update
-            // 
-            this.tsmi_update.Name = "tsmi_update";
-            this.tsmi_update.Size = new System.Drawing.Size(139, 22);
-            this.tsmi_update.Text = "Actualizar";
-            this.tsmi_update.Click += new System.EventHandler(this.Tsmi_update_Click);
-            // 
             // tsmi_info
             // 
             this.tsmi_info.Name = "tsmi_info";
-            this.tsmi_info.Size = new System.Drawing.Size(139, 22);
+            this.tsmi_info.Size = new System.Drawing.Size(180, 22);
             this.tsmi_info.Text = "Información";
             this.tsmi_info.Click += new System.EventHandler(this.Tsmi_info_Click);
             // 
@@ -198,6 +189,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ClientSize = new System.Drawing.Size(784, 561);
             this.Controls.Add(this.ms_menu);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
@@ -231,7 +224,6 @@
         private ToolStripMenuItem processToolStripMenuItem;
         private ToolStripMenuItem process2ToolStripMenuItem;
         private ToolStripMenuItem tsmi_version;
-        private ToolStripMenuItem tsmi_update;
         private ToolStripMenuItem tsmi_info;
     }
 }

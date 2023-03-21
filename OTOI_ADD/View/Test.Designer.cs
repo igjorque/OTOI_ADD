@@ -54,10 +54,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ControlLight;
             this.ClientSize = new System.Drawing.Size(367, 239);
             this.Controls.Add(this.lb_selected);
             this.Controls.Add(this.mp_selector);
+            this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.Name = "Test";
+            this.Opacity = 0.4D;
             this.Text = "Test";
             this.ResumeLayout(false);
             this.PerformLayout();

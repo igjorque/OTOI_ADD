@@ -221,7 +221,7 @@
             this.Controls.Add(this.lb_bt_fileDest);
             this.Controls.Add(this.lb_date);
             this.Name = "C2L";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "C2L";
             ((System.ComponentModel.ISupportInitialize)(this.ep_error)).EndInit();
             this.ResumeLayout(false);

@@ -109,6 +109,7 @@ namespace OTOI_ADD.Code.Function
             // Process file
             //if (inp.Process) ProcessorESIOS.Process();
             // Delete? downloaded file
+            // TODO: Check this code
             if (inp.Process && !inp.KeepDL) Delete();
             // Close form
             f.Close();
@@ -246,7 +247,15 @@ namespace OTOI_ADD.Code.Function
                 {
                     if (File.Exists(f))
                     {
-                        File.Delete(f);
+                        try
+                        {
+                            File.Delete(f);
+                        }
+                        catch (IOException e)
+                        {
+                            MessageBox.Show(e.StackTrace);
+                            // TODO: Log exception in [FormManager.Delete]
+                        }
                     }
                 }
             }

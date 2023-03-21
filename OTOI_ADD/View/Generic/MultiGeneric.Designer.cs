@@ -46,6 +46,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(334, 231);
             this.Controls.Add(this.ca_date_end);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Name = "MultiGeneric";
             this.Text = "MultiGeneric";
             this.Controls.SetChildIndex(this.ca_date_end, 0);

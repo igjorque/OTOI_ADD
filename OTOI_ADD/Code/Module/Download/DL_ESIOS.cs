@@ -6,7 +6,7 @@ namespace OTOI_ADD.Code.Module.Download
 {
     internal static class DL_ESIOS
     {
-        /*
+        /* Links
         Item: C2_liquicomun
         1-9-2022 -> 12-1-2023
         https://api.esios.ree.es/archives/8/download?date_type=publicacion&end_date=2023-01-12T23%3A59%3A59%2B00%3A00&locale=es&start_date=2022-09-01T00%3A00%3A00%2B00%3A00

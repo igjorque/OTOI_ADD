@@ -12,21 +12,16 @@ namespace OTOI_ADD.Code.Function
     {
         internal static void Start()
         {
-            try
+            string? str = ConfigurationManager.AppSettings.Get("STR");
+            if (str != null)
             {
-                FormManager.STR = DateTime.Parse(ConfigurationManager.AppSettings.Get("STR"));
+                FormManager.STR = DateTime.Parse(str);
             }
-            catch (ArgumentNullException e)
+
+            string? end = ConfigurationManager.AppSettings.Get("END");
+            if (end != null)
             {
-                // TODO: Log error
-            }
-            try
-            {
-                FormManager.END = DateTime.Parse(ConfigurationManager.AppSettings.Get("END"));
-            }
-            catch (ArgumentNullException e)
-            {
-                // TODO: Log error
+                FormManager.END = DateTime.Parse(end);
             }
         }
         internal static void Save()

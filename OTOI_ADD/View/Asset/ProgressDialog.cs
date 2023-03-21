@@ -1,7 +1,7 @@
 ﻿using OTOI_ADD.Code.Class;
+using OTOI_ADD.Code.Function;
 using OTOI_ADD.Code.Module.Download;
 using OTOI_ADD.Code.Module.Process;
-using OTOI_ADD.Code.Function;
 using System.IO.Compression;
 
 namespace OTOI_ADD.View.Asset
@@ -65,18 +65,26 @@ namespace OTOI_ADD.View.Asset
             this.pb_progress.Step = 1;
 
             // Prevent user from flooding the selected directory (default: desktop)
-            auxpath = inp.DestDL + Path.DirectorySeparatorChar + "Omie_" + daux.Day + "-" + daux.Month + "-" + daux.Year + "_" + daux.Hour + "-" + daux.Minute + "-" + daux.Second;
+            auxpath = inp.DestDL + Path.DirectorySeparatorChar + "OMIE_" + daux.Day + "-" + daux.Month + "-" + daux.Year + "_" + daux.Hour + "-" + daux.Minute + "-" + daux.Second;
             Directory.CreateDirectory(auxpath);
             inp.DestDL = auxpath;
 
             // Download files
             foreach (Uri uri in l_uri)
             {
-                file = FName(uri.ToString().Split("/").Last());
-                this.lb_url_value.Text = file;
-                file = inp.DestDL + Path.DirectorySeparatorChar + file;
-                Downloader.Download(file, uri);
-                FILES.Add(file);
+                try
+                {
+                    file = FName(uri.ToString().Split("/").Last());
+                    this.lb_url_value.Text = file;
+                    file = inp.DestDL + Path.DirectorySeparatorChar + file;
+                    Downloader.Download(file, uri);
+                    FILES.Add(file);
+                }
+                catch (HttpRequestException e)
+                {
+                    MessageBox.Show(e.StackTrace);
+                    //TODO: Log exception in [ProgressDialog.DLProgress_OMIE] - [Downloader.Download]
+                }
                 this.pb_progress.PerformStep();
                 await Task.Delay(10);
             }
@@ -121,7 +129,7 @@ namespace OTOI_ADD.View.Asset
         /// <param name="filename">Destination filename</param>
         private async void DLProgress_ESIOS(InputESIOS inp, Uri uri, string filename)
         {
-            List<string> zipContent = new List<string>();
+            List<string> zipContent = new();
             string file = "", auxpath = "";
             this.pb_progress.Minimum = 0;
             this.pb_progress.Maximum = 1;
@@ -138,8 +146,17 @@ namespace OTOI_ADD.View.Asset
             file = inp.DestDL + Path.DirectorySeparatorChar + filename;
 
             // Download file
-            Downloader.Download(file, uri);
-            FILES.Add(file);
+            try
+            {
+                Downloader.Download(file, uri);
+                FILES.Add(file);
+            }
+            catch (HttpRequestException e)
+            {
+                MessageBox.Show(e.StackTrace);
+                //TODO: Log exception in [ProgressDialog.DLProgress_ESIOS] - [Downloader.Download]
+            }
+
             this.pb_progress.PerformStep();
             await Task.Delay(25);
 
@@ -194,7 +211,7 @@ namespace OTOI_ADD.View.Asset
         /// </summary>
         /// <param name="file">Origin file name</param>
         /// <returns>Built file name</returns>
-        private string FName(string file)
+        private static string FName(string file)
         {
             string result = "";
             string[] aux = file.Split("_");

@@ -175,11 +175,6 @@ namespace OTOI_ADD.View
             c2l.Show();
         }
 
-        private void Tsmi_update_Click(object sender, EventArgs e)
-        {
-            Application.Restart();
-        }
-
         private void Tsmi_info_Click(object sender, EventArgs e)
         {
             // TODO: Mostrar versión actual del programa + info extra

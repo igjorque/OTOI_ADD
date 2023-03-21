@@ -22,11 +22,13 @@ namespace OTOI_ADD.Code.Module.Process
                     Process_Single(files);
                     break;
                 default:
+                    // TODO: Log error in [ProcessorOMIE.Process]
                     MessageBox.Show("Error en el procesador de OMIE.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     break;
             }
         }
 
+        // TODO: Handle possible exceptions in [ProcessorOMIE.Process_Multiple]
         // Process in multiple files - option = 1
         /// <summary>
         /// Processes the downloaded files in multiple, separated files.
@@ -57,6 +59,7 @@ namespace OTOI_ADD.Code.Module.Process
             app.Quit();
         }
 
+        // TODO: Handle possible exceptions in [ProcessorOMIE.Process_Single]
         // Process in a single file - option = 2
         /// <summary>
         /// Processes the downloaded files in a single, unified file.
@@ -73,7 +76,7 @@ namespace OTOI_ADD.Code.Module.Process
             string fpath = FormManager.CURR_FIL;
             if (fpath == "")
             {
-                fpath = FormManager.CURR_DIR+"\\omie_" + daux.Day + daux.Month + daux.Year + daux.Hour + daux.Minute + daux.Second + ".xls";
+                fpath = FormManager.CURR_DIR+"\\OMIE_" + daux.Day + daux.Month + daux.Year + daux.Hour + daux.Minute + daux.Second + ".xls";
             }
             object miss = System.Reflection.Missing.Value;
             string? path = FormManager.CURR_DIR;
