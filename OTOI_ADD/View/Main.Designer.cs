@@ -48,7 +48,7 @@
             this.processToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.process2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tt_menu = new System.Windows.Forms.ToolTip(this.components);
-            this.pruebaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.splitter1 = new System.Windows.Forms.Splitter();
             this.ms_menu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -153,8 +153,7 @@
             // 
             this.tsmi_version.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmi_info,
-            this.tsmi_update,
-            this.pruebaToolStripMenuItem});
+            this.tsmi_update});
             this.tsmi_version.Name = "tsmi_version";
             this.tsmi_version.Size = new System.Drawing.Size(57, 20);
             this.tsmi_version.Text = "Versión";
@@ -196,11 +195,13 @@
             this.process2ToolStripMenuItem.Text = "Process 2";
             this.process2ToolStripMenuItem.Click += new System.EventHandler(this.process2ToolStripMenuItem_Click);
             // 
-            // pruebaToolStripMenuItem
+            // splitter1
             // 
-            this.pruebaToolStripMenuItem.Name = "pruebaToolStripMenuItem";
-            this.pruebaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.pruebaToolStripMenuItem.Text = "Prueba";
+            this.splitter1.Location = new System.Drawing.Point(0, 24);
+            this.splitter1.Name = "splitter1";
+            this.splitter1.Size = new System.Drawing.Size(3, 537);
+            this.splitter1.TabIndex = 24;
+            this.splitter1.TabStop = false;
             // 
             // Main
             // 
@@ -209,6 +210,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ClientSize = new System.Drawing.Size(784, 561);
+            this.Controls.Add(this.splitter1);
             this.Controls.Add(this.ms_menu);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
@@ -244,6 +246,6 @@
         private ToolStripMenuItem tsmi_version;
         private ToolStripMenuItem tsmi_info;
         private ToolStripMenuItem tsmi_update;
-        private ToolStripMenuItem pruebaToolStripMenuItem;
+        private Splitter splitter1;
     }
 }
