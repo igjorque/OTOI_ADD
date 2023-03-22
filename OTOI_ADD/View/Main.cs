@@ -178,7 +178,12 @@ namespace OTOI_ADD.View
         private void Tsmi_info_Click(object sender, EventArgs e)
         {
             // TODO: Mostrar versión actual del programa + info extra
-            MessageBox.Show("Información de versión", "Información", MessageBoxButtons.OK);
+            MessageBox.Show("Versión actual: " + Application.ProductVersion, "Información", MessageBoxButtons.OK);
+        }
+
+        private void Tsmi_update_Click(object sender, EventArgs e)
+        {
+            Application.Restart();
         }
     }
 }

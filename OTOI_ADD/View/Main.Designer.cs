@@ -43,10 +43,12 @@
             this.tsmi_c2_liquicomun = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_version = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_info = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmi_update = new System.Windows.Forms.ToolStripMenuItem();
             this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.processToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.process2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tt_menu = new System.Windows.Forms.ToolTip(this.components);
+            this.pruebaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ms_menu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -150,7 +152,9 @@
             // tsmi_version
             // 
             this.tsmi_version.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmi_info});
+            this.tsmi_info,
+            this.tsmi_update,
+            this.pruebaToolStripMenuItem});
             this.tsmi_version.Name = "tsmi_version";
             this.tsmi_version.Size = new System.Drawing.Size(57, 20);
             this.tsmi_version.Text = "Versión";
@@ -161,6 +165,13 @@
             this.tsmi_info.Size = new System.Drawing.Size(180, 22);
             this.tsmi_info.Text = "Información";
             this.tsmi_info.Click += new System.EventHandler(this.Tsmi_info_Click);
+            // 
+            // tsmi_update
+            // 
+            this.tsmi_update.Name = "tsmi_update";
+            this.tsmi_update.Size = new System.Drawing.Size(180, 22);
+            this.tsmi_update.Text = "Actualizar";
+            this.tsmi_update.Click += new System.EventHandler(this.Tsmi_update_Click);
             // 
             // testToolStripMenuItem
             // 
@@ -185,6 +196,12 @@
             this.process2ToolStripMenuItem.Text = "Process 2";
             this.process2ToolStripMenuItem.Click += new System.EventHandler(this.process2ToolStripMenuItem_Click);
             // 
+            // pruebaToolStripMenuItem
+            // 
+            this.pruebaToolStripMenuItem.Name = "pruebaToolStripMenuItem";
+            this.pruebaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.pruebaToolStripMenuItem.Text = "Prueba";
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -193,6 +210,7 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ClientSize = new System.Drawing.Size(784, 561);
             this.Controls.Add(this.ms_menu);
+            this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
@@ -225,5 +243,7 @@
         private ToolStripMenuItem process2ToolStripMenuItem;
         private ToolStripMenuItem tsmi_version;
         private ToolStripMenuItem tsmi_info;
+        private ToolStripMenuItem tsmi_update;
+        private ToolStripMenuItem pruebaToolStripMenuItem;
     }
 }
