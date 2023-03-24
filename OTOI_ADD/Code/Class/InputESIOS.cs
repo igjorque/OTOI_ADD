@@ -13,7 +13,11 @@ namespace OTOI_ADD.Code.Class
         /// <summary>
         /// Default empty constructor.
         /// </summary>
-        public InputESIOS() : base() { }
+        public InputESIOS() : base() 
+        {
+            this.unzip = false;
+            this.file = "";
+        }
 
         /// <summary>
         /// Builds an [Input] object using a SingleGeneric type form's fields.

@@ -11,16 +11,24 @@ using System.Windows.Forms;
 
 namespace OTOI_ADD.View.Asset.Control
 {
+    /// <summary>
+    /// MonthPicker
+    /// </summary>
     public class MonthPicker : DateTimePicker
     {
-        // initialize Format/CustomFormat to display only month and year.
+        /// <summary>
+        /// Empty MonthPicker control constructor. 
+        /// Initialize Format/CustomFormat to display only month and year.
+        /// </summary>
         public MonthPicker() : base()
         {
             Format = DateTimePickerFormat.Custom;
             CustomFormat = "MMMM yyyy";
         }
 
-        // override Format to redefine default value (used by designer)
+        /// <summary>
+        /// Overrides Format to redefine default value (used by designer)
+        /// </summary>
         [DefaultValue(DateTimePickerFormat.Custom)]
         public new DateTimePickerFormat Format
         {
@@ -28,7 +36,9 @@ namespace OTOI_ADD.View.Asset.Control
             set => base.Format = value;
         }
 
-        // override CustomFormat to redefine default value (used by designer)
+        /// <summary>
+        /// Overrides CustomFormat to redefine default value (used by designer)
+        /// </summary>
         [DefaultValue("MMM yyyy")]
         public new string CustomFormat
         {
@@ -36,11 +46,17 @@ namespace OTOI_ADD.View.Asset.Control
             set => base.CustomFormat = value;
         }
 
+        /// <summary>
+        /// Undefined.
+        /// </summary>
+        /// <param name="m"></param>
         protected override void WndProc(ref Message m)
         {
             if (m.Msg == WM_NOFITY)
             {
+#pragma warning disable CS8605 // Conversión unboxing a un valor posiblemente NULL.
                 var nmhdr = (NMHDR)Marshal.PtrToStructure(m.LParam, typeof(NMHDR));
+#pragma warning restore CS8605 // Conversión unboxing a un valor posiblemente NULL.
                 switch (nmhdr.code)
                 {
                     // detect pop-up display and switch view to month selection
@@ -54,7 +70,9 @@ namespace OTOI_ADD.View.Asset.Control
                     // detect month selection and close the pop-up
                     case MCN_VIEWCHANGE:
                         {
+#pragma warning disable CS8605 // Conversión unboxing a un valor posiblemente NULL.
                             var nmviewchange = (NMVIEWCHANGE)Marshal.PtrToStructure(m.LParam, typeof(NMVIEWCHANGE));
+#pragma warning restore CS8605 // Conversión unboxing a un valor posiblemente NULL.
                             if (nmviewchange.dwOldView == 1 && nmviewchange.dwNewView == 0)
                             {
                                 SendMessage(Handle, DTM_CLOSEMONTHCAL, IntPtr.Zero, IntPtr.Zero);
@@ -73,6 +91,14 @@ namespace OTOI_ADD.View.Asset.Control
         private const int MCM_SETCURRENTVIEW = 0x1000 + 32;
         private const int MCN_VIEWCHANGE = -750;
 
+        /// <summary>
+        /// Undefined.
+        /// </summary>
+        /// <param name="hWnd"></param>
+        /// <param name="wMsg"></param>
+        /// <param name="wParam"></param>
+        /// <param name="lParam"></param>
+        /// <returns></returns>
         [DllImport("user32.dll")]
         public static extern IntPtr SendMessage(IntPtr hWnd, int wMsg, IntPtr wParam, IntPtr lParam);
 

@@ -3,11 +3,17 @@ using OTOI_ADD.Code.Function;
 using OTOI_ADD.Code.Module.Download;
 using OTOI_ADD.Code.Module.Process;
 using System.IO.Compression;
+using System.Reflection;
 
 namespace OTOI_ADD.View.Asset
 {
+    /// <summary>
+    /// ProgressDialog
+    /// </summary>
     public partial class ProgressDialog : Form
     {
+        private static log4net.ILog logger = log4net.LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+
         internal static List<string> FILES = new();
 
         /// <summary>
@@ -15,12 +21,13 @@ namespace OTOI_ADD.View.Asset
         /// </summary>
         public ProgressDialog()
         {
+            logger.Info("ProgressDialog - Constructor");
             InitializeComponent();
             FILES = new();
         }
 
         /// <summary>
-        /// Builds a ProgressDialog form and starts the download process.
+        /// Builds a ProgressDialog form and starts the OMIE data download process.
         /// </summary>
         /// <param name="inp">User input</param>
         /// <param name="l_uri">URI list</param>
@@ -30,7 +37,7 @@ namespace OTOI_ADD.View.Asset
         }
 
         /// <summary>
-        /// Builds a ProgressDialog form and starts the download process.
+        /// Builds a ProgressDialog form and starts the ESIOS data download process.
         /// </summary>
         /// <param name="inp">User input</param>
         /// <param name="uri">URI list</param>

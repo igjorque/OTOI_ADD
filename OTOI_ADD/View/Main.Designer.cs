@@ -40,15 +40,9 @@
             this.tsmi_HM = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_HMM = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_esios = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmi_c2_liquicomun = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmi_version = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmi_info = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmi_update = new System.Windows.Forms.ToolStripMenuItem();
-            this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.processToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.process2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmi_c2l = new System.Windows.Forms.ToolStripMenuItem();
             this.tt_menu = new System.Windows.Forms.ToolTip(this.components);
-            this.splitter1 = new System.Windows.Forms.Splitter();
+            this.tsmi_test = new System.Windows.Forms.ToolStripMenuItem();
             this.ms_menu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,9 +50,7 @@
             // 
             this.ms_menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmi_file,
-            this.tsmi_downloads,
-            this.tsmi_version,
-            this.testToolStripMenuItem});
+            this.tsmi_downloads});
             this.ms_menu.Location = new System.Drawing.Point(0, 0);
             this.ms_menu.Name = "ms_menu";
             this.ms_menu.Size = new System.Drawing.Size(784, 24);
@@ -68,6 +60,7 @@
             // tsmi_file
             // 
             this.tsmi_file.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmi_test,
             this.tsmi_exit});
             this.tsmi_file.Name = "tsmi_file";
             this.tsmi_file.Size = new System.Drawing.Size(60, 20);
@@ -76,9 +69,9 @@
             // tsmi_exit
             // 
             this.tsmi_exit.Name = "tsmi_exit";
-            this.tsmi_exit.Size = new System.Drawing.Size(96, 22);
+            this.tsmi_exit.Size = new System.Drawing.Size(180, 22);
             this.tsmi_exit.Text = "Salir";
-            this.tsmi_exit.Click += new System.EventHandler(this.tsmi_exit_Click);
+            this.tsmi_exit.Click += new System.EventHandler(this.Tsmi_exit_Click);
             // 
             // tsmi_downloads
             // 
@@ -97,7 +90,7 @@
             this.tsmi_HM,
             this.tsmi_HMM});
             this.tsmi_omie.Name = "tsmi_omie";
-            this.tsmi_omie.Size = new System.Drawing.Size(104, 22);
+            this.tsmi_omie.Size = new System.Drawing.Size(180, 22);
             this.tsmi_omie.Text = "OMIE";
             // 
             // tsmi_HPC
@@ -137,71 +130,24 @@
             // tsmi_esios
             // 
             this.tsmi_esios.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmi_c2_liquicomun});
+            this.tsmi_c2l});
             this.tsmi_esios.Name = "tsmi_esios";
-            this.tsmi_esios.Size = new System.Drawing.Size(104, 22);
+            this.tsmi_esios.Size = new System.Drawing.Size(180, 22);
             this.tsmi_esios.Text = "ESIOS";
             // 
-            // tsmi_c2_liquicomun
+            // tsmi_c2l
             // 
-            this.tsmi_c2_liquicomun.Name = "tsmi_c2_liquicomun";
-            this.tsmi_c2_liquicomun.Size = new System.Drawing.Size(155, 22);
-            this.tsmi_c2_liquicomun.Text = "C2 Liquicomun";
-            this.tsmi_c2_liquicomun.Click += new System.EventHandler(this.CL_openForm_C2L);
+            this.tsmi_c2l.Name = "tsmi_c2l";
+            this.tsmi_c2l.Size = new System.Drawing.Size(155, 22);
+            this.tsmi_c2l.Text = "C2 Liquicomun";
+            this.tsmi_c2l.Click += new System.EventHandler(this.CL_openForm_C2L);
             // 
-            // tsmi_version
+            // tsmi_test
             // 
-            this.tsmi_version.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmi_info,
-            this.tsmi_update});
-            this.tsmi_version.Name = "tsmi_version";
-            this.tsmi_version.Size = new System.Drawing.Size(57, 20);
-            this.tsmi_version.Text = "Versión";
-            // 
-            // tsmi_info
-            // 
-            this.tsmi_info.Name = "tsmi_info";
-            this.tsmi_info.Size = new System.Drawing.Size(180, 22);
-            this.tsmi_info.Text = "Información";
-            this.tsmi_info.Click += new System.EventHandler(this.Tsmi_info_Click);
-            // 
-            // tsmi_update
-            // 
-            this.tsmi_update.Name = "tsmi_update";
-            this.tsmi_update.Size = new System.Drawing.Size(180, 22);
-            this.tsmi_update.Text = "Actualizar";
-            this.tsmi_update.Click += new System.EventHandler(this.Tsmi_update_Click);
-            // 
-            // testToolStripMenuItem
-            // 
-            this.testToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.processToolStripMenuItem,
-            this.process2ToolStripMenuItem});
-            this.testToolStripMenuItem.Name = "testToolStripMenuItem";
-            this.testToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
-            this.testToolStripMenuItem.Text = "Test";
-            // 
-            // processToolStripMenuItem
-            // 
-            this.processToolStripMenuItem.Name = "processToolStripMenuItem";
-            this.processToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
-            this.processToolStripMenuItem.Text = "Process";
-            this.processToolStripMenuItem.Click += new System.EventHandler(this.processToolStripMenuItem_Click);
-            // 
-            // process2ToolStripMenuItem
-            // 
-            this.process2ToolStripMenuItem.Name = "process2ToolStripMenuItem";
-            this.process2ToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
-            this.process2ToolStripMenuItem.Text = "Process 2";
-            this.process2ToolStripMenuItem.Click += new System.EventHandler(this.process2ToolStripMenuItem_Click);
-            // 
-            // splitter1
-            // 
-            this.splitter1.Location = new System.Drawing.Point(0, 24);
-            this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(3, 537);
-            this.splitter1.TabIndex = 24;
-            this.splitter1.TabStop = false;
+            this.tsmi_test.Name = "tsmi_test";
+            this.tsmi_test.Size = new System.Drawing.Size(180, 22);
+            this.tsmi_test.Text = "Test";
+            this.tsmi_test.Click += new System.EventHandler(this.tsmi_test_Click);
             // 
             // Main
             // 
@@ -210,7 +156,6 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ClientSize = new System.Drawing.Size(784, 561);
-            this.Controls.Add(this.splitter1);
             this.Controls.Add(this.ms_menu);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
@@ -239,13 +184,7 @@
         private ToolTip tt_menu;
         private ToolStripMenuItem tsmi_HMM;
         private ToolStripMenuItem tsmi_esios;
-        private ToolStripMenuItem tsmi_c2_liquicomun;
-        private ToolStripMenuItem testToolStripMenuItem;
-        private ToolStripMenuItem processToolStripMenuItem;
-        private ToolStripMenuItem process2ToolStripMenuItem;
-        private ToolStripMenuItem tsmi_version;
-        private ToolStripMenuItem tsmi_info;
-        private ToolStripMenuItem tsmi_update;
-        private Splitter splitter1;
+        private ToolStripMenuItem tsmi_c2l;
+        private ToolStripMenuItem tsmi_test;
     }
 }

@@ -1,3 +1,6 @@
 ﻿[*.cs]
 # IDE0059: Asignación innecesaria de un valor
 dotnet_diagnostic.IDE0059.severity = none
+
+# CS8602: Desreferencia de una referencia posiblemente NULL.
+dotnet_diagnostic.CS8602.severity = none

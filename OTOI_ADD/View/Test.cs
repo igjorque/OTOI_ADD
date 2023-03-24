@@ -11,13 +11,25 @@ using System.Windows.Forms;
 
 namespace OTOI_ADD.View
 {
+    /// <summary>
+    /// Test
+    /// </summary>
     public partial class Test : Form
     {
+        /// <summary>
+        /// Test constructor
+        /// </summary>
         public Test()
         {
             InitializeComponent();
+            LoadFields();
         }
 
+        /// <summary>
+        /// Test validate
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Validate(object sender, EventArgs e)
         {
             MonthPicker m = (MonthPicker)sender;
@@ -27,6 +39,11 @@ namespace OTOI_ADD.View
             {
                 this.lb_selected.Text = dx.ToShortDateString();
             }
+        }
+        private void LoadFields()
+        {
+            this.lb_dir1.Text = "" + Environment.CurrentDirectory;
+            this.lb_dir2.Text = "" + Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
         }
     }
 }

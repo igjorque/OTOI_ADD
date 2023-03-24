@@ -1,7 +1,11 @@
-﻿namespace OTOI_ADD.Code.Module.Download
+﻿using log4net;
+
+namespace OTOI_ADD.Code.Module.Download
 {
     internal static class Downloader
     {
+        private static ILog logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         /// <summary>
         /// Downloads the [uri] resource to [file] location.
         /// </summary>
@@ -19,10 +23,11 @@
                     using var s = client.GetStreamAsync(uri);
                     using var fs = new FileStream(file, FileMode.OpenOrCreate);
                     s.Result.CopyTo(fs);
+                    logger.Info(String.Format("[Success - Download - {0}]", file));
                 }
                 catch (HttpRequestException e)
                 {
-                    // TODO: Log exception in [Dowloader.Download]
+                    logger.Error(String.Format("[Error - Download - {0} - {1}]", file, uri));
                     dr = MessageBox.Show("Error " + e.StatusCode + ":\nNo se ha podido obtener el recurso.", "Operación fallida", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
                     if (dr == DialogResult.Cancel) throw;
                 }

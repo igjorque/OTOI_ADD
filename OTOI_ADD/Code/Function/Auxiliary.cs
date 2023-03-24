@@ -54,11 +54,11 @@ namespace OTOI_ADD.Code.Function
             string err = "";
             if (DateTime.Compare(ca_date_start.Value, DateTime.Parse("1/1/2018")) < 0)
             {
-                err = err + "La fecha inicial debe ser posterior a 1-1-2018. ";
+                err += "La fecha inicial debe ser posterior a 1-1-2018. ";
             }
             if (DateTime.Compare(ca_date_start.Value, DateTime.Today) >= 0)
             {
-                err = err + "La fecha inicial debe ser previa a [" + DateTime.Today.ToString() + "]. ";
+                err += "La fecha inicial debe ser previa a [" + DateTime.Today.ToString() + "]. ";
             }
             ep_error.SetError(ca_date_start, err);
         }
@@ -67,6 +67,7 @@ namespace OTOI_ADD.Code.Function
         /// Checks if an entered end date is valid. 
         /// Current criteria: Valid if earlier than [Today] and later than 1-1-2018.
         /// </summary>
+        /// <param name="ca_date_start">Start date DateTimePicker control</param>
         /// <param name="ca_date_end">End date DateTimePicker control</param>
         /// <param name="ep_error">Error indicator</param>
         internal static void ValidateEnd(DateTimePicker ca_date_start, DateTimePicker ca_date_end, ErrorProvider ep_error)
@@ -74,15 +75,15 @@ namespace OTOI_ADD.Code.Function
             string err = "";
             if (DateTime.Compare(ca_date_end.Value, DateTime.Parse("1/1/2018")) < 0)
             {
-                err = err + "La fecha final debe ser posterior a 1-1-2018. ";
+                err += "La fecha final debe ser posterior a 1-1-2018. ";
             }
             if (DateTime.Compare(ca_date_end.Value, DateTime.Today) >= 0)
             {
-                err = err + "La fecha final debe ser previa a [" + DateTime.Today.ToString() + "]. ";
+                err += "La fecha final debe ser previa a [" + DateTime.Today.ToString() + "]. ";
             }
             if (DateTime.Compare(ca_date_start.Value, ca_date_end.Value) > 0)
             {
-                err = err + "La fecha inicial no puede ser posterior a la fecha final.";
+                err += "La fecha inicial no puede ser posterior a la fecha final.";
             }
             ep_error.SetError(ca_date_start, err);
             ep_error.SetError(ca_date_end, err);
@@ -90,7 +91,7 @@ namespace OTOI_ADD.Code.Function
 
         internal static void ValidateESIOS(MonthPicker mp_date, ErrorProvider ep_error)
         {
-            DateTime dx = new DateTime(mp_date.Value.Year, mp_date.Value.Month, 1);
+            DateTime dx = new(mp_date.Value.Year, mp_date.Value.Month, 1);
             string err = "";
             if(DateTime.Compare(dx, DateTime.Today) > 0 || DateTime.Today.Month == dx.Month)
             {
@@ -122,19 +123,21 @@ namespace OTOI_ADD.Code.Function
         /// <returns>Month as integer.</returns>
         internal static int MonthToInt(string m)
         {
-            Dictionary<string, int> month = new Dictionary<string, int>();
-            month.Add("enero", 1);
-            month.Add("febrero", 2);
-            month.Add("marzo", 3);
-            month.Add("abril", 4);
-            month.Add("mayo", 5);
-            month.Add("junio", 6);
-            month.Add("julio", 7);
-            month.Add("agosto", 8);
-            month.Add("septiembre", 9);
-            month.Add("octubre", 10);
-            month.Add("noviembre", 11);
-            month.Add("diciembre", 12);
+            Dictionary<string, int> month = new()
+            {
+                { "enero", 1 },
+                { "febrero", 2 },
+                { "marzo", 3 },
+                { "abril", 4 },
+                { "mayo", 5 },
+                { "junio", 6 },
+                { "julio", 7 },
+                { "agosto", 8 },
+                { "septiembre", 9 },
+                { "octubre", 10 },
+                { "noviembre", 11 },
+                { "diciembre", 12 }
+            };
 
             return month[m.ToLower()];
         }
@@ -146,19 +149,21 @@ namespace OTOI_ADD.Code.Function
         /// <returns>Month as string.</returns>
         internal static int IntToMonth(int m)
         {
-            Dictionary<string, int> month = new Dictionary<string, int>();
-            month.Add("enero", 1);
-            month.Add("febrero", 2);
-            month.Add("marzo", 3);
-            month.Add("abril", 4);
-            month.Add("mayo", 5);
-            month.Add("junio", 6);
-            month.Add("julio", 7);
-            month.Add("agosto", 8);
-            month.Add("septiembre", 9);
-            month.Add("octubre", 10);
-            month.Add("noviembre", 11);
-            month.Add("diciembre", 12);
+            Dictionary<string, int> month = new()
+            {
+                { "enero", 1 },
+                { "febrero", 2 },
+                { "marzo", 3 },
+                { "abril", 4 },
+                { "mayo", 5 },
+                { "junio", 6 },
+                { "julio", 7 },
+                { "agosto", 8 },
+                { "septiembre", 9 },
+                { "octubre", 10 },
+                { "noviembre", 11 },
+                { "diciembre", 12 }
+            };
 
             return month.ElementAt(m).Value;
         }
@@ -201,26 +206,30 @@ namespace OTOI_ADD.Code.Function
 
         internal static Dictionary<string, object> InitFields(int FID, DateTime start, DateTime end, string file, string download, bool keep, bool process)
         {
-            Dictionary<string, object> fields = new Dictionary<string, object>();
-            fields.Add("FID", FID);
-            fields.Add("start", start);
-            fields.Add("end", end);
-            fields.Add("file", file);
-            fields.Add("download", download);
-            fields.Add("keep", keep);
-            fields.Add("process", process);
+            Dictionary<string, object> fields = new()
+            {
+                { "FID", FID },
+                { "start", start },
+                { "end", end },
+                { "file", file },
+                { "download", download },
+                { "keep", keep },
+                { "process", process }
+            };
             return fields;
         }
 
         internal static Dictionary<string, object> InitFields(int FID, DateTime start, DateTime end, string download, bool keep, bool unzip)
         {
-            Dictionary<string, object> fields = new Dictionary<string, object>();
-            fields.Add("FID", FID);
-            fields.Add("start", start);
-            fields.Add("end", end);
-            fields.Add("download", download);
-            fields.Add("keep", keep);
-            fields.Add("unzip", unzip);
+            Dictionary<string, object> fields = new()
+            {
+                { "FID", FID },
+                { "start", start },
+                { "end", end },
+                { "download", download },
+                { "keep", keep },
+                { "unzip", unzip }
+            };
             return fields;
         }
 

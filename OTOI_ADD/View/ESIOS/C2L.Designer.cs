@@ -235,7 +235,7 @@
         internal LinkLabel lb_link;
         internal CheckBox cb_keep;
         internal Button bt_cancel;
-        public Button bt_accept;
+        internal Button bt_accept;
         internal Label lb_title;
         internal Button bt_fileDest;
         internal Button bt_downloadDir;
