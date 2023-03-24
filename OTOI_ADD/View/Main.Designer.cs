@@ -32,6 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.ms_menu = new System.Windows.Forms.MenuStrip();
             this.tsmi_file = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmi_test = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_exit = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_downloads = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_omie = new System.Windows.Forms.ToolStripMenuItem();
@@ -42,7 +43,9 @@
             this.tsmi_esios = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_c2l = new System.Windows.Forms.ToolStripMenuItem();
             this.tt_menu = new System.Windows.Forms.ToolTip(this.components);
-            this.tsmi_test = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmi_utility = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmi_folder = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmi_logs = new System.Windows.Forms.ToolStripMenuItem();
             this.ms_menu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -50,7 +53,8 @@
             // 
             this.ms_menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmi_file,
-            this.tsmi_downloads});
+            this.tsmi_downloads,
+            this.tsmi_utility});
             this.ms_menu.Location = new System.Drawing.Point(0, 0);
             this.ms_menu.Name = "ms_menu";
             this.ms_menu.Size = new System.Drawing.Size(784, 24);
@@ -65,6 +69,13 @@
             this.tsmi_file.Name = "tsmi_file";
             this.tsmi_file.Size = new System.Drawing.Size(60, 20);
             this.tsmi_file.Text = "Archivo";
+            // 
+            // tsmi_test
+            // 
+            this.tsmi_test.Name = "tsmi_test";
+            this.tsmi_test.Size = new System.Drawing.Size(180, 22);
+            this.tsmi_test.Text = "Test";
+            this.tsmi_test.Click += new System.EventHandler(this.tsmi_test_Click);
             // 
             // tsmi_exit
             // 
@@ -90,7 +101,7 @@
             this.tsmi_HM,
             this.tsmi_HMM});
             this.tsmi_omie.Name = "tsmi_omie";
-            this.tsmi_omie.Size = new System.Drawing.Size(180, 22);
+            this.tsmi_omie.Size = new System.Drawing.Size(104, 22);
             this.tsmi_omie.Text = "OMIE";
             // 
             // tsmi_HPC
@@ -132,7 +143,7 @@
             this.tsmi_esios.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmi_c2l});
             this.tsmi_esios.Name = "tsmi_esios";
-            this.tsmi_esios.Size = new System.Drawing.Size(180, 22);
+            this.tsmi_esios.Size = new System.Drawing.Size(104, 22);
             this.tsmi_esios.Text = "ESIOS";
             // 
             // tsmi_c2l
@@ -142,12 +153,28 @@
             this.tsmi_c2l.Text = "C2 Liquicomun";
             this.tsmi_c2l.Click += new System.EventHandler(this.CL_openForm_C2L);
             // 
-            // tsmi_test
+            // tsmi_utility
             // 
-            this.tsmi_test.Name = "tsmi_test";
-            this.tsmi_test.Size = new System.Drawing.Size(180, 22);
-            this.tsmi_test.Text = "Test";
-            this.tsmi_test.Click += new System.EventHandler(this.tsmi_test_Click);
+            this.tsmi_utility.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmi_folder,
+            this.tsmi_logs});
+            this.tsmi_utility.Name = "tsmi_utility";
+            this.tsmi_utility.Size = new System.Drawing.Size(71, 20);
+            this.tsmi_utility.Text = "Utilidades";
+            // 
+            // tsmi_folder
+            // 
+            this.tsmi_folder.Name = "tsmi_folder";
+            this.tsmi_folder.Size = new System.Drawing.Size(216, 22);
+            this.tsmi_folder.Text = "Abrir carpeta del programa";
+            this.tsmi_folder.Click += new System.EventHandler(this.tsmi_folder_Click);
+            // 
+            // tsmi_logs
+            // 
+            this.tsmi_logs.Name = "tsmi_logs";
+            this.tsmi_logs.Size = new System.Drawing.Size(216, 22);
+            this.tsmi_logs.Text = "Enviar logs";
+            this.tsmi_logs.Click += new System.EventHandler(this.tsmi_logs_Click);
             // 
             // Main
             // 
@@ -186,5 +213,8 @@
         private ToolStripMenuItem tsmi_esios;
         private ToolStripMenuItem tsmi_c2l;
         private ToolStripMenuItem tsmi_test;
+        private ToolStripMenuItem tsmi_utility;
+        private ToolStripMenuItem tsmi_folder;
+        private ToolStripMenuItem tsmi_logs;
     }
 }

@@ -1,7 +1,10 @@
 using OTOI_ADD.Code.Module.Process;
 using OTOI_ADD.View.ESIOS;
 using OTOI_ADD.View.OMIE;
+using System.Net.Mail;
+using System.Net;
 using System.Reflection;
+using System.Diagnostics;
 
 namespace OTOI_ADD.View
 {
@@ -199,6 +202,37 @@ namespace OTOI_ADD.View
             Test t = new();
             t.MdiParent = this;
             t.Show();
+        }
+
+        private void tsmi_folder_Click(object sender, EventArgs e)
+        {
+            string folderPath = "" + Environment.CurrentDirectory;
+            if (Directory.Exists(folderPath))
+            {
+                ProcessStartInfo startInfo = new ProcessStartInfo
+                {
+                    Arguments = folderPath,
+                    FileName = "explorer.exe"
+                };
+
+                Process.Start(startInfo);
+            }
+        }
+
+
+        private void tsmi_logs_Click(object sender, EventArgs e)
+        {
+            string folderPath = "C:\\OTOI_ADD";
+            if (Directory.Exists(folderPath))
+            {
+                ProcessStartInfo startInfo = new ProcessStartInfo
+                {
+                    Arguments = folderPath,
+                    FileName = "explorer.exe"
+                };
+
+                Process.Start(startInfo);
+            }
         }
     }
 }

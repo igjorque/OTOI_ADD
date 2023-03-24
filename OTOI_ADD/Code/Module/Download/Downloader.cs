@@ -24,6 +24,7 @@ namespace OTOI_ADD.Code.Module.Download
                     using var fs = new FileStream(file, FileMode.OpenOrCreate);
                     s.Result.CopyTo(fs);
                     logger.Info(String.Format("[Success - Download - {0}]", file));
+                    dr = DialogResult.Continue;
                 }
                 catch (HttpRequestException e)
                 {

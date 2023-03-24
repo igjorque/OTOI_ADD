@@ -11,7 +11,6 @@ namespace OTOI_ADD
     internal static class Program
     {
 
-
         private static log4net.ILog? logger;
 
         /// <summary>
@@ -29,6 +28,14 @@ namespace OTOI_ADD
             {
                 InitConfig();
             }
+
+            // Create log file if doesn't exist
+            if (!File.Exists("C:\\OTOI_ADD\\log.log"))
+            {
+                File.Create("C:\\OTOI_ADD\\log.log");
+            }
+            // Copy log file
+            File.Copy("C:\\OTOI_ADD\\log.log", "C:\\OTOI_ADD\\log_cpy.log", true);
 
             // Initialize logger configuration
             var logRepository = LogManager.GetRepository(Assembly.GetEntryAssembly());
