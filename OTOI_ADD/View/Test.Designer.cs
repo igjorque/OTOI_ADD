@@ -34,6 +34,7 @@
             this.lb_dir2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.bt_dir = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // mp_selector
@@ -90,12 +91,23 @@
             this.label2.TabIndex = 5;
             this.label2.Text = "Directory.GetParent(workingDirectory).Parent.Parent.FullName;";
             // 
+            // bt_dir
+            // 
+            this.bt_dir.Location = new System.Drawing.Point(192, 72);
+            this.bt_dir.Name = "bt_dir";
+            this.bt_dir.Size = new System.Drawing.Size(75, 23);
+            this.bt_dir.TabIndex = 6;
+            this.bt_dir.Text = "ABRIR";
+            this.bt_dir.UseVisualStyleBackColor = true;
+            this.bt_dir.Click += new System.EventHandler(this.bt_dir_Click);
+            // 
             // Test
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
             this.ClientSize = new System.Drawing.Size(367, 239);
+            this.Controls.Add(this.bt_dir);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lb_dir2);
@@ -119,5 +131,6 @@
         private Label lb_dir2;
         private Label label1;
         private Label label2;
+        private Button bt_dir;
     }
 }

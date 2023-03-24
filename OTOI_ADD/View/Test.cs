@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -44,6 +45,21 @@ namespace OTOI_ADD.View
         {
             this.lb_dir1.Text = "" + Environment.CurrentDirectory;
             this.lb_dir2.Text = "" + Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
+        }
+
+        private void bt_dir_Click(object sender, EventArgs e)
+        {
+            string folderPath = lb_dir1.Text;
+            if (Directory.Exists(folderPath))
+            {
+                ProcessStartInfo startInfo = new ProcessStartInfo
+                {
+                    Arguments = folderPath,
+                    FileName = "explorer.exe"
+                };
+
+                Process.Start(startInfo);
+            }
         }
     }
 }
