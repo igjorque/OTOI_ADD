@@ -36,16 +36,18 @@
             this.tsmi_exit = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_downloads = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_omie = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmi_HPC = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_HPCM = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmi_HM = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_HMM = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_esios = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_c2l = new System.Windows.Forms.ToolStripMenuItem();
-            this.tt_menu = new System.Windows.Forms.ToolTip(this.components);
             this.tsmi_utility = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_folder = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_logs = new System.Windows.Forms.ToolStripMenuItem();
+            this.tt_menu = new System.Windows.Forms.ToolTip(this.components);
+            this.tsmi_HMT = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmi_old = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmi_HPC = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmi_HM = new System.Windows.Forms.ToolStripMenuItem();
             this.ms_menu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -54,7 +56,8 @@
             this.ms_menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmi_file,
             this.tsmi_downloads,
-            this.tsmi_utility});
+            this.tsmi_utility,
+            this.tsmi_old});
             this.ms_menu.Location = new System.Drawing.Point(0, 0);
             this.ms_menu.Name = "ms_menu";
             this.ms_menu.Size = new System.Drawing.Size(784, 24);
@@ -96,22 +99,12 @@
             // tsmi_omie
             // 
             this.tsmi_omie.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmi_HPC,
             this.tsmi_HPCM,
-            this.tsmi_HM,
-            this.tsmi_HMM});
+            this.tsmi_HMM,
+            this.tsmi_HMT});
             this.tsmi_omie.Name = "tsmi_omie";
-            this.tsmi_omie.Size = new System.Drawing.Size(104, 22);
+            this.tsmi_omie.Size = new System.Drawing.Size(180, 22);
             this.tsmi_omie.Text = "OMIE";
-            // 
-            // tsmi_HPC
-            // 
-            this.tsmi_HPC.Name = "tsmi_HPC";
-            this.tsmi_HPC.Size = new System.Drawing.Size(375, 22);
-            this.tsmi_HPC.Text = "Mecanismo de ajuste Precio horario dia (HPC)";
-            this.tsmi_HPC.ToolTipText = "Hourly Price Consumers\r\nPrecio definitivo horario del mecanismo de ajuste a los c" +
-    "onsumidores en el mercado.";
-            this.tsmi_HPC.Click += new System.EventHandler(this.CL_openForm_HPC);
             // 
             // tsmi_HPCM
             // 
@@ -122,14 +115,6 @@
     "e a los consumidores en el mercado.\r\nPermite la descarga de datos de múltiples d" +
     "ías.\r\n";
             this.tsmi_HPCM.Click += new System.EventHandler(this.CL_openForm_HPCM);
-            // 
-            // tsmi_HM
-            // 
-            this.tsmi_HM.Name = "tsmi_HM";
-            this.tsmi_HM.Size = new System.Drawing.Size(375, 22);
-            this.tsmi_HM.Text = "Precio energía horario mensual (HM)";
-            this.tsmi_HM.ToolTipText = "Hourly Market\r\nContratación horaria mercado diario.\r\n";
-            this.tsmi_HM.Click += new System.EventHandler(this.CL_openForm_HM);
             // 
             // tsmi_HMM
             // 
@@ -143,7 +128,7 @@
             this.tsmi_esios.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmi_c2l});
             this.tsmi_esios.Name = "tsmi_esios";
-            this.tsmi_esios.Size = new System.Drawing.Size(104, 22);
+            this.tsmi_esios.Size = new System.Drawing.Size(180, 22);
             this.tsmi_esios.Text = "ESIOS";
             // 
             // tsmi_c2l
@@ -176,6 +161,37 @@
             this.tsmi_logs.Text = "Enviar logs";
             this.tsmi_logs.Click += new System.EventHandler(this.tsmi_logs_Click);
             // 
+            // tsmi_HMT
+            // 
+            this.tsmi_HMT.Name = "tsmi_HMT";
+            this.tsmi_HMT.Size = new System.Drawing.Size(375, 22);
+            this.tsmi_HMT.Text = "Contratación horaria mercado diario - Tabla";
+            this.tsmi_HMT.Click += new System.EventHandler(this.CL_openForm_HMT);
+            // 
+            // tsmi_old
+            // 
+            this.tsmi_old.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmi_HPC,
+            this.tsmi_HM});
+            this.tsmi_old.Name = "tsmi_old";
+            this.tsmi_old.Size = new System.Drawing.Size(67, 20);
+            this.tsmi_old.Text = "Antiguos";
+            // 
+            // tsmi_HPC
+            // 
+            this.tsmi_HPC.Name = "tsmi_HPC";
+            this.tsmi_HPC.Size = new System.Drawing.Size(317, 22);
+            this.tsmi_HPC.Text = "Mecanismo de ajuste Precio horario dia (HPC)";
+            this.tsmi_HPC.ToolTipText = "Hourly Price Consumers\r\nPrecio definitivo horario del mecanismo de ajuste a los c" +
+    "onsumidores en el mercado.";
+            // 
+            // tsmi_HM
+            // 
+            this.tsmi_HM.Name = "tsmi_HM";
+            this.tsmi_HM.Size = new System.Drawing.Size(317, 22);
+            this.tsmi_HM.Text = "Precio energía horario mensual (HM)";
+            this.tsmi_HM.ToolTipText = "Hourly Market\r\nContratación horaria mercado diario.\r\n";
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -205,8 +221,6 @@
         private ToolStripMenuItem tsmi_downloads;
         private ToolStripMenuItem tsmi_omie;
         private ToolStripMenuItem tsmi_exit;
-        private ToolStripMenuItem tsmi_HPC;
-        private ToolStripMenuItem tsmi_HM;
         private ToolStripMenuItem tsmi_HPCM;
         private ToolTip tt_menu;
         private ToolStripMenuItem tsmi_HMM;
@@ -216,5 +230,9 @@
         private ToolStripMenuItem tsmi_utility;
         private ToolStripMenuItem tsmi_folder;
         private ToolStripMenuItem tsmi_logs;
+        private ToolStripMenuItem tsmi_HMT;
+        private ToolStripMenuItem tsmi_old;
+        private ToolStripMenuItem tsmi_HPC;
+        private ToolStripMenuItem tsmi_HM;
     }
 }

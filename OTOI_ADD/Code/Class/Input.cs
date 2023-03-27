@@ -52,5 +52,23 @@
             this.keepDL = keep;
             this.process = process;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="FID"></param>
+        /// <param name="month"></param>
+        /// <param name="dest"></param>
+        /// <param name="keep"></param>
+        /// <param name="process"></param>
+        internal Input(int FID, DateTime month, string dest, bool keep, bool process)
+        {
+            this.fid = FID;
+            this.date_start = new DateTime(month.Year, month.Month, 1);
+            this.date_end = new DateTime(month.Year, month.Month, DateTime.DaysInMonth(month.Year, month.Month));
+            this.destDL = dest;
+            this.keepDL = keep;
+            this.process = process;
+        }
     }
 }

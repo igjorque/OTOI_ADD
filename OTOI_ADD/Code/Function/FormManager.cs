@@ -4,6 +4,7 @@ using OTOI_ADD.Code.Module.Process;
 using OTOI_ADD.View.Asset;
 using OTOI_ADD.View.ESIOS;
 using OTOI_ADD.View.Generic;
+using OTOI_ADD.View.OMIE;
 using System.Configuration;
 using System.Diagnostics;
 
@@ -44,6 +45,7 @@ namespace OTOI_ADD.Code.Function
                     ManageSingleESIOS(f);
                     break;
                 case 6: // C2LM
+                    ManageGeneral(f); // TODO: revisar, refactorizar
                     break;
             }
         }
@@ -91,6 +93,15 @@ namespace OTOI_ADD.Code.Function
             // Download files
             DL_OMIE.DLSwitch(inp);
             // Close form
+            f.Close();
+        }
+
+        // TODO: check
+        private static void ManageGeneral(Form f)
+        {
+            HMT hmt = (HMT) f;
+            InputOMIE inp = new(hmt);
+            DL_OMIE.DLSwitch(inp);
             f.Close();
         }
 
@@ -178,8 +189,11 @@ namespace OTOI_ADD.Code.Function
                     case 5: // C2L
                         url = "https://www.esios.ree.es/es/descargas?date_type=publicacion&start_date=01-09-2022&end_date=12-01-2023";
                         break;
+                    case 6: //HMT
+                        url = "https://www.omie.es/es/market-results/monthly/daily-market/hourly-market?scope=monthly&year=2023&month=1&data=5";
+                        break;
                 }
-                System.Diagnostics.Process.Start(new ProcessStartInfo() { FileName = url, UseShellExecute = true });
+                Process.Start(new ProcessStartInfo() { FileName = url, UseShellExecute = true });
             }
             catch (Exception ex)
             {

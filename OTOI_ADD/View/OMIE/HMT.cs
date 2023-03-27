@@ -1,45 +1,76 @@
-﻿using OTOI_ADD.Code.Function;
+﻿using log4net.Repository.Hierarchy;
+using OTOI_ADD.Code.Function;
+using OTOI_ADD.View.Asset;
 using OTOI_ADD.View.Asset.Control;
 using OTOI_ADD.View.Generic;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Reflection;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
-namespace OTOI_ADD.View.ESIOS
+namespace OTOI_ADD.View.OMIE
 {
     /// <summary>
-    /// C2L
+    /// 
     /// </summary>
-    public partial class C2L : Form
+    public partial class HMT : Form
     {
-        private static readonly int fid = 5;
+        private static log4net.ILog logger = log4net.LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+
+        private static readonly int fid = 6;
 
         internal int FID { get => fid; }
-        internal DateTime Date { get => MPtoDT(this.mp_date); } 
-        internal string Folder { get => this.lb_bt_downloadDir.Text; }
-        internal bool Unzip { get => this.cb_unzip.Checked; }
-        internal bool Keep { get => this.cb_keep.Checked; }
-        internal bool Process { get => this.cb_process.Checked; }
-        internal string File { get => this.lb_bt_fileDest.Text; }
+        internal string FormName { get => this.Text; set => this.Text = value; }
+        internal string Title { get => this.lb_title.Text; set => this.lb_title.Text = value; }
+        internal LinkLabel Link { get => this.lb_link; set => this.lb_link = value; }
+        internal string Label { get => this.lb_date.Text; set => this.lb_date.Text = value; }
+        internal Button Download { get => this.bt_downloadDir; set => this.bt_downloadDir = value; }
+        internal Label LBDownload { get => this.lb_bt_downloadDir; set => this.lb_bt_downloadDir = value; }
+        internal CheckBox Process { get => this.cb_process; set => this.cb_process = value; }
+        internal CheckBox Keep { get => this.cb_keepDownload; set => this.cb_keepDownload = value; }
+        internal Button File { get => this.bt_fileDest; set => this.bt_fileDest = value; }
+        internal Label LBFile { get => this.lb_bt_fileDest; set => this.lb_bt_fileDest = value; }
+        internal Button Accept { get => this.bt_accept; set => this.bt_accept = value; }
+        internal Button Cancel { get => this.bt_cancel; set => this.bt_cancel = value; }
+        internal MonthPicker Date { get => this.mp_date; set => this.mp_date = value; }
 
         /// <summary>
-        /// Empty C2L form constructor.
+        /// 
         /// </summary>
-        public C2L()
+        public HMT()
         {
+            logger.Info("HMT - Constructor");
             InitializeComponent();
             LoadFields();
+            LoadEvents();
         }
 
         /// <summary>
-        /// Auxiliary - Loads predefined values into this form's fields.
+        /// Auxiliary - Loads predefined values into this form's fields
         /// </summary>
         private void LoadFields()
         {
-            this.Text = "ESIOS";
-            this.lb_title.Text = "C2 liquicomun";
+            this.FormName = "OMIE";
+            this.Title = "Precio horario del mercado";
             this.mp_date.Value = DateTime.Today.AddMonths(-1);
             this.lb_bt_downloadDir.Text = FormManager.CURR_DIR;
             this.lb_bt_fileDest.Text = FormManager.CURR_FIL;
             this.fb_directory.InitialDirectory = FormManager.CURR_DIR;
             this.sf_file.InitialDirectory = FormManager.CURR_DIR;
+        }
+
+        /// <summary>
+        /// Auxiliary - Loads predefined events
+        /// </summary>
+        private void LoadEvents()
+        {
+
         }
 
         /// <summary>
@@ -49,11 +80,11 @@ namespace OTOI_ADD.View.ESIOS
         /// <param name="e">Event arguments</param>
         private void Mp_date_ValueChanged(object sender, EventArgs e)
         {
-            Auxiliary.ValidateESIOS(this.mp_date, this.ep_error);
+            Auxiliary.ValidateESIOS(this.mp_date, this.ep_error); // TODO: Cambiar
             if (this.ep_error.GetError(this.mp_date) == "")
             {
                 this.bt_accept.Enabled = true;
-            } 
+            }
             else
             {
                 this.bt_accept.Enabled = false;
@@ -85,18 +116,9 @@ namespace OTOI_ADD.View.ESIOS
         /// </summary>
         /// <param name="sender">Sender control</param>
         /// <param name="e">Event arguments</param>
-        private void Cb_unzip_CheckedChanged(object sender, EventArgs e)
+        private void Cb_keepDownload_CheckedChanged(object sender, EventArgs e)
         {
-            if (this.cb_unzip.Checked)
-            {
-                this.cb_keep.Enabled = true;
-                this.cb_process.Enabled = true;
-            } 
-            else
-            {
-                this.cb_keep.Enabled = false;
-                this.cb_process.Enabled = false;
-            }
+            
         }
 
         /// <summary>
@@ -106,16 +128,7 @@ namespace OTOI_ADD.View.ESIOS
         /// <param name="e">Event arguments</param>
         private void Cb_process_CheckedChanged(object sender, EventArgs e)
         {
-            if (this.cb_process.Checked)
-            {
-                this.bt_fileDest.Enabled = true;
-                this.lb_bt_fileDest.Enabled = true;
-            } 
-            else
-            {
-                this.bt_fileDest.Enabled = false;
-                this.lb_bt_fileDest.Enabled = false;
-            }
+            FormManager.DLEnabler(sender, this.cb_keepDownload, this.bt_fileDest, this.lb_bt_fileDest);
         }
 
         /// <summary>

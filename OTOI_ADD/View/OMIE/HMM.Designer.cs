@@ -38,7 +38,6 @@
             this.Name = "HMM";
             this.Text = "HMM";
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
