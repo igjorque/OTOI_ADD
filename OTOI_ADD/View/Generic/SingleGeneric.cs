@@ -64,7 +64,8 @@ namespace OTOI_ADD.View.Generic
             this.Start = FormManager.STR;
             this.LBDownload.Text = FormManager.CURR_DIR;
             this.fb_directory.InitialDirectory = FormManager.CURR_DIR;
-            this.LBFile.Text = FormManager.CURR_FIL;
+            if (FormManager.CURR_FIL != "") this.LBFile.Text = FormManager.CURR_FIL;
+            else this.LBFile.Text = "Por defecto";
             this.sf_file.InitialDirectory = FormManager.CURR_DIR;
         }
 

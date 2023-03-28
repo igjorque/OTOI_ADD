@@ -171,7 +171,7 @@
             this.mp_date.CustomFormat = "MMMM yyyy";
             this.mp_date.Location = new System.Drawing.Point(47, 51);
             this.mp_date.Name = "mp_date";
-            this.mp_date.Size = new System.Drawing.Size(120, 23);
+            this.mp_date.Size = new System.Drawing.Size(137, 23);
             this.mp_date.TabIndex = 150;
             this.mp_date.ValueChanged += new System.EventHandler(this.Mp_date_ValueChanged);
             // 
@@ -220,6 +220,7 @@
             this.Controls.Add(this.lb_bt_downloadDir);
             this.Controls.Add(this.lb_bt_fileDest);
             this.Controls.Add(this.lb_date);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "C2L";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "C2L";

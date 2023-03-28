@@ -5,6 +5,7 @@ using System.Net.Mail;
 using System.Net;
 using System.Reflection;
 using System.Diagnostics;
+using System.Security.Policy;
 
 namespace OTOI_ADD.View
 {
@@ -209,18 +210,7 @@ namespace OTOI_ADD.View
             }
         }
 
-        // ----------------------------------------------------------------------------------------- 
-        // ----------------------------------------- TEST ------------------------------------------ 
-        // ----------------------------------------------------------------------------------------- 
-
-        private void tsmi_test_Click(object sender, EventArgs e)
-        {
-            Test t = new();
-            t.MdiParent = this;
-            t.Show();
-        }
-
-        private void tsmi_folder_Click(object sender, EventArgs e)
+        private void OpenAppFolder(object sender, EventArgs e)
         {
             string folderPath = "" + Environment.CurrentDirectory;
             if (Directory.Exists(folderPath))
@@ -236,7 +226,7 @@ namespace OTOI_ADD.View
         }
 
 
-        private void tsmi_logs_Click(object sender, EventArgs e)
+        private void OpenLogFolder(object sender, EventArgs e)
         {
             string folderPath = "C:\\OTOI_ADD";
             if (Directory.Exists(folderPath))
@@ -249,6 +239,45 @@ namespace OTOI_ADD.View
 
                 Process.Start(startInfo);
             }
+        }
+
+        private void SendLogs(object sender, EventArgs e)
+        {
+            MessageBox.Show("Funcionalidad futura :)");
+        }
+
+        private void Documentation(object sender, EventArgs e)
+        {
+            try
+            {
+                string url = "https://github.com/igjorque/OTOI_ADD";
+                Process.Start(new ProcessStartInfo() { FileName = url, UseShellExecute = true });
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("No se ha podido abrir el enlace.\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void About(object sender, EventArgs e)
+        {
+            string msg = "";
+            string cap = "";
+            msg += "Programa desarrollado por Ignacio A. Jorquera Ferrat para la Oficina Técnica de Obras e Infraestructuras (OTOI) - Universidad de La Rioja.";
+            msg += "\nAgiliza la descarga de datos de las webs OMIE y ESIOS.";
+            cap = "Acerca de ADD";
+            MessageBox.Show(msg, cap, MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        // ----------------------------------------------------------------------------------------- 
+        // ----------------------------------------- TEST ------------------------------------------ 
+        // ----------------------------------------------------------------------------------------- 
+
+        private void TEST(object sender, EventArgs e)
+        {
+            Test t = new();
+            t.MdiParent = this;
+            t.Show();
         }
     }
 }

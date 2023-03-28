@@ -154,7 +154,7 @@
             this.mp_date.CustomFormat = "MMMM yyyy";
             this.mp_date.Location = new System.Drawing.Point(42, 49);
             this.mp_date.Name = "mp_date";
-            this.mp_date.Size = new System.Drawing.Size(200, 23);
+            this.mp_date.Size = new System.Drawing.Size(142, 23);
             this.mp_date.TabIndex = 150;
             // 
             // FieldsMth
