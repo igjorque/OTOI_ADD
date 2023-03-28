@@ -43,9 +43,6 @@ namespace OTOI_ADD.Code.Module.Download
                 case 4:
                     uripage = "INT_PBC_EV_H_1";
                     break;
-                case 6:
-                    uripage = "INT_PDBC_PRECIO_5";
-                    break;
             }
             ProcessDL(uribase, uripage, inp);
         }
@@ -63,30 +60,14 @@ namespace OTOI_ADD.Code.Module.Download
             Uri uri;
             List<Uri> l_uri = new List<Uri>();
 
-            // TODO: check
-            if (inp.FID != 6)
+            for (DateTime currDate = inp.DateStart; DateTime.Compare(currDate, inp.DateEnd) <= 0; currDate = currDate.AddDays(1))
             {
-                for (DateTime currDate = inp.DateStart; DateTime.Compare(currDate, inp.DateEnd) <= 0; currDate = currDate.AddDays(1))
-                {
-                    mth = Auxiliary.FormatMonth(currDate.Month);
-                    day = Auxiliary.FormatDay(currDate.Day);
-                    uristr = uribase + currDate.Year + "/MES_" + mth + "/TXT/" + uripage + "_" + day + "_" + mth + "_" + currDate.Year + "_" + day + "_" + mth + "_" + currDate.Year + ".TXT";
-                    uri = new Uri(uristr);
-                    l_uri.Add(uri);
-                }
-            } 
-            else
-            {
-                string sd, sm, ed, em;
-                sd = Auxiliary.FormatDay(inp.DateStart.Day);
-                sm = Auxiliary.FormatMonth(inp.DateStart.Month);
-                ed = Auxiliary.FormatDay(inp.DateEnd.Day);
-                em = Auxiliary.FormatDay(inp.DateEnd.Month);
-                uristr = uribase + inp.DateStart.Year + "/MES_" + sm + "/TXT/" + uripage + "_" + sd + "_" + sm + "_" + inp.DateStart.Year + "_" + ed + "_" + em + "_" + inp.DateEnd.Year + ".TXT";
+                mth = Auxiliary.FormatMonth(currDate.Month);
+                day = Auxiliary.FormatDay(currDate.Day);
+                uristr = uribase + currDate.Year + "/MES_" + mth + "/TXT/" + uripage + "_" + day + "_" + mth + "_" + currDate.Year + "_" + day + "_" + mth + "_" + currDate.Year + ".TXT";
                 uri = new Uri(uristr);
                 l_uri.Add(uri);
             }
-            
             ProgressDialog pd = new ProgressDialog(inp, l_uri);
             pd.ShowDialog();
         }

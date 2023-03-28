@@ -111,7 +111,7 @@
             this.tsmi_HMM,
             this.tsmi_HMT});
             this.tsmi_omie.Name = "tsmi_omie";
-            this.tsmi_omie.Size = new System.Drawing.Size(104, 22);
+            this.tsmi_omie.Size = new System.Drawing.Size(180, 22);
             this.tsmi_omie.Text = "OMIE";
             // 
             // tsmi_HPCM
@@ -144,7 +144,7 @@
             this.tsmi_esios.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmi_c2l});
             this.tsmi_esios.Name = "tsmi_esios";
-            this.tsmi_esios.Size = new System.Drawing.Size(104, 22);
+            this.tsmi_esios.Size = new System.Drawing.Size(180, 22);
             this.tsmi_esios.Text = "ESIOS";
             // 
             // tsmi_c2l
@@ -202,10 +202,12 @@
             this.tsmi_logSend.Text = "Enviar logs";
             this.tsmi_logSend.Click += new System.EventHandler(this.SendLogs);
             // 
-            // toolStripSeparator1
+            // tsmi_HMT
             // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(213, 6);
+            this.tsmi_HMT.Name = "tsmi_HMT";
+            this.tsmi_HMT.Size = new System.Drawing.Size(375, 22);
+            this.tsmi_HMT.Text = "Contratación horaria mercado diario - Tabla";
+            this.tsmi_HMT.Click += new System.EventHandler(this.CL_openForm_HMT);
             // 
             // tsmi_old
             // 
@@ -213,60 +215,23 @@
             this.tsmi_HPC,
             this.tsmi_HM});
             this.tsmi_old.Name = "tsmi_old";
-            this.tsmi_old.Size = new System.Drawing.Size(216, 22);
-            this.tsmi_old.Text = "Formularios antiguos";
+            this.tsmi_old.Size = new System.Drawing.Size(67, 20);
+            this.tsmi_old.Text = "Antiguos";
             // 
             // tsmi_HPC
             // 
             this.tsmi_HPC.Name = "tsmi_HPC";
-            this.tsmi_HPC.Size = new System.Drawing.Size(325, 22);
-            this.tsmi_HPC.Text = "Mecanismo de ajuste - Precio horario dia (HPC)";
+            this.tsmi_HPC.Size = new System.Drawing.Size(317, 22);
+            this.tsmi_HPC.Text = "Mecanismo de ajuste Precio horario dia (HPC)";
             this.tsmi_HPC.ToolTipText = "Hourly Price Consumers\r\nPrecio definitivo horario del mecanismo de ajuste a los c" +
     "onsumidores en el mercado.";
-            this.tsmi_HPC.Click += new System.EventHandler(this.CL_openForm_HPC);
             // 
             // tsmi_HM
             // 
             this.tsmi_HM.Name = "tsmi_HM";
-            this.tsmi_HM.Size = new System.Drawing.Size(325, 22);
-            this.tsmi_HM.Text = "Contratación horaria mercado diario (HM)";
-            this.tsmi_HM.ToolTipText = "Precio energía horario mensual";
-            this.tsmi_HM.Click += new System.EventHandler(this.CL_openForm_HM);
-            // 
-            // tsmi_test
-            // 
-            this.tsmi_test.Name = "tsmi_test";
-            this.tsmi_test.Size = new System.Drawing.Size(216, 22);
-            this.tsmi_test.Text = "Test";
-            this.tsmi_test.Click += new System.EventHandler(this.TEST);
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(101, 6);
-            // 
-            // tsmi_help
-            // 
-            this.tsmi_help.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmi_documentation,
-            this.tsmi_about});
-            this.tsmi_help.Name = "tsmi_help";
-            this.tsmi_help.Size = new System.Drawing.Size(53, 20);
-            this.tsmi_help.Text = "Ayuda";
-            // 
-            // tsmi_documentation
-            // 
-            this.tsmi_documentation.Name = "tsmi_documentation";
-            this.tsmi_documentation.Size = new System.Drawing.Size(180, 22);
-            this.tsmi_documentation.Text = "Documentación";
-            this.tsmi_documentation.Click += new System.EventHandler(this.Documentation);
-            // 
-            // tsmi_about
-            // 
-            this.tsmi_about.Name = "tsmi_about";
-            this.tsmi_about.Size = new System.Drawing.Size(180, 22);
-            this.tsmi_about.Text = "Acerca de ADD";
-            this.tsmi_about.Click += new System.EventHandler(this.About);
+            this.tsmi_HM.Size = new System.Drawing.Size(317, 22);
+            this.tsmi_HM.Text = "Precio energía horario mensual (HM)";
+            this.tsmi_HM.ToolTipText = "Hourly Market\r\nContratación horaria mercado diario.\r\n";
             // 
             // Main
             // 
