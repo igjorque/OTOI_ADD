@@ -53,6 +53,8 @@
             // cb_unzip
             // 
             this.cb_unzip.AutoSize = true;
+            this.cb_unzip.Checked = true;
+            this.cb_unzip.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cb_unzip.Location = new System.Drawing.Point(6, 116);
             this.cb_unzip.Name = "cb_unzip";
             this.cb_unzip.Size = new System.Drawing.Size(151, 19);
@@ -76,7 +78,6 @@
             // cb_keep
             // 
             this.cb_keep.AutoSize = true;
-            this.cb_keep.Enabled = false;
             this.cb_keep.Location = new System.Drawing.Point(6, 144);
             this.cb_keep.Name = "cb_keep";
             this.cb_keep.Size = new System.Drawing.Size(188, 19);
@@ -177,7 +178,6 @@
             // cb_process
             // 
             this.cb_process.AutoSize = true;
-            this.cb_process.Enabled = false;
             this.cb_process.Location = new System.Drawing.Point(6, 172);
             this.cb_process.Name = "cb_process";
             this.cb_process.Size = new System.Drawing.Size(118, 19);

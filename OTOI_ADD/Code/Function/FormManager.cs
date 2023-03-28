@@ -20,6 +20,7 @@ namespace OTOI_ADD.Code.Function
         internal static string CURR_FIL = "";
         internal static DateTime STR = DateTime.Today.AddDays(-2);
         internal static DateTime END = DateTime.Today.AddDays(-1);
+        internal static DateTime MTH = DateTime.Today.AddMonths(-1);
 
         /// <summary>
         /// Manages the click event on an accept button.
@@ -29,7 +30,7 @@ namespace OTOI_ADD.Code.Function
         internal static void FormAccept(Form f, int FID)
         {
             // Save user input to config
-            AppConfigManager.Save();
+            //AppConfigManager.Save();
             // Manage forms
             switch (FID)
             {
@@ -45,11 +46,17 @@ namespace OTOI_ADD.Code.Function
                     ManageSingleESIOS(f);
                     break;
                 case 6: // C2LM
-                    ManageGeneral(f); // TODO: revisar, refactorizar
+                    ManageMonthOMIE(f); // TODO: revisar, refactorizar
                     break;
             }
         }
 
+        /// <summary>
+        /// Prevents a download if it's too big (more than 31 days).
+        /// Asks for user confirmation.
+        /// </summary>
+        /// <param name="f">Source form</param>
+        /// <returns>True if OK or accepted, False otherwise</returns>
         private static bool PreventMultiDownloadEvent(Form f)
         {
             bool r = false;
@@ -97,11 +104,19 @@ namespace OTOI_ADD.Code.Function
         }
 
         // TODO: check
-        private static void ManageGeneral(Form f)
+        /// <summary>
+        /// Manages the click event on an accept button for an OMIEs MonthGeneric type form.
+        /// </summary>
+        /// <param name="f"></param>
+        private static void ManageMonthOMIE(Form f)
         {
+            // Cast parameter
             HMT hmt = (HMT) f;
+            // Init input
             InputOMIE inp = new(hmt);
+            // Download files
             DL_OMIE.DLSwitch(inp);
+            // Close form
             f.Close();
         }
 

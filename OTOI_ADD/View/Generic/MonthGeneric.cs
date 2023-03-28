@@ -1,55 +1,62 @@
 ﻿using OTOI_ADD.Code.Function;
-using OTOI_ADD.View.Asset;
+using OTOI_ADD.View.Asset.Control;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
 using System.Reflection;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace OTOI_ADD.View.Generic
 {
     /// <summary>
-    /// SingleGeneric
+    /// 
     /// </summary>
-    public partial class SingleGeneric : Form
+    public partial class MonthGeneric : Form
     {
+
         private static log4net.ILog logger = log4net.LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
-        private readonly int fid;
-        internal int FID { get => this.fid; }
+        private int fid;
+        internal int FID { get => fid; }
         internal string FormName { get => this.Text; set => this.Text = value; }
-        internal string Title { get => this.uc_f.lb_title.Text; set => this.uc_f.lb_title.Text = value; }
-        internal LinkLabel Link { get => this.uc_f.lb_link; set => this.uc_f.lb_link = value; }
-        internal string Label { get => this.uc_f.lb_date.Text; set => this.uc_f.lb_date.Text = value; }
-        internal DateTime Start { get => this.uc_f.ca_date_start.Value; set => this.uc_f.ca_date_start.Value = value; }
-        internal Button Download { get => this.uc_f.bt_downloadDir; set => this.uc_f.bt_downloadDir = value; }
-        internal Label LBDownload { get => this.uc_f.lb_bt_downloadDir; set => this.uc_f.lb_bt_downloadDir = value; }
-        internal CheckBox Process { get => this.uc_f.cb_process; set => this.uc_f.cb_process = value; }
-        internal CheckBox Keep { get => this.uc_f.cb_keepDownload; set => this.uc_f.cb_keepDownload = value; }
-        internal Button File { get => this.uc_f.bt_fileDest; set => this.uc_f.bt_fileDest = value; }
-        internal Label LBFile { get => this.uc_f.lb_bt_fileDest; set => this.uc_f.lb_bt_fileDest = value; }
-        internal Button Accept { get => this.uc_f.bt_accept; set => this.uc_f.bt_accept = value; }
-        internal Button Cancel { get => this.uc_f.bt_cancel; set => this.uc_f.bt_cancel = value; }
-        internal Fields UCF { get => this.uc_f; set => this.uc_f = value; }
+        internal string Title { get => this.uc_fm.lb_title.Text; set => this.uc_fm.lb_title.Text = value; }
+        internal LinkLabel Link { get => this.uc_fm.lb_link; set => this.uc_fm.lb_link = value; }
+        internal string Label { get => this.uc_fm.lb_date.Text; set => this.uc_fm.lb_date.Text = value; }
+        internal Button Download { get => this.uc_fm.bt_downloadDir; set => this.uc_fm.bt_downloadDir = value; }
+        internal Label LBDownload { get => this.uc_fm.lb_bt_downloadDir; set => this.uc_fm.lb_bt_downloadDir = value; }
+        internal CheckBox Process { get => this.uc_fm.cb_process; set => this.uc_fm.cb_process = value; }
+        internal CheckBox Keep { get => this.uc_fm.cb_keepDownload; set => this.uc_fm.cb_keepDownload = value; }
+        internal Button File { get => this.uc_fm.bt_fileDest; set => this.uc_fm.bt_fileDest = value; }
+        internal Label LBFile { get => this.uc_fm.lb_bt_fileDest; set => this.uc_fm.lb_bt_fileDest = value; }
+        internal Button Accept { get => this.uc_fm.bt_accept; set => this.uc_fm.bt_accept = value; }
+        internal Button Cancel { get => this.uc_fm.bt_cancel; set => this.uc_fm.bt_cancel = value; }
+        internal MonthPicker Date { get => this.uc_fm.mp_date; set => this.uc_fm.mp_date = value; }
 
         /// <summary>
-        /// Empty SingleGeneric form constructor.
-        /// **DO NOT USE**
+        /// 
         /// </summary>
-        public SingleGeneric()
+        public MonthGeneric()
         {
-            logger.Info("SingleGeneric - Constructor");
-            this.fid = 0;
+            logger.Info("MonthGeneric - Constructor");
+            fid = 0;
             InitializeComponent();
             LoadFields();
             LoadEvents();
         }
 
         /// <summary>
-        /// SingleGeneric form constructor.
-        /// Creates a new form with a specific Form ID (FID).
+        /// 
         /// </summary>
-        /// <param name="FID">Created form unique ID</param>
-        public SingleGeneric(int FID)
+        /// <param name="fid"></param>
+        public MonthGeneric(int fid)
         {
-            logger.Info("SingleGeneric - Constructor");
-            this.fid = FID;
+            logger.Info("MonthGeneric - Constructor");
+            this.fid = fid;
             InitializeComponent();
             LoadFields();
             LoadEvents();
@@ -61,7 +68,7 @@ namespace OTOI_ADD.View.Generic
         private void LoadFields()
         {
             this.FormName = "SingleGeneric";
-            this.Start = FormManager.STR;
+            //this.Date.Value = FormManager.MTH;
             this.LBDownload.Text = FormManager.CURR_DIR;
             this.fb_directory.InitialDirectory = FormManager.CURR_DIR;
             this.LBFile.Text = FormManager.CURR_FIL;
@@ -73,17 +80,16 @@ namespace OTOI_ADD.View.Generic
         /// </summary>
         private void LoadEvents()
         {
-            logger.Info("SingleGeneric - Loading Events");
+            logger.Info("MonthGeneric - Loading Events");
             this.Process.CheckedChanged += new EventHandler(EnableEvent);
             this.Accept.Click += new EventHandler(AcceptEvent);
             this.Cancel.Click += new EventHandler(CancelEvent);
             this.Link.LinkClicked += new LinkLabelLinkClickedEventHandler(LinkEvent);
             this.Download.Click += new EventHandler(DownloadFolderEvent);
             this.File.Click += new EventHandler(DownloadFileEvent);
-            this.uc_f.ca_date_start.ValueChanged += new EventHandler(ValidateStartEvent);
-            logger.Info("SingleGeneric - Events Loaded");
+            this.uc_fm.mp_date.ValueChanged += new EventHandler(ValidateDateEvent);
+            logger.Info("MonthGeneric - Events Loaded");
         }
-
         /// <summary>
         /// Manages the enabling/disabling of some controls based on the [cb_keepDownload] CheckBox current status.
         /// </summary>
@@ -91,7 +97,7 @@ namespace OTOI_ADD.View.Generic
         /// <param name="e">Event arguments</param>
         private void EnableEvent(object? sender, EventArgs e)
         {
-            FormManager.DLEnabler(sender, this.uc_f.cb_keepDownload, this.uc_f.bt_fileDest, this.uc_f.lb_bt_fileDest);
+            FormManager.DLEnabler(sender, this.uc_fm.cb_keepDownload, this.uc_fm.bt_fileDest, this.uc_fm.lb_bt_fileDest);
         }
 
         /// <summary>
@@ -101,7 +107,7 @@ namespace OTOI_ADD.View.Generic
         /// <param name="e">Event arguments</param>
         private void AcceptEvent(object? sender, EventArgs e)
         {
-            logger.Info("SingleGeneric - Form Accept");
+            logger.Info("MonthGeneric - Form Accept");
             FormManager.FormAccept(this, this.FID);
         }
 
@@ -122,7 +128,7 @@ namespace OTOI_ADD.View.Generic
         /// <param name="e">Event arguments</param>
         private void LinkEvent(object? sender, LinkLabelLinkClickedEventArgs e)
         {
-            logger.Info("SingleGeneric - Opening Link");
+            logger.Info("MonthGeneric - Opening Link");
             FormManager.OpenLink(this.FID, this.Link);
         }
 
@@ -147,18 +153,19 @@ namespace OTOI_ADD.View.Generic
         }
 
         /// <summary>
-        /// Manages the validation of the [ca_date_start] DateTimePicker control.
+        /// Manages the validation of the [mp_date] MonthPicker control.
         /// </summary>
         /// <param name="sender">Sender control</param>
         /// <param name="e">Event arguments</param>
-        private void ValidateStartEvent(object? sender, EventArgs e)
+        private void ValidateDateEvent(object? sender, EventArgs e)
         {
-            Auxiliary.ValidateStart(this.uc_f.ca_date_start, this.ep_error);
-            if (this.ep_error.GetError(this.uc_f.ca_date_start) == "")
+            Auxiliary.ValidateDate(this.uc_fm.mp_date, this.ep_error);
+            if (this.ep_error.GetError(this.uc_fm.mp_date) == "")
             {
-                FormManager.STR = this.uc_f.ca_date_start.Value;
+                FormManager.STR = this.uc_fm.mp_date.Value;
                 this.Accept.Enabled = true;
-            } else
+            }
+            else
             {
                 this.Accept.Enabled = false;
             }

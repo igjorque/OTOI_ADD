@@ -47,7 +47,6 @@ namespace OTOI_ADD.Code.Module.Download
                     uripage = "INT_PDBC_PRECIO_5";
                     break;
             }
-
             ProcessDL(uribase, uripage, inp);
         }
 

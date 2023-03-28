@@ -45,8 +45,8 @@ namespace OTOI_ADD.View.Generic
         {
             this.FormName = "MultiGeneric";
             this.Label = "Dias";
-            this.Start = DateTime.Today.AddDays(-2);
-            this.End = DateTime.Today.AddDays(-1);
+            this.Start = FormManager.STR;
+            this.End = FormManager.END;
         }
 
         /// <summary>

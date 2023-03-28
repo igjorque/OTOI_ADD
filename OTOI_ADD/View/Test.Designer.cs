@@ -35,6 +35,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.bt_dir = new System.Windows.Forms.Button();
+            this.monthPicker1 = new OTOI_ADD.View.Asset.Control.MonthPicker();
             this.SuspendLayout();
             // 
             // mp_selector
@@ -44,6 +45,7 @@
             this.mp_selector.Name = "mp_selector";
             this.mp_selector.Size = new System.Drawing.Size(200, 23);
             this.mp_selector.TabIndex = 0;
+            this.mp_selector.Value = new System.DateTime(2023, 1, 1, 0, 0, 0, 0);
             this.mp_selector.ValueChanged += new System.EventHandler(this.Validate);
             // 
             // lb_selected
@@ -101,12 +103,22 @@
             this.bt_dir.UseVisualStyleBackColor = true;
             this.bt_dir.Click += new System.EventHandler(this.bt_dir_Click);
             // 
+            // monthPicker1
+            // 
+            this.monthPicker1.CustomFormat = "MMMM yyyy";
+            this.monthPicker1.Location = new System.Drawing.Point(16, 48);
+            this.monthPicker1.Name = "monthPicker1";
+            this.monthPicker1.Size = new System.Drawing.Size(200, 23);
+            this.monthPicker1.TabIndex = 7;
+            this.monthPicker1.ValueChanged += new System.EventHandler(this.Validate);
+            // 
             // Test
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
             this.ClientSize = new System.Drawing.Size(367, 239);
+            this.Controls.Add(this.monthPicker1);
             this.Controls.Add(this.bt_dir);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -115,6 +127,7 @@
             this.Controls.Add(this.lb_selected);
             this.Controls.Add(this.mp_selector);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "Test";
             this.Opacity = 0.4D;
             this.Text = "Test";
@@ -124,13 +137,13 @@
         }
 
         #endregion
-
-        private Asset.Control.MonthPicker mp_selector;
         private Label lb_selected;
         private Label lb_dir1;
         private Label lb_dir2;
         private Label label1;
         private Label label2;
         private Button bt_dir;
+        internal Asset.Control.MonthPicker monthPicker1;
+        internal Asset.Control.MonthPicker mp_selector;
     }
 }

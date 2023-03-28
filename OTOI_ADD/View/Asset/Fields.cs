@@ -6,7 +6,7 @@
     public partial class Fields : UserControl
     {
         /// <summary>
-        /// Fields custom UserContorl constructor.
+        /// Fields custom UserControl constructor.
         /// </summary>
         public Fields()
         {

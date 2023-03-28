@@ -35,7 +35,7 @@ namespace OTOI_ADD.View.ESIOS
         {
             this.Text = "ESIOS";
             this.lb_title.Text = "C2 liquicomun";
-            this.mp_date.Value = DateTime.Today.AddMonths(-1);
+            this.mp_date.Value = FormManager.MTH;
             this.lb_bt_downloadDir.Text = FormManager.CURR_DIR;
             this.lb_bt_fileDest.Text = FormManager.CURR_FIL;
             this.fb_directory.InitialDirectory = FormManager.CURR_DIR;

@@ -227,9 +227,13 @@ namespace OTOI_ADD.View.Asset
             {
                 result = "HPC_" + aux[7] + "-" + aux[5] + "-" + aux[6] + ".txt";
             }
-            else // "INT_PBC_EV_H_1" - is HM
+            else if (file.Contains("INT_PBC_EV_H_1")) // is HM
             {
                 result = "HM_" + aux[8] + "-" + aux[6] + "-" + aux[7] + ".txt";
+            }
+            else // "INT_PDBC_PRECIO_5" - is HMT
+            {
+                result = "HMT_" + aux[8] + "-" + aux[6] + "-" + aux[7] + ".txt";
             }
 
             return result;

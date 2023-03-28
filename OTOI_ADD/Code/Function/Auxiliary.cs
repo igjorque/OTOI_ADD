@@ -89,6 +89,32 @@ namespace OTOI_ADD.Code.Function
             ep_error.SetError(ca_date_end, err);
         }
 
+        /// <summary>
+        /// Checks if an entered end date is valid. 
+        /// Current criteria: Valid if earlier than [Today]'s month and later than 1-1-2018.
+        /// </summary>
+        /// <param name="mp_date">Month date MonthPicker control</param>
+        /// <param name="ep_error">Error indicator</param>
+        internal static void ValidateDate(MonthPicker mp_date, ErrorProvider ep_error)
+        {
+            string err = "";
+            if (DateTime.Compare(mp_date.Value, DateTime.Parse("1/1/2018")) < 0)
+            {
+                err += "La fecha inicial debe ser posterior a 1-1-2018. ";
+            }
+            if (DateTime.Compare(mp_date.Value, DateTime.Today) >= 0)
+            {
+                err += "El mes seleccionado debe ser previo al actual. ";
+            }
+            ep_error.SetError(mp_date, err);
+        }
+
+        /// <summary>
+        /// Checks if an entered end date is valid. 
+        /// Current criteria: Valid if earlier than [Today]'s month and later than 1-1-2018.
+        /// </summary>
+        /// <param name="mp_date">Month date MonthPicker control</param>
+        /// <param name="ep_error">Error indicator</param>
         internal static void ValidateESIOS(MonthPicker mp_date, ErrorProvider ep_error)
         {
             DateTime dx = new(mp_date.Value.Year, mp_date.Value.Month, 1);
@@ -100,6 +126,12 @@ namespace OTOI_ADD.Code.Function
             ep_error.SetError(mp_date, err);
         }
 
+        /// <summary>
+        /// Gets the number of days between two dates.
+        /// </summary>
+        /// <param name="str">Starting date</param>
+        /// <param name="end">Ending date</param>
+        /// <returns>Number of days in between</returns>
         internal static int DaysDiff(DateTime str, DateTime end)
         {
             int diff = 0;

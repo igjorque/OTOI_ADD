@@ -120,7 +120,7 @@ namespace OTOI_ADD.View
         private void CL_openForm_HMT(object sender, EventArgs e)
         {
             logger.Info("Main - Open HMT");
-            HMT hmt = new HMT();
+            HMT hmt = new();
             hmt.Name = "f_hmt";
             if (FormExists(hmt.Name))
             {
@@ -250,7 +250,5 @@ namespace OTOI_ADD.View
                 Process.Start(startInfo);
             }
         }
-
-        
     }
 }
