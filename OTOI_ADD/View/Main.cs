@@ -117,22 +117,6 @@ namespace OTOI_ADD.View
             }
         }
 
-        private void CL_openForm_HMT(object sender, EventArgs e)
-        {
-            logger.Info("Main - Open HMT");
-            HMT hmt = new HMT();
-            hmt.Name = "f_hmt";
-            if (FormExists(hmt.Name))
-            {
-                GiveFocus(hmt.Name);
-            }
-            else
-            {
-                hmt.MdiParent = this;
-                hmt.Show();
-            }
-        }
-
         // ----------------------------------------------------------------------------------------- 
         // ----------------------------------------- ESIOS ----------------------------------------- 
         // ----------------------------------------------------------------------------------------- 
@@ -250,7 +234,5 @@ namespace OTOI_ADD.View
                 Process.Start(startInfo);
             }
         }
-
-        
     }
 }

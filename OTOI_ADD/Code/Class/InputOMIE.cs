@@ -1,5 +1,4 @@
 ﻿using OTOI_ADD.View.Generic;
-using OTOI_ADD.View.OMIE;
 
 namespace OTOI_ADD.Code.Class
 {
@@ -42,10 +41,6 @@ namespace OTOI_ADD.Code.Class
         public InputOMIE(MultiGeneric mgf) : base(mgf.FID, mgf.Start, mgf.End, mgf.LBDownload.Text, mgf.Keep.Checked, mgf.Process.Checked)
         {
             this.destFile = mgf.LBFile.Text;
-        }
-        public InputOMIE(HMT hmt) : base(hmt.FID, hmt.Date.Value, hmt.LBDownload.Text, hmt.Keep.Checked, hmt.Process.Checked)
-        {
-            this.destFile = hmt.LBFile.Text;
         }
     }
 }
