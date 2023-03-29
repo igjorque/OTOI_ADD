@@ -233,7 +233,7 @@ namespace OTOI_ADD.View.Asset
             }
             else // "INT_PDBC_PRECIO_5" - is HMT
             {
-                result = "HMT_" + aux[8] + "-" + aux[6] + "-" + aux[7] + ".txt";
+                result = "HMT_" + aux[5] + "-" + aux[6] + ".txt";
             }
 
             return result;

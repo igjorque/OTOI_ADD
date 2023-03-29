@@ -67,6 +67,7 @@ namespace OTOI_ADD.View.Generic
         /// </summary>
         private void LoadFields()
         {
+            logger.Info("MonthGeneric - Loading Fields");
             this.FormName = "SingleGeneric";
             this.Date.Value = FormManager.MTH;
             this.LBDownload.Text = FormManager.CURR_DIR;
@@ -74,6 +75,7 @@ namespace OTOI_ADD.View.Generic
             if (FormManager.CURR_FIL != "") this.LBFile.Text = FormManager.CURR_FIL;
             else this.LBFile.Text = "Por defecto";
             this.sf_file.InitialDirectory = FormManager.CURR_DIR;
+            logger.Info("MonthGeneric - Fields Loaded");
         }
 
         /// <summary>
@@ -82,6 +84,7 @@ namespace OTOI_ADD.View.Generic
         private void LoadEvents()
         {
             logger.Info("MonthGeneric - Loading Events");
+            this.AcceptButton = this.Accept;
             this.Process.CheckedChanged += new EventHandler(EnableEvent);
             this.Accept.Click += new EventHandler(AcceptEvent);
             this.Cancel.Click += new EventHandler(CancelEvent);

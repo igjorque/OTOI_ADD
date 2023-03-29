@@ -1,4 +1,7 @@
 ﻿using log4net.Repository.Hierarchy;
+using OTOI_ADD.Code.Function;
+using OTOI_ADD.View.Asset;
+using OTOI_ADD.View.Asset.Control;
 using OTOI_ADD.View.Generic;
 using System;
 using System.Collections.Generic;

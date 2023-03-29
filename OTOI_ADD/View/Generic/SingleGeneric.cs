@@ -75,6 +75,7 @@ namespace OTOI_ADD.View.Generic
         private void LoadEvents()
         {
             logger.Info("SingleGeneric - Loading Events");
+            this.AcceptButton = this.Accept;
             this.Process.CheckedChanged += new EventHandler(EnableEvent);
             this.Accept.Click += new EventHandler(AcceptEvent);
             this.Cancel.Click += new EventHandler(CancelEvent);

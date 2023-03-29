@@ -1,11 +1,7 @@
-using OTOI_ADD.Code.Module.Process;
 using OTOI_ADD.View.ESIOS;
 using OTOI_ADD.View.OMIE;
-using System.Net.Mail;
-using System.Net;
-using System.Reflection;
 using System.Diagnostics;
-using System.Security.Policy;
+using System.Reflection;
 
 namespace OTOI_ADD.View
 {
@@ -170,7 +166,7 @@ namespace OTOI_ADD.View
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Tsmi_exit_Click(object sender, EventArgs e)
+        private void Exit(object sender, EventArgs e)
         {
             this.Close();
         }

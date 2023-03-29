@@ -32,13 +32,14 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.ms_menu = new System.Windows.Forms.MenuStrip();
             this.tsmi_file = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.tss_file = new System.Windows.Forms.ToolStripSeparator();
             this.tsmi_exit = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_downloads = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_omie = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_HPCM = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_HMM = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_HMT = new System.Windows.Forms.ToolStripMenuItem();
+            this.tss_download = new System.Windows.Forms.ToolStripSeparator();
             this.tsmi_esios = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_c2l = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_utility = new System.Windows.Forms.ToolStripMenuItem();
@@ -47,16 +48,16 @@
             this.tsmi_logFolder = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmi_logSend = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.tss_utility = new System.Windows.Forms.ToolStripSeparator();
             this.tsmi_old = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_HPC = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_HM = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_test = new System.Windows.Forms.ToolStripMenuItem();
-            this.tt_menu = new System.Windows.Forms.ToolTip(this.components);
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmi_help = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmi_documentation = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmi_doc = new System.Windows.Forms.ToolStripMenuItem();
+            this.tss_help = new System.Windows.Forms.ToolStripSeparator();
             this.tsmi_about = new System.Windows.Forms.ToolStripMenuItem();
+            this.tt_menu = new System.Windows.Forms.ToolTip(this.components);
             this.ms_menu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -69,36 +70,36 @@
             this.tsmi_help});
             this.ms_menu.Location = new System.Drawing.Point(0, 0);
             this.ms_menu.Name = "ms_menu";
-            this.ms_menu.Size = new System.Drawing.Size(784, 24);
+            this.ms_menu.Size = new System.Drawing.Size(499, 24);
             this.ms_menu.TabIndex = 22;
             this.ms_menu.Text = "menuStrip1";
             // 
             // tsmi_file
             // 
             this.tsmi_file.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripSeparator2,
+            this.tss_file,
             this.tsmi_exit});
             this.tsmi_file.Name = "tsmi_file";
             this.tsmi_file.Size = new System.Drawing.Size(60, 20);
             this.tsmi_file.Text = "Archivo";
             // 
-            // toolStripSeparator2
+            // tss_file
             // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
+            this.tss_file.Name = "tss_file";
+            this.tss_file.Size = new System.Drawing.Size(93, 6);
             // 
             // tsmi_exit
             // 
             this.tsmi_exit.Name = "tsmi_exit";
-            this.tsmi_exit.Size = new System.Drawing.Size(180, 22);
+            this.tsmi_exit.Size = new System.Drawing.Size(96, 22);
             this.tsmi_exit.Text = "Salir";
-            this.tsmi_exit.Click += new System.EventHandler(this.Tsmi_exit_Click);
+            this.tsmi_exit.Click += new System.EventHandler(this.Exit);
             // 
             // tsmi_downloads
             // 
             this.tsmi_downloads.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmi_omie,
-            this.toolStripSeparator4,
+            this.tss_download,
             this.tsmi_esios});
             this.tsmi_downloads.Name = "tsmi_downloads";
             this.tsmi_downloads.Size = new System.Drawing.Size(72, 20);
@@ -139,6 +140,11 @@
             this.tsmi_HMT.Text = "Tabla - Contratación horaria mercado diario (HMT)";
             this.tsmi_HMT.Click += new System.EventHandler(this.CL_openForm_HMT);
             // 
+            // tss_download
+            // 
+            this.tss_download.Name = "tss_download";
+            this.tss_download.Size = new System.Drawing.Size(177, 6);
+            // 
             // tsmi_esios
             // 
             this.tsmi_esios.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -150,8 +156,8 @@
             // tsmi_c2l
             // 
             this.tsmi_c2l.Name = "tsmi_c2l";
-            this.tsmi_c2l.Size = new System.Drawing.Size(155, 22);
-            this.tsmi_c2l.Text = "C2 Liquicomun";
+            this.tsmi_c2l.Size = new System.Drawing.Size(186, 22);
+            this.tsmi_c2l.Text = "C2 Liquicomun (C2L)";
             this.tsmi_c2l.Click += new System.EventHandler(this.CL_openForm_C2L);
             // 
             // tsmi_utility
@@ -159,7 +165,7 @@
             this.tsmi_utility.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmi_folder,
             this.tsmi_log,
-            this.toolStripSeparator1,
+            this.tss_utility,
             this.tsmi_old,
             this.tsmi_test});
             this.tsmi_utility.Name = "tsmi_utility";
@@ -202,12 +208,10 @@
             this.tsmi_logSend.Text = "Enviar logs";
             this.tsmi_logSend.Click += new System.EventHandler(this.SendLogs);
             // 
-            // tsmi_HMT
+            // tss_utility
             // 
-            this.tsmi_HMT.Name = "tsmi_HMT";
-            this.tsmi_HMT.Size = new System.Drawing.Size(375, 22);
-            this.tsmi_HMT.Text = "Contratación horaria mercado diario - Tabla";
-            this.tsmi_HMT.Click += new System.EventHandler(this.CL_openForm_HMT);
+            this.tss_utility.Name = "tss_utility";
+            this.tss_utility.Size = new System.Drawing.Size(213, 6);
             // 
             // tsmi_old
             // 
@@ -215,7 +219,7 @@
             this.tsmi_HPC,
             this.tsmi_HM});
             this.tsmi_old.Name = "tsmi_old";
-            this.tsmi_old.Size = new System.Drawing.Size(67, 20);
+            this.tsmi_old.Size = new System.Drawing.Size(216, 22);
             this.tsmi_old.Text = "Antiguos";
             // 
             // tsmi_HPC
@@ -225,6 +229,7 @@
             this.tsmi_HPC.Text = "Mecanismo de ajuste Precio horario dia (HPC)";
             this.tsmi_HPC.ToolTipText = "Hourly Price Consumers\r\nPrecio definitivo horario del mecanismo de ajuste a los c" +
     "onsumidores en el mercado.";
+            this.tsmi_HPC.Click += new System.EventHandler(this.CL_openForm_HPC);
             // 
             // tsmi_HM
             // 
@@ -232,6 +237,43 @@
             this.tsmi_HM.Size = new System.Drawing.Size(317, 22);
             this.tsmi_HM.Text = "Precio energía horario mensual (HM)";
             this.tsmi_HM.ToolTipText = "Hourly Market\r\nContratación horaria mercado diario.\r\n";
+            this.tsmi_HM.Click += new System.EventHandler(this.CL_openForm_HM);
+            // 
+            // tsmi_test
+            // 
+            this.tsmi_test.Name = "tsmi_test";
+            this.tsmi_test.Size = new System.Drawing.Size(216, 22);
+            this.tsmi_test.Text = "Test";
+            this.tsmi_test.Click += new System.EventHandler(this.TEST);
+            // 
+            // tsmi_help
+            // 
+            this.tsmi_help.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmi_doc,
+            this.tss_help,
+            this.tsmi_about});
+            this.tsmi_help.Name = "tsmi_help";
+            this.tsmi_help.Size = new System.Drawing.Size(53, 20);
+            this.tsmi_help.Text = "Ayuda";
+            // 
+            // tsmi_doc
+            // 
+            this.tsmi_doc.Name = "tsmi_doc";
+            this.tsmi_doc.Size = new System.Drawing.Size(180, 22);
+            this.tsmi_doc.Text = "Documentación";
+            this.tsmi_doc.Click += new System.EventHandler(this.Documentation);
+            // 
+            // tss_help
+            // 
+            this.tss_help.Name = "tss_help";
+            this.tss_help.Size = new System.Drawing.Size(177, 6);
+            // 
+            // tsmi_about
+            // 
+            this.tsmi_about.Name = "tsmi_about";
+            this.tsmi_about.Size = new System.Drawing.Size(180, 22);
+            this.tsmi_about.Text = "Acerca de";
+            this.tsmi_about.Click += new System.EventHandler(this.About);
             // 
             // Main
             // 
@@ -239,7 +281,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.ClientSize = new System.Drawing.Size(784, 561);
+            this.ClientSize = new System.Drawing.Size(499, 360);
             this.Controls.Add(this.ms_menu);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
@@ -271,18 +313,19 @@
         private ToolStripMenuItem tsmi_folder;
         private ToolStripMenuItem tsmi_log;
         private ToolStripMenuItem tsmi_HMT;
-        private ToolStripSeparator toolStripSeparator1;
+        private ToolStripSeparator tss_utility;
         private ToolStripMenuItem tsmi_old;
         private ToolStripMenuItem tsmi_HPC;
         private ToolStripMenuItem tsmi_HM;
         private ToolStripMenuItem tsmi_test;
-        private ToolStripSeparator toolStripSeparator2;
+        private ToolStripSeparator tss_file;
         private ToolStripMenuItem tsmi_logFolder;
         private ToolStripSeparator toolStripSeparator3;
         private ToolStripMenuItem tsmi_logSend;
-        private ToolStripSeparator toolStripSeparator4;
+        private ToolStripSeparator tss_download;
         private ToolStripMenuItem tsmi_help;
-        private ToolStripMenuItem tsmi_documentation;
+        private ToolStripMenuItem tsmi_doc;
         private ToolStripMenuItem tsmi_about;
+        private ToolStripSeparator tss_help;
     }
 }

@@ -17,6 +17,7 @@ namespace OTOI_ADD
         [STAThread]
         static void Main()
         {
+            // TODO: Create AppConfigManager.InitFiles()
             // Create C:/OTOI_ADD/log4net.config if not exists
             if (!Directory.Exists("C:\\OTOI_ADD")) Directory.CreateDirectory("C:\\OTOI_ADD");
             
