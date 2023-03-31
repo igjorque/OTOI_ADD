@@ -1,6 +1,6 @@
-﻿namespace OTOI_ADD.View.OMIE
+﻿namespace OTOI_ADD.View.Generic
 {
-    partial class HPCM
+    partial class OGenericDay
     {
         /// <summary>
         /// Required designer variable.
@@ -28,19 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.uc_day = new OTOI_ADD.View.Asset.Date_Day();
             this.SuspendLayout();
             // 
-            // HPCM
+            // uc_day
+            // 
+            this.uc_day.BackColor = System.Drawing.SystemColors.Control;
+            this.uc_day.Location = new System.Drawing.Point(0, 49);
+            this.uc_day.Name = "uc_day";
+            this.uc_day.Size = new System.Drawing.Size(314, 31);
+            this.uc_day.TabIndex = 2;
+            // 
+            // GenericDay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(316, 229);
-            this.Name = "HPCM";
-            this.Text = "HPCM";
+            this.Controls.Add(this.uc_day);
+            this.Name = "GenericDay";
+            this.Text = "GenericDay";
+            this.Controls.SetChildIndex(this.uc_day, 0);
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private Asset.Date_Day uc_day;
     }
 }

@@ -1,4 +1,4 @@
-﻿using OTOI_ADD.View.ESIOS;
+﻿using OTOI_ADD.View.Generic.ESIOS;
 
 namespace OTOI_ADD.Code.Class
 {
@@ -18,19 +18,15 @@ namespace OTOI_ADD.Code.Class
             this.unzip = false;
             this.file = "";
         }
-
+        
         /// <summary>
         /// Builds an [Input] object using a SingleGeneric type form's fields.
         /// </summary>
-        /// <param name="c2l">C2L form</param>
-        public InputESIOS(C2L c2l) : base(c2l.FID, c2l.Date, c2l.Date, c2l.Folder, c2l.Keep, c2l.Process)
+        /// <param name="egm">C2L form</param>
+        public InputESIOS(EGenericMonth egm) : base(egm.FID, egm.Month, egm.LBFolder.Text, egm.CBKeep.Checked, egm.CBProcess.Checked)
         {
-            this.unzip = c2l.Unzip;
-            this.file = c2l.File;
+            this.unzip = egm.CBUnzip.Checked;
+            this.file = egm.LBFile.Text;
         }
-
     }
-
-
-
 }

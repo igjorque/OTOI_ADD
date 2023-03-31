@@ -1,14 +1,14 @@
 ﻿namespace OTOI_ADD.View.Asset
 {
     /// <summary>
-    /// Fields
+    /// 
     /// </summary>
-    public partial class Fields : UserControl
+    public partial class Date_Month : UserControl
     {
         /// <summary>
-        /// Fields custom UserControl constructor.
+        /// 
         /// </summary>
-        public Fields()
+        public Date_Month()
         {
             InitializeComponent();
         }

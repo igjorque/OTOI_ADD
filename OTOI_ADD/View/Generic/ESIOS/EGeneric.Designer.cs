@@ -1,6 +1,6 @@
-﻿namespace OTOI_ADD.View.Generic
+﻿namespace OTOI_ADD.View.Generic.ESIOS
 {
-    partial class MonthGeneric
+    partial class EGeneric
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.uc_fm = new OTOI_ADD.View.Asset.FieldsMth();
+            this.uc_fe = new OTOI_ADD.View.Asset.Fields_ESIOS();
             this.sf_file = new System.Windows.Forms.SaveFileDialog();
             this.fb_directory = new System.Windows.Forms.FolderBrowserDialog();
             this.tt_folder = new System.Windows.Forms.ToolTip(this.components);
@@ -38,12 +38,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.ep_error)).BeginInit();
             this.SuspendLayout();
             // 
-            // uc_fm
+            // uc_fe
             // 
-            this.uc_fm.Location = new System.Drawing.Point(8, 0);
-            this.uc_fm.Name = "uc_fm";
-            this.uc_fm.Size = new System.Drawing.Size(314, 227);
-            this.uc_fm.TabIndex = 0;
+            this.uc_fe.BackColor = System.Drawing.SystemColors.Control;
+            this.uc_fe.Location = new System.Drawing.Point(0, 0);
+            this.uc_fe.Name = "uc_fe";
+            this.uc_fe.Size = new System.Drawing.Size(314, 260);
+            this.uc_fe.TabIndex = 0;
             // 
             // tt_folder
             // 
@@ -61,23 +62,22 @@
             // 
             this.ep_error.ContainerControl = this;
             // 
-            // MonthGeneric
+            // EGeneric
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(334, 231);
-            this.Controls.Add(this.uc_fm);
+            this.ClientSize = new System.Drawing.Size(316, 261);
+            this.Controls.Add(this.uc_fe);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Name = "MonthGeneric";
-            this.Text = "MonthGeneric";
+            this.Name = "EGeneric";
+            this.Text = "Generic";
             ((System.ComponentModel.ISupportInitialize)(this.ep_error)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private Asset.FieldsMth uc_fm;
+        private Asset.Fields_ESIOS uc_fe;
         internal SaveFileDialog sf_file;
         internal FolderBrowserDialog fb_directory;
         internal ToolTip tt_folder;

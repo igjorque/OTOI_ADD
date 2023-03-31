@@ -1,6 +1,6 @@
 ﻿namespace OTOI_ADD.View.Generic
 {
-    partial class MultiGeneric
+    partial class OGenericMonth
     {
         /// <summary>
         /// Required designer variable.
@@ -28,34 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.ca_date_end = new System.Windows.Forms.DateTimePicker();
+            this.uc_month = new OTOI_ADD.View.Asset.Date_Month();
             this.SuspendLayout();
             // 
-            // ca_date_end
+            // uc_month
             // 
-            this.ca_date_end.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.ca_date_end.Location = new System.Drawing.Point(192, 49);
-            this.ca_date_end.Name = "ca_date_end";
-            this.ca_date_end.Size = new System.Drawing.Size(120, 23);
-            this.ca_date_end.TabIndex = 108;
-            this.ca_date_end.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
+            this.uc_month.BackColor = System.Drawing.SystemColors.Control;
+            this.uc_month.Location = new System.Drawing.Point(0, 49);
+            this.uc_month.Name = "uc_month";
+            this.uc_month.Size = new System.Drawing.Size(314, 31);
+            this.uc_month.TabIndex = 2;
             // 
-            // MultiGeneric
+            // GenericMonth
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(334, 231);
-            this.Controls.Add(this.ca_date_end);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
-            this.Name = "MultiGeneric";
-            this.Text = "MultiGeneric";
-            this.Controls.SetChildIndex(this.ca_date_end, 0);
+            this.ClientSize = new System.Drawing.Size(316, 229);
+            this.Controls.Add(this.uc_month);
+            this.Name = "GenericMonth";
+            this.Text = "GenericMonth";
+            this.Controls.SetChildIndex(this.uc_month, 0);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        internal DateTimePicker ca_date_end;
+        private Asset.Date_Month uc_month;
     }
 }

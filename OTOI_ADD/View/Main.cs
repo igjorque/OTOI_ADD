@@ -1,4 +1,6 @@
+using OTOI_ADD.Code.Variable;
 using OTOI_ADD.View.ESIOS;
+using OTOI_ADD.View.Generic;
 using OTOI_ADD.View.OMIE;
 using System.Diagnostics;
 using System.Reflection;
@@ -31,7 +33,7 @@ namespace OTOI_ADD.View
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void CL_openForm_HPC(object sender, EventArgs e)
+        private void OpenForm_HPC(object sender, EventArgs e)
         {
             logger.Info("Main - Open HPC");
             HPC hpc = new HPC();
@@ -53,7 +55,7 @@ namespace OTOI_ADD.View
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void CL_openForm_HPCM(object sender, EventArgs e)
+        private void OpenForm_HPCM(object sender, EventArgs e)
         {
             logger.Info("Main - Open HPCM");
             HPCM hpcm = new HPCM();
@@ -76,7 +78,7 @@ namespace OTOI_ADD.View
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void CL_openForm_HM(object sender, EventArgs e)
+        private void OpenForm_HM(object sender, EventArgs e)
         {
             logger.Info("Main - Open HM");
             HM hm = new HM();
@@ -98,7 +100,7 @@ namespace OTOI_ADD.View
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void CL_openForm_HMM(object sender, EventArgs e)
+        private void OpenForm_HMM(object sender, EventArgs e)
         {
             logger.Info("Main - Open HMM");
             HMM hmm = new HMM();
@@ -114,7 +116,7 @@ namespace OTOI_ADD.View
             }
         }
 
-        private void CL_openForm_HMT(object sender, EventArgs e)
+        private void OpenForm_HMT(object sender, EventArgs e)
         {
             logger.Info("Main - Open HMT");
             HMT hmt = new();
@@ -140,7 +142,7 @@ namespace OTOI_ADD.View
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void CL_openForm_C2L(object sender, EventArgs e)
+        private void OpenForm_C2L(object sender, EventArgs e)
         {
             logger.Info("Main - Open C2L");
             C2L c2l = new C2L();
@@ -159,6 +161,11 @@ namespace OTOI_ADD.View
         // ----------------------------------------------------------------------------------------- 
         // -------------------------------------- OTHER / AUX -------------------------------------- 
         // ----------------------------------------------------------------------------------------- 
+
+        private void ConfigureApp(object sender, EventArgs e)
+        {
+            // TODO: implement app configurations
+        }
 
         /// <summary>
         /// Handles the click event in [tsmi_exit] button.
@@ -206,25 +213,29 @@ namespace OTOI_ADD.View
             }
         }
 
-        private void OpenAppFolder(object sender, EventArgs e)
+        private void InstallDir(object sender, EventArgs e)
         {
-            string folderPath = "" + Environment.CurrentDirectory;
-            if (Directory.Exists(folderPath))
-            {
-                ProcessStartInfo startInfo = new ProcessStartInfo
-                {
-                    Arguments = folderPath,
-                    FileName = "explorer.exe"
-                };
-
-                Process.Start(startInfo);
-            }
+            OpenFolder(Environment.CurrentDirectory);
         }
 
-
-        private void OpenLogFolder(object sender, EventArgs e)
+        private void ConfigDir(object sender, EventArgs e)
         {
-            string folderPath = "C:\\OTOI_ADD";
+            OpenFolder(GLB.FLD_DEF + GLB.FLD_CFG);
+        }
+
+        private void DownloadDir(object sender, EventArgs e)
+        {
+            // TODO: Create specific download folder
+            OpenFolder(GLB.FLD_DEF + GLB.FLD_DWL);
+        }
+
+        private void LogsDir(object sender, EventArgs e)
+        {
+            OpenFolder(GLB.FLD_DEF + GLB.FLD_LOG);
+        }
+
+        private void OpenFolder(string folderPath)
+        {
             if (Directory.Exists(folderPath))
             {
                 ProcessStartInfo startInfo = new ProcessStartInfo
@@ -271,7 +282,7 @@ namespace OTOI_ADD.View
 
         private void TEST(object sender, EventArgs e)
         {
-            Test t = new();
+            OGenericMonth t = new();
             t.MdiParent = this;
             t.Show();
         }

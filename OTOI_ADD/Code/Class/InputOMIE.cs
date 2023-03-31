@@ -25,28 +25,32 @@ namespace OTOI_ADD.Code.Class
         {
             this.destFile = (string)fields["file"];
         }
-
+        
         /// <summary>
         /// Builds an [Input] object using a SingleGeneric type form's fields.
         /// </summary>
-        /// <param name="sgf">SingleGeneric form</param>
-        public InputOMIE(SingleGeneric sgf) : base(sgf.FID, sgf.Start, sgf.Start, sgf.LBDownload.Text, sgf.Keep.Checked, sgf.Process.Checked)
+        /// <param name="ogd">SingleGeneric form</param>
+        public InputOMIE(OGenericDay ogd) : base(ogd.FID, ogd.Day, ogd.Day, ogd.LBFolder.Text, ogd.CBKeep.Checked, ogd.CBProcess.Checked)
         {
-            this.destFile = sgf.LBFile.Text;
+            this.destFile = ogd.LBFile.Text;
         }
 
         /// <summary>
         /// Builds an [Input] object using a MultiGeneric type form's fields.
         /// </summary>
-        /// <param name="mgf">MultiGeneric form</param>
-        public InputOMIE(MultiGeneric mgf) : base(mgf.FID, mgf.Start, mgf.End, mgf.LBDownload.Text, mgf.Keep.Checked, mgf.Process.Checked)
+        /// <param name="ogr">MultiGeneric form</param>
+        public InputOMIE(OGenericRange ogr) : base(ogr.FID, ogr.Start, ogr.End, ogr.LBFolder.Text, ogr.CBKeep.Checked, ogr.CBProcess.Checked)
         {
-            this.destFile = mgf.LBFile.Text;
+            this.destFile = ogr.LBFile.Text;
         }
 
-        public InputOMIE(MonthGeneric mg) : base(mg.FID, mg.Date.Value, mg.LBDownload.Text, mg.Keep.Checked, mg.Process.Checked)
+        /// <summary>
+        /// Builds an [Input] object using a MultiGeneric type form's fields.
+        /// </summary>
+        /// <param name="ogm">MultiGeneric form</param>
+        public InputOMIE(OGenericMonth ogm) : base(ogm.FID, ogm.Month, ogm.LBFolder.Text, ogm.CBKeep.Checked, ogm.CBProcess.Checked)
         {
-            this.destFile = mg.LBFile.Text;
+            this.destFile = ogm.LBFile.Text;
         }
     }
 }

@@ -1,6 +1,6 @@
-﻿namespace OTOI_ADD.View.OMIE
+﻿namespace OTOI_ADD.View.Generic
 {
-    partial class HPCM
+    partial class OGenericRange
     {
         /// <summary>
         /// Required designer variable.
@@ -28,19 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.uc_range = new OTOI_ADD.View.Asset.Date_Range();
             this.SuspendLayout();
             // 
-            // HPCM
+            // uc_range
+            // 
+            this.uc_range.BackColor = System.Drawing.SystemColors.Control;
+            this.uc_range.Location = new System.Drawing.Point(0, 49);
+            this.uc_range.Name = "uc_range";
+            this.uc_range.Size = new System.Drawing.Size(314, 31);
+            this.uc_range.TabIndex = 2;
+            // 
+            // GenericRange
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(316, 229);
-            this.Name = "HPCM";
-            this.Text = "HPCM";
+            this.Controls.Add(this.uc_range);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
+            this.Name = "GenericRange";
+            this.Text = "GenericRange";
+            this.Controls.SetChildIndex(this.uc_range, 0);
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private Asset.Date_Range uc_range;
     }
 }

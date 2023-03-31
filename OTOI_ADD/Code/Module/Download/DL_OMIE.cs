@@ -74,7 +74,7 @@ namespace OTOI_ADD.Code.Module.Download
                     uri = new Uri(uristr);
                     l_uri.Add(uri);
                 }
-            } 
+            }
             else
             {
                 string sd, sm, ed, em;
@@ -86,7 +86,7 @@ namespace OTOI_ADD.Code.Module.Download
                 uri = new Uri(uristr);
                 l_uri.Add(uri);
             }
-            
+
             ProgressDialog pd = new ProgressDialog(inp, l_uri);
             pd.ShowDialog();
         }

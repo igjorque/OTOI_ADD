@@ -1,5 +1,6 @@
 ﻿using Microsoft.Office.Interop.Excel;
 using OTOI_ADD.Code.Function;
+using OTOI_ADD.Code.Variable;
 using Excel = Microsoft.Office.Interop.Excel;
 
 namespace OTOI_ADD.Code.Module.Process
@@ -11,7 +12,7 @@ namespace OTOI_ADD.Code.Module.Process
         /// </summary>
         /// <param name="files">Files to be processed</param>
         /// <param name="option">Processing option</param>
-        internal static void Process(List<string> files, int option = 1)
+        internal static void Process(List<string> files, int option = 2)
         {
             switch (option)
             {
@@ -41,17 +42,17 @@ namespace OTOI_ADD.Code.Module.Process
             Excel._Workbook? b = null;
 
             object miss = System.Reflection.Missing.Value;
-            string? path = FormManager.CURR_DIR, name_xls = "";
+            string? path = VAR.CUR_DIR, name_xls = "";
 
             app = new Excel.Application();
-            books = (Excel.Workbooks) app.Workbooks;
+            books = (Excel.Workbooks)app.Workbooks;
 
             foreach (string f in files)
             {
                 name_xls = Path.GetFileNameWithoutExtension(f) + ".xls";
                 books.OpenText(f, Excel.XlPlatform.xlWindows, 1, Excel.XlTextParsingType.xlDelimited, Excel.XlTextQualifier.xlTextQualifierDoubleQuote, false, false, true, false, false, false, miss, miss, miss, miss, miss);
                 b = app.ActiveWorkbook;
-                b.SaveAs(path + "\\" + name_xls, Excel.XlFileFormat.xlWorkbookNormal, miss, miss, miss, miss, Excel.XlSaveAsAccessMode.xlNoChange, miss, miss, miss, miss);  
+                b.SaveAs(path + "\\" + name_xls, Excel.XlFileFormat.xlWorkbookNormal, miss, miss, miss, miss, Excel.XlSaveAsAccessMode.xlNoChange, miss, miss, miss, miss);
                 b.Close(false, miss, miss);
             }
 
@@ -73,20 +74,16 @@ namespace OTOI_ADD.Code.Module.Process
             Excel.Worksheet? tws = null;
 
             DateTime daux = DateTime.Now;
-            string fpath = FormManager.CURR_FIL;
-            if (fpath == "")
-            {
-                fpath = FormManager.CURR_DIR+"\\OMIE_" + daux.Day + daux.Month + daux.Year + daux.Hour + daux.Minute + daux.Second + ".xls";
-            }
+            string fpath = VAR.CUR_DIR + "\\OMIE_" + daux.Day + "-" + daux.Month + "-" + daux.Year + "_" + daux.Hour + "-" + daux.Minute + "-" + daux.Second + ".xls";
             object miss = System.Reflection.Missing.Value;
-            string? path = FormManager.CURR_DIR;
+            string? path = VAR.CUR_DIR;
             int i = 1;
 
             app = new Excel.Application();
 
             app.DisplayAlerts = false;
 
-            books = (Excel.Workbooks) app.Workbooks;
+            books = (Excel.Workbooks)app.Workbooks;
             tbk = app.Workbooks.Add(miss);
 
             foreach (string f in files)

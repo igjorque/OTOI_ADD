@@ -1,6 +1,6 @@
 ﻿namespace OTOI_ADD.View.Generic
 {
-    partial class SingleGeneric
+    partial class OGeneric
     {
         /// <summary>
         /// Required designer variable.
@@ -29,21 +29,14 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.uc_f = new OTOI_ADD.View.Asset.Fields();
             this.sf_file = new System.Windows.Forms.SaveFileDialog();
             this.fb_directory = new System.Windows.Forms.FolderBrowserDialog();
             this.tt_folder = new System.Windows.Forms.ToolTip(this.components);
             this.tt_file = new System.Windows.Forms.ToolTip(this.components);
             this.ep_error = new System.Windows.Forms.ErrorProvider(this.components);
+            this.uc_fo = new OTOI_ADD.View.Asset.Fields_OMIE();
             ((System.ComponentModel.ISupportInitialize)(this.ep_error)).BeginInit();
             this.SuspendLayout();
-            // 
-            // uc_f
-            // 
-            this.uc_f.Location = new System.Drawing.Point(8, 0);
-            this.uc_f.Name = "uc_f";
-            this.uc_f.Size = new System.Drawing.Size(314, 227);
-            this.uc_f.TabIndex = 0;
             // 
             // tt_folder
             // 
@@ -61,16 +54,24 @@
             // 
             this.ep_error.ContainerControl = this;
             // 
-            // SingleGeneric
+            // uc_fo
+            // 
+            this.uc_fo.BackColor = System.Drawing.SystemColors.Control;
+            this.uc_fo.Location = new System.Drawing.Point(0, 0);
+            this.uc_fo.Name = "uc_fo";
+            this.uc_fo.Size = new System.Drawing.Size(314, 227);
+            this.uc_fo.TabIndex = 1;
+            // 
+            // OGeneric
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(334, 231);
-            this.Controls.Add(this.uc_f);
+            this.ClientSize = new System.Drawing.Size(316, 229);
+            this.Controls.Add(this.uc_fo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Name = "SingleGeneric";
+            this.Name = "OGeneric";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "SingleGeneric";
+            this.Text = "Generic";
             ((System.ComponentModel.ISupportInitialize)(this.ep_error)).EndInit();
             this.ResumeLayout(false);
 
@@ -78,10 +79,10 @@
 
         #endregion
         internal ErrorProvider ep_error;
-        internal Asset.Fields uc_f;
         internal SaveFileDialog sf_file;
         internal FolderBrowserDialog fb_directory;
         internal ToolTip tt_folder;
         internal ToolTip tt_file;
+        private Asset.Fields_OMIE uc_fo;
     }
 }

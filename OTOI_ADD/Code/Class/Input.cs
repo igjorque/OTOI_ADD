@@ -35,7 +35,7 @@
         }
 
         /// <summary>
-        /// Parameterized base constructor for the [Input] object
+        /// Parameterized base constructor for the [Input] object.
         /// </summary>
         /// <param name="FID">Unique form ID</param>
         /// <param name="start">Querys start time</param>
@@ -54,13 +54,13 @@
         }
 
         /// <summary>
-        /// 
+        /// Parameterized base constructor for the [Input] object.
         /// </summary>
-        /// <param name="FID"></param>
-        /// <param name="month"></param>
-        /// <param name="dest"></param>
-        /// <param name="keep"></param>
-        /// <param name="process"></param>
+        /// <param name="FID">Unique form ID</param>
+        /// <param name="month">Querys month</param>
+        /// <param name="dest">Downloaded resources destination folder URI</param>
+        /// <param name="keep">Keep (true) or delete (false) the downloaded resources</param>
+        /// <param name="process">Process (true) or not (false) the downloaded resources</param>
         internal Input(int FID, DateTime month, string dest, bool keep, bool process)
         {
             this.fid = FID;

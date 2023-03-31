@@ -1,5 +1,4 @@
 ﻿using OTOI_ADD.View.Asset.Control;
-using System.Diagnostics;
 
 namespace OTOI_ADD.Code.Function
 {
@@ -45,7 +44,7 @@ namespace OTOI_ADD.Code.Function
 
         /// <summary>
         /// Checks if an entered start date is valid.
-        /// Current criteria: Valid if earlier than [Today] and later than 1-1-2018.
+        /// Current criteria: Valid if earlier than [Today] and later than [01/01/2018].
         /// </summary>
         /// <param name="ca_date_start">Start date DateTimePicker control</param>
         /// <param name="ep_error">Error indicator</param>
@@ -54,77 +53,122 @@ namespace OTOI_ADD.Code.Function
             string err = "";
             if (DateTime.Compare(ca_date_start.Value, DateTime.Parse("1/1/2018")) < 0)
             {
-                err += "La fecha inicial debe ser posterior a 1-1-2018. ";
+                err += "La fecha debe ser posterior a [01/01/2018]. ";
             }
             if (DateTime.Compare(ca_date_start.Value, DateTime.Today) >= 0)
             {
-                err += "La fecha inicial debe ser previa a [" + DateTime.Today.ToString() + "]. ";
+                err += "La fecha debe ser previa a [" + DateTime.Today.ToShortDateString() + "]. ";
             }
             ep_error.SetError(ca_date_start, err);
         }
 
         /// <summary>
         /// Checks if an entered end date is valid. 
-        /// Current criteria: Valid if earlier than [Today] and later than 1-1-2018.
+        /// Current criteria: Valid if earlier than [Today], later than [01/01/2018] and [start] isn't later than [end].
         /// </summary>
-        /// <param name="ca_date_start">Start date DateTimePicker control</param>
-        /// <param name="ca_date_end">End date DateTimePicker control</param>
+        /// <param name="start">Start date DateTimePicker control</param>
+        /// <param name="end">End date DateTimePicker control</param>
         /// <param name="ep_error">Error indicator</param>
-        internal static void ValidateEnd(DateTimePicker ca_date_start, DateTimePicker ca_date_end, ErrorProvider ep_error)
+        internal static void ValidateEnd(DateTimePicker start, DateTimePicker end, ErrorProvider ep_error)
         {
             string err = "";
-            if (DateTime.Compare(ca_date_end.Value, DateTime.Parse("1/1/2018")) < 0)
+            if (DateTime.Compare(end.Value, DateTime.Parse("1/1/2018")) < 0)
             {
-                err += "La fecha final debe ser posterior a 1-1-2018. ";
+                err += "La fecha debe ser posterior a [01/01/2018]. ";
             }
-            if (DateTime.Compare(ca_date_end.Value, DateTime.Today) >= 0)
+            if (DateTime.Compare(end.Value, DateTime.Today) >= 0)
             {
-                err += "La fecha final debe ser previa a [" + DateTime.Today.ToString() + "]. ";
+                err += "La fecha debe ser previa a [" + DateTime.Today.ToShortDateString() + "]. ";
             }
-            if (DateTime.Compare(ca_date_start.Value, ca_date_end.Value) > 0)
+            if (DateTime.Compare(start.Value, end.Value) > 0)
             {
                 err += "La fecha inicial no puede ser posterior a la fecha final.";
             }
-            ep_error.SetError(ca_date_start, err);
-            ep_error.SetError(ca_date_end, err);
+            ep_error.SetError(start, err);
+            ep_error.SetError(end, err);
+        }
+
+        /// <summary>
+        /// Checks if an entered date range is valid. 
+        /// Current criteria: 
+        /// START - Valid if earlier than [Today] and later than [01/01/2018].
+        /// END - Valid if earlier than [Today] and later than [01/01/2018].
+        /// RANGE - Valid if [start] isn't later than [end].
+        /// </summary>
+        /// <param name="start">Start date DateTimePicker control</param>
+        /// <param name="end">End date DateTimePicker control</param>
+        /// <param name="ep_error">Error indicator</param>
+        internal static void ValidateRange(DateTimePicker start, DateTimePicker end, ErrorProvider ep_error)
+        {
+            string errStr = "";
+            string errEnd = "";
+            // VALIDATION - START
+            if (DateTime.Compare(start.Value, DateTime.Parse("1/1/2018")) < 0)
+            {
+                errStr += "La fecha inicial debe ser posterior a [01/01/2018]. ";
+            }
+            if (DateTime.Compare(start.Value, DateTime.Today) >= 0)
+            {
+                errStr += "La fecha inicial debe ser previa a [" + DateTime.Today.ToShortDateString() + "]. ";
+            }
+            // VALIDATION - END
+            if (DateTime.Compare(end.Value, DateTime.Parse("1/1/2018")) < 0)
+            {
+                errEnd += "La fecha final debe ser posterior a [01/01/2018]. ";
+            }
+            if (DateTime.Compare(end.Value, DateTime.Today) >= 0)
+            {
+                errEnd += "La fecha final debe ser previa a [" + DateTime.Today.ToShortDateString() + "]. ";
+            }
+            // VALIDATION - RANGE
+            if (DateTime.Compare(start.Value, end.Value) > 0)
+            {
+                errStr += "La fecha inicial no puede ser posterior a la fecha final.";
+                errEnd += "La fecha final no puede ser anterior a la fecha inicial.";
+            }
+            ep_error.SetError(start, errStr);
+            ep_error.SetError(end, errEnd);
         }
 
         /// <summary>
         /// Checks if an entered end date is valid. 
-        /// Current criteria: Valid if earlier than [Today]'s month and later than 1-1-2018.
+        /// Current criteria: Valid if earlier than [Today]'s month and later than [01/01/2018].
         /// </summary>
-        /// <param name="mp_date">Month date MonthPicker control</param>
+        /// <param name="mp">Month date MonthPicker control</param>
         /// <param name="ep_error">Error indicator</param>
-        internal static void ValidateDate(MonthPicker mp_date, ErrorProvider ep_error)
+        internal static void ValidateMonth(MonthPicker mp, ErrorProvider ep_error)
         {
             string err = "";
-            if (DateTime.Compare(mp_date.Value, DateTime.Parse("1/1/2018")) < 0)
+            if (DateTime.Compare(mp.Value, DateTime.Parse("1/1/2018")) < 0)
             {
-                err += "La fecha inicial debe ser posterior a 1-1-2018. ";
+                err += "La fecha debe ser posterior a [01/01/2018]. ";
             }
-            if (DateTime.Compare(mp_date.Value, DateTime.Today) >= 0)
+            if (mp.Value.Year == DateTime.Today.Year && mp.Value.Month == DateTime.Today.Month)
             {
                 err += "El mes seleccionado debe ser previo al actual. ";
             }
-            ep_error.SetError(mp_date, err);
+            ep_error.SetError(mp, err);
         }
 
+        // TODO: remove ?
+        /*
         /// <summary>
         /// Checks if an entered end date is valid. 
-        /// Current criteria: Valid if earlier than [Today]'s month and later than 1-1-2018.
+        /// Current criteria: Valid if earlier than [Today]'s month and later than [01/01/2018].
         /// </summary>
-        /// <param name="mp_date">Month date MonthPicker control</param>
+        /// <param name="mp">Month date MonthPicker control</param>
         /// <param name="ep_error">Error indicator</param>
-        internal static void ValidateESIOS(MonthPicker mp_date, ErrorProvider ep_error)
+        internal static void ValidateESIOS(MonthPicker mp, ErrorProvider ep_error)
         {
-            DateTime dx = new(mp_date.Value.Year, mp_date.Value.Month, 1);
+            DateTime dx = new(mp.Value.Year, mp.Value.Month, 1);
             string err = "";
-            if(DateTime.Compare(dx, DateTime.Today) > 0 || DateTime.Today.Month == dx.Month)
+            if (DateTime.Compare(DateTime.Today, dx) < 0)
             {
                 err = "Mes introducido no válido";
             }
-            ep_error.SetError(mp_date, err);
+            ep_error.SetError(mp, err);
         }
+        */
 
         /// <summary>
         /// Gets the number of days between two dates.
@@ -136,7 +180,7 @@ namespace OTOI_ADD.Code.Function
         {
             int diff = 0;
             DateTime aux = str;
-            while(DateTime.Compare(aux  , end) < 0)
+            while (DateTime.Compare(aux, end) < 0)
             {
                 aux = aux.AddDays(1);
                 diff++;
@@ -264,6 +308,5 @@ namespace OTOI_ADD.Code.Function
             };
             return fields;
         }
-
     }
 }

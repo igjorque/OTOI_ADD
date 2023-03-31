@@ -1,6 +1,6 @@
-﻿namespace OTOI_ADD.View.OMIE
+﻿namespace OTOI_ADD.View.Generic.ESIOS
 {
-    partial class HPCM
+    partial class EGenericMonth
     {
         /// <summary>
         /// Required designer variable.
@@ -28,19 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.uc_month = new OTOI_ADD.View.Asset.Date_Month();
             this.SuspendLayout();
             // 
-            // HPCM
+            // uc_month
+            // 
+            this.uc_month.BackColor = System.Drawing.SystemColors.Control;
+            this.uc_month.Location = new System.Drawing.Point(0, 49);
+            this.uc_month.Name = "uc_month";
+            this.uc_month.Size = new System.Drawing.Size(314, 31);
+            this.uc_month.TabIndex = 1;
+            // 
+            // EGenericMonth
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(316, 229);
-            this.Name = "HPCM";
-            this.Text = "HPCM";
+            this.ClientSize = new System.Drawing.Size(316, 261);
+            this.Controls.Add(this.uc_month);
+            this.Name = "EGenericMonth";
+            this.Text = "GenericMonth_E";
+            this.Controls.SetChildIndex(this.uc_month, 0);
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private Asset.Date_Month uc_month;
     }
 }

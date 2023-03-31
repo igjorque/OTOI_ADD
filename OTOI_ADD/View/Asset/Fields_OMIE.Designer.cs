@@ -1,6 +1,6 @@
 ﻿namespace OTOI_ADD.View.Asset
 {
-    partial class Fields
+    partial class Fields_OMIE
     {
         /// <summary> 
         /// Variable del diseñador necesaria.
@@ -38,8 +38,6 @@
             this.bt_downloadDir = new System.Windows.Forms.Button();
             this.lb_bt_downloadDir = new System.Windows.Forms.Label();
             this.lb_bt_fileDest = new System.Windows.Forms.Label();
-            this.lb_date = new System.Windows.Forms.Label();
-            this.ca_date_start = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
             // 
             // cb_process
@@ -47,20 +45,23 @@
             this.cb_process.AutoSize = true;
             this.cb_process.Checked = true;
             this.cb_process.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cb_process.Location = new System.Drawing.Point(1, 114);
+            this.cb_process.ForeColor = System.Drawing.Color.Black;
+            this.cb_process.Location = new System.Drawing.Point(8, 110);
             this.cb_process.Name = "cb_process";
             this.cb_process.Size = new System.Drawing.Size(187, 19);
-            this.cb_process.TabIndex = 137;
+            this.cb_process.TabIndex = 149;
             this.cb_process.Text = "Procesar archivos descargados";
             this.cb_process.UseVisualStyleBackColor = true;
             // 
             // lb_link
             // 
             this.lb_link.AutoSize = true;
+            this.lb_link.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lb_link.LinkColor = System.Drawing.Color.Blue;
             this.lb_link.Location = new System.Drawing.Point(285, 18);
             this.lb_link.Name = "lb_link";
-            this.lb_link.Size = new System.Drawing.Size(23, 15);
-            this.lb_link.TabIndex = 136;
+            this.lb_link.Size = new System.Drawing.Size(25, 17);
+            this.lb_link.TabIndex = 148;
             this.lb_link.TabStop = true;
             this.lb_link.Tag = "";
             this.lb_link.Text = "Ver";
@@ -68,10 +69,11 @@
             // cb_keepDownload
             // 
             this.cb_keepDownload.AutoSize = true;
-            this.cb_keepDownload.Location = new System.Drawing.Point(1, 142);
+            this.cb_keepDownload.ForeColor = System.Drawing.Color.Black;
+            this.cb_keepDownload.Location = new System.Drawing.Point(8, 138);
             this.cb_keepDownload.Name = "cb_keepDownload";
             this.cb_keepDownload.Size = new System.Drawing.Size(193, 19);
-            this.cb_keepDownload.TabIndex = 135;
+            this.cb_keepDownload.TabIndex = 147;
             this.cb_keepDownload.Text = "Mantener archivos descargados";
             this.cb_keepDownload.UseVisualStyleBackColor = true;
             // 
@@ -79,30 +81,32 @@
             // 
             this.bt_cancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.bt_cancel.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.bt_cancel.Location = new System.Drawing.Point(177, 198);
+            this.bt_cancel.Location = new System.Drawing.Point(176, 198);
             this.bt_cancel.Name = "bt_cancel";
             this.bt_cancel.Size = new System.Drawing.Size(75, 23);
-            this.bt_cancel.TabIndex = 134;
+            this.bt_cancel.TabIndex = 146;
             this.bt_cancel.Text = "Cancelar";
             this.bt_cancel.UseVisualStyleBackColor = false;
             // 
             // bt_accept
             // 
             this.bt_accept.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.bt_accept.Location = new System.Drawing.Point(73, 198);
+            this.bt_accept.Location = new System.Drawing.Point(64, 198);
             this.bt_accept.Name = "bt_accept";
             this.bt_accept.Size = new System.Drawing.Size(75, 23);
-            this.bt_accept.TabIndex = 133;
+            this.bt_accept.TabIndex = 145;
             this.bt_accept.Text = "Aceptar";
             this.bt_accept.UseVisualStyleBackColor = false;
             // 
             // lb_title
             // 
+            this.lb_title.BackColor = System.Drawing.Color.White;
+            this.lb_title.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lb_title.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lb_title.Location = new System.Drawing.Point(1, 6);
             this.lb_title.Name = "lb_title";
             this.lb_title.Size = new System.Drawing.Size(276, 40);
-            this.lb_title.TabIndex = 132;
+            this.lb_title.TabIndex = 144;
             this.lb_title.Text = "[Form title]";
             this.lb_title.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -111,7 +115,7 @@
             this.bt_fileDest.Location = new System.Drawing.Point(1, 166);
             this.bt_fileDest.Name = "bt_fileDest";
             this.bt_fileDest.Size = new System.Drawing.Size(109, 23);
-            this.bt_fileDest.TabIndex = 131;
+            this.bt_fileDest.TabIndex = 143;
             this.bt_fileDest.Text = "Archivo final";
             this.bt_fileDest.UseVisualStyleBackColor = true;
             // 
@@ -120,48 +124,37 @@
             this.bt_downloadDir.Location = new System.Drawing.Point(1, 82);
             this.bt_downloadDir.Name = "bt_downloadDir";
             this.bt_downloadDir.Size = new System.Drawing.Size(109, 23);
-            this.bt_downloadDir.TabIndex = 130;
+            this.bt_downloadDir.TabIndex = 142;
             this.bt_downloadDir.Text = "Carpeta destino";
             this.bt_downloadDir.UseVisualStyleBackColor = true;
             // 
             // lb_bt_downloadDir
             // 
-            this.lb_bt_downloadDir.Location = new System.Drawing.Point(113, 86);
+            this.lb_bt_downloadDir.BackColor = System.Drawing.Color.White;
+            this.lb_bt_downloadDir.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lb_bt_downloadDir.Location = new System.Drawing.Point(113, 83);
             this.lb_bt_downloadDir.Name = "lb_bt_downloadDir";
-            this.lb_bt_downloadDir.Size = new System.Drawing.Size(200, 15);
-            this.lb_bt_downloadDir.TabIndex = 129;
+            this.lb_bt_downloadDir.Size = new System.Drawing.Size(200, 21);
+            this.lb_bt_downloadDir.TabIndex = 141;
             this.lb_bt_downloadDir.Text = "Ruta de descarga de archivos";
+            this.lb_bt_downloadDir.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lb_bt_fileDest
             // 
-            this.lb_bt_fileDest.Location = new System.Drawing.Point(113, 170);
+            this.lb_bt_fileDest.BackColor = System.Drawing.Color.White;
+            this.lb_bt_fileDest.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lb_bt_fileDest.Location = new System.Drawing.Point(113, 167);
             this.lb_bt_fileDest.Name = "lb_bt_fileDest";
-            this.lb_bt_fileDest.Size = new System.Drawing.Size(200, 15);
-            this.lb_bt_fileDest.TabIndex = 128;
+            this.lb_bt_fileDest.Size = new System.Drawing.Size(200, 21);
+            this.lb_bt_fileDest.TabIndex = 140;
             this.lb_bt_fileDest.Text = "Ruta de archivo final";
+            this.lb_bt_fileDest.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // lb_date
-            // 
-            this.lb_date.AutoSize = true;
-            this.lb_date.Location = new System.Drawing.Point(1, 54);
-            this.lb_date.Name = "lb_date";
-            this.lb_date.Size = new System.Drawing.Size(24, 15);
-            this.lb_date.TabIndex = 127;
-            this.lb_date.Text = "Dia";
-            // 
-            // ca_date_start
-            // 
-            this.ca_date_start.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.ca_date_start.Location = new System.Drawing.Point(42, 49);
-            this.ca_date_start.Name = "ca_date_start";
-            this.ca_date_start.Size = new System.Drawing.Size(120, 23);
-            this.ca_date_start.TabIndex = 126;
-            this.ca_date_start.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
-            // 
-            // Fields
+            // Fields_OMIE
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.Controls.Add(this.cb_process);
             this.Controls.Add(this.lb_link);
             this.Controls.Add(this.cb_keepDownload);
@@ -172,9 +165,7 @@
             this.Controls.Add(this.bt_downloadDir);
             this.Controls.Add(this.lb_bt_downloadDir);
             this.Controls.Add(this.lb_bt_fileDest);
-            this.Controls.Add(this.lb_date);
-            this.Controls.Add(this.ca_date_start);
-            this.Name = "Fields";
+            this.Name = "Fields_OMIE";
             this.Size = new System.Drawing.Size(314, 227);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -184,6 +175,7 @@
         #endregion
 
         internal CheckBox cb_process;
+        internal LinkLabel lb_link;
         internal CheckBox cb_keepDownload;
         internal Button bt_cancel;
         internal Button bt_accept;
@@ -192,8 +184,5 @@
         internal Button bt_downloadDir;
         internal Label lb_bt_downloadDir;
         internal Label lb_bt_fileDest;
-        internal Label lb_date;
-        internal DateTimePicker ca_date_start;
-        internal LinkLabel lb_link;
     }
 }

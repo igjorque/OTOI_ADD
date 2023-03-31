@@ -1,27 +1,16 @@
 ﻿using OTOI_ADD.Code.Class;
 using OTOI_ADD.Code.Module.Download;
-using OTOI_ADD.Code.Module.Process;
 using OTOI_ADD.View.Asset;
 using OTOI_ADD.View.ESIOS;
 using OTOI_ADD.View.Generic;
-using OTOI_ADD.View.OMIE;
-using System.Configuration;
+using OTOI_ADD.Code.Variable;
 using System.Diagnostics;
+using OTOI_ADD.View.OMIE;
 
 namespace OTOI_ADD.Code.Function
 {
     internal static class FormManager
     {
-
-        /// <summary>
-        /// Holds the current selected directory.
-        /// </summary>
-        internal static string CURR_DIR = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-        internal static string CURR_FIL = "";
-        internal static DateTime STR = DateTime.Today.AddDays(-2);
-        internal static DateTime END = DateTime.Today.AddDays(-1);
-        internal static DateTime MTH = DateTime.Today.AddMonths(-1);
-
         /// <summary>
         /// Manages the click event on an accept button.
         /// </summary>
@@ -29,6 +18,7 @@ namespace OTOI_ADD.Code.Function
         /// <param name="FID">Form ID</param>
         internal static void FormAccept(Form f, int FID)
         {
+            // TODO: check saving
             // Save user input to config
             //AppConfigManager.Save();
             // Manage forms
@@ -36,11 +26,11 @@ namespace OTOI_ADD.Code.Function
             {
                 case 1: // HPC
                 case 3: // HM
-                    ManageSingleOMIE(f);
+                    ManageDayOMIE(f);
                     break;
                 case 2: // HPCM
                 case 4: // HMM
-                    if (PreventMultiDownloadEvent(f)) ManageMultiOMIE(f);
+                    if (PreventMultiDownloadEvent(f)) ManageRangeOMIE(f);
                     break;
                 case 5: // C2L
                     ManageSingleESIOS(f);
@@ -60,7 +50,7 @@ namespace OTOI_ADD.Code.Function
         private static bool PreventMultiDownloadEvent(Form f)
         {
             bool r = false;
-            MultiGeneric m = (MultiGeneric)f;
+            OGenericRange m = (OGenericRange)f;
             int diff = Auxiliary.DaysDiff(m.Start, m.End);
             if (diff > 31)
             { // Date range too extense
@@ -75,10 +65,10 @@ namespace OTOI_ADD.Code.Function
         /// Manages the click event on an accept button for an OMIEs SingleGeneric type form.
         /// </summary>
         /// <param name="f">Click event source form</param>
-        private static void ManageSingleOMIE(Form f)
+        private static void ManageDayOMIE(Form f)
         {
             // Cast parameter
-            SingleGeneric sgf = (SingleGeneric)f;
+            OGenericDay sgf = (OGenericDay)f;
             // Init input
             InputOMIE inp = new(sgf);
             // Download file
@@ -91,10 +81,10 @@ namespace OTOI_ADD.Code.Function
         /// Manages the click event on an accept button for an OMIEs MultiGeneric type form.
         /// </summary>
         /// <param name="f">Click event source form</param>
-        private static void ManageMultiOMIE(Form f)
+        private static void ManageRangeOMIE(Form f)
         {
             // Cast parameter
-            MultiGeneric mgf = (MultiGeneric)f;
+            OGenericRange mgf = (OGenericRange)f;
             // Init input
             InputOMIE inp = new(mgf);
             // Download files
@@ -110,6 +100,7 @@ namespace OTOI_ADD.Code.Function
         /// <param name="f"></param>
         private static void ManageMonthOMIE(Form f)
         {
+            
             // Cast parameter
             HMT hmt = (HMT) f;
             // Init input
@@ -127,7 +118,7 @@ namespace OTOI_ADD.Code.Function
         private static void ManageSingleESIOS(Form f)
         {
             // Cast parameter
-            C2L c2l = (C2L) f;
+            C2L c2l = (C2L)f;
             // Init input
             InputESIOS inp = new(c2l);
             // Download file
@@ -144,22 +135,13 @@ namespace OTOI_ADD.Code.Function
         /// <summary>
         /// Enables or disables some controls based on a CheckBox's status.
         /// </summary>
-        /// <param name="sender">Object representing the sender CheckBox</param>
+        /// <param name="cb_process">Object representing the sender CheckBox. TODO: update</param>
         /// <param name="cb_keepDownload">Control to enable or disable</param>
         /// <param name="bt_fileDest">Control to enable or disable</param>
         /// <param name="lb_bt_fileDest">Control to enable or disable</param>
-        internal static void DLEnabler(object? sender, CheckBox cb_keepDownload, Button bt_fileDest, Label lb_bt_fileDest)
+        internal static void DLEnabler(CheckBox cb_process, CheckBox cb_keepDownload, Button bt_fileDest, Label lb_bt_fileDest)
         {
-            CheckBox ch;
-            if (sender == null)
-            {
-                ch = new CheckBox();
-            }
-            else
-            {
-                ch = (CheckBox)sender;
-            }
-            if (ch != null && ch.Checked)
+            if (cb_process != null && cb_process.Checked)
             {
                 cb_keepDownload.Enabled = true;
                 if (bt_fileDest.Visible)
@@ -225,12 +207,12 @@ namespace OTOI_ADD.Code.Function
         internal static void DownloadDir(FolderBrowserDialog fb_directory, Label lb_bt_downloadDir, ToolTip tt_folder)
         {
             fb_directory.ShowNewFolderButton = true;
-            fb_directory.InitialDirectory = CURR_DIR;
+            fb_directory.InitialDirectory = VAR.CUR_DIR;
             if (fb_directory.ShowDialog() == DialogResult.OK)
             {
                 lb_bt_downloadDir.Text = fb_directory.SelectedPath;
                 tt_folder.SetToolTip(lb_bt_downloadDir, lb_bt_downloadDir.Text);
-                CURR_DIR = fb_directory.SelectedPath;
+                VAR.CUR_DIR = fb_directory.SelectedPath;
             }
         }
 
@@ -242,18 +224,7 @@ namespace OTOI_ADD.Code.Function
         /// <param name="tt_file">Tooltip to update</param>
         internal static void DownloadFil(SaveFileDialog sf_file, Label lb_bt_file, ToolTip tt_file)
         {
-            if (CURR_FIL != "")
-            {
-                int index = CURR_FIL.LastIndexOf("\\"), length = CURR_FIL.Length - index;
-                sf_file.InitialDirectory = CURR_FIL.Remove(index, length);
-                sf_file.FileName = CURR_FIL.Split("\\").Last();
-            }
-            else
-            {
-                sf_file.InitialDirectory = CURR_DIR;
-                sf_file.FileName = "ejemplo.xls";
-            }
-
+            sf_file.InitialDirectory = VAR.CUR_DIR;
             sf_file.Filter = "Archivos XLS | *.xls";
             sf_file.DefaultExt = "xls";
 
@@ -261,7 +232,6 @@ namespace OTOI_ADD.Code.Function
             {
                 lb_bt_file.Text = Path.GetFileName(sf_file.FileName);
                 tt_file.SetToolTip(lb_bt_file, sf_file.FileName);
-                CURR_FIL = sf_file.FileName;
             }
         }
 
