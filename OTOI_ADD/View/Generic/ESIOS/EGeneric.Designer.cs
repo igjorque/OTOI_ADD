@@ -77,11 +77,11 @@
         }
 
         #endregion
-        private Asset.Fields_ESIOS uc_fe;
         internal SaveFileDialog sf_file;
         internal FolderBrowserDialog fb_directory;
         internal ToolTip tt_folder;
         internal ToolTip tt_file;
         internal ErrorProvider ep_error;
+        internal Asset.Fields_ESIOS uc_fe;
     }
 }

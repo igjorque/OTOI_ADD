@@ -46,9 +46,9 @@
         internal static readonly string FLD_DEF = unit + def_folder;
 
         // Default internal folders
-        internal static readonly string FLD_CFG = "\\CONFIG";
-        internal static readonly string FLD_LOG = "\\LOGS";
-        internal static readonly string FLD_DWL = "\\DOWNLOADS";
+        internal static readonly string FLD_CFG = FLD_DEF + "\\config";
+        internal static readonly string FLD_LOG = FLD_DEF + "\\logs";
+        internal static readonly string FLD_DWL = FLD_DEF + "\\downloads";
 
         // Config files
         internal static readonly string FIL_CFG = FLD_CFG + "\\app_params.config";

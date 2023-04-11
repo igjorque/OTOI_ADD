@@ -12,15 +12,17 @@ namespace OTOI_ADD.Code.Module.Process
         /// </summary>
         /// <param name="files">Files to be processed</param>
         /// <param name="option">Processing option</param>
-        internal static void Process(List<string> files, int option = 2)
+        /// <param name="pb_progress">Progress bar</param>
+        internal static void Process(List<string> files, ProgressBar pb_progress, int option = 2)
         {
             switch (option)
             {
                 case 1:
+                    // TODO: not used, delete ?
                     Process_Multiple(files);
                     break;
                 case 2:
-                    Process_Single(files);
+                    Process_Single(files, pb_progress);
                     break;
                 default:
                     // TODO: Log error in [ProcessorOMIE.Process]
@@ -66,7 +68,8 @@ namespace OTOI_ADD.Code.Module.Process
         /// Processes the downloaded files in a single, unified file.
         /// </summary>
         /// <param name="files">File list to be processed</param>
-        private static void Process_Single(List<string> files)
+        /// <param name="pb_progress">Progress bar</param>
+        private static void Process_Single(List<string> files, ProgressBar pb_progress)
         {
             Excel.Application? app = null;
             Excel.Workbooks? books = null;
@@ -86,6 +89,9 @@ namespace OTOI_ADD.Code.Module.Process
             books = (Excel.Workbooks)app.Workbooks;
             tbk = app.Workbooks.Add(miss);
 
+            pb_progress.Maximum = files.Count;
+            pb_progress.Value = 0;
+
             foreach (string f in files)
             {
                 books.OpenText(f, Excel.XlPlatform.xlWindows, 1, Excel.XlTextParsingType.xlDelimited, Excel.XlTextQualifier.xlTextQualifierDoubleQuote, false, false, true, false, false, false, miss, miss, miss, miss, miss);
@@ -94,6 +100,7 @@ namespace OTOI_ADD.Code.Module.Process
                 tws.Copy(tbk.Worksheets[i]);
                 bk.Close(false, miss, miss);
                 i++;
+                pb_progress.PerformStep();
             }
 
             foreach (Worksheet ws in app.Worksheets)

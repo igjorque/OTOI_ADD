@@ -1,4 +1,4 @@
-﻿namespace OTOI_ADD.View.Generic
+﻿namespace OTOI_ADD.View.Generic.OMIE
 {
     partial class OGenericMonth
     {
@@ -39,13 +39,13 @@
             this.uc_month.Size = new System.Drawing.Size(314, 31);
             this.uc_month.TabIndex = 2;
             // 
-            // GenericMonth
+            // OGenericMonth
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(316, 229);
             this.Controls.Add(this.uc_month);
-            this.Name = "GenericMonth";
+            this.Name = "OGenericMonth";
             this.Text = "GenericMonth";
             this.Controls.SetChildIndex(this.uc_month, 0);
             this.ResumeLayout(false);
@@ -53,6 +53,7 @@
         }
 
         #endregion
-        private Asset.Date_Month uc_month;
+
+        internal Asset.Date_Month uc_month;
     }
 }

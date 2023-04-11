@@ -1,6 +1,6 @@
 using OTOI_ADD.Code.Variable;
 using OTOI_ADD.View.ESIOS;
-using OTOI_ADD.View.Generic;
+using OTOI_ADD.View.Generic.OMIE;
 using OTOI_ADD.View.OMIE;
 using System.Diagnostics;
 using System.Reflection;
@@ -44,6 +44,7 @@ namespace OTOI_ADD.View
             }
             else
             {
+                hpc.StartPosition = FormStartPosition.CenterScreen;
                 hpc.MdiParent = this;
                 hpc.Show();
             }
@@ -66,6 +67,7 @@ namespace OTOI_ADD.View
             }
             else
             {
+                hpcm.StartPosition = FormStartPosition.CenterScreen;
                 hpcm.MdiParent = this;
                 hpcm.Show();
             }
@@ -89,6 +91,7 @@ namespace OTOI_ADD.View
             }
             else
             {
+                hm.StartPosition = FormStartPosition.CenterScreen;
                 hm.MdiParent = this;
                 hm.Show();
             }
@@ -111,6 +114,7 @@ namespace OTOI_ADD.View
             }
             else
             {
+                hmm.StartPosition = FormStartPosition.CenterScreen;
                 hmm.MdiParent = this;
                 hmm.Show();
             }
@@ -127,6 +131,7 @@ namespace OTOI_ADD.View
             }
             else
             {
+                hmt.StartPosition = FormStartPosition.CenterScreen;
                 hmt.MdiParent = this;
                 hmt.Show();
             }
@@ -153,6 +158,7 @@ namespace OTOI_ADD.View
             }
             else
             {
+                c2l.StartPosition = FormStartPosition.CenterScreen;
                 c2l.MdiParent = this;
                 c2l.Show();
             }
@@ -220,18 +226,17 @@ namespace OTOI_ADD.View
 
         private void ConfigDir(object sender, EventArgs e)
         {
-            OpenFolder(GLB.FLD_DEF + GLB.FLD_CFG);
+            OpenFolder(GLB.FLD_CFG);
         }
 
         private void DownloadDir(object sender, EventArgs e)
         {
-            // TODO: Create specific download folder
-            OpenFolder(GLB.FLD_DEF + GLB.FLD_DWL);
+            OpenFolder(GLB.FLD_DWL);
         }
 
         private void LogsDir(object sender, EventArgs e)
         {
-            OpenFolder(GLB.FLD_DEF + GLB.FLD_LOG);
+            OpenFolder(GLB.FLD_LOG);
         }
 
         private void OpenFolder(string folderPath)
@@ -243,7 +248,6 @@ namespace OTOI_ADD.View
                     Arguments = folderPath,
                     FileName = "explorer.exe"
                 };
-
                 Process.Start(startInfo);
             }
         }

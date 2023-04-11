@@ -1,5 +1,5 @@
 ﻿using OTOI_ADD.Code.Variable;
-using OTOI_ADD.View.Generic;
+using OTOI_ADD.View.Generic.OMIE;
 using System.Reflection;
 
 namespace OTOI_ADD.View.OMIE

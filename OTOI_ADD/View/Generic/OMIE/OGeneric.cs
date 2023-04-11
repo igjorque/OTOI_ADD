@@ -3,7 +3,7 @@ using OTOI_ADD.Code.Variable;
 using OTOI_ADD.View.Asset;
 using System.Reflection;
 
-namespace OTOI_ADD.View.Generic
+namespace OTOI_ADD.View.Generic.OMIE
 {
     /// <summary>
     /// OGeneric

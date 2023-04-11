@@ -1,4 +1,4 @@
-﻿namespace OTOI_ADD.View.Generic
+﻿namespace OTOI_ADD.View.Generic.OMIE
 {
     partial class OGeneric
     {
@@ -83,6 +83,6 @@
         internal FolderBrowserDialog fb_directory;
         internal ToolTip tt_folder;
         internal ToolTip tt_file;
-        private Asset.Fields_OMIE uc_fo;
+        internal Asset.Fields_OMIE uc_fo;
     }
 }

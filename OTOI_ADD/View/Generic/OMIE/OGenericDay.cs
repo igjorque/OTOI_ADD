@@ -2,7 +2,7 @@
 using OTOI_ADD.Code.Variable;
 using System.Reflection;
 
-namespace OTOI_ADD.View.Generic
+namespace OTOI_ADD.View.Generic.OMIE
 {
     /// <summary>
     /// 

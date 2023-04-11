@@ -54,6 +54,6 @@
 
         #endregion
 
-        private Asset.Date_Month uc_month;
+        internal Asset.Date_Month uc_month;
     }
 }

@@ -92,6 +92,7 @@
             this.Controls.Add(this.pb_progress);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "ProgressDialog";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Descargando...";
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -1,4 +1,4 @@
-﻿namespace OTOI_ADD.View.Generic
+﻿namespace OTOI_ADD.View.Generic.OMIE
 {
     partial class OGenericRange
     {

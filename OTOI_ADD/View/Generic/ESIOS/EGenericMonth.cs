@@ -63,11 +63,12 @@ namespace OTOI_ADD.View.Generic.ESIOS
         }
 
         /// <summary>
-        /// 
+        /// Manages the enabling or disabling of some controls based on if an error exists/is set.
+        /// Saves the entered month value and enables the Accept button if no error is found.
         /// </summary>
         private void ErrorCheck()
         {
-            logger.Info("EGenericMonth - Error Check");
+            logger.Info(this.GetType().Name + " - " + LOG.FRM_ERC);
             if (this.ep_error.GetError(this.MPMonth) == "")
             {
                 VAR.DTE_MTH = this.Month;

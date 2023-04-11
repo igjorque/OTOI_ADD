@@ -1,5 +1,4 @@
-﻿using OTOI_ADD.View.Generic;
-using OTOI_ADD.View.OMIE;
+﻿using OTOI_ADD.View.Generic.OMIE;
 
 namespace OTOI_ADD.Code.Class
 {

@@ -2,7 +2,7 @@
 using OTOI_ADD.Code.Module.Download;
 using OTOI_ADD.View.Asset;
 using OTOI_ADD.View.ESIOS;
-using OTOI_ADD.View.Generic;
+using OTOI_ADD.View.Generic.OMIE;
 using OTOI_ADD.Code.Variable;
 using System.Diagnostics;
 using OTOI_ADD.View.OMIE;
@@ -33,7 +33,7 @@ namespace OTOI_ADD.Code.Function
                     if (PreventMultiDownloadEvent(f)) ManageRangeOMIE(f);
                     break;
                 case 5: // C2L
-                    ManageSingleESIOS(f);
+                    ManageMonthESIOS(f);
                     break;
                 case 6: // C2LM
                     ManageMonthOMIE(f); // TODO: revisar, refactorizar
@@ -100,7 +100,6 @@ namespace OTOI_ADD.Code.Function
         /// <param name="f"></param>
         private static void ManageMonthOMIE(Form f)
         {
-            
             // Cast parameter
             HMT hmt = (HMT) f;
             // Init input
@@ -115,19 +114,14 @@ namespace OTOI_ADD.Code.Function
         /// Manages the click event on an accept button for an ESIOSs MultiGeneric type form.
         /// </summary>
         /// <param name="f">Click event source form</param>
-        private static void ManageSingleESIOS(Form f)
+        private static void ManageMonthESIOS(Form f)
         {
             // Cast parameter
             C2L c2l = (C2L)f;
             // Init input
             InputESIOS inp = new(c2l);
-            // Download file
+            // Download files
             DL_ESIOS.ProcessDL(inp);
-            // Process file
-            //if (inp.Process) ProcessorESIOS.Process();
-            // Delete? downloaded file
-            // TODO: Check this code
-            if (inp.Process && !inp.KeepDL) Delete();
             // Close form
             f.Close();
         }
@@ -238,17 +232,20 @@ namespace OTOI_ADD.Code.Function
         /// <summary>
         /// Manages the downloaded files deletion.
         /// </summary>
-        internal static void Delete()
+        internal static void Delete(List<string> files, ProgressBar pb_progress)
         {
-            if (ProgressDialog.FILES != null)
+            if (files != null)
             {
-                foreach (string f in ProgressDialog.FILES)
+                pb_progress.Maximum = files.Count;
+                pb_progress.Value = 0;
+                foreach (string f in files)
                 {
                     if (File.Exists(f))
                     {
                         try
                         {
                             File.Delete(f);
+                            pb_progress.PerformStep();
                         }
                         catch (IOException e)
                         {

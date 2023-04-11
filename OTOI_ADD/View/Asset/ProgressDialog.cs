@@ -104,10 +104,7 @@ namespace OTOI_ADD.View.Asset
             {
                 this.Text = "Procesando";
                 this.lb_download.Text = "Procesando los datos descargados...";
-                this.pb_progress.Maximum = 1;
-                this.pb_progress.Value = 0;
-                ProcessorOMIE.Process(ProgressDialog.FILES, 2);
-                this.pb_progress.PerformStep();
+                ProcessorOMIE.Process(ProgressDialog.FILES, this.pb_progress, 2);
             }
 
             // Delete? downloaded files
@@ -115,11 +112,11 @@ namespace OTOI_ADD.View.Asset
             {
                 this.Text = "Eliminando";
                 this.lb_download.Text = "Eliminando archivos descargados...";
-                this.pb_progress.Maximum = 1;
-                this.pb_progress.Value = 0;
-                FormManager.Delete();
+                FormManager.Delete(ProgressDialog.FILES, this.pb_progress);
+                pb_progress.Maximum = 1;
+                pb_progress.Value = 0;
                 Directory.Delete(inp.DestDL);
-                this.pb_progress.PerformStep();
+                pb_progress.PerformStep();
             }
             this.Text = "Finalizado";
             this.lb_download.Text = "Operación completada con éxito.";
@@ -144,7 +141,7 @@ namespace OTOI_ADD.View.Asset
             this.pb_progress.Step = 1;
 
             // Prevent user from flooding the selected directory (default: desktop)
-            auxpath = inp.DestDL + Path.DirectorySeparatorChar + "ESIOS_" + inp.DateStart.Month + "-" + inp.DateStart.Year;
+            auxpath = inp.DestDL + Path.DirectorySeparatorChar + filename;
             Directory.CreateDirectory(auxpath);
             inp.DestDL = auxpath;
 
