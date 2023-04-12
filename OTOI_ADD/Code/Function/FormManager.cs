@@ -1,16 +1,18 @@
-﻿using OTOI_ADD.Code.Class;
+﻿using log4net;
+using OTOI_ADD.Code.Class;
 using OTOI_ADD.Code.Module.Download;
-using OTOI_ADD.View.Asset;
+using OTOI_ADD.Code.Variable;
 using OTOI_ADD.View.ESIOS;
 using OTOI_ADD.View.Generic.OMIE;
-using OTOI_ADD.Code.Variable;
-using System.Diagnostics;
 using OTOI_ADD.View.OMIE;
+using System.Diagnostics;
 
 namespace OTOI_ADD.Code.Function
 {
     internal static class FormManager
     {
+        private static ILog logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         /// <summary>
         /// Manages the click event on an accept button.
         /// </summary>
@@ -18,9 +20,12 @@ namespace OTOI_ADD.Code.Function
         /// <param name="FID">Form ID</param>
         internal static void FormAccept(Form f, int FID)
         {
+            logger.Info(LOG.FORM_MANAGE);
+
             // TODO: check saving
             // Save user input to config
             //AppConfigManager.Save();
+
             // Manage forms
             switch (FID)
             {
@@ -72,7 +77,7 @@ namespace OTOI_ADD.Code.Function
             // Init input
             InputOMIE inp = new(sgf);
             // Download file
-            DL_OMIE.DLSwitch(inp);
+            DL_OMIE.ManageDL(inp);
             // Close form
             f.Close();
         }
@@ -88,7 +93,7 @@ namespace OTOI_ADD.Code.Function
             // Init input
             InputOMIE inp = new(mgf);
             // Download files
-            DL_OMIE.DLSwitch(inp);
+            DL_OMIE.ManageDL(inp);
             // Close form
             f.Close();
         }
@@ -105,7 +110,7 @@ namespace OTOI_ADD.Code.Function
             // Init input
             InputOMIE inp = new(hmt);
             // Download files
-            DL_OMIE.DLSwitch(inp);
+            DL_OMIE.ManageDL(inp);
             // Close form
             f.Close();
         }
@@ -121,7 +126,7 @@ namespace OTOI_ADD.Code.Function
             // Init input
             InputESIOS inp = new(c2l);
             // Download files
-            DL_ESIOS.ProcessDL(inp);
+            DL_ESIOS.ManageDL(inp);
             // Close form
             f.Close();
         }
@@ -201,12 +206,12 @@ namespace OTOI_ADD.Code.Function
         internal static void DownloadDir(FolderBrowserDialog fb_directory, Label lb_bt_downloadDir, ToolTip tt_folder)
         {
             fb_directory.ShowNewFolderButton = true;
-            fb_directory.InitialDirectory = VAR.CUR_DIR;
+            fb_directory.InitialDirectory = VAR.CURRENT_DIRECTORY;
             if (fb_directory.ShowDialog() == DialogResult.OK)
             {
                 lb_bt_downloadDir.Text = fb_directory.SelectedPath;
                 tt_folder.SetToolTip(lb_bt_downloadDir, lb_bt_downloadDir.Text);
-                VAR.CUR_DIR = fb_directory.SelectedPath;
+                VAR.CURRENT_DIRECTORY = fb_directory.SelectedPath;
             }
         }
 
@@ -218,7 +223,7 @@ namespace OTOI_ADD.Code.Function
         /// <param name="tt_file">Tooltip to update</param>
         internal static void DownloadFil(SaveFileDialog sf_file, Label lb_bt_file, ToolTip tt_file)
         {
-            sf_file.InitialDirectory = VAR.CUR_DIR;
+            sf_file.InitialDirectory = VAR.CURRENT_DIRECTORY;
             sf_file.Filter = "Archivos XLS | *.xls";
             sf_file.DefaultExt = "xls";
 

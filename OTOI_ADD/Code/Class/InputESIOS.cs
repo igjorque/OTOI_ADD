@@ -1,9 +1,13 @@
-﻿using OTOI_ADD.View.Generic.ESIOS;
+﻿using log4net;
+using OTOI_ADD.Code.Variable;
+using OTOI_ADD.View.Generic.ESIOS;
 
 namespace OTOI_ADD.Code.Class
 {
     internal class InputESIOS : Input
     {
+        private static ILog logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         private bool unzip;
         private string file;
 
@@ -25,6 +29,7 @@ namespace OTOI_ADD.Code.Class
         /// <param name="egm">C2L form</param>
         public InputESIOS(EGenericMonth egm) : base(egm.FID, egm.Month, egm.LBFolder.Text, egm.CBKeep.Checked, egm.CBProcess.Checked)
         {
+            logger.Info(LOG.ESIOS_MONTH);
             this.unzip = egm.CBUnzip.Checked;
             this.file = egm.LBFile.Text;
         }

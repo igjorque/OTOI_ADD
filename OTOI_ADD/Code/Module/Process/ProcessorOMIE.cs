@@ -1,5 +1,5 @@
-﻿using Microsoft.Office.Interop.Excel;
-using OTOI_ADD.Code.Function;
+﻿using log4net;
+using Microsoft.Office.Interop.Excel;
 using OTOI_ADD.Code.Variable;
 using Excel = Microsoft.Office.Interop.Excel;
 
@@ -7,6 +7,8 @@ namespace OTOI_ADD.Code.Module.Process
 {
     internal static class ProcessorOMIE
     {
+        private static ILog logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         /// <summary>
         /// Manages the downloaded files processing.
         /// </summary>
@@ -44,7 +46,7 @@ namespace OTOI_ADD.Code.Module.Process
             Excel._Workbook? b = null;
 
             object miss = System.Reflection.Missing.Value;
-            string? path = VAR.CUR_DIR, name_xls = "";
+            string? path = VAR.CURRENT_DIRECTORY, name_xls = "";
 
             app = new Excel.Application();
             books = (Excel.Workbooks)app.Workbooks;
@@ -71,15 +73,17 @@ namespace OTOI_ADD.Code.Module.Process
         /// <param name="pb_progress">Progress bar</param>
         private static void Process_Single(List<string> files, ProgressBar pb_progress)
         {
+            logger.Info(LOG.PROCESS_START);
+
             Excel.Application? app = null;
             Excel.Workbooks? books = null;
             Excel.Workbook? bk = null, tbk = null;
             Excel.Worksheet? tws = null;
 
             DateTime daux = DateTime.Now;
-            string fpath = VAR.CUR_DIR + "\\OMIE_" + daux.Day + "-" + daux.Month + "-" + daux.Year + "_" + daux.Hour + "-" + daux.Minute + "-" + daux.Second + ".xls";
+            string fpath = VAR.CURRENT_DIRECTORY + "\\OMIE_" + daux.Day + "-" + daux.Month + "-" + daux.Year + "_" + daux.Hour + "-" + daux.Minute + "-" + daux.Second + ".xls";
             object miss = System.Reflection.Missing.Value;
-            string? path = VAR.CUR_DIR;
+            string? path = VAR.CURRENT_DIRECTORY;
             int i = 1;
 
             app = new Excel.Application();
@@ -118,6 +122,8 @@ namespace OTOI_ADD.Code.Module.Process
             app.DisplayAlerts = true;
 
             app.Quit();
+
+            logger.Info(LOG.PROCESS_END);
         }
     }
 }

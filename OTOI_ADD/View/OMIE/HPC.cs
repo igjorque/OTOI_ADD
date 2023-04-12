@@ -16,7 +16,7 @@ namespace OTOI_ADD.View.OMIE
         /// </summary>
         public HPC() : base(GLB.FID_HPC)
         {
-            logger.Info("HPC - Constructor");
+            logger.Info(LOG.HPC_BUILD);
             InitializeComponent();
             LoadFields();
         }
@@ -26,9 +26,8 @@ namespace OTOI_ADD.View.OMIE
         /// </summary>
         private void LoadFields()
         {
-            logger.Info("HPC - Loading Fields");
-            this.FormTitle = GLB.OMIE_TLE;
-            this.LBTitle.Text = GLB.HPC_TLE;
+            this.FormTitle = GLB.OMIE_TITLE;
+            this.LBTitle.Text = GLB.HPC_TITLE;
         }
     }
 }

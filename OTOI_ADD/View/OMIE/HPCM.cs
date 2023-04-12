@@ -16,7 +16,7 @@ namespace OTOI_ADD.View.OMIE
         /// </summary>
         public HPCM() : base(GLB.FID_HPCM)
         {
-            logger.Info("HPCM - Constructor");
+            logger.Info(LOG.HPCM_BUILD);
             InitializeComponent();
             LoadFields();
         }
@@ -26,9 +26,8 @@ namespace OTOI_ADD.View.OMIE
         /// </summary>
         private void LoadFields()
         {
-            logger.Info("HPCM - Loading Fields");
-            this.FormTitle = GLB.OMIE_TLE;
-            this.LBTitle.Text = GLB.HPC_TLE;
+            this.FormTitle = GLB.OMIE_TITLE;
+            this.LBTitle.Text = GLB.HPC_TITLE;
         }
     }
 }

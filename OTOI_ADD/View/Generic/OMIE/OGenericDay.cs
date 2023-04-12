@@ -27,11 +27,9 @@ namespace OTOI_ADD.View.Generic.OMIE
         /// <param name="FID"></param>
         public OGenericDay(int FID) : base(FID)
         {
-            logger.Info(this.GetType().Name + " - " + LOG.CON_LFR);
             InitializeComponent();
             LoadFields();
             LoadEvents();
-            logger.Info(this.GetType().Name + " - " + LOG.CON_FRL);
         }
 
         /// <summary>
@@ -40,7 +38,7 @@ namespace OTOI_ADD.View.Generic.OMIE
         private void LoadFields()
         {
             this.Text = this.GetType().Name;
-            this.CADay.Value = VAR.DTE_DAY;
+            this.CADay.Value = VAR.DATE_DAY;
         }
 
         /// <summary>
@@ -58,7 +56,7 @@ namespace OTOI_ADD.View.Generic.OMIE
         /// <param name="e">Event arguments</param>
         private void ValidateDayEvent(object? sender, EventArgs e)
         {
-            logger.Info(this.GetType().Name + " - " + LOG.FRM_VAD);
+            logger.Info(LOG.FORM_VALIDATE_DAY);
             Auxiliary.ValidateStart(this.CADay, this.ep_error);
             ErrorCheck();
         }
@@ -69,9 +67,10 @@ namespace OTOI_ADD.View.Generic.OMIE
         /// </summary>
         private void ErrorCheck()
         {
+            logger.Info(LOG.FORM_ERROR);
             if (this.ep_error.GetError(this.CADay) == "")
             {
-                VAR.DTE_DAY = this.Day;
+                VAR.DATE_DAY = this.Day;
                 this.BTAccept.Enabled = true;
             }
             else

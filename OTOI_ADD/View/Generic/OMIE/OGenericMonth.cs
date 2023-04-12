@@ -28,11 +28,9 @@ namespace OTOI_ADD.View.Generic.OMIE
         /// <param name="FID">Created form unique ID</param>
         public OGenericMonth(int FID) : base(FID)
         {
-            logger.Info(this.GetType().Name + " - " + LOG.CON_LFR);
             InitializeComponent();
             LoadFields();
             LoadEvents();
-            logger.Info(this.GetType().Name + " - " + LOG.CON_FRL);
         }
 
         /// <summary>
@@ -41,7 +39,7 @@ namespace OTOI_ADD.View.Generic.OMIE
         private void LoadFields()
         {
             this.Text = this.GetType().Name;
-            this.MPMonth.Value = VAR.DTE_MTH;
+            this.MPMonth.Value = VAR.DATE_MONTH;
         }
 
         /// <summary>
@@ -59,7 +57,7 @@ namespace OTOI_ADD.View.Generic.OMIE
         /// <param name="e">Event arguments</param>
         private void ValidateMonthEvent(object? sender, EventArgs e)
         {
-            logger.Info(this.GetType().Name + " - " + LOG.FRM_VAM);
+            logger.Info(LOG.FORM_VALIDATE_MONTH);
             Auxiliary.ValidateMonth(this.MPMonth, this.ep_error);
             ErrorCheck();
         }
@@ -70,10 +68,10 @@ namespace OTOI_ADD.View.Generic.OMIE
         /// </summary>
         private void ErrorCheck()
         {
-            logger.Info(this.GetType().Name + " - " + LOG.FRM_ERC);
+            logger.Info(LOG.FORM_ERROR);
             if (this.ep_error.GetError(this.MPMonth) == "")
             {
-                VAR.DTE_MTH = this.Month;
+                VAR.DATE_MONTH = this.Month;
                 this.BTAccept.Enabled = true;
             }
             else

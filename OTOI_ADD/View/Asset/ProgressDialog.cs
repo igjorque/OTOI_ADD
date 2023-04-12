@@ -2,6 +2,7 @@
 using OTOI_ADD.Code.Function;
 using OTOI_ADD.Code.Module.Download;
 using OTOI_ADD.Code.Module.Process;
+using OTOI_ADD.Code.Variable;
 using System.IO.Compression;
 using System.Reflection;
 
@@ -21,7 +22,6 @@ namespace OTOI_ADD.View.Asset
         /// </summary>
         public ProgressDialog()
         {
-            logger.Info("ProgressDialog - Constructor");
             InitializeComponent();
             FILES = new();
         }
@@ -33,6 +33,7 @@ namespace OTOI_ADD.View.Asset
         /// <param name="l_uri">URI list</param>
         internal ProgressDialog(InputOMIE inp, List<Uri> l_uri) : this()
         {
+            logger.Info(LOG.PROGRESS_BUILD_OMIE);
             DLProgress_OMIE(inp, l_uri);
         }
 
@@ -44,6 +45,7 @@ namespace OTOI_ADD.View.Asset
         /// <param name="filename"></param>
         internal ProgressDialog(InputESIOS inp, Uri uri, string filename) : this()
         {
+            logger.Info(LOG.PROGRESS_BUILD_ESIOS);
             DLProgress_ESIOS(inp, uri, filename);
         }
 
@@ -64,6 +66,7 @@ namespace OTOI_ADD.View.Asset
         /// <param name="l_uri">URI list</param>
         private async void DLProgress_OMIE(InputOMIE inp, List<Uri> l_uri)
         {
+            logger.Info(LOG.PROGRESS_OMIE);
             DateTime daux = DateTime.Now;
             string file = "", auxpath = "";
             this.pb_progress.Minimum = 0;
@@ -133,6 +136,7 @@ namespace OTOI_ADD.View.Asset
         /// <param name="filename">Destination filename</param>
         private async void DLProgress_ESIOS(InputESIOS inp, Uri uri, string filename)
         {
+            logger.Info(LOG.PROGRESS_ESIOS);
             List<string> zipContent = new();
             string file = "", auxpath = "";
             this.pb_progress.Minimum = 0;
@@ -200,7 +204,6 @@ namespace OTOI_ADD.View.Asset
                     }
                 }
             }
-
             this.Text = "Finalizado";
             this.lb_download.Text = "";
             this.lb_url.Text = "";
@@ -220,19 +223,18 @@ namespace OTOI_ADD.View.Asset
             string result = "";
             string[] aux = file.Split("_");
 
-            if (file.Contains("INT_MAJ_EV_H")) // is HPC
+            if (file.Contains(GLB.HPC_URI)) // is HPC
             {
                 result = "HPC_" + aux[7] + "-" + aux[5] + "-" + aux[6] + ".txt";
             }
-            else if (file.Contains("INT_PBC_EV_H_1")) // is HM
+            else if (file.Contains(GLB.HM_URI)) // is HM
             {
                 result = "HM_" + aux[8] + "-" + aux[6] + "-" + aux[7] + ".txt";
             }
-            else // "INT_PDBC_PRECIO_5" - is HMT
+            else // GLB.HMT_URI - is HMT
             {
                 result = "HMT_" + aux[5] + "-" + aux[6] + ".txt";
             }
-
             return result;
         }
     }

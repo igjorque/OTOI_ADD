@@ -1,5 +1,7 @@
-﻿using OTOI_ADD.Code.Class;
+﻿using log4net;
+using OTOI_ADD.Code.Class;
 using OTOI_ADD.Code.Function;
+using OTOI_ADD.Code.Variable;
 using OTOI_ADD.View.Asset;
 
 namespace OTOI_ADD.Code.Module.Download
@@ -24,40 +26,21 @@ namespace OTOI_ADD.Code.Module.Download
         // https://www.omie.es/sites/default/files/dados/AGNO_2023/MES_01/TXT/INT_PDBC_PRECIO_2_01_01_2023_31_01_2023.TXT
         */
 
-        /// <summary>
-        /// Establishes both base URI and specific URI based on the received [Input]
-        /// </summary>
-        /// <param name="inp">Form input</param>
-        internal static void DLSwitch(InputOMIE inp)
-        {
-            string uribase = "https://www.omie.es/sites/default/files/dados/AGNO_";
-            string uripage = "";
-
-            switch (inp.FID)
-            {
-                case 1:
-                case 2:
-                    uripage = "INT_MAJ_EV_H";
-                    break;
-                case 3:
-                case 4:
-                    uripage = "INT_PBC_EV_H_1";
-                    break;
-                case 6:
-                    uripage = "INT_PDBC_PRECIO_5";
-                    break;
-            }
-            ProcessDL(uribase, uripage, inp);
-        }
+        private static ILog logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         /// <summary>
         /// Manages the download process, building an URI list based on the received [Input].
         /// </summary>
-        /// <param name="uribase">Base URI</param>
-        /// <param name="uripage">Specific URI</param>
         /// <param name="inp">Form input</param>
-        internal static void ProcessDL(string uribase, string uripage, InputOMIE inp)
+        internal static void ManageDL(InputOMIE inp)
         {
+            logger.Info(LOG.DOWNLOAD_OMIE_MANAGE);
+
+            string uribase = "https://www.omie.es/sites/default/files/dados/AGNO_";
+            string uripage = "";
+
+            uripage = DLSwitch(inp.FID);
+
             string mth, day;
             string uristr;
             Uri uri;
@@ -89,6 +72,31 @@ namespace OTOI_ADD.Code.Module.Download
 
             ProgressDialog pd = new ProgressDialog(inp, l_uri);
             pd.ShowDialog();
+        }
+
+        /// <summary>
+        /// Establishes the specific URI based on the received [FID]
+        /// </summary>
+        /// <param name="FID">Inputs current form ID</param>
+        /// <returns>URI substring corresponding to FID</returns>
+        private static string DLSwitch(int FID)
+        {
+            string uripage = "";
+            switch (FID)
+            {
+                case 1:
+                case 2:
+                    uripage = GLB.HPC_URI;
+                    break;
+                case 3:
+                case 4:
+                    uripage = GLB.HM_URI;
+                    break;
+                case 6:
+                    uripage = GLB.HMT_URI;
+                    break;
+            }
+            return uripage;
         }
     }
 }

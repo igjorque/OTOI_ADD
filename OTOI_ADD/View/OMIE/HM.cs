@@ -16,7 +16,7 @@ namespace OTOI_ADD.View.OMIE
         /// </summary>
         public HM() : base(GLB.FID_HM)
         {
-            logger.Info("HM - Constructor");
+            logger.Info(LOG.HM_BLD);
             InitializeComponent();
             LoadFields();
         }
@@ -26,9 +26,8 @@ namespace OTOI_ADD.View.OMIE
         /// </summary>
         private void LoadFields()
         {
-            logger.Info("HM - Loading Fields");
-            this.FormTitle = GLB.OMIE_TLE;
-            this.LBTitle.Text = GLB.HM_TLE;
+            this.FormTitle = GLB.OMIE_TITLE;
+            this.LBTitle.Text = GLB.HM_TITLE;
         }
     }
 }

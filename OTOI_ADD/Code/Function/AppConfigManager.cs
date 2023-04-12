@@ -15,6 +15,7 @@ namespace OTOI_ADD.Code.Function
         /// </summary>
         internal static void Initialize()
         {
+            RebuildFileSystem();
             InitFileSystem();
             InitAppConfig();
             InitLogger();
@@ -24,23 +25,33 @@ namespace OTOI_ADD.Code.Function
         #region Private init functions
 
         /// <summary>
+        /// Rebuilds the program's file system if it's an older version
+        /// </summary>
+        private static void RebuildFileSystem()
+        {
+            if (Directory.GetCreationTime(GLB.FOLDER_CONFIG) < new DateTime(2023, 4, 12, 13, 38, 0))
+            {
+                Directory.Delete(GLB.FOLDER_CONFIG, true);
+            }
+        }
+
+        /// <summary>
         /// Initializes the app file system - configs, logs, downloads...
         /// </summary>
         private static void InitFileSystem()
         {
             // Create Default Folder if not exists
-            if (!Directory.Exists(GLB.FLD_DEF)) Directory.CreateDirectory(GLB.FLD_DEF);
+            if (!Directory.Exists(GLB.FOLDER_DEFAULT)) Directory.CreateDirectory(GLB.FOLDER_DEFAULT);
             // Create Config Folder if not exists
-            if (!Directory.Exists(GLB.FLD_CFG)) Directory.CreateDirectory(GLB.FLD_CFG);
+            if (!Directory.Exists(GLB.FOLDER_CONFIG)) Directory.CreateDirectory(GLB.FOLDER_CONFIG);
             // Create Logs Folder if not exists
-            if (!Directory.Exists(GLB.FLD_LOG)) Directory.CreateDirectory(GLB.FLD_LOG);
+            if (!Directory.Exists(GLB.FOLDER_LOGS)) Directory.CreateDirectory(GLB.FOLDER_LOGS);
             //Create Downloads Folder if not exists
-            if (!Directory.Exists(GLB.FLD_DWL)) Directory.CreateDirectory(GLB.FLD_DWL);
+            if (!Directory.Exists(GLB.FOLDER_DOWNLOADS)) Directory.CreateDirectory(GLB.FOLDER_DOWNLOADS);
 
             // Create logger config file if not exists
             if (!File.Exists(GLB.FIL_L4N)) InitLogConfig();
-            // Create log file if not exists
-            if (!File.Exists(GLB.FIL_LOG)) File.Create(GLB.FIL_LOG);
+            
             // Create app parameters file if not exists
             if (!File.Exists(GLB.FIL_CFG)) InitParamConfig();
         }
@@ -62,7 +73,7 @@ namespace OTOI_ADD.Code.Function
             sw.WriteLine("      <appender name=\"all_logs_file\" type=\"log4net.Appender.FileAppender\">");
             sw.WriteLine("          <file value=\"" + GLB.LOC_LOG + "\" />");
             sw.WriteLine("          <layout type=\"log4net.Layout.PatternLayout\">");
-            sw.WriteLine("              <conversionPattern value=\"[%date] > [%level] > [%logger] > [%message]%newline\" />");
+            sw.WriteLine("              <conversionPattern value=\"[%date] > [%level] > [%logger] > %newline   ==> %message %newline %newline\" />");
             sw.WriteLine("          </layout>");
             sw.WriteLine("      </appender>");
             sw.WriteLine("  </log4net>");
@@ -83,7 +94,7 @@ namespace OTOI_ADD.Code.Function
             sw.WriteLine("MTH=01/01/2023");
 
             // Create Path
-            sw.WriteLine("DIR=" + GLB.FLD_DWL);
+            sw.WriteLine("DIR=" + GLB.FOLDER_DOWNLOADS);
         }
 
         /// <summary>
@@ -105,17 +116,17 @@ namespace OTOI_ADD.Code.Function
 
             // Parse Dates
             string? str = cfg["STR"];
-            if (str != null) VAR.RNG_STR = DateTime.Parse(str);
+            if (str != null) VAR.RANGE_START = DateTime.Parse(str);
             string? end = cfg["END"];
-            if (end != null) VAR.RNG_END = DateTime.Parse(end);
+            if (end != null) VAR.RANGE_END = DateTime.Parse(end);
             string? day = cfg["DAY"];
-            if (day != null) VAR.DTE_DAY = DateTime.Parse(day);
+            if (day != null) VAR.DATE_DAY = DateTime.Parse(day);
             string? mth = cfg["MTH"];
-            if (mth != null) VAR.DTE_MTH = DateTime.Parse(mth);
+            if (mth != null) VAR.DATE_MONTH = DateTime.Parse(mth);
 
             // Parse Path
             string? dir = cfg["DIR"];
-            if (dir != null) VAR.CUR_DIR = dir;
+            if (dir != null) VAR.CURRENT_DIRECTORY = dir;
         }
 
         /// <summary>
@@ -137,13 +148,13 @@ namespace OTOI_ADD.Code.Function
             using StreamWriter sw = new(fs);
 
             // Save Dates
-            sw.WriteLine("STR=" + VAR.RNG_STR.ToShortDateString());
-            sw.WriteLine("END=" + VAR.RNG_END.ToShortDateString());
-            sw.WriteLine("DAY=" + VAR.DTE_DAY.ToShortDateString());
-            sw.WriteLine("MTH=" + VAR.DTE_MTH.ToShortDateString());
+            sw.WriteLine("STR=" + VAR.RANGE_START.ToShortDateString());
+            sw.WriteLine("END=" + VAR.RANGE_END.ToShortDateString());
+            sw.WriteLine("DAY=" + VAR.DATE_DAY.ToShortDateString());
+            sw.WriteLine("MTH=" + VAR.DATE_MONTH.ToShortDateString());
 
             // Save Path
-            sw.WriteLine("DIR=" + VAR.CUR_DIR);
+            sw.WriteLine("DIR=" + VAR.CURRENT_DIRECTORY);
         }
     }
 }

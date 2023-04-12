@@ -1,6 +1,7 @@
 ﻿using OTOI_ADD.Code.Function;
 using OTOI_ADD.Code.Variable;
 using OTOI_ADD.View.Asset;
+using OTOI_ADD.View.Generic.ESIOS;
 using System.Reflection;
 
 namespace OTOI_ADD.View.Generic.OMIE
@@ -40,12 +41,10 @@ namespace OTOI_ADD.View.Generic.OMIE
         /// <param name="FID">Created form unique ID</param>
         public OGeneric(int FID)
         {
-            logger.Info(this.GetType().Name + " - " + LOG.CON_LFR);
             this.fid = FID;
             InitializeComponent();
             LoadFields();
             LoadEvents();
-            logger.Info(this.GetType().Name + " - " + LOG.CON_FRL);
         }
 
         /// <summary>
@@ -54,12 +53,12 @@ namespace OTOI_ADD.View.Generic.OMIE
         private void LoadFields()
         {
             this.Text = this.GetType().Name;
-            this.LBFolder.Text = VAR.CUR_DIR;
-            this.LBFile.Text = VAR.DEF_FIL;
-            this.fb_directory.InitialDirectory = VAR.CUR_DIR;
+            this.LBFolder.Text = VAR.CURRENT_DIRECTORY;
+            this.LBFile.Text = VAR.DEFAULT_FILE;
+            this.fb_directory.InitialDirectory = VAR.CURRENT_DIRECTORY;
             this.tt_folder.SetToolTip(this.LBFolder, this.LBFolder.Text);
             this.tt_file.SetToolTip(this.LBFile, this.LBFile.Text);
-            this.sf_file.InitialDirectory = VAR.CUR_DIR;
+            this.sf_file.InitialDirectory = VAR.CURRENT_DIRECTORY;
         }
 
         /// <summary>
@@ -83,7 +82,7 @@ namespace OTOI_ADD.View.Generic.OMIE
         /// <param name="e">Event arguments</param>
         private void ProcessEvent(object? sender, EventArgs e)
         {
-            logger.Info(this.GetType().Name + " - " + LOG.FRM_PES);
+            logger.Info(LOG.FORM_PROCESS);
             FormManager.DLEnabler(this.CBProcess, this.CBKeep, this.BTFile, this.LBFile);
         }
 
@@ -94,7 +93,7 @@ namespace OTOI_ADD.View.Generic.OMIE
         /// <param name="e">Event arguments</param>
         private void AcceptEvent(object? sender, EventArgs e)
         {
-            logger.Info(this.GetType().Name + " - " + LOG.FRM_ACT);
+            logger.Info(LOG.FORM_ACCEPT);
             FormManager.FormAccept(this, this.FID);
         }
 
@@ -105,7 +104,7 @@ namespace OTOI_ADD.View.Generic.OMIE
         /// <param name="e">Event arguments</param>
         private void CancelEvent(object? sender, EventArgs e)
         {
-            logger.Info(this.GetType().Name + " - " + LOG.FRM_CNL);
+            logger.Info(LOG.FORM_CANCEL);
             this.Close();
         }
 
@@ -116,7 +115,7 @@ namespace OTOI_ADD.View.Generic.OMIE
         /// <param name="e">Event arguments</param>
         private void LinkEvent(object? sender, LinkLabelLinkClickedEventArgs e)
         {
-            logger.Info(this.GetType().Name + " - " + LOG.LNK_OPN);
+            logger.Info(LOG.LINK_OPEN);
             FormManager.OpenLink(this.FID, this.LBLink);
         }
 
@@ -127,7 +126,7 @@ namespace OTOI_ADD.View.Generic.OMIE
         /// <param name="e">Event arguments</param>
         private void DownloadFolderEvent(object? sender, EventArgs e)
         {
-            logger.Info(this.GetType().Name + " - " + LOG.FRM_FDD);
+            logger.Info(LOG.FORM_FOLDER);
             FormManager.DownloadDir(this.fb_directory, this.LBFolder, this.tt_folder);
         }
 
@@ -138,7 +137,7 @@ namespace OTOI_ADD.View.Generic.OMIE
         /// <param name="e">Event arguments</param>
         private void DownloadFileEvent(object? sender, EventArgs e)
         {
-            logger.Info(this.GetType().Name + " - " + LOG.FRM_FLD);
+            logger.Info(LOG.FORM_FILE);
             FormManager.DownloadFil(this.sf_file, this.LBFile, this.tt_file);
         }
     }

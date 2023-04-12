@@ -1,5 +1,7 @@
-﻿using OTOI_ADD.Code.Class;
+﻿using log4net;
+using OTOI_ADD.Code.Class;
 using OTOI_ADD.Code.Function;
+using OTOI_ADD.Code.Variable;
 using OTOI_ADD.View.Asset;
 
 namespace OTOI_ADD.Code.Module.Download
@@ -21,12 +23,16 @@ namespace OTOI_ADD.Code.Module.Download
                          item identifier  ^                                end date ^--------^                                  start date ^--------^                                                   
         */
 
+        private static ILog logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         /// <summary>
-        /// 
+        /// Manages the download process, building an URI based on the received [Input].
         /// </summary>
-        /// <param name="inp"></param>
-        internal static void ProcessDL(InputESIOS inp)
+        /// <param name="inp">Form input</param>
+        internal static void ManageDL(InputESIOS inp)
         {
+            logger.Info(LOG.DOWNLOAD_ESIOS_MANAGE);
+
             string yea, mth, day;
 
             yea = inp.DateStart.Year.ToString();

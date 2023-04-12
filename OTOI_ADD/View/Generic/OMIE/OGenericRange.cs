@@ -30,11 +30,9 @@ namespace OTOI_ADD.View.Generic.OMIE
         /// <param name="FID">Created form unique ID</param>
         public OGenericRange(int FID) : base(FID)
         {
-            logger.Info(this.GetType().Name + " - " + LOG.CON_LFR);
             InitializeComponent();
             LoadFields();
             LoadEvents();
-            logger.Info(this.GetType().Name + " - " + LOG.CON_FRL);
         }
 
         /// <summary>
@@ -43,8 +41,8 @@ namespace OTOI_ADD.View.Generic.OMIE
         private void LoadFields()
         {
             this.Text = this.GetType().Name;
-            this.CAStart.Value = VAR.RNG_STR;
-            this.CAEnd.Value = VAR.RNG_END;
+            this.CAStart.Value = VAR.RANGE_START;
+            this.CAEnd.Value = VAR.RANGE_END;
         }
 
         /// <summary>
@@ -63,7 +61,7 @@ namespace OTOI_ADD.View.Generic.OMIE
         /// <param name="e">Event arguments</param>
         private void ValidateRangeEvent(object? sender, EventArgs e)
         {
-            logger.Info(this.GetType().Name + " - " + LOG.FRM_VAR);
+            logger.Info(LOG.FORM_VALIDATE_RANGE);
             Auxiliary.ValidateRange(this.CAStart, this.CAEnd, this.ep_error);
             ErrorCheck();
         }
@@ -74,11 +72,11 @@ namespace OTOI_ADD.View.Generic.OMIE
         /// </summary>
         private void ErrorCheck()
         {
-            logger.Info(this.GetType().Name + " - " + LOG.FRM_ERC);
+            logger.Info(LOG.FORM_ERROR);
             if (this.ep_error.GetError(this.CAEnd) == "" && this.ep_error.GetError(this.CAStart) == "")
             {
-                VAR.RNG_STR = this.Start;
-                VAR.RNG_END = this.End;
+                VAR.RANGE_START = this.Start;
+                VAR.RANGE_END = this.End;
                 this.BTAccept.Enabled = true;
             }
             else

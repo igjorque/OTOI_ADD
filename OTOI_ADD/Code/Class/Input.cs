@@ -1,4 +1,6 @@
-﻿namespace OTOI_ADD.Code.Class
+﻿// TODO: use logger
+
+namespace OTOI_ADD.Code.Class
 {
     internal abstract class Input
     {

@@ -32,6 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.ms_menu = new System.Windows.Forms.MenuStrip();
             this.tsmi_file = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmi_config = new System.Windows.Forms.ToolStripMenuItem();
             this.tss_file = new System.Windows.Forms.ToolStripSeparator();
             this.tsmi_exit = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_downloads = new System.Windows.Forms.ToolStripMenuItem();
@@ -42,6 +43,8 @@
             this.tss_download1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmi_esios = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_c2l = new System.Windows.Forms.ToolStripMenuItem();
+            this.tss_download2 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsmi_downloadFolder = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_utility = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_openDir = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_installDir = new System.Windows.Forms.ToolStripMenuItem();
@@ -61,9 +64,6 @@
             this.tss_help = new System.Windows.Forms.ToolStripSeparator();
             this.tsmi_about = new System.Windows.Forms.ToolStripMenuItem();
             this.tt_menu = new System.Windows.Forms.ToolTip(this.components);
-            this.tss_download2 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsmi_downloadFolder = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmi_config = new System.Windows.Forms.ToolStripMenuItem();
             this.ms_menu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -89,6 +89,14 @@
             this.tsmi_file.Name = "tsmi_file";
             this.tsmi_file.Size = new System.Drawing.Size(60, 20);
             this.tsmi_file.Text = "Archivo";
+            // 
+            // tsmi_config
+            // 
+            this.tsmi_config.Enabled = false;
+            this.tsmi_config.Name = "tsmi_config";
+            this.tsmi_config.Size = new System.Drawing.Size(180, 22);
+            this.tsmi_config.Text = "Configuración";
+            this.tsmi_config.Click += new System.EventHandler(this.ConfigureApp);
             // 
             // tss_file
             // 
@@ -121,7 +129,7 @@
             this.tsmi_HMM,
             this.tsmi_HMT});
             this.tsmi_omie.Name = "tsmi_omie";
-            this.tsmi_omie.Size = new System.Drawing.Size(145, 22);
+            this.tsmi_omie.Size = new System.Drawing.Size(180, 22);
             this.tsmi_omie.Text = "OMIE";
             // 
             // tsmi_HPCM
@@ -152,14 +160,14 @@
             // tss_download1
             // 
             this.tss_download1.Name = "tss_download1";
-            this.tss_download1.Size = new System.Drawing.Size(142, 6);
+            this.tss_download1.Size = new System.Drawing.Size(177, 6);
             // 
             // tsmi_esios
             // 
             this.tsmi_esios.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmi_c2l});
             this.tsmi_esios.Name = "tsmi_esios";
-            this.tsmi_esios.Size = new System.Drawing.Size(145, 22);
+            this.tsmi_esios.Size = new System.Drawing.Size(180, 22);
             this.tsmi_esios.Text = "ESIOS";
             // 
             // tsmi_c2l
@@ -168,6 +176,18 @@
             this.tsmi_c2l.Size = new System.Drawing.Size(186, 22);
             this.tsmi_c2l.Text = "C2 Liquicomun (C2L)";
             this.tsmi_c2l.Click += new System.EventHandler(this.OpenForm_C2L);
+            // 
+            // tss_download2
+            // 
+            this.tss_download2.Name = "tss_download2";
+            this.tss_download2.Size = new System.Drawing.Size(177, 6);
+            // 
+            // tsmi_downloadFolder
+            // 
+            this.tsmi_downloadFolder.Name = "tsmi_downloadFolder";
+            this.tsmi_downloadFolder.Size = new System.Drawing.Size(180, 22);
+            this.tsmi_downloadFolder.Text = "Ver descargas";
+            this.tsmi_downloadFolder.Click += new System.EventHandler(this.DownloadDir);
             // 
             // tsmi_utility
             // 
@@ -189,34 +209,34 @@
             this.tsmi_downloadDir,
             this.tsmi_logsDir});
             this.tsmi_openDir.Name = "tsmi_openDir";
-            this.tsmi_openDir.Size = new System.Drawing.Size(154, 22);
+            this.tsmi_openDir.Size = new System.Drawing.Size(180, 22);
             this.tsmi_openDir.Text = "Abrir directorio";
             // 
             // tsmi_installDir
             // 
             this.tsmi_installDir.Name = "tsmi_installDir";
-            this.tsmi_installDir.Size = new System.Drawing.Size(161, 22);
+            this.tsmi_installDir.Size = new System.Drawing.Size(180, 22);
             this.tsmi_installDir.Text = "Instalación";
             this.tsmi_installDir.Click += new System.EventHandler(this.InstallDir);
             // 
             // tsmi_configDir
             // 
             this.tsmi_configDir.Name = "tsmi_configDir";
-            this.tsmi_configDir.Size = new System.Drawing.Size(161, 22);
+            this.tsmi_configDir.Size = new System.Drawing.Size(180, 22);
             this.tsmi_configDir.Text = "Configuraciones";
             this.tsmi_configDir.Click += new System.EventHandler(this.ConfigDir);
             // 
             // tsmi_downloadDir
             // 
             this.tsmi_downloadDir.Name = "tsmi_downloadDir";
-            this.tsmi_downloadDir.Size = new System.Drawing.Size(161, 22);
+            this.tsmi_downloadDir.Size = new System.Drawing.Size(180, 22);
             this.tsmi_downloadDir.Text = "Descargas";
             this.tsmi_downloadDir.Click += new System.EventHandler(this.DownloadDir);
             // 
             // tsmi_logsDir
             // 
             this.tsmi_logsDir.Name = "tsmi_logsDir";
-            this.tsmi_logsDir.Size = new System.Drawing.Size(161, 22);
+            this.tsmi_logsDir.Size = new System.Drawing.Size(180, 22);
             this.tsmi_logsDir.Text = "Logs";
             this.tsmi_logsDir.Click += new System.EventHandler(this.LogsDir);
             // 
@@ -226,26 +246,26 @@
             this.tsmi_logSend,
             this.toolStripSeparator3});
             this.tsmi_log.Name = "tsmi_log";
-            this.tsmi_log.Size = new System.Drawing.Size(154, 22);
+            this.tsmi_log.Size = new System.Drawing.Size(180, 22);
             this.tsmi_log.Text = "Logs";
             // 
             // tsmi_logSend
             // 
             this.tsmi_logSend.Enabled = false;
             this.tsmi_logSend.Name = "tsmi_logSend";
-            this.tsmi_logSend.Size = new System.Drawing.Size(131, 22);
+            this.tsmi_logSend.Size = new System.Drawing.Size(180, 22);
             this.tsmi_logSend.Text = "Enviar logs";
             this.tsmi_logSend.Click += new System.EventHandler(this.SendLogs);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(128, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(177, 6);
             // 
             // tss_utility
             // 
             this.tss_utility.Name = "tss_utility";
-            this.tss_utility.Size = new System.Drawing.Size(151, 6);
+            this.tss_utility.Size = new System.Drawing.Size(177, 6);
             // 
             // tsmi_old
             // 
@@ -253,7 +273,7 @@
             this.tsmi_HPC,
             this.tsmi_HM});
             this.tsmi_old.Name = "tsmi_old";
-            this.tsmi_old.Size = new System.Drawing.Size(154, 22);
+            this.tsmi_old.Size = new System.Drawing.Size(180, 22);
             this.tsmi_old.Text = "Antiguos";
             // 
             // tsmi_HPC
@@ -276,7 +296,7 @@
             // tsmi_test
             // 
             this.tsmi_test.Name = "tsmi_test";
-            this.tsmi_test.Size = new System.Drawing.Size(154, 22);
+            this.tsmi_test.Size = new System.Drawing.Size(180, 22);
             this.tsmi_test.Text = "Test";
             this.tsmi_test.Click += new System.EventHandler(this.TEST);
             // 
@@ -293,41 +313,21 @@
             // tsmi_doc
             // 
             this.tsmi_doc.Name = "tsmi_doc";
-            this.tsmi_doc.Size = new System.Drawing.Size(159, 22);
+            this.tsmi_doc.Size = new System.Drawing.Size(180, 22);
             this.tsmi_doc.Text = "Documentación";
             this.tsmi_doc.Click += new System.EventHandler(this.Documentation);
             // 
             // tss_help
             // 
             this.tss_help.Name = "tss_help";
-            this.tss_help.Size = new System.Drawing.Size(156, 6);
+            this.tss_help.Size = new System.Drawing.Size(177, 6);
             // 
             // tsmi_about
             // 
             this.tsmi_about.Name = "tsmi_about";
-            this.tsmi_about.Size = new System.Drawing.Size(159, 22);
+            this.tsmi_about.Size = new System.Drawing.Size(180, 22);
             this.tsmi_about.Text = "Acerca de";
             this.tsmi_about.Click += new System.EventHandler(this.About);
-            // 
-            // tss_download2
-            // 
-            this.tss_download2.Name = "tss_download2";
-            this.tss_download2.Size = new System.Drawing.Size(142, 6);
-            // 
-            // tsmi_downloadFolder
-            // 
-            this.tsmi_downloadFolder.Name = "tsmi_downloadFolder";
-            this.tsmi_downloadFolder.Size = new System.Drawing.Size(145, 22);
-            this.tsmi_downloadFolder.Text = "Ver descargas";
-            this.tsmi_downloadFolder.Click += new System.EventHandler(this.DownloadDir);
-            // 
-            // tsmi_config
-            // 
-            this.tsmi_config.Enabled = false;
-            this.tsmi_config.Name = "tsmi_config";
-            this.tsmi_config.Size = new System.Drawing.Size(180, 22);
-            this.tsmi_config.Text = "Configuración";
-            this.tsmi_config.Click += new System.EventHandler(this.ConfigureApp);
             // 
             // Main
             // 

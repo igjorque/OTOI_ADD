@@ -16,7 +16,7 @@ namespace OTOI_ADD.View.ESIOS
         /// </summary>
         public C2L() : base(GLB.FID_C2L)
         {
-            logger.Info("C2L - Constructor");
+            logger.Info(LOG.C2L_BUILD);
             InitializeComponent();
             LoadFields();
         }
@@ -26,9 +26,8 @@ namespace OTOI_ADD.View.ESIOS
         /// </summary>
         private void LoadFields()
         {
-            logger.Info("C2L - Loading Fields");
-            this.Text = GLB.ESIOS_TLE;
-            this.LBTitle.Text = GLB.C2L_TLE;
+            this.Text = GLB.ESIOS_TITLE;
+            this.LBTitle.Text = GLB.C2L_TITLE;
         }
     }
 }

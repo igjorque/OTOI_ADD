@@ -29,12 +29,13 @@ namespace OTOI_ADD
 
             // Init logger
             logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
-            logger.Info("Program - " + LOG.PRG_STR);
+
+            logger.Info(LOG.APP_START);
 
             // Run app
             Application.Run(new Main());
 
-            logger.Info("Program - " + LOG.PRG_END);
+            logger.Info(LOG.APP_END);
         }
     }
 }

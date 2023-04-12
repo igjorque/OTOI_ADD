@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace OTOI_ADD.Code.Variable
+﻿namespace OTOI_ADD.Code.Variable
 {
     /// <summary>
     /// Global variables - Modifiable
@@ -12,19 +6,37 @@ namespace OTOI_ADD.Code.Variable
     internal class VAR
     {
         // Range
-        internal static DateTime RNG_STR = DateTime.Today.AddDays(-2);
-        internal static DateTime RNG_END = DateTime.Today.AddDays(-1);
+        /// <summary>
+        /// Date range start
+        /// </summary>
+        internal static DateTime RANGE_START = DateTime.Today.AddDays(-2);
+        /// <summary>
+        /// Date range end
+        /// </summary>
+        internal static DateTime RANGE_END = DateTime.Today.AddDays(-1);
 
         // Day
-        internal static DateTime DTE_DAY = DateTime.Today.AddDays(-1);
+        /// <summary>
+        /// Date day
+        /// </summary>
+        internal static DateTime DATE_DAY = DateTime.Today.AddDays(-1);
 
         // Month
-        internal static DateTime DTE_MTH = DateTime.Today.AddMonths(-1);
+        /// <summary>
+        /// Date month
+        /// </summary>
+        internal static DateTime DATE_MONTH = DateTime.Today.AddMonths(-1);
 
         // Current Directory
-        internal static string CUR_DIR = GLB.FLD_DEF;
+        /// <summary>
+        /// Current directory
+        /// </summary>
+        internal static string CURRENT_DIRECTORY = GLB.FOLDER_DEFAULT;
 
         // Default File Text
-        internal static string DEF_FIL = "Por defecto";
+        /// <summary>
+        /// Default file
+        /// </summary>
+        internal static string DEFAULT_FILE = "Por defecto";
     }
 }

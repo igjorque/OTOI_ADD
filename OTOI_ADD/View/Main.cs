@@ -19,7 +19,7 @@ namespace OTOI_ADD.View
         /// </summary>
         public Main()
         {
-            logger.Info("Main - Constructor");
+            logger.Info(LOG.MAIN_BUILD);
             InitializeComponent();
         }
 
@@ -35,7 +35,7 @@ namespace OTOI_ADD.View
         /// <param name="e"></param>
         private void OpenForm_HPC(object sender, EventArgs e)
         {
-            logger.Info("Main - Open HPC");
+            logger.Info(LOG.MAIN_HPC);
             HPC hpc = new HPC();
             hpc.Name = "f_hpc";
             if (FormExists(hpc.Name))
@@ -58,7 +58,7 @@ namespace OTOI_ADD.View
         /// <param name="e"></param>
         private void OpenForm_HPCM(object sender, EventArgs e)
         {
-            logger.Info("Main - Open HPCM");
+            logger.Info(LOG.MAIN_HPCM);
             HPCM hpcm = new HPCM();
             hpcm.Name = "f_hpcm";
             if (FormExists(hpcm.Name))
@@ -82,7 +82,7 @@ namespace OTOI_ADD.View
         /// <param name="e"></param>
         private void OpenForm_HM(object sender, EventArgs e)
         {
-            logger.Info("Main - Open HM");
+            logger.Info(LOG.MAIN_HM);
             HM hm = new HM();
             hm.Name = "f_hm";
             if (FormExists(hm.Name))
@@ -105,7 +105,7 @@ namespace OTOI_ADD.View
         /// <param name="e"></param>
         private void OpenForm_HMM(object sender, EventArgs e)
         {
-            logger.Info("Main - Open HMM");
+            logger.Info(LOG.MAIN_HMM);
             HMM hmm = new HMM();
             hmm.Name = "f_hmm";
             if (FormExists(hmm.Name))
@@ -122,7 +122,7 @@ namespace OTOI_ADD.View
 
         private void OpenForm_HMT(object sender, EventArgs e)
         {
-            logger.Info("Main - Open HMT");
+            logger.Info(LOG.MAIN_HMT);
             HMT hmt = new();
             hmt.Name = "f_hmt";
             if (FormExists(hmt.Name))
@@ -149,8 +149,8 @@ namespace OTOI_ADD.View
         /// <param name="e"></param>
         private void OpenForm_C2L(object sender, EventArgs e)
         {
-            logger.Info("Main - Open C2L");
-            C2L c2l = new C2L();
+            logger.Info(LOG.MAIN_C2L);
+            C2L c2l = new();
             c2l.Name = "f_c2l";
             if (FormExists(c2l.Name))
             {
@@ -181,6 +181,7 @@ namespace OTOI_ADD.View
         /// <param name="e"></param>
         private void Exit(object sender, EventArgs e)
         {
+            logger.Info(LOG.MAIN_EXIT);
             this.Close();
         }
 
@@ -209,6 +210,7 @@ namespace OTOI_ADD.View
         /// <param name="fname">Child forms' name to set focus on</param>
         private void GiveFocus(string fname)
         {
+            logger.Info(LOG.MAIN_FOCUS + fname);
             foreach (Form f in this.MdiChildren)
             {
                 if (f.Name.Equals(fname))
@@ -226,21 +228,22 @@ namespace OTOI_ADD.View
 
         private void ConfigDir(object sender, EventArgs e)
         {
-            OpenFolder(GLB.FLD_CFG);
+            OpenFolder(GLB.FOLDER_CONFIG);
         }
 
         private void DownloadDir(object sender, EventArgs e)
         {
-            OpenFolder(GLB.FLD_DWL);
+            OpenFolder(GLB.FOLDER_DOWNLOADS);
         }
 
         private void LogsDir(object sender, EventArgs e)
         {
-            OpenFolder(GLB.FLD_LOG);
+            OpenFolder(GLB.FOLDER_LOGS);
         }
 
         private void OpenFolder(string folderPath)
         {
+            logger.Info(LOG.MAIN_OPEN);
             if (Directory.Exists(folderPath))
             {
                 ProcessStartInfo startInfo = new ProcessStartInfo
@@ -254,11 +257,14 @@ namespace OTOI_ADD.View
 
         private void SendLogs(object sender, EventArgs e)
         {
+            // TODO: implementar subida/envío logs
+            logger.Info(LOG.MAIN_SEND);
             MessageBox.Show("Funcionalidad futura :)");
         }
 
         private void Documentation(object sender, EventArgs e)
         {
+            logger.Info(LOG.MAIN_DOCS);
             try
             {
                 string url = "https://github.com/igjorque/OTOI_ADD";
@@ -274,9 +280,9 @@ namespace OTOI_ADD.View
         {
             string msg = "";
             string cap = "";
-            msg += "Programa desarrollado por Ignacio A. Jorquera Ferrat para la Oficina Técnica de Obras e Infraestructuras (OTOI) - Universidad de La Rioja.";
-            msg += "\nAgiliza la descarga de datos de las webs OMIE y ESIOS.";
-            cap = "Acerca de ADD";
+            cap = GLB.ABOUT_TITLE;
+            msg += GLB.ABOUT_DEVELOPER;
+            msg += GLB.ABOUT_DESCRIPTION;
             MessageBox.Show(msg, cap, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 

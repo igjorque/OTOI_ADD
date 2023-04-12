@@ -150,26 +150,6 @@ namespace OTOI_ADD.Code.Function
             ep_error.SetError(mp, err);
         }
 
-        // TODO: remove ?
-        /*
-        /// <summary>
-        /// Checks if an entered end date is valid. 
-        /// Current criteria: Valid if earlier than [Today]'s month and later than [01/01/2018].
-        /// </summary>
-        /// <param name="mp">Month date MonthPicker control</param>
-        /// <param name="ep_error">Error indicator</param>
-        internal static void ValidateESIOS(MonthPicker mp, ErrorProvider ep_error)
-        {
-            DateTime dx = new(mp.Value.Year, mp.Value.Month, 1);
-            string err = "";
-            if (DateTime.Compare(DateTime.Today, dx) < 0)
-            {
-                err = "Mes introducido no válido";
-            }
-            ep_error.SetError(mp, err);
-        }
-        */
-
         /// <summary>
         /// Gets the number of days between two dates.
         /// </summary>
