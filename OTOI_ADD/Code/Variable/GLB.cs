@@ -20,11 +20,11 @@
         /// <summary>
         /// HPC form ID
         /// </summary>
-        internal static readonly int FID_HPC = 1;
+        internal static readonly int HPC_FID = 1;
         /// <summary>
         /// HPCM form ID
         /// </summary>
-        internal static readonly int FID_HPCM = 2;
+        internal static readonly int HPCM_FID = 2;
         /// <summary>
         /// HPC uri substring
         /// </summary>
@@ -39,11 +39,11 @@
         /// <summary>
         /// HM form ID
         /// </summary>
-        internal static readonly int FID_HM = 3;
+        internal static readonly int HM_FID = 3;
         /// <summary>
         /// HMM form ID
         /// </summary>
-        internal static readonly int FID_HMM = 4;
+        internal static readonly int HMM_FID = 4;
         /// <summary>
         /// HM uri substring
         /// </summary>
@@ -51,7 +51,7 @@
         /// <summary>
         /// HMT form ID
         /// </summary>
-        internal static readonly int FID_HMT = 6;
+        internal static readonly int HMT_FID = 6;
         /// <summary>
         /// HMT uri substring
         /// </summary>
@@ -76,7 +76,7 @@
         /// <summary>
         /// C2L form ID
         /// </summary>
-        internal static readonly int FID_C2L = 5;
+        internal static readonly int C2L_FID = 5;
         /// <summary>
         /// C2L form default title
         /// </summary>
@@ -85,6 +85,7 @@
 
         // DEFAULTS
         #region APPLICATION GLOBALS
+        
         // Aux
         /// <summary>
         /// Exact moment when this class is loaded

@@ -16,7 +16,6 @@ namespace OTOI_ADD.View.Generic.OMIE
         internal DateTimePicker CAEnd { get => this.uc_range.ca_date_end; }
         internal DateTime End { get => this.CAEnd.Value; }
 
-        
         /// <summary>
         /// Empty OGenericRange form constructor.
         /// **DO NOT USE**

@@ -14,7 +14,7 @@ namespace OTOI_ADD.View.OMIE
         /// <summary>
         /// Empty HourlyPriceConsumersMultiple form constructor.
         /// </summary>
-        public HPCM() : base(GLB.FID_HPCM)
+        public HPCM() : base(GLB.HPCM_FID)
         {
             logger.Info(LOG.HPCM_BUILD);
             InitializeComponent();

@@ -171,7 +171,7 @@ namespace OTOI_ADD.Code.Function
         // ---------------------------------------------------------------------------------
         // -------------------------------- Old Functions ----------------------------------
         // ---------------------------------------------------------------------------------
-
+        /*
         /// <summary>
         /// Converts the string representing a month to an equivalent integer.
         /// </summary>
@@ -203,7 +203,7 @@ namespace OTOI_ADD.Code.Function
         /// </summary>
         /// <param name="m">Month as integer to be converted.</param>
         /// <returns>Month as string.</returns>
-        internal static int IntToMonth(int m)
+        internal static string IntToMonth(int m)
         {
             Dictionary<string, int> month = new()
             {
@@ -221,7 +221,7 @@ namespace OTOI_ADD.Code.Function
                 { "diciembre", 12 }
             };
 
-            return month.ElementAt(m).Value;
+            return month.ElementAt(m).Key;
         }
 
         /// <summary>
@@ -288,5 +288,6 @@ namespace OTOI_ADD.Code.Function
             };
             return fields;
         }
+        */
     }
 }

@@ -1,7 +1,5 @@
 ﻿using OTOI_ADD.Code.Function;
 using OTOI_ADD.Code.Variable;
-using OTOI_ADD.View.Asset;
-using OTOI_ADD.View.Generic.ESIOS;
 using System.Reflection;
 
 namespace OTOI_ADD.View.Generic.OMIE
@@ -26,7 +24,6 @@ namespace OTOI_ADD.View.Generic.OMIE
         internal Label LBFile { get => this.uc_fo.lb_bt_fileDest; }
         internal Button BTAccept { get => this.uc_fo.bt_accept; }
         internal Button BTCancel { get => this.uc_fo.bt_cancel; }
-        internal Fields_OMIE UCFO { get => this.uc_fo; }
 
         /// <summary>
         /// Empty OGeneric form constructor.

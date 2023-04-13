@@ -1,9 +1,8 @@
-﻿// TODO: use logger
-
+﻿
 namespace OTOI_ADD.Code.Module.Process
 {
     internal class ProcessorESIOS
     {
-        // TODO: implement
+        // TODO: implement, use logger
     }
 }

@@ -14,7 +14,7 @@ namespace OTOI_ADD.View.OMIE
         /// <summary>
         /// Empty mHourlyMarketMultiple form constructor.
         /// </summary>
-        public HMM() : base(GLB.FID_HMM)
+        public HMM() : base(GLB.HMM_FID)
         {
             logger.Info(LOG.HMM_BUILD);
             InitializeComponent();

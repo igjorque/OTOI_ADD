@@ -14,7 +14,7 @@ namespace OTOI_ADD.View.OMIE
         /// <summary>
         /// Empty HourlyMarketTable form constructor
         /// </summary>
-        public HMT() : base(GLB.FID_HMT)
+        public HMT() : base(GLB.HMT_FID)
         {
             logger.Info(LOG.HMT_BUILD);
             InitializeComponent();

@@ -14,7 +14,7 @@ namespace OTOI_ADD.View.OMIE
         /// <summary>
         /// Empty HourlyPriceConsumers form constructor.
         /// </summary>
-        public HPC() : base(GLB.FID_HPC)
+        public HPC() : base(GLB.HPC_FID)
         {
             logger.Info(LOG.HPC_BUILD);
             InitializeComponent();

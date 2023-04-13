@@ -26,7 +26,6 @@ namespace OTOI_ADD.View.Generic.ESIOS
         internal Label LBFile { get => this.uc_fe.lb_bt_fileDest; }
         internal Button BTAccept { get => this.uc_fe.bt_accept; }
         internal Button BTCancel { get => this.uc_fe.bt_cancel; }
-        internal Fields_ESIOS UCFE { get => this.uc_fe; }
 
         /// <summary>
         /// Empty EGeneric form constructor.

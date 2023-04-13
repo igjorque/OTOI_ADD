@@ -107,7 +107,7 @@ namespace OTOI_ADD.View.Asset
             {
                 this.Text = "Procesando";
                 this.lb_download.Text = "Procesando los datos descargados...";
-                ProcessorOMIE.Process(ProgressDialog.FILES, this.pb_progress, 2);
+                ProcessorOMIE.Process(FILES, this.pb_progress);
             }
 
             // Delete? downloaded files
