@@ -26,7 +26,6 @@ namespace OTOI_ADD.View.ESIOS
         /// </summary>
         private void LoadFields()
         {
-            this.Text = GLB.ESIOS_TITLE;
             this.LBTitle.Text = GLB.C2L_TITLE;
         }
     }

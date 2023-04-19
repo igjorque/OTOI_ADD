@@ -28,60 +28,39 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.uc_fe = new OTOI_ADD.View.Asset.Fields_ESIOS();
-            this.sf_file = new System.Windows.Forms.SaveFileDialog();
-            this.fb_directory = new System.Windows.Forms.FolderBrowserDialog();
-            this.tt_folder = new System.Windows.Forms.ToolTip(this.components);
-            this.tt_file = new System.Windows.Forms.ToolTip(this.components);
-            this.ep_error = new System.Windows.Forms.ErrorProvider(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.ep_error)).BeginInit();
+            this.cb_unzip = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
-            // uc_fe
+            // cb_unzip
             // 
-            this.uc_fe.BackColor = System.Drawing.SystemColors.Control;
-            this.uc_fe.Location = new System.Drawing.Point(0, 0);
-            this.uc_fe.Name = "uc_fe";
-            this.uc_fe.Size = new System.Drawing.Size(314, 260);
-            this.uc_fe.TabIndex = 0;
-            // 
-            // tt_folder
-            // 
-            this.tt_folder.AutoPopDelay = 5000;
-            this.tt_folder.InitialDelay = 100;
-            this.tt_folder.ReshowDelay = 100;
-            // 
-            // tt_file
-            // 
-            this.tt_file.AutoPopDelay = 5000;
-            this.tt_file.InitialDelay = 100;
-            this.tt_file.ReshowDelay = 100;
-            // 
-            // ep_error
-            // 
-            this.ep_error.ContainerControl = this;
+            this.cb_unzip.AutoSize = true;
+            this.cb_unzip.BackColor = System.Drawing.SystemColors.Control;
+            this.cb_unzip.Checked = true;
+            this.cb_unzip.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cb_unzip.ForeColor = System.Drawing.Color.Black;
+            this.cb_unzip.Location = new System.Drawing.Point(8, 112);
+            this.cb_unzip.Name = "cb_unzip";
+            this.cb_unzip.Size = new System.Drawing.Size(101, 19);
+            this.cb_unzip.TabIndex = 1;
+            this.cb_unzip.Text = "Descomprimir";
+            this.cb_unzip.UseVisualStyleBackColor = false;
             // 
             // EGeneric
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(316, 261);
-            this.Controls.Add(this.uc_fe);
+            this.ClientSize = new System.Drawing.Size(408, 314);
+            this.Controls.Add(this.cb_unzip);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "EGeneric";
-            this.Text = "Generic";
-            ((System.ComponentModel.ISupportInitialize)(this.ep_error)).EndInit();
+            this.Text = "ESIOS";
+            this.Controls.SetChildIndex(this.cb_unzip, 0);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
-        internal SaveFileDialog sf_file;
-        internal FolderBrowserDialog fb_directory;
-        internal ToolTip tt_folder;
-        internal ToolTip tt_file;
-        internal ErrorProvider ep_error;
-        internal Asset.Fields_ESIOS uc_fe;
+        private CheckBox cb_unzip;
     }
 }

@@ -10,11 +10,6 @@
 
         // OMIE
         #region OMIE GLOBAL FIELDS
-        // TITLE
-        /// <summary>
-        /// OMIE default form title
-        /// </summary>
-        internal static readonly string OMIE_TITLE = "OMIE";
 
         // HPC
         /// <summary>
@@ -34,7 +29,6 @@
         /// </summary>
         internal static readonly string HPC_TITLE = "Precio definitivo horario del mecanismo de ajuste a los consumidores en el mercado";
         
-
         // HM
         /// <summary>
         /// HM form ID
@@ -65,12 +59,6 @@
 
         // ESIOS
         #region ESIOS GLOBAL FIELDS
-        // TITLE
-        // TODO: borrar?
-        /// <summary>
-        /// ESIOS default form title
-        /// </summary>
-        internal static readonly string ESIOS_TITLE = "ESIOS";
 
         // C2L
         /// <summary>
@@ -85,12 +73,6 @@
 
         // DEFAULTS
         #region APPLICATION GLOBALS
-        
-        // Aux
-        /// <summary>
-        /// Exact moment when this class is loaded
-        /// </summary>
-        private static readonly long now = DateTime.Now.Ticks;
 
         // Default app folder
         /// <summary>
@@ -136,17 +118,9 @@
 
         // Default log file location
         /// <summary>
-        /// Log file name for current execution
-        /// </summary>
-        private static readonly string log_file = "\\log_" + now + ".log";
-        /// <summary>
-        /// Log file full path
-        /// </summary>
-        internal static readonly string FIL_LOG = FOLDER_LOGS + log_file;
-        /// <summary>
         /// Logger configs log full path
         /// </summary>
-        internal static readonly string LOC_LOG = unit +"\\"+ def_folder +"\\"+ log_fld_name +"\\"+ log_file;
+        internal static readonly string LOC_LOG = unit +"\\"+ def_folder +"\\"+ log_fld_name +"\\";
         #endregion
 
         // ABOUT

@@ -1,6 +1,6 @@
 ﻿using OTOI_ADD.Code.Class;
-using OTOI_ADD.Code.Function;
 using OTOI_ADD.Code.Module.Download;
+using OTOI_ADD.Code.Module.Function;
 using OTOI_ADD.Code.Module.Process;
 using OTOI_ADD.Code.Variable;
 using System.IO.Compression;
@@ -82,19 +82,11 @@ namespace OTOI_ADD.View.Asset
             // Download files
             foreach (Uri uri in l_uri)
             {
-                try
-                {
-                    file = FName(uri.ToString().Split("/").Last());
-                    this.lb_url_value.Text = file;
-                    file = inp.DestDL + Path.DirectorySeparatorChar + file;
-                    Downloader.Download(file, uri);
-                    FILES.Add(file);
-                }
-                catch (HttpRequestException e)
-                {
-                    MessageBox.Show(e.StackTrace);
-                    //TODO: Log exception in [ProgressDialog.DLProgress_OMIE] - [Downloader.Download]
-                }
+                file = FName(uri.ToString().Split("/").Last());
+                this.lb_url_value.Text = file;
+                file = inp.DestDL + Path.DirectorySeparatorChar + file;
+                Downloader.Download(file, uri);
+                FILES.Add(file);
                 this.pb_progress.PerformStep();
                 await Task.Delay(10);
             }
@@ -154,16 +146,8 @@ namespace OTOI_ADD.View.Asset
             file = inp.DestDL + Path.DirectorySeparatorChar + filename;
 
             // Download file
-            try
-            {
-                Downloader.Download(file, uri);
-                FILES.Add(file);
-            }
-            catch (HttpRequestException e)
-            {
-                MessageBox.Show(e.StackTrace);
-                //TODO: Log exception in [ProgressDialog.DLProgress_ESIOS] - [Downloader.Download]
-            }
+            Downloader.Download(file, uri);
+            FILES.Add(file);
 
             this.pb_progress.PerformStep();
             await Task.Delay(25);

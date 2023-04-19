@@ -3,12 +3,12 @@
     /// <summary>
     /// 
     /// </summary>
-    public partial class Fields_ESIOS : UserControl
+    public partial class Fields : UserControl
     {
         /// <summary>
         /// 
         /// </summary>
-        public Fields_ESIOS()
+        public Fields()
         {
             InitializeComponent();
         }

@@ -1,4 +1,4 @@
-﻿using OTOI_ADD.Code.Function;
+﻿using OTOI_ADD.Code.Module.Function;
 using OTOI_ADD.Code.Variable;
 using OTOI_ADD.View.Asset.Control;
 using System.Reflection;
@@ -38,7 +38,6 @@ namespace OTOI_ADD.View.Generic.ESIOS
         /// </summary>
         private void LoadFields()
         {
-            this.Text = this.GetType().Name;
             this.LBTitle.Text = "EGenericMonth ESIOS form";
             this.MPMonth.Value = VAR.DATE_MONTH;
         }

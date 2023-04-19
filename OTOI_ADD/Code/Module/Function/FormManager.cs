@@ -7,7 +7,7 @@ using OTOI_ADD.View.Generic.OMIE;
 using OTOI_ADD.View.OMIE;
 using System.Diagnostics;
 
-namespace OTOI_ADD.Code.Function
+namespace OTOI_ADD.Code.Module.Function
 {
     internal static class FormManager
     {
@@ -106,7 +106,7 @@ namespace OTOI_ADD.Code.Function
         private static void ManageMonthOMIE(Form f)
         {
             // Cast parameter
-            HMT hmt = (HMT) f;
+            HMT hmt = (HMT)f;
             // Init input
             InputOMIE inp = new(hmt);
             // Download files
@@ -132,27 +132,72 @@ namespace OTOI_ADD.Code.Function
         }
 
         /// <summary>
-        /// Enables or disables some controls based on a CheckBox's status.
+        /// Enables or disables some controls based on an OMIE form process CheckBox status.
         /// </summary>
         /// <param name="cb_process">Object representing the sender CheckBox. TODO: update</param>
-        /// <param name="cb_keepDownload">Control to enable or disable</param>
-        /// <param name="bt_fileDest">Control to enable or disable</param>
-        /// <param name="lb_bt_fileDest">Control to enable or disable</param>
-        internal static void DLEnabler(CheckBox cb_process, CheckBox cb_keepDownload, Button bt_fileDest, Label lb_bt_fileDest)
+        /// <param name="cb_keep">Control to enable or disable</param>
+        /// <param name="bt_file">Control to enable or disable</param>
+        /// <param name="lb_file">Control to enable or disable</param>
+        internal static void OP_Enabler(CheckBox cb_process, CheckBox cb_keep, Button bt_file, Label lb_file)
         {
             if (cb_process != null && cb_process.Checked)
             {
-                cb_keepDownload.Enabled = true;
-                if (bt_fileDest.Visible)
+                cb_keep.Enabled = true;
+                bt_file.Enabled = true;
+                lb_file.Enabled = true;
+            }
+            else
+            {
+                cb_keep.Enabled = false;
+                bt_file.Enabled = false;
+                lb_file.Enabled = false;
+            }
+        }
+
+        /// <summary>
+        /// Enables or disables some controls based on an ESIOS form process CheckBox status.
+        /// </summary>
+        /// <param name="cb_process">Object representing the sender CheckBox.</param>
+        /// <param name="bt_file">Control to enable or disable</param>
+        /// <param name="lb_file">Control to enable or disable</param>
+        internal static void EP_Enabler(CheckBox cb_process, Button bt_file, Label lb_file)
+        {
+            if (cb_process != null && cb_process.Checked)
+            {
+                bt_file.Enabled = true;
+                lb_file.Enabled = true;
+            }
+            else
+            {
+                bt_file.Enabled = false;
+                lb_file.Enabled = false;
+            }
+        }
+
+        /// <summary>
+        /// Enables or disables some controls based on an ESIOS form unzip CheckBox status.
+        /// </summary>
+        /// <param name="cb_unzip">Object representing the sender CheckBox. TODO: update</param>
+        /// <param name="cb_process">Object representing the sender CheckBox. TODO: update</param>
+        /// <param name="cb_keep">Control to enable or disable</param>
+        /// <param name="bt_fileDest">Control to enable or disable</param>
+        /// <param name="lb_bt_fileDest">Control to enable or disable</param>
+        internal static void EU_Enabler(CheckBox cb_unzip, CheckBox cb_process, CheckBox cb_keep, Button bt_fileDest, Label lb_bt_fileDest)
+        {
+            if (cb_unzip.Checked)
+            {
+                cb_keep.Enabled = true;
+                cb_process.Enabled = true;
+                if (cb_process.Checked)
                 {
                     bt_fileDest.Enabled = true;
                     lb_bt_fileDest.Enabled = true;
                 }
-
             }
             else
             {
-                cb_keepDownload.Enabled = false;
+                cb_keep.Enabled = false;
+                cb_process.Enabled = false;
                 bt_fileDest.Enabled = false;
                 lb_bt_fileDest.Enabled = false;
             }
@@ -189,10 +234,11 @@ namespace OTOI_ADD.Code.Function
                         url = "https://www.omie.es/es/market-results/monthly/daily-market/hourly-market?scope=monthly&year=2023&month=1&data=5";
                         break;
                 }
-                Process.Start(new ProcessStartInfo() { FileName = url, UseShellExecute = true });
+                System.Diagnostics.Process.Start(new ProcessStartInfo() { FileName = url, UseShellExecute = true });
             }
             catch (Exception ex)
             {
+                // TODO: log link no abierto
                 MessageBox.Show("No se ha podido abrir el enlace.\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }

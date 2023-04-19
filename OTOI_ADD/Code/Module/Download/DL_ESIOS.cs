@@ -1,6 +1,6 @@
 ﻿using log4net;
 using OTOI_ADD.Code.Class;
-using OTOI_ADD.Code.Function;
+using OTOI_ADD.Code.Module.Function;
 using OTOI_ADD.Code.Variable;
 using OTOI_ADD.View.Asset;
 

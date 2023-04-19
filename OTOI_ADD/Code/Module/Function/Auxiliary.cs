@@ -1,6 +1,6 @@
 ﻿using OTOI_ADD.View.Asset.Control;
 
-namespace OTOI_ADD.Code.Function
+namespace OTOI_ADD.Code.Module.Function
 {
     internal static class Auxiliary
     {
@@ -143,7 +143,7 @@ namespace OTOI_ADD.Code.Function
             {
                 err += "La fecha debe ser posterior a [01/01/2018]. ";
             }
-            if (mp.Value.Year == DateTime.Today.Year && mp.Value.Month == DateTime.Today.Month)
+            if (mp.Value.Year >= DateTime.Today.Year && mp.Value.Month >= DateTime.Today.Month)
             {
                 err += "El mes seleccionado debe ser previo al actual. ";
             }

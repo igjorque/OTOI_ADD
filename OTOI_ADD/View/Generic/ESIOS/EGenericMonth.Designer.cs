@@ -46,9 +46,9 @@
             this.ClientSize = new System.Drawing.Size(316, 261);
             this.Controls.Add(this.uc_month);
             this.Name = "EGenericMonth";
-            this.Text = "GenericMonth_E";
             this.Controls.SetChildIndex(this.uc_month, 0);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 

@@ -1,4 +1,4 @@
-﻿using OTOI_ADD.Code.Function;
+﻿using OTOI_ADD.Code.Module.Function;
 using OTOI_ADD.Code.Variable;
 using System.Reflection;
 
@@ -7,41 +7,63 @@ namespace OTOI_ADD.View.Generic.OMIE
     /// <summary>
     /// OGeneric
     /// </summary>
-    public partial class OGeneric : Form
+    public partial class OGeneric : Generic
     {
         private static log4net.ILog logger = log4net.LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
-
-        private readonly int fid;
-        internal int FID { get => this.fid; }
-        internal string FormTitle { get => this.Text; set => this.Text = value; }
-        internal Label LBTitle { get => this.uc_fo.lb_title; }
-        internal LinkLabel LBLink { get => this.uc_fo.lb_link; }
-        internal Button BTFolder { get => this.uc_fo.bt_downloadDir; }
-        internal Label LBFolder { get => this.uc_fo.lb_bt_downloadDir; }
-        internal CheckBox CBProcess { get => this.uc_fo.cb_process; }
-        internal CheckBox CBKeep { get => this.uc_fo.cb_keepDownload; }
-        internal Button BTFile { get => this.uc_fo.bt_fileDest; }
-        internal Label LBFile { get => this.uc_fo.lb_bt_fileDest; }
-        internal Button BTAccept { get => this.uc_fo.bt_accept; }
-        internal Button BTCancel { get => this.uc_fo.bt_cancel; }
 
         /// <summary>
         /// Empty OGeneric form constructor.
         /// **DO NOT USE**
         /// </summary>
-        public OGeneric(){ InitializeComponent(); }
+        public OGeneric() : base() 
+        {
+            InitializeComponent();
+            ArrangeFields();
+        }
         
         /// <summary>
         /// OGeneric form constructor.
         /// Creates a new form with a specific Form ID (FID).
         /// </summary>
         /// <param name="FID">Created form unique ID</param>
-        public OGeneric(int FID)
+        public OGeneric(int FID) : base(FID)
         {
-            this.fid = FID;
             InitializeComponent();
+            ArrangeFields();
             LoadFields();
             LoadEvents();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void ArrangeFields()
+        {
+            // LBTitle
+            this.LBTitle.Location = new System.Drawing.Point(1, 6);
+            // LBLink
+            this.LBLink.Location = new System.Drawing.Point(285, 18);
+
+            // BTFolder
+            this.BTFolder.Location = new System.Drawing.Point(1, 82);
+            // LBFolder
+            this.LBFolder.Location = new System.Drawing.Point(113, 83);
+
+            // CBProcess
+            this.CBProcess.Location = new System.Drawing.Point(8, 110);
+
+            // CBKeep
+            this.CBKeep.Location = new System.Drawing.Point(8, 138);
+
+            // BTFile
+            this.BTFile.Location = new System.Drawing.Point(1, 166);
+            // LBFile
+            this.LBFile.Location = new System.Drawing.Point(113, 167);
+
+            // BTAccept
+            this.BTAccept.Location = new System.Drawing.Point(64, 198);
+            // BTCancel
+            this.BTCancel.Location = new System.Drawing.Point(176, 198);
         }
 
         /// <summary>
@@ -49,6 +71,7 @@ namespace OTOI_ADD.View.Generic.OMIE
         /// </summary>
         private void LoadFields()
         {
+            this.CBProcess.Checked = true;
             this.Text = this.GetType().Name;
             this.LBFolder.Text = VAR.CURRENT_DIRECTORY;
             this.LBFile.Text = VAR.DEFAULT_FILE;
@@ -63,13 +86,7 @@ namespace OTOI_ADD.View.Generic.OMIE
         /// </summary>
         private void LoadEvents()
         {
-            this.AcceptButton = this.BTAccept;
             this.CBProcess.CheckedChanged += new EventHandler(ProcessEvent);
-            this.BTAccept.Click += new EventHandler(AcceptEvent);
-            this.BTCancel.Click += new EventHandler(CancelEvent);
-            this.LBLink.LinkClicked += new LinkLabelLinkClickedEventHandler(LinkEvent);
-            this.BTFolder.Click += new EventHandler(DownloadFolderEvent);
-            this.BTFile.Click += new EventHandler(DownloadFileEvent);
         }
 
         /// <summary>
@@ -80,62 +97,7 @@ namespace OTOI_ADD.View.Generic.OMIE
         private void ProcessEvent(object? sender, EventArgs e)
         {
             logger.Info(LOG.FORM_PROCESS);
-            FormManager.DLEnabler(this.CBProcess, this.CBKeep, this.BTFile, this.LBFile);
-        }
-
-        /// <summary>
-        /// Manages the click event onto the [bt_accept] Button control.
-        /// </summary>
-        /// <param name="sender">Sender control</param>
-        /// <param name="e">Event arguments</param>
-        private void AcceptEvent(object? sender, EventArgs e)
-        {
-            logger.Info(LOG.FORM_ACCEPT);
-            FormManager.FormAccept(this, this.FID);
-        }
-
-        /// <summary>
-        /// Manages the click event onto the [bt_cancel] Button control.
-        /// </summary>
-        /// <param name="sender">Sender control</param>
-        /// <param name="e">Event arguments</param>
-        private void CancelEvent(object? sender, EventArgs e)
-        {
-            logger.Info(LOG.FORM_CANCEL);
-            this.Close();
-        }
-
-        /// <summary>
-        /// Manages the click event onto the [lb_link] LinkLabel control.
-        /// </summary>
-        /// <param name="sender">Sender control</param>
-        /// <param name="e">Event arguments</param>
-        private void LinkEvent(object? sender, LinkLabelLinkClickedEventArgs e)
-        {
-            logger.Info(LOG.LINK_OPEN);
-            FormManager.OpenLink(this.FID, this.LBLink);
-        }
-
-        /// <summary>
-        /// Manages the click event onto the [bt_downloadDir] Button control.
-        /// </summary>
-        /// <param name="sender">Sender control</param>
-        /// <param name="e">Event arguments</param>
-        private void DownloadFolderEvent(object? sender, EventArgs e)
-        {
-            logger.Info(LOG.FORM_FOLDER);
-            FormManager.DownloadDir(this.fb_directory, this.LBFolder, this.tt_folder);
-        }
-
-        /// <summary>
-        /// Manages the click event onto the [bt_fileDest] Button control.
-        /// </summary>
-        /// <param name="sender">Sender control</param>
-        /// <param name="e">Event arguments</param>
-        private void DownloadFileEvent(object? sender, EventArgs e)
-        {
-            logger.Info(LOG.FORM_FILE);
-            FormManager.DownloadFil(this.sf_file, this.LBFile, this.tt_file);
+            FormManager.OP_Enabler(this.CBProcess, this.CBKeep, this.BTFile, this.LBFile);
         }
     }
 }

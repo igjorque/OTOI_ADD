@@ -292,7 +292,7 @@ namespace OTOI_ADD.View
 
         private void TEST(object sender, EventArgs e)
         {
-            OGenericMonth t = new();
+            Test t = new();
             t.MdiParent = this;
             t.Show();
         }

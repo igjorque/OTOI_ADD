@@ -26,7 +26,6 @@ namespace OTOI_ADD.View.OMIE
         /// </summary>
         private void LoadFields()
         {
-            this.FormTitle = GLB.OMIE_TITLE;
             this.LBTitle.Text = GLB.HM_TITLE;
         }
     }

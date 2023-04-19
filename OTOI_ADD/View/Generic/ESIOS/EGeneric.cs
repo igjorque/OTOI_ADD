@@ -1,6 +1,5 @@
-﻿using OTOI_ADD.Code.Function;
+﻿using OTOI_ADD.Code.Module.Function;
 using OTOI_ADD.Code.Variable;
-using OTOI_ADD.View.Asset;
 using System.Reflection;
 
 namespace OTOI_ADD.View.Generic.ESIOS
@@ -8,42 +7,66 @@ namespace OTOI_ADD.View.Generic.ESIOS
     /// <summary>
     /// 
     /// </summary>
-    public partial class EGeneric : Form
+    public partial class EGeneric : Generic
     {
         private static log4net.ILog logger = log4net.LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
-        private readonly int fid;
-
-        internal int FID { get => fid; }
-        internal Label LBTitle { get => this.uc_fe.lb_title; }
-        internal LinkLabel LBLink { get => this.uc_fe.lb_link; }
-        internal Button BTFolder { get => this.uc_fe.bt_downloadDir; }
-        internal Label LBFolder { get => this.uc_fe.lb_bt_downloadDir; }
-        internal CheckBox CBUnzip { get => this.uc_fe.cb_unzip; }
-        internal CheckBox CBKeep { get => this.uc_fe.cb_keep; }
-        internal CheckBox CBProcess { get => this.uc_fe.cb_process; }
-        internal Button BTFile { get => this.uc_fe.bt_fileDest; }
-        internal Label LBFile { get => this.uc_fe.lb_bt_fileDest; }
-        internal Button BTAccept { get => this.uc_fe.bt_accept; }
-        internal Button BTCancel { get => this.uc_fe.bt_cancel; }
+        internal CheckBox CBUnzip { get => this.cb_unzip; }
 
         /// <summary>
         /// Empty EGeneric form constructor.
         /// **DO NOT USE**
         /// </summary>
-        public EGeneric() { InitializeComponent(); }
+        public EGeneric() : base()
+        {
+            InitializeComponent();
+            ArrangeFields();
+        }
 
         /// <summary>
         /// EGeneric form constructor.
         /// Creates a new form with a specific Form ID (FID).
         /// </summary>
         /// <param name="FID">Created form unique ID</param>
-        public EGeneric(int FID)
+        public EGeneric(int FID) : base(FID)
         {
-            this.fid = FID;
             InitializeComponent();
+            ArrangeFields();
             LoadFields();
             LoadEvents();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void ArrangeFields()
+        {
+            // LBTitle
+            this.LBTitle.Location = new System.Drawing.Point(1, 6);
+            // LBLink
+            this.LBLink.Location = new System.Drawing.Point(285, 18);
+
+            // BTDownload
+            this.BTFolder.Location = new System.Drawing.Point(1, 82);
+            // LBDownload
+            this.LBFolder.Location = new System.Drawing.Point(113, 83);
+
+            // CBUnzip
+            this.CBUnzip.Location = new System.Drawing.Point(8, 114);
+            // CBKeep
+            this.CBKeep.Location = new System.Drawing.Point(8, 142);
+            // CBProcess
+            this.CBProcess.Location = new System.Drawing.Point(8, 170);
+
+            // BTFile
+            this.BTFile.Location = new System.Drawing.Point(1, 202);
+            // LBFile
+            this.LBFile.Location = new System.Drawing.Point(113, 203);
+
+            // BTAccept
+            this.BTAccept.Location = new System.Drawing.Point(64, 232);
+            // BTCancel
+            this.BTCancel.Location = new System.Drawing.Point(176, 232);
         }
 
         /// <summary>
@@ -51,6 +74,8 @@ namespace OTOI_ADD.View.Generic.ESIOS
         /// </summary>
         private void LoadFields()
         {
+            this.BTFile.Enabled = false;
+            this.LBFile.Enabled = false;
             this.LBTitle.Text = "Generic ESIOS form";
             this.LBFolder.Text = VAR.CURRENT_DIRECTORY;
             this.LBFile.Text = VAR.DEFAULT_FILE;
@@ -60,42 +85,11 @@ namespace OTOI_ADD.View.Generic.ESIOS
             this.tt_file.SetToolTip(this.LBFile, this.LBFile.Text);
         }
 
-        /// <summary>
-        /// Auxiliary - Loads predefined events.
-        /// </summary>
         private void LoadEvents()
         {
-            this.LBLink.LinkClicked += new LinkLabelLinkClickedEventHandler(LinkEvent);
-            this.BTFolder.Click += new EventHandler(FolderEvent);
             this.CBUnzip.CheckedChanged += new EventHandler(UnzipEvent);
             this.CBProcess.CheckedChanged += new EventHandler(ProcessEvent);
-            this.BTFile.Click += new EventHandler(FileEvent);
-            this.BTAccept.Click += new EventHandler(AcceptEvent);
-            this.BTCancel.Click += new EventHandler(CancelEvent);
         }
-
-        /// <summary>
-        /// Manages the click event onto the [lb_link] LinkLabel control.
-        /// </summary>
-        /// <param name="sender">Sender control</param>
-        /// <param name="e">Event arguments</param>
-        private void LinkEvent(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            logger.Info(LOG.LINK_OPEN);
-            FormManager.OpenLink(this.FID, this.LBLink);
-        }
-
-        /// <summary>
-        /// Manages the click event ont the [bt_downloadDir] Button control.
-        /// </summary>
-        /// <param name="sender">Sender control</param>
-        /// <param name="e">Event arguments</param>
-        private void FolderEvent(object? sender, EventArgs e)
-        {
-            logger.Info(LOG.FORM_FOLDER);
-            FormManager.DownloadDir(this.fb_directory, this.LBFolder, this.tt_folder);
-        }
-
         /// <summary>
         /// Manages the enabling/disabling of some controls based on the [cb_unzip] CheckBox current status.
         /// </summary>
@@ -104,76 +98,18 @@ namespace OTOI_ADD.View.Generic.ESIOS
         private void UnzipEvent(object? sender, EventArgs e)
         {
             logger.Info(LOG.FORM_UNZIP);
-            if (this.CBUnzip.Checked)
-            {
-                this.CBKeep.Enabled = true;
-                this.CBProcess.Enabled = true;
-                if (this.CBProcess.Checked)
-                {
-                    this.BTFile.Enabled = true;
-                    this.LBFile.Enabled = true;
-                }
-            }
-            else
-            {
-                this.CBKeep.Enabled = false;
-                this.CBProcess.Enabled = false;
-                this.BTFile.Enabled = false;
-                this.LBFile.Enabled = false;
-            }
+            FormManager.EU_Enabler(this.CBUnzip, this.CBProcess, this.CBKeep, this.BTFile, this.LBFile);
         }
 
         /// <summary>
-        /// Manages the enabling/disabling of some controls based on the [cb_process] CheckBox current status.
+        /// Manages the enabling/disabling of some controls based on the [cb_keep] CheckBox current status.
         /// </summary>
         /// <param name="sender">Sender control</param>
         /// <param name="e">Event arguments</param>
         private void ProcessEvent(object? sender, EventArgs e)
         {
             logger.Info(LOG.FORM_PROCESS);
-            if (this.CBProcess.Checked)
-            {
-                this.BTFile.Enabled = true;
-                this.LBFile.Enabled = true;
-            }
-            else
-            {
-                this.BTFile.Enabled = false;
-                this.LBFile.Enabled = false;
-            }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender">Sender control</param>
-        /// <param name="e">Event arguments</param>
-        private void FileEvent(object? sender, EventArgs e)
-        {
-            logger.Info(LOG.FORM_FILE);
-            FormManager.DownloadFil(this.sf_file, this.LBFile, this.tt_file);
-        }
-
-        /// <summary>
-        /// Manages the click event onto the [bt_accept] Button control.
-        /// </summary>
-        /// <param name="sender">Sender control</param>
-        /// <param name="e">Event arguments</param>
-        private void AcceptEvent(object? sender, EventArgs e)
-        {
-            logger.Info(LOG.FORM_ACCEPT);
-            FormManager.FormAccept(this, this.FID);
-        }
-
-        /// <summary>
-        /// Manages the click event onto the [bt_cancel] Button control.
-        /// </summary>
-        /// <param name="sender">Sender control</param>
-        /// <param name="e">Event arguments</param>
-        private void CancelEvent(object? sender, EventArgs e)
-        {
-            logger.Info(LOG.FORM_CANCEL);
-            this.Close();
+            FormManager.EP_Enabler(this.CBProcess, this.BTFile, this.LBFile);
         }
     }
 }

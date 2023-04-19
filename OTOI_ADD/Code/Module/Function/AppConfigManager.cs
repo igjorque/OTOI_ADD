@@ -3,7 +3,7 @@ using log4net.Config;
 using OTOI_ADD.Code.Variable;
 using System.Reflection;
 
-namespace OTOI_ADD.Code.Function
+namespace OTOI_ADD.Code.Module.Function
 {
     /// <summary>
     /// Application Configuration Manager
@@ -15,7 +15,7 @@ namespace OTOI_ADD.Code.Function
         /// </summary>
         internal static void Initialize()
         {
-            RebuildFileSystem();
+            //RebuildFileSystem();
             InitFileSystem();
             InitAppConfig();
             InitLogger();
@@ -29,6 +29,7 @@ namespace OTOI_ADD.Code.Function
         /// </summary>
         private static void RebuildFileSystem()
         {
+            // TODO: USAR SOLO SI SE NECESITA BORRAR LA ESTRUCTURA
             if (Directory.GetCreationTime(GLB.FOLDER_CONFIG) < new DateTime(2023, 4, 12, 13, 38, 0))
             {
                 Directory.Delete(GLB.FOLDER_CONFIG, true);
@@ -51,7 +52,7 @@ namespace OTOI_ADD.Code.Function
 
             // Create logger config file if not exists
             if (!File.Exists(GLB.FIL_L4N)) InitLogConfig();
-            
+
             // Create app parameters file if not exists
             if (!File.Exists(GLB.FIL_CFG)) InitParamConfig();
         }
@@ -70,8 +71,13 @@ namespace OTOI_ADD.Code.Function
             sw.WriteLine("          <level value=\"ALL\" />");
             sw.WriteLine("          <appender-ref ref=\"all_logs_file\" />");
             sw.WriteLine("      </root>");
-            sw.WriteLine("      <appender name=\"all_logs_file\" type=\"log4net.Appender.FileAppender\">");
+            sw.WriteLine("      <appender name=\"all_logs_file\" type=\"log4net.Appender.RollingFileAppender\">");
             sw.WriteLine("          <file value=\"" + GLB.LOC_LOG + "\" />");
+            sw.WriteLine("          <datePattern value=\"'log_'dd-MM-yyyy'.log'\" />");
+            sw.WriteLine("          <staticLogFileName value=\"false\" />");
+            sw.WriteLine("          <appendToFile value=\"true\" />");
+            sw.WriteLine("          <rollingStyle value=\"Composite\" />");
+            sw.WriteLine("          <maxSizeRollBackups value=\"10\" />");
             sw.WriteLine("          <layout type=\"log4net.Layout.PatternLayout\">");
             sw.WriteLine("              <conversionPattern value=\"[%date] > [%level] > [%logger] > %newline   ==> %message %newline %newline\" />");
             sw.WriteLine("          </layout>");

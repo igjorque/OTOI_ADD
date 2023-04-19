@@ -31,7 +31,7 @@
         /// </summary>
         internal static readonly string FORM_CANCEL = "Form Closing";
 
-        // Field Enabling / Disabling
+        // Fields Enabling / Disabling
         /// <summary>
         /// Process checkbox checked status changed log message
         /// </summary>

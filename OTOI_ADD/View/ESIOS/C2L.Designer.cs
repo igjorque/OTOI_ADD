@@ -36,8 +36,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(316, 261);
             this.Name = "C2L";
-            this.Text = "C2 Liquicomun";
             this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion

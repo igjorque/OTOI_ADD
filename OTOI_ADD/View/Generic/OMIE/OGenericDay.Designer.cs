@@ -39,14 +39,13 @@
             this.uc_day.Size = new System.Drawing.Size(314, 31);
             this.uc_day.TabIndex = 2;
             // 
-            // GenericDay
+            // OGenericDay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(316, 229);
             this.Controls.Add(this.uc_day);
-            this.Name = "GenericDay";
-            this.Text = "GenericDay";
+            this.Name = "OGenericDay";
             this.Controls.SetChildIndex(this.uc_day, 0);
             this.ResumeLayout(false);
 

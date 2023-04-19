@@ -1,4 +1,4 @@
-﻿using OTOI_ADD.Code.Function;
+﻿using OTOI_ADD.Code.Module.Function;
 using OTOI_ADD.Code.Variable;
 using System.Reflection;
 
@@ -37,7 +37,6 @@ namespace OTOI_ADD.View.Generic.OMIE
         /// </summary>
         private void LoadFields()
         {
-            this.Text = this.GetType().Name;
             this.CADay.Value = VAR.DATE_DAY;
         }
 

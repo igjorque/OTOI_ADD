@@ -39,15 +39,14 @@
             this.uc_range.Size = new System.Drawing.Size(314, 31);
             this.uc_range.TabIndex = 2;
             // 
-            // GenericRange
+            // OGenericRange
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(316, 229);
             this.Controls.Add(this.uc_range);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
-            this.Name = "GenericRange";
-            this.Text = "GenericRange";
+            this.Name = "OGenericRange";
             this.Controls.SetChildIndex(this.uc_range, 0);
             this.ResumeLayout(false);
 
