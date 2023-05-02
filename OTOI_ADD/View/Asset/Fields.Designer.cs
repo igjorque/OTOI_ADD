@@ -31,13 +31,13 @@
             this.cb_process = new System.Windows.Forms.CheckBox();
             this.lb_link = new System.Windows.Forms.LinkLabel();
             this.cb_keep = new System.Windows.Forms.CheckBox();
-            this.bt_cancel = new System.Windows.Forms.Button();
-            this.bt_accept = new System.Windows.Forms.Button();
-            this.lb_title = new System.Windows.Forms.Label();
+            this.bt_cancel = new OTOI_ADD.View.Asset.Button2();
+            this.bt_accept = new OTOI_ADD.View.Asset.Button2();
             this.bt_fileDest = new System.Windows.Forms.Button();
             this.bt_downloadDir = new System.Windows.Forms.Button();
-            this.lb_bt_downloadDir = new System.Windows.Forms.Label();
-            this.lb_bt_fileDest = new System.Windows.Forms.Label();
+            this.lb_title = new OTOI_ADD.View.Asset.Label2();
+            this.lb_download = new OTOI_ADD.View.Asset.Label2();
+            this.lb_file = new OTOI_ADD.View.Asset.Label2();
             this.SuspendLayout();
             // 
             // cb_process
@@ -89,24 +89,13 @@
             // bt_accept
             // 
             this.bt_accept.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.bt_accept.ForeColor = System.Drawing.SystemColors.ControlText;
             this.bt_accept.Location = new System.Drawing.Point(64, 200);
             this.bt_accept.Name = "bt_accept";
             this.bt_accept.Size = new System.Drawing.Size(75, 23);
             this.bt_accept.TabIndex = 158;
             this.bt_accept.Text = "Aceptar";
             this.bt_accept.UseVisualStyleBackColor = false;
-            // 
-            // lb_title
-            // 
-            this.lb_title.BackColor = System.Drawing.Color.White;
-            this.lb_title.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lb_title.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lb_title.Location = new System.Drawing.Point(1, 6);
-            this.lb_title.Name = "lb_title";
-            this.lb_title.Size = new System.Drawing.Size(276, 40);
-            this.lb_title.TabIndex = 157;
-            this.lb_title.Text = "[Form title]";
-            this.lb_title.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // bt_fileDest
             // 
@@ -126,43 +115,57 @@
             this.bt_downloadDir.Text = "Carpeta destino";
             this.bt_downloadDir.UseVisualStyleBackColor = true;
             // 
-            // lb_bt_downloadDir
+            // lb_title
             // 
-            this.lb_bt_downloadDir.BackColor = System.Drawing.Color.White;
-            this.lb_bt_downloadDir.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lb_bt_downloadDir.Location = new System.Drawing.Point(112, 80);
-            this.lb_bt_downloadDir.Name = "lb_bt_downloadDir";
-            this.lb_bt_downloadDir.Size = new System.Drawing.Size(200, 21);
-            this.lb_bt_downloadDir.TabIndex = 154;
-            this.lb_bt_downloadDir.Text = "Ruta de descarga de archivos";
-            this.lb_bt_downloadDir.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lb_title.BackColor = System.Drawing.Color.White;
+            this.lb_title.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lb_title.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lb_title.Location = new System.Drawing.Point(1, 6);
+            this.lb_title.Name = "lb_title";
+            this.lb_title.Size = new System.Drawing.Size(276, 40);
+            this.lb_title.TabIndex = 165;
+            this.lb_title.Text = "[Form title]";
+            this.lb_title.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // lb_bt_fileDest
+            // lb_download
             // 
-            this.lb_bt_fileDest.BackColor = System.Drawing.Color.White;
-            this.lb_bt_fileDest.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lb_bt_fileDest.Location = new System.Drawing.Point(112, 168);
-            this.lb_bt_fileDest.Name = "lb_bt_fileDest";
-            this.lb_bt_fileDest.Size = new System.Drawing.Size(200, 21);
-            this.lb_bt_fileDest.TabIndex = 153;
-            this.lb_bt_fileDest.Text = "Ruta de archivo final";
-            this.lb_bt_fileDest.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lb_download.BackColor = System.Drawing.Color.White;
+            this.lb_download.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lb_download.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lb_download.Location = new System.Drawing.Point(112, 80);
+            this.lb_download.Name = "lb_download";
+            this.lb_download.Size = new System.Drawing.Size(200, 21);
+            this.lb_download.TabIndex = 166;
+            this.lb_download.Text = "Ruta de descarga de archivos";
+            this.lb_download.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lb_file
+            // 
+            this.lb_file.BackColor = System.Drawing.Color.White;
+            this.lb_file.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lb_file.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lb_file.Location = new System.Drawing.Point(112, 168);
+            this.lb_file.Name = "lb_file";
+            this.lb_file.Size = new System.Drawing.Size(200, 21);
+            this.lb_file.TabIndex = 167;
+            this.lb_file.Text = "Ruta de archivo final";
+            this.lb_file.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // Fields
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
+            this.Controls.Add(this.lb_file);
+            this.Controls.Add(this.lb_download);
+            this.Controls.Add(this.lb_title);
             this.Controls.Add(this.cb_process);
             this.Controls.Add(this.lb_link);
             this.Controls.Add(this.cb_keep);
             this.Controls.Add(this.bt_cancel);
             this.Controls.Add(this.bt_accept);
-            this.Controls.Add(this.lb_title);
             this.Controls.Add(this.bt_fileDest);
             this.Controls.Add(this.bt_downloadDir);
-            this.Controls.Add(this.lb_bt_downloadDir);
-            this.Controls.Add(this.lb_bt_fileDest);
             this.Name = "Fields";
             this.Size = new System.Drawing.Size(314, 233);
             this.ResumeLayout(false);
@@ -175,12 +178,12 @@
         internal CheckBox cb_process;
         internal LinkLabel lb_link;
         internal CheckBox cb_keep;
-        internal Button bt_cancel;
-        internal Button bt_accept;
-        internal Label lb_title;
+        internal Button2 bt_cancel;
+        internal Button2 bt_accept;
         internal Button bt_fileDest;
         internal Button bt_downloadDir;
-        internal Label lb_bt_downloadDir;
-        internal Label lb_bt_fileDest;
+        internal Label2 lb_title;
+        internal Label2 lb_download;
+        internal Label2 lb_file;
     }
 }

@@ -1,4 +1,5 @@
 ﻿using OTOI_ADD.Code.Module.Function;
+using OTOI_ADD.Code.Module.Style;
 using OTOI_ADD.Code.Variable;
 using OTOI_ADD.View.Asset.Control;
 using System.Reflection;
@@ -29,6 +30,13 @@ namespace OTOI_ADD.View.Generic.ESIOS
         public EGenericMonth(int FID) : base(FID)
         {
             InitializeComponent();
+
+            List<Object> controls = new List<Object>
+            {
+                this.MPMonth, this.uc_month, this.CBUnzip
+            };
+            Styler.SetStyle(controls);
+
             LoadFields();
             LoadEvents();
         }

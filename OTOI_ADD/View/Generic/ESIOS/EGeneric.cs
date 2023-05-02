@@ -1,4 +1,5 @@
 ﻿using OTOI_ADD.Code.Module.Function;
+using OTOI_ADD.Code.Module.Style;
 using OTOI_ADD.Code.Variable;
 using System.Reflection;
 
@@ -20,6 +21,13 @@ namespace OTOI_ADD.View.Generic.ESIOS
         public EGeneric() : base()
         {
             InitializeComponent();
+
+            List<Object> controls = new List<Object>
+            {
+                this.CBUnzip
+            };
+            Styler.SetStyle(controls);
+
             ArrangeFields();
         }
 

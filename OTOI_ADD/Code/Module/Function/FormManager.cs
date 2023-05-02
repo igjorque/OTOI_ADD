@@ -2,6 +2,7 @@
 using OTOI_ADD.Code.Class;
 using OTOI_ADD.Code.Module.Download;
 using OTOI_ADD.Code.Variable;
+using OTOI_ADD.View.Asset;
 using OTOI_ADD.View.ESIOS;
 using OTOI_ADD.View.Generic.OMIE;
 using OTOI_ADD.View.OMIE;
@@ -138,7 +139,7 @@ namespace OTOI_ADD.Code.Module.Function
         /// <param name="cb_keep">Control to enable or disable</param>
         /// <param name="bt_file">Control to enable or disable</param>
         /// <param name="lb_file">Control to enable or disable</param>
-        internal static void OP_Enabler(CheckBox cb_process, CheckBox cb_keep, Button bt_file, Label lb_file)
+        internal static void OP_Enabler(CheckBox cb_process, CheckBox cb_keep, Button bt_file, Label2 lb_file)
         {
             if (cb_process != null && cb_process.Checked)
             {
@@ -160,7 +161,7 @@ namespace OTOI_ADD.Code.Module.Function
         /// <param name="cb_process">Object representing the sender CheckBox.</param>
         /// <param name="bt_file">Control to enable or disable</param>
         /// <param name="lb_file">Control to enable or disable</param>
-        internal static void EP_Enabler(CheckBox cb_process, Button bt_file, Label lb_file)
+        internal static void EP_Enabler(CheckBox cb_process, Button bt_file, Label2 lb_file)
         {
             if (cb_process != null && cb_process.Checked)
             {
@@ -180,9 +181,9 @@ namespace OTOI_ADD.Code.Module.Function
         /// <param name="cb_unzip">Object representing the sender CheckBox. TODO: update</param>
         /// <param name="cb_process">Object representing the sender CheckBox. TODO: update</param>
         /// <param name="cb_keep">Control to enable or disable</param>
-        /// <param name="bt_fileDest">Control to enable or disable</param>
-        /// <param name="lb_bt_fileDest">Control to enable or disable</param>
-        internal static void EU_Enabler(CheckBox cb_unzip, CheckBox cb_process, CheckBox cb_keep, Button bt_fileDest, Label lb_bt_fileDest)
+        /// <param name="bt_file">Control to enable or disable</param>
+        /// <param name="lb_file">Control to enable or disable</param>
+        internal static void EU_Enabler(CheckBox cb_unzip, CheckBox cb_process, CheckBox cb_keep, Button bt_file, Label2 lb_file)
         {
             if (cb_unzip.Checked)
             {
@@ -190,16 +191,16 @@ namespace OTOI_ADD.Code.Module.Function
                 cb_process.Enabled = true;
                 if (cb_process.Checked)
                 {
-                    bt_fileDest.Enabled = true;
-                    lb_bt_fileDest.Enabled = true;
+                    bt_file.Enabled = true;
+                    lb_file.Enabled = true;
                 }
             }
             else
             {
                 cb_keep.Enabled = false;
                 cb_process.Enabled = false;
-                bt_fileDest.Enabled = false;
-                lb_bt_fileDest.Enabled = false;
+                bt_file.Enabled = false;
+                lb_file.Enabled = false;
             }
         }
 
@@ -247,16 +248,16 @@ namespace OTOI_ADD.Code.Module.Function
         /// Manages the directory selection dialog.
         /// </summary>
         /// <param name="fb_directory">Dialog to show</param>
-        /// <param name="lb_bt_downloadDir">Label to update</param>
+        /// <param name="lb_download">Label to update</param>
         /// <param name="tt_folder">Tooltip to update</param>
-        internal static void DownloadDir(FolderBrowserDialog fb_directory, Label lb_bt_downloadDir, ToolTip tt_folder)
+        internal static void DownloadDir(FolderBrowserDialog fb_directory, Label2 lb_download, ToolTip tt_folder)
         {
             fb_directory.ShowNewFolderButton = true;
             fb_directory.InitialDirectory = VAR.CURRENT_DIRECTORY;
             if (fb_directory.ShowDialog() == DialogResult.OK)
             {
-                lb_bt_downloadDir.Text = fb_directory.SelectedPath;
-                tt_folder.SetToolTip(lb_bt_downloadDir, lb_bt_downloadDir.Text);
+                lb_download.Text = fb_directory.SelectedPath;
+                tt_folder.SetToolTip(lb_download, lb_download.Text);
                 VAR.CURRENT_DIRECTORY = fb_directory.SelectedPath;
             }
         }
@@ -265,9 +266,9 @@ namespace OTOI_ADD.Code.Module.Function
         /// Manages the file destination dialog.
         /// </summary>
         /// <param name="sf_file">Dialog to show</param>
-        /// <param name="lb_bt_file">Label to update</param>
+        /// <param name="lb_file">Label to update</param>
         /// <param name="tt_file">Tooltip to update</param>
-        internal static void DownloadFil(SaveFileDialog sf_file, Label lb_bt_file, ToolTip tt_file)
+        internal static void DownloadFil(SaveFileDialog sf_file, Label2 lb_file, ToolTip tt_file)
         {
             sf_file.InitialDirectory = VAR.CURRENT_DIRECTORY;
             sf_file.Filter = "Archivos XLS | *.xls";
@@ -275,8 +276,8 @@ namespace OTOI_ADD.Code.Module.Function
 
             if (sf_file.ShowDialog() == DialogResult.OK)
             {
-                lb_bt_file.Text = Path.GetFileName(sf_file.FileName);
-                tt_file.SetToolTip(lb_bt_file, sf_file.FileName);
+                lb_file.Text = Path.GetFileName(sf_file.FileName);
+                tt_file.SetToolTip(lb_file, sf_file.FileName);
             }
         }
 

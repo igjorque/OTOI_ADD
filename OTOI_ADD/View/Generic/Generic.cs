@@ -1,5 +1,7 @@
 ﻿using OTOI_ADD.Code.Module.Function;
+using OTOI_ADD.Code.Module.Style;
 using OTOI_ADD.Code.Variable;
+using OTOI_ADD.View.Asset;
 using System.Reflection;
 
 namespace OTOI_ADD.View.Generic
@@ -17,13 +19,13 @@ namespace OTOI_ADD.View.Generic
         internal Label LBTitle { get => this.uc_f.lb_title; }
         internal LinkLabel LBLink { get => this.uc_f.lb_link; }
         internal Button BTFolder { get => this.uc_f.bt_downloadDir; }
-        internal Label LBFolder { get => this.uc_f.lb_bt_downloadDir; }
+        internal Label2 LBFolder { get => this.uc_f.lb_download; }
         internal CheckBox CBProcess { get => this.uc_f.cb_process; }
         internal CheckBox CBKeep { get => this.uc_f.cb_keep; }
         internal Button BTFile { get => this.uc_f.bt_fileDest; }
-        internal Label LBFile { get => this.uc_f.lb_bt_fileDest; }
-        internal Button BTAccept { get => this.uc_f.bt_accept; }
-        internal Button BTCancel { get => this.uc_f.bt_cancel; }
+        internal Label2 LBFile { get => this.uc_f.lb_file; }
+        internal Button2 BTAccept { get => this.uc_f.bt_accept; }
+        internal Button2 BTCancel { get => this.uc_f.bt_cancel; }
 
         /// <summary>
         /// Empty Generic form constructor.
@@ -40,6 +42,11 @@ namespace OTOI_ADD.View.Generic
         {
             this.fid = FID;
             InitializeComponent();
+            List<Object> controls = new List<Object>
+            {
+                this.uc_f, this.LBTitle, this.LBLink, this.BTFolder, this.LBFolder, this.CBProcess, this.CBKeep, this.BTFile, this.LBFile, this.BTAccept, this.BTCancel
+            };
+            Styler.SetStyle(controls);
             LoadEvents();
         }
 

@@ -1,4 +1,5 @@
 ﻿using OTOI_ADD.Code.Module.Function;
+using OTOI_ADD.Code.Module.Style;
 using OTOI_ADD.Code.Variable;
 using System.Reflection;
 
@@ -28,6 +29,13 @@ namespace OTOI_ADD.View.Generic.OMIE
         public OGenericDay(int FID) : base(FID)
         {
             InitializeComponent();
+
+            List<Object> controls = new List<Object>
+            {
+                this.CADay, this.uc_day
+            };
+            Styler.SetStyle(controls);
+
             LoadFields();
             LoadEvents();
         }

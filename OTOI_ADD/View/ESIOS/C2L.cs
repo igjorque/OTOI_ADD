@@ -1,4 +1,5 @@
-﻿using OTOI_ADD.Code.Variable;
+﻿using OTOI_ADD.Code.Module.Style;
+using OTOI_ADD.Code.Variable;
 using OTOI_ADD.View.Generic.ESIOS;
 using System.Reflection;
 

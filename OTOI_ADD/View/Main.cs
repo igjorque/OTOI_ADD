@@ -1,6 +1,6 @@
+using OTOI_ADD.Code.Module.Style;
 using OTOI_ADD.Code.Variable;
 using OTOI_ADD.View.ESIOS;
-using OTOI_ADD.View.Generic.OMIE;
 using OTOI_ADD.View.OMIE;
 using System.Diagnostics;
 using System.Reflection;
@@ -21,6 +21,28 @@ namespace OTOI_ADD.View
         {
             logger.Info(LOG.MAIN_BUILD);
             InitializeComponent();
+            Styler.SetStyle(GetControls());
+            SetImage();
+        }
+
+        private List<Object> GetControls()
+        {
+            List<Object> controls = new List<Object>
+            {
+                this.ms_menu, 
+                this.tsmi_menu, this.tsmi_config, this.tsmi_exit,
+                this.tsmi_downloads, this.tsmi_omie, this.tsmi_HPCM, this.tsmi_HMM, this.tsmi_HMT,
+                                    this.tsmi_esios, this.tsmi_c2l,
+                                    this.tsmi_downloadFolder,
+                this.tsmi_folder, this.tsmi_openDir, this.tsmi_installDir, this.tsmi_configDir, this.tsmi_downloadDir, this.tsmi_logsDir,
+                                    this.tsmi_log, this.tsmi_logSend,
+                                    this.tsmi_old, this.tsmi_HPC, this.tsmi_HM,
+                                    this.tsmi_test,
+                this.tsmi_help, this.tsmi_doc, this.tsmi_about,
+
+                this.tss_file, this.tss_download1, this.tss_download2, this.tss_utility, this.tss_help
+            };
+            return controls;
         }
 
         // ----------------------------------------------------------------------------------------- 
@@ -295,6 +317,119 @@ namespace OTOI_ADD.View
             Test t = new();
             t.MdiParent = this;
             t.Show();
+        }
+
+        private void SetImage()
+        {
+            if (Styler.MODE)
+            {
+                this.tsmi_mode.Image = OTOI_ADD.Properties.Resources.dark;
+
+                this.tsmi_config.Image = OTOI_ADD.Properties.Resources.gear_dark;
+                this.tsmi_exit.Image = OTOI_ADD.Properties.Resources.exit_dark;
+
+                this.tsmi_downloadFolder.Image = OTOI_ADD.Properties.Resources.folder_dark;
+
+                this.tsmi_log.Image = OTOI_ADD.Properties.Resources.log_dark;
+
+                this.tsmi_openDir.Image = OTOI_ADD.Properties.Resources.folder_dark;
+                this.tsmi_installDir.Image = OTOI_ADD.Properties.Resources.folder_dark;
+                this.tsmi_configDir.Image = OTOI_ADD.Properties.Resources.folder_dark;
+                this.tsmi_downloadDir.Image = OTOI_ADD.Properties.Resources.folder_dark;
+                this.tsmi_logsDir.Image = OTOI_ADD.Properties.Resources.folder_dark;
+
+                this.tsmi_doc.Image = OTOI_ADD.Properties.Resources.file_dark;
+                this.tsmi_about.Image = OTOI_ADD.Properties.Resources.about_dark;
+
+                this.tsmi_menu.BackgroundImage = OTOI_ADD.Properties.Resources.button_dark;
+                this.tsmi_menu.BackgroundImageLayout = ImageLayout.Stretch;
+                this.tsmi_downloads.BackgroundImage = OTOI_ADD.Properties.Resources.button_dark;
+                this.tsmi_downloads.BackgroundImageLayout = ImageLayout.Stretch;
+                this.tsmi_folder.BackgroundImage = OTOI_ADD.Properties.Resources.button_dark;
+                this.tsmi_folder.BackgroundImageLayout = ImageLayout.Stretch;
+                this.tsmi_help.BackgroundImage = OTOI_ADD.Properties.Resources.button_dark;
+                this.tsmi_help.BackgroundImageLayout = ImageLayout.Stretch;
+                this.tsmi_mode.BackgroundImage = OTOI_ADD.Properties.Resources.button_dark;
+                this.tsmi_mode.BackgroundImageLayout = ImageLayout.Stretch;
+            }
+            else
+            {
+                this.tsmi_mode.Image = OTOI_ADD.Properties.Resources.light;
+                
+                this.tsmi_config.Image = OTOI_ADD.Properties.Resources.gear_light;
+                this.tsmi_exit.Image = OTOI_ADD.Properties.Resources.exit_light;
+
+                this.tsmi_downloadFolder.Image = OTOI_ADD.Properties.Resources.folder_light;
+
+                this.tsmi_log.Image = OTOI_ADD.Properties.Resources.log_light;
+
+                this.tsmi_openDir.Image = OTOI_ADD.Properties.Resources.folder_light;
+                this.tsmi_installDir.Image = OTOI_ADD.Properties.Resources.folder_light;
+                this.tsmi_configDir.Image = OTOI_ADD.Properties.Resources.folder_light;
+                this.tsmi_downloadDir.Image = OTOI_ADD.Properties.Resources.folder_light;
+                this.tsmi_logsDir.Image = OTOI_ADD.Properties.Resources.folder_light;
+
+                this.tsmi_doc.Image = OTOI_ADD.Properties.Resources.file_light;
+                this.tsmi_about.Image = OTOI_ADD.Properties.Resources.about_light;
+
+                this.tsmi_menu.BackgroundImage = OTOI_ADD.Properties.Resources.button_light;
+                this.tsmi_menu.BackgroundImageLayout = ImageLayout.Stretch;
+                this.tsmi_downloads.BackgroundImage = OTOI_ADD.Properties.Resources.button_light;
+                this.tsmi_downloads.BackgroundImageLayout = ImageLayout.Stretch;
+                this.tsmi_folder.BackgroundImage = OTOI_ADD.Properties.Resources.button_light;
+                this.tsmi_folder.BackgroundImageLayout = ImageLayout.Stretch;
+                this.tsmi_help.BackgroundImage = OTOI_ADD.Properties.Resources.button_light;
+                this.tsmi_help.BackgroundImageLayout = ImageLayout.Stretch;
+                this.tsmi_mode.BackgroundImage = OTOI_ADD.Properties.Resources.button_light;
+                this.tsmi_mode.BackgroundImageLayout = ImageLayout.Stretch;
+            }
+        }
+
+        private void ModeSwitch(object sender, EventArgs e)
+        {
+            if (!Styler.MODE) 
+            {
+                // Dark
+                Styler.MODE = true;
+                this.tsmi_mode.Text = "Oscuro";
+
+                SetImage();
+                
+                Styler.SetStyle(GetControls());
+                this.tsmi_mode.ForeColor = Color.Black;
+                this.tsmi_mode.BackColor = Color.Gray;
+            }
+            else
+            {
+                // Light
+                Styler.MODE = false;
+                this.tsmi_mode.Text = "Claro";
+
+                SetImage();
+
+                Styler.SetStyle(GetControls());
+                this.tsmi_mode.ForeColor = Color.Black;
+                this.tsmi_mode.BackColor = Color.White;
+            }
+        }
+
+        private void DropDownOpened(object sender, EventArgs e)
+        {
+            ToolStripMenuItem tsmi = (ToolStripMenuItem)sender;
+            tsmi.ForeColor = Color.Black;
+        }
+
+        private void DropDownClosed(object sender, EventArgs e)
+        {
+            ToolStripMenuItem tsmi = (ToolStripMenuItem)sender;
+            if (Styler.MODE)
+            {
+                tsmi.ForeColor = ColorScheme.TSMI_TEXT_D;
+            }
+            else
+            {
+                tsmi.ForeColor = ColorScheme.TSMI_TEXT_L;
+            }
         }
     }
 }

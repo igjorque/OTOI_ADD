@@ -2,7 +2,9 @@
 using OTOI_ADD.Code.Module.Download;
 using OTOI_ADD.Code.Module.Function;
 using OTOI_ADD.Code.Module.Process;
+using OTOI_ADD.Code.Module.Style;
 using OTOI_ADD.Code.Variable;
+using System.Diagnostics;
 using System.IO.Compression;
 using System.Reflection;
 
@@ -17,12 +19,22 @@ namespace OTOI_ADD.View.Asset
 
         internal static List<string> FILES = new();
 
+        internal Label LBDownload { get => this.lb_download; }
+        internal Label LBUrl { get => this.lb_url; }
+        internal Label LBUrlValue { get => this.lb_url_value; }
+        internal ProgressBar PBProgress { get => this.pb_progress; }
+
         /// <summary>
         /// Base empty constructor.
         /// </summary>
         public ProgressDialog()
         {
             InitializeComponent();
+            List<Object> controls = new List<Object>
+            {
+                this.LBDownload, this.LBUrl, this.LBUrlValue, this.PBProgress, this
+            };
+            Styler.SetStyle(controls);
             FILES = new();
         }
 

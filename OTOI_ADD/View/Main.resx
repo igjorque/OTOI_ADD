@@ -60,13 +60,23 @@
   <metadata name="ms_menu.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>24, 4</value>
   </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="tsmi_mode.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6
+        JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAA2klEQVQ4T73TMQsBYRjA8RtkkcWKksFm
+        kc9gURaLD+AjKIOBUSmL2SgL5RMoX0Ams0GyyGbE/7nnpbvu7s1R/vXrHtddvXfvcf7R0Ry/7mSOH3VH
+        Vke3OlpIuL+0hzlGNsUMN7TRxB5nNJCGtTEmGGApJ0xlXHS0J0ss6hhojYyO/nIoIIk55BHCklX0Idfm
+        5cSrIUaQl7WQExFV0INcK/eEZnvLW6R0jK6DlY6+ajjoaG8D2QFZiSyziyt2kG31fieB5CbvPpdQ1fGd
+        fGyxivUph/Xzn8mS4zwB72EiskpO44EAAAAASUVORK5CYII=
+</value>
+  </data>
   <metadata name="tt_menu.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>127, 6</value>
   </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>33</value>
   </metadata>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="$this.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAYAAAA+s9J6AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6

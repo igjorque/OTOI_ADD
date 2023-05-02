@@ -1,4 +1,6 @@
-﻿namespace OTOI_ADD.View
+﻿using OTOI_ADD.View.Asset;
+
+namespace OTOI_ADD.View
 {
     partial class Main
     {
@@ -31,21 +33,21 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.ms_menu = new System.Windows.Forms.MenuStrip();
-            this.tsmi_file = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmi_menu = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_config = new System.Windows.Forms.ToolStripMenuItem();
-            this.tss_file = new System.Windows.Forms.ToolStripSeparator();
+            this.tss_file = new OTOI_ADD.View.Asset.ToolStripSeparator2();
             this.tsmi_exit = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_downloads = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_omie = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_HPCM = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_HMM = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_HMT = new System.Windows.Forms.ToolStripMenuItem();
-            this.tss_download1 = new System.Windows.Forms.ToolStripSeparator();
+            this.tss_download1 = new OTOI_ADD.View.Asset.ToolStripSeparator2();
             this.tsmi_esios = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_c2l = new System.Windows.Forms.ToolStripMenuItem();
-            this.tss_download2 = new System.Windows.Forms.ToolStripSeparator();
+            this.tss_download2 = new OTOI_ADD.View.Asset.ToolStripSeparator2();
             this.tsmi_downloadFolder = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmi_utility = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmi_folder = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_openDir = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_installDir = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_configDir = new System.Windows.Forms.ToolStripMenuItem();
@@ -53,42 +55,49 @@
             this.tsmi_logsDir = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_log = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_logSend = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.tss_utility = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator3 = new OTOI_ADD.View.Asset.ToolStripSeparator2();
+            this.tss_utility = new OTOI_ADD.View.Asset.ToolStripSeparator2();
             this.tsmi_old = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_HPC = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_HM = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_test = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_help = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_doc = new System.Windows.Forms.ToolStripMenuItem();
-            this.tss_help = new System.Windows.Forms.ToolStripSeparator();
+            this.tss_help = new OTOI_ADD.View.Asset.ToolStripSeparator2();
             this.tsmi_about = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmi_mode = new System.Windows.Forms.ToolStripMenuItem();
             this.tt_menu = new System.Windows.Forms.ToolTip(this.components);
             this.ms_menu.SuspendLayout();
             this.SuspendLayout();
             // 
             // ms_menu
             // 
+            this.ms_menu.AutoSize = false;
+            this.ms_menu.BackColor = System.Drawing.SystemColors.Control;
             this.ms_menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmi_file,
+            this.tsmi_menu,
             this.tsmi_downloads,
-            this.tsmi_utility,
-            this.tsmi_help});
+            this.tsmi_folder,
+            this.tsmi_help,
+            this.tsmi_mode});
             this.ms_menu.Location = new System.Drawing.Point(0, 0);
             this.ms_menu.Name = "ms_menu";
-            this.ms_menu.Size = new System.Drawing.Size(499, 24);
+            this.ms_menu.Size = new System.Drawing.Size(499, 30);
             this.ms_menu.TabIndex = 22;
             this.ms_menu.Text = "menuStrip1";
             // 
-            // tsmi_file
+            // tsmi_menu
             // 
-            this.tsmi_file.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmi_menu.AutoSize = false;
+            this.tsmi_menu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmi_config,
             this.tss_file,
             this.tsmi_exit});
-            this.tsmi_file.Name = "tsmi_file";
-            this.tsmi_file.Size = new System.Drawing.Size(60, 20);
-            this.tsmi_file.Text = "Archivo";
+            this.tsmi_menu.Name = "tsmi_menu";
+            this.tsmi_menu.Size = new System.Drawing.Size(70, 26);
+            this.tsmi_menu.Text = "Menú";
+            this.tsmi_menu.DropDownClosed += new System.EventHandler(this.DropDownClosed);
+            this.tsmi_menu.DropDownOpened += new System.EventHandler(this.DropDownOpened);
             // 
             // tsmi_config
             // 
@@ -112,6 +121,7 @@
             // 
             // tsmi_downloads
             // 
+            this.tsmi_downloads.AutoSize = false;
             this.tsmi_downloads.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmi_omie,
             this.tss_download1,
@@ -119,8 +129,10 @@
             this.tss_download2,
             this.tsmi_downloadFolder});
             this.tsmi_downloads.Name = "tsmi_downloads";
-            this.tsmi_downloads.Size = new System.Drawing.Size(72, 20);
+            this.tsmi_downloads.Size = new System.Drawing.Size(70, 26);
             this.tsmi_downloads.Text = "Descargas";
+            this.tsmi_downloads.DropDownClosed += new System.EventHandler(this.DropDownClosed);
+            this.tsmi_downloads.DropDownOpened += new System.EventHandler(this.DropDownOpened);
             // 
             // tsmi_omie
             // 
@@ -189,17 +201,20 @@
             this.tsmi_downloadFolder.Text = "Ver descargas";
             this.tsmi_downloadFolder.Click += new System.EventHandler(this.DownloadDir);
             // 
-            // tsmi_utility
+            // tsmi_folder
             // 
-            this.tsmi_utility.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmi_folder.AutoSize = false;
+            this.tsmi_folder.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmi_openDir,
             this.tsmi_log,
             this.tss_utility,
             this.tsmi_old,
             this.tsmi_test});
-            this.tsmi_utility.Name = "tsmi_utility";
-            this.tsmi_utility.Size = new System.Drawing.Size(71, 20);
-            this.tsmi_utility.Text = "Utilidades";
+            this.tsmi_folder.Name = "tsmi_folder";
+            this.tsmi_folder.Size = new System.Drawing.Size(70, 26);
+            this.tsmi_folder.Text = "Carpetas";
+            this.tsmi_folder.DropDownClosed += new System.EventHandler(this.DropDownClosed);
+            this.tsmi_folder.DropDownOpened += new System.EventHandler(this.DropDownOpened);
             // 
             // tsmi_openDir
             // 
@@ -215,28 +230,28 @@
             // tsmi_installDir
             // 
             this.tsmi_installDir.Name = "tsmi_installDir";
-            this.tsmi_installDir.Size = new System.Drawing.Size(180, 22);
+            this.tsmi_installDir.Size = new System.Drawing.Size(161, 22);
             this.tsmi_installDir.Text = "Instalación";
             this.tsmi_installDir.Click += new System.EventHandler(this.InstallDir);
             // 
             // tsmi_configDir
             // 
             this.tsmi_configDir.Name = "tsmi_configDir";
-            this.tsmi_configDir.Size = new System.Drawing.Size(180, 22);
+            this.tsmi_configDir.Size = new System.Drawing.Size(161, 22);
             this.tsmi_configDir.Text = "Configuraciones";
             this.tsmi_configDir.Click += new System.EventHandler(this.ConfigDir);
             // 
             // tsmi_downloadDir
             // 
             this.tsmi_downloadDir.Name = "tsmi_downloadDir";
-            this.tsmi_downloadDir.Size = new System.Drawing.Size(180, 22);
+            this.tsmi_downloadDir.Size = new System.Drawing.Size(161, 22);
             this.tsmi_downloadDir.Text = "Descargas";
             this.tsmi_downloadDir.Click += new System.EventHandler(this.DownloadDir);
             // 
             // tsmi_logsDir
             // 
             this.tsmi_logsDir.Name = "tsmi_logsDir";
-            this.tsmi_logsDir.Size = new System.Drawing.Size(180, 22);
+            this.tsmi_logsDir.Size = new System.Drawing.Size(161, 22);
             this.tsmi_logsDir.Text = "Logs";
             this.tsmi_logsDir.Click += new System.EventHandler(this.LogsDir);
             // 
@@ -253,17 +268,18 @@
             // 
             this.tsmi_logSend.Enabled = false;
             this.tsmi_logSend.Name = "tsmi_logSend";
-            this.tsmi_logSend.Size = new System.Drawing.Size(180, 22);
+            this.tsmi_logSend.Size = new System.Drawing.Size(131, 22);
             this.tsmi_logSend.Text = "Enviar logs";
             this.tsmi_logSend.Click += new System.EventHandler(this.SendLogs);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(128, 6);
             // 
             // tss_utility
             // 
+            this.tss_utility.BackColor = System.Drawing.SystemColors.Control;
             this.tss_utility.Name = "tss_utility";
             this.tss_utility.Size = new System.Drawing.Size(177, 6);
             // 
@@ -302,13 +318,16 @@
             // 
             // tsmi_help
             // 
+            this.tsmi_help.AutoSize = false;
             this.tsmi_help.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmi_doc,
             this.tss_help,
             this.tsmi_about});
             this.tsmi_help.Name = "tsmi_help";
-            this.tsmi_help.Size = new System.Drawing.Size(53, 20);
+            this.tsmi_help.Size = new System.Drawing.Size(70, 26);
             this.tsmi_help.Text = "Ayuda";
+            this.tsmi_help.DropDownClosed += new System.EventHandler(this.DropDownClosed);
+            this.tsmi_help.DropDownOpened += new System.EventHandler(this.DropDownOpened);
             // 
             // tsmi_doc
             // 
@@ -329,6 +348,18 @@
             this.tsmi_about.Text = "Acerca de";
             this.tsmi_about.Click += new System.EventHandler(this.About);
             // 
+            // tsmi_mode
+            // 
+            this.tsmi_mode.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsmi_mode.AutoSize = false;
+            this.tsmi_mode.BackColor = System.Drawing.Color.White;
+            this.tsmi_mode.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.tsmi_mode.Image = ((System.Drawing.Image)(resources.GetObject("tsmi_mode.Image")));
+            this.tsmi_mode.Name = "tsmi_mode";
+            this.tsmi_mode.Size = new System.Drawing.Size(80, 26);
+            this.tsmi_mode.Text = "Claro";
+            this.tsmi_mode.Click += new System.EventHandler(this.ModeSwitch);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -347,14 +378,13 @@
             this.ms_menu.ResumeLayout(false);
             this.ms_menu.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
         private MenuStrip ms_menu;
-        private ToolStripMenuItem tsmi_file;
+        private ToolStripMenuItem tsmi_menu;
         private ToolStripMenuItem tsmi_downloads;
         private ToolStripMenuItem tsmi_omie;
         private ToolStripMenuItem tsmi_exit;
@@ -363,29 +393,30 @@
         private ToolStripMenuItem tsmi_HMM;
         private ToolStripMenuItem tsmi_esios;
         private ToolStripMenuItem tsmi_c2l;
-        private ToolStripMenuItem tsmi_utility;
+        private ToolStripMenuItem tsmi_folder;
         private ToolStripMenuItem tsmi_log;
         private ToolStripMenuItem tsmi_HMT;
-        private ToolStripSeparator tss_utility;
         private ToolStripMenuItem tsmi_old;
         private ToolStripMenuItem tsmi_HPC;
         private ToolStripMenuItem tsmi_HM;
         private ToolStripMenuItem tsmi_test;
-        private ToolStripSeparator tss_file;
-        private ToolStripSeparator toolStripSeparator3;
+        private ToolStripSeparator2 toolStripSeparator3;
         private ToolStripMenuItem tsmi_logSend;
-        private ToolStripSeparator tss_download1;
         private ToolStripMenuItem tsmi_help;
         private ToolStripMenuItem tsmi_doc;
         private ToolStripMenuItem tsmi_about;
-        private ToolStripSeparator tss_help;
         private ToolStripMenuItem tsmi_openDir;
         private ToolStripMenuItem tsmi_installDir;
         private ToolStripMenuItem tsmi_configDir;
         private ToolStripMenuItem tsmi_downloadDir;
         private ToolStripMenuItem tsmi_logsDir;
-        private ToolStripSeparator tss_download2;
         private ToolStripMenuItem tsmi_downloadFolder;
         private ToolStripMenuItem tsmi_config;
+        internal ToolStripMenuItem tsmi_mode;
+        internal ToolStripSeparator2 tss_utility;
+        internal ToolStripSeparator2 tss_file;
+        internal ToolStripSeparator2 tss_download1;
+        internal ToolStripSeparator2 tss_help;
+        internal ToolStripSeparator2 tss_download2;
     }
 }

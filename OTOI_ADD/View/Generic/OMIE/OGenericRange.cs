@@ -1,4 +1,5 @@
 ﻿using OTOI_ADD.Code.Module.Function;
+using OTOI_ADD.Code.Module.Style;
 using OTOI_ADD.Code.Variable;
 using System.Reflection;
 
@@ -30,6 +31,13 @@ namespace OTOI_ADD.View.Generic.OMIE
         public OGenericRange(int FID) : base(FID)
         {
             InitializeComponent();
+
+            List<Object> controls = new List<Object>
+            {
+                this.CAStart, this.CAEnd, this.uc_range
+            };
+            Styler.SetStyle(controls);
+
             LoadFields();
             LoadEvents();
         }
