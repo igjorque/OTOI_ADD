@@ -43,13 +43,16 @@ namespace OTOI_ADD.View
                 this.tsmi_downloads, this.tsmi_omie, this.tsmi_HPCM, this.tsmi_HMM, this.tsmi_HMT,
                                     this.tsmi_esios, this.tsmi_c2l,
                                     this.tsmi_downloadFolder,
+                                    this.tsmi_clear,
                 this.tsmi_folder, this.tsmi_openDir, this.tsmi_installDir, this.tsmi_configDir, this.tsmi_downloadDir, this.tsmi_logsDir,
                                     this.tsmi_log, this.tsmi_logSend,
                                     this.tsmi_old, this.tsmi_HPC, this.tsmi_HM,
                                     this.tsmi_test,
                 this.tsmi_help, this.tsmi_doc, this.tsmi_about,
 
-                this.tss_file, this.tss_download1, this.tss_download2, this.tss_utility, this.tss_help
+                this.tss_file, this.tss_download1, this.tss_download2, this.tss_utility, this.tss_help_2, this.tss_help_2, 
+                
+                this.tsmi_test // TODO: delete
             };
         }
 
