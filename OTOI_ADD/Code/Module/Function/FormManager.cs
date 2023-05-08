@@ -23,9 +23,8 @@ namespace OTOI_ADD.Code.Module.Function
         {
             logger.Info(LOG.FORM_MANAGE);
 
-            // TODO: check saving
             // Save user input to config
-            //AppConfigManager.Save();
+            if (OTOI_ADD.Properties.Settings.Default.CFG_SAVE) AppConfigManager.Save(f, FID);
 
             // Manage forms
             switch (FID)
@@ -42,7 +41,7 @@ namespace OTOI_ADD.Code.Module.Function
                     ManageMonthESIOS(f);
                     break;
                 case 6: // C2LM
-                    ManageMonthOMIE(f); // TODO: revisar, refactorizar
+                    ManageMonthOMIE(f);
                     break;
             }
         }
@@ -99,7 +98,6 @@ namespace OTOI_ADD.Code.Module.Function
             f.Close();
         }
 
-        // TODO: check
         /// <summary>
         /// Manages the click event on an accept button for an OMIEs MonthGeneric type form.
         /// </summary>
@@ -239,7 +237,7 @@ namespace OTOI_ADD.Code.Module.Function
             }
             catch (Exception ex)
             {
-                // TODO: log link no abierto
+                logger.Warn("No se ha podido abrir el enlace.");
                 MessageBox.Show("No se ha podido abrir el enlace.\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -253,12 +251,12 @@ namespace OTOI_ADD.Code.Module.Function
         internal static void DownloadDir(FolderBrowserDialog fb_directory, Label2 lb_download, ToolTip tt_folder)
         {
             fb_directory.ShowNewFolderButton = true;
-            fb_directory.InitialDirectory = VAR.CURRENT_DIRECTORY;
+            fb_directory.InitialDirectory = OTOI_ADD.Properties.Settings.Default.DIRECTORY;
             if (fb_directory.ShowDialog() == DialogResult.OK)
             {
                 lb_download.Text = fb_directory.SelectedPath;
                 tt_folder.SetToolTip(lb_download, lb_download.Text);
-                VAR.CURRENT_DIRECTORY = fb_directory.SelectedPath;
+                OTOI_ADD.Properties.Settings.Default.DIRECTORY = fb_directory.SelectedPath;
             }
         }
 
@@ -270,7 +268,7 @@ namespace OTOI_ADD.Code.Module.Function
         /// <param name="tt_file">Tooltip to update</param>
         internal static void DownloadFil(SaveFileDialog sf_file, Label2 lb_file, ToolTip tt_file)
         {
-            sf_file.InitialDirectory = VAR.CURRENT_DIRECTORY;
+            sf_file.InitialDirectory = OTOI_ADD.Properties.Settings.Default.DIRECTORY;
             sf_file.Filter = "Archivos XLS | *.xls";
             sf_file.DefaultExt = "xls";
 
@@ -301,8 +299,8 @@ namespace OTOI_ADD.Code.Module.Function
                         }
                         catch (IOException e)
                         {
-                            MessageBox.Show(e.StackTrace);
-                            // TODO: Log exception in [FormManager.Delete]
+                            logger.Error(LOG.MANAGE_DEL + f);
+                            MessageBox.Show(LOG.MANAGE_DEL + f);
                         }
                     }
                 }

@@ -21,7 +21,7 @@
         /// </summary>
         internal static readonly string LINK_OPEN = "Opening Link";
 
-        // Accept / Cancel
+        // Accept / ClosingForm
         /// <summary>
         /// Form accept button clicked log message
         /// </summary>
@@ -237,5 +237,10 @@
         /// </summary>
         internal static readonly string MAIN_DOCS = "Showing app documentation";
 
+        // Manager
+        /// <summary>
+        /// Program FormManager file deletion error log message
+        /// </summary>
+        internal static readonly string MANAGE_DEL = "File not deleted - ";// + file
     }
 }

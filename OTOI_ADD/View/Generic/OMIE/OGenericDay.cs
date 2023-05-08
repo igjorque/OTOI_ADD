@@ -29,15 +29,25 @@ namespace OTOI_ADD.View.Generic.OMIE
         public OGenericDay(int FID) : base(FID)
         {
             InitializeComponent();
+            Styler.SetStyle(this.GetControls());
+            LoadFields();
+            LoadEvents();
+        }
 
+
+        /// <summary>
+        /// IControls implementation.
+        /// Gets this form's controls
+        /// </summary>
+        /// <returns>List of this form's controls</returns>
+        public new List<Object> GetControls()
+        {
+            List<Object> parentControls = base.GetControls();
             List<Object> controls = new List<Object>
             {
                 this.CADay, this.uc_day
             };
-            Styler.SetStyle(controls);
-
-            LoadFields();
-            LoadEvents();
+            return parentControls.Concat(controls).ToList();
         }
 
         /// <summary>
@@ -45,7 +55,7 @@ namespace OTOI_ADD.View.Generic.OMIE
         /// </summary>
         private void LoadFields()
         {
-            this.CADay.Value = VAR.DATE_DAY;
+            this.CADay.Value = OTOI_ADD.Properties.Settings.Default.DAY;
         }
 
         /// <summary>
@@ -77,7 +87,7 @@ namespace OTOI_ADD.View.Generic.OMIE
             logger.Info(LOG.FORM_ERROR);
             if (this.ep_error.GetError(this.CADay) == "")
             {
-                VAR.DATE_DAY = this.Day;
+                OTOI_ADD.Properties.Settings.Default.DAY = this.Day;
                 this.BTAccept.Enabled = true;
             }
             else

@@ -63,6 +63,8 @@
             // 
             // BTL
             // 
+            this.BTL.Enabled = false;
+            this.BTL.ForeColor = System.Drawing.Color.White;
             this.BTL.Location = new System.Drawing.Point(8, 88);
             this.BTL.Name = "BTL";
             this.BTL.Size = new System.Drawing.Size(75, 23);
@@ -83,6 +85,8 @@
             // LBL
             // 
             this.LBL.AutoSize = true;
+            this.LBL.Enabled = false;
+            this.LBL.ForeColor = System.Drawing.Color.White;
             this.LBL.Location = new System.Drawing.Point(96, 96);
             this.LBL.Name = "LBL";
             this.LBL.Size = new System.Drawing.Size(38, 15);
@@ -92,6 +96,8 @@
             // CBL
             // 
             this.CBL.AutoSize = true;
+            this.CBL.Enabled = false;
+            this.CBL.ForeColor = System.Drawing.Color.White;
             this.CBL.Location = new System.Drawing.Point(96, 120);
             this.CBL.Name = "CBL";
             this.CBL.Size = new System.Drawing.Size(83, 19);
@@ -132,7 +138,8 @@
             // BTD
             // 
             this.BTD.BackColor = System.Drawing.Color.DimGray;
-            this.BTD.ForeColor = System.Drawing.Color.White;
+            this.BTD.Enabled = false;
+            this.BTD.ForeColor = System.Drawing.Color.Black;
             this.BTD.Location = new System.Drawing.Point(24, 64);
             this.BTD.Name = "BTD";
             this.BTD.Size = new System.Drawing.Size(75, 23);
@@ -158,7 +165,8 @@
             // 
             this.LBD.AutoSize = true;
             this.LBD.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.LBD.ForeColor = System.Drawing.Color.White;
+            this.LBD.Enabled = false;
+            this.LBD.ForeColor = System.Drawing.Color.Black;
             this.LBD.Location = new System.Drawing.Point(112, 72);
             this.LBD.Name = "LBD";
             this.LBD.Size = new System.Drawing.Size(38, 15);
@@ -169,7 +177,8 @@
             // 
             this.CBD.AutoSize = true;
             this.CBD.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.CBD.ForeColor = System.Drawing.Color.White;
+            this.CBD.Enabled = false;
+            this.CBD.ForeColor = System.Drawing.Color.Black;
             this.CBD.Location = new System.Drawing.Point(112, 96);
             this.CBD.Name = "CBD";
             this.CBD.Size = new System.Drawing.Size(83, 19);
@@ -202,7 +211,7 @@
             // 
             // FBD
             // 
-            this.FBD.BackColor = System.Drawing.Color.Red;
+            this.FBD.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.FBD.Controls.Add(this.MPD);
             this.FBD.Controls.Add(this.DTPD);
             this.FBD.Controls.Add(this.LB2D);

@@ -1,6 +1,9 @@
 ﻿using log4net;
 using log4net.Config;
+using OTOI_ADD.Code.Module.Style;
 using OTOI_ADD.Code.Variable;
+using OTOI_ADD.View.Generic.ESIOS;
+using OTOI_ADD.View.Generic.OMIE;
 using System.Reflection;
 
 namespace OTOI_ADD.Code.Module.Function
@@ -15,9 +18,8 @@ namespace OTOI_ADD.Code.Module.Function
         /// </summary>
         internal static void Initialize()
         {
-            //RebuildFileSystem();
+            RebuildFileSystem();
             InitFileSystem();
-            InitAppConfig();
             InitLogger();
         }
 
@@ -29,8 +31,8 @@ namespace OTOI_ADD.Code.Module.Function
         /// </summary>
         private static void RebuildFileSystem()
         {
-            // TODO: USAR SOLO SI SE NECESITA BORRAR LA ESTRUCTURA
-            if (Directory.GetCreationTime(GLB.FOLDER_CONFIG) < new DateTime(2023, 4, 12, 13, 38, 0))
+            // USAR SOLO SI SE NECESITA BORRAR LA ESTRUCTURA
+            if (Directory.GetCreationTime(GLB.FOLDER_CONFIG) < new DateTime(2023, 5, 5, 8, 0, 0))
             {
                 Directory.Delete(GLB.FOLDER_CONFIG, true);
             }
@@ -52,9 +54,6 @@ namespace OTOI_ADD.Code.Module.Function
 
             // Create logger config file if not exists
             if (!File.Exists(GLB.FIL_L4N)) InitLogConfig();
-
-            // Create app parameters file if not exists
-            if (!File.Exists(GLB.FIL_CFG)) InitParamConfig();
         }
 
         /// <summary>
@@ -87,55 +86,6 @@ namespace OTOI_ADD.Code.Module.Function
         }
 
         /// <summary>
-        /// Initializes the parameter configuration file
-        /// </summary>
-        private static void InitParamConfig()
-        {
-            using FileStream fs = File.Open(GLB.FIL_CFG, FileMode.OpenOrCreate);
-            using StreamWriter sw = new(fs);
-            // Create Dates
-            sw.WriteLine("STR=01/01/2023");
-            sw.WriteLine("END=31/01/2023");
-            sw.WriteLine("DAY=01/01/2023");
-            sw.WriteLine("MTH=01/01/2023");
-
-            // Create Path
-            sw.WriteLine("DIR=" + GLB.FOLDER_DOWNLOADS);
-        }
-
-        /// <summary>
-        /// Initializes the application configuration parameters
-        /// </summary>
-        private static void InitAppConfig()
-        {
-            using FileStream fs = File.Open(GLB.FIL_CFG, FileMode.Open);
-            using StreamReader sr = new(fs);
-            Dictionary<string, string> cfg = new();
-            string? ln;
-            string[] lns;
-
-            while ((ln = sr.ReadLine()) != null)
-            {
-                lns = ln.Split("=");
-                cfg.Add(lns[0], lns[1]);
-            }
-
-            // Parse Dates
-            string? str = cfg["STR"];
-            if (str != null) VAR.RANGE_START = DateTime.Parse(str);
-            string? end = cfg["END"];
-            if (end != null) VAR.RANGE_END = DateTime.Parse(end);
-            string? day = cfg["DAY"];
-            if (day != null) VAR.DATE_DAY = DateTime.Parse(day);
-            string? mth = cfg["MTH"];
-            if (mth != null) VAR.DATE_MONTH = DateTime.Parse(mth);
-
-            // Parse Path
-            string? dir = cfg["DIR"];
-            if (dir != null) VAR.CURRENT_DIRECTORY = dir;
-        }
-
-        /// <summary>
         /// Initializes the logger configuration
         /// </summary>
         private static void InitLogger()
@@ -146,21 +96,67 @@ namespace OTOI_ADD.Code.Module.Function
         #endregion
 
         /// <summary>
-        /// Saves the current app configuration
+        /// Saves the current app configuration params
         /// </summary>
-        internal static void Save()
+        /// <param name="f">Current form</param>
+        /// <param name="FID">Current form ID</param>
+        internal static void Save(Form f, int FID)
         {
-            using FileStream fs = File.Open(GLB.FIL_CFG, FileMode.Create);
-            using StreamWriter sw = new(fs);
+            if (f is OGenericDay)
+            {
+                OGenericDay foday = (OGenericDay)f;
+                OGenericParams(foday);
+                OTOI_ADD.Properties.Settings.Default.DAY = foday.CADay.Value;
+            } 
+            else if (f is OGenericMonth)
+            {
+                OGenericMonth fomth = (OGenericMonth)f;
+                OGenericParams(fomth);
+                OTOI_ADD.Properties.Settings.Default.MONTH = fomth.MPMonth.Value;
+            } 
+            else if (f is OGenericRange)
+            {
+                OGenericRange forng = (OGenericRange)f;
+                OGenericParams(forng);
+                OTOI_ADD.Properties.Settings.Default.START = forng.CAStart.Value;
+                OTOI_ADD.Properties.Settings.Default.END = forng.CAEnd.Value;
+            } 
+            else if (f is EGenericMonth)
+            {
+                EGenericMonth femth = (EGenericMonth)f;
+                EGenericParams(femth);
+                OTOI_ADD.Properties.Settings.Default.MONTH = femth.MPMonth.Value;
+            }
+        }
 
-            // Save Dates
-            sw.WriteLine("STR=" + VAR.RANGE_START.ToShortDateString());
-            sw.WriteLine("END=" + VAR.RANGE_END.ToShortDateString());
-            sw.WriteLine("DAY=" + VAR.DATE_DAY.ToShortDateString());
-            sw.WriteLine("MTH=" + VAR.DATE_MONTH.ToShortDateString());
+        /// <summary>
+        /// Saves the common OMIE forms params.
+        /// </summary>
+        /// <param name="fo">OMIE form</param>
+        private static void OGenericParams(OGeneric fo)
+        {
+            // DL
+            OTOI_ADD.Properties.Settings.Default.DIRECTORY = fo.LBFolder.Text;
+            // PR
+            OTOI_ADD.Properties.Settings.Default.O_PROCESS = fo.CBProcess.Checked;
+            // KP
+            OTOI_ADD.Properties.Settings.Default.O_KEEP = fo.CBKeep.Checked;
+        }
 
-            // Save Path
-            sw.WriteLine("DIR=" + VAR.CURRENT_DIRECTORY);
+        /// <summary>
+        /// Saves the common ESIOS forms params.
+        /// </summary>
+        /// <param name="fe">ESIOS form</param>
+        private static void EGenericParams(EGeneric fe)
+        {
+            // DL
+            OTOI_ADD.Properties.Settings.Default.DIRECTORY = fe.LBFolder.Text;
+            // UZ
+            OTOI_ADD.Properties.Settings.Default.E_UNZIP = fe.CBUnzip.Checked;
+            // PR
+            OTOI_ADD.Properties.Settings.Default.E_PROCESS = fe.CBProcess.Checked;
+            // KP
+            OTOI_ADD.Properties.Settings.Default.E_KEEP = fe.CBKeep.Checked;
         }
     }
 }

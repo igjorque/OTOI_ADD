@@ -30,15 +30,25 @@ namespace OTOI_ADD.View.Generic.ESIOS
         public EGenericMonth(int FID) : base(FID)
         {
             InitializeComponent();
+            Styler.SetStyle(this.GetControls());
+            LoadFields();
+            LoadEvents();
+        }
 
+
+        /// <summary>
+        /// IControls implementation.
+        /// Gets this form's controls
+        /// </summary>
+        /// <returns>List of this form's controls</returns>
+        public new List<Object> GetControls()
+        {
+            List<Object> parentControls = base.GetControls();
             List<Object> controls = new List<Object>
             {
                 this.MPMonth, this.uc_month, this.CBUnzip
             };
-            Styler.SetStyle(controls);
-
-            LoadFields();
-            LoadEvents();
+            return parentControls.Concat(controls).ToList();
         }
 
         /// <summary>
@@ -47,7 +57,7 @@ namespace OTOI_ADD.View.Generic.ESIOS
         private void LoadFields()
         {
             this.LBTitle.Text = "EGenericMonth ESIOS form";
-            this.MPMonth.Value = VAR.DATE_MONTH;
+            this.MPMonth.Value = OTOI_ADD.Properties.Settings.Default.MONTH;
         }
 
         private void LoadEvents()
@@ -76,7 +86,7 @@ namespace OTOI_ADD.View.Generic.ESIOS
             logger.Info(LOG.FORM_ERROR);
             if (this.ep_error.GetError(this.MPMonth) == "")
             {
-                VAR.DATE_MONTH = this.Month;
+                OTOI_ADD.Properties.Settings.Default.MONTH = this.Month;
                 this.BTAccept.Enabled = true;
             }
             else

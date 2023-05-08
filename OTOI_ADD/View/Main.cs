@@ -1,16 +1,20 @@
+using OTOI_ADD.Code.Interface;
 using OTOI_ADD.Code.Module.Style;
 using OTOI_ADD.Code.Variable;
 using OTOI_ADD.View.ESIOS;
 using OTOI_ADD.View.OMIE;
 using System.Diagnostics;
 using System.Reflection;
+using OTOI_ADD.View.Generic.OMIE;
+using OTOI_ADD.View.Generic.ESIOS;
+using System.Security.Cryptography;
 
 namespace OTOI_ADD.View
 {
     /// <summary>
-    /// Main
+    /// Main form.
     /// </summary>
-    public partial class Main : Form
+    public partial class Main : Form, IControls
     {
         private static log4net.ILog logger = log4net.LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
@@ -21,15 +25,20 @@ namespace OTOI_ADD.View
         {
             logger.Info(LOG.MAIN_BUILD);
             InitializeComponent();
-            Styler.SetStyle(GetControls());
+            Styler.SetStyle(this.GetControls());
             SetImage();
         }
 
-        private List<Object> GetControls()
+        /// <summary>
+        /// IControls implementation.
+        /// Gets this form's controls
+        /// </summary>
+        /// <returns>List of this form's controls</returns>
+        public List<Object> GetControls()
         {
-            List<Object> controls = new List<Object>
+            return new List<Object>
             {
-                this.ms_menu, 
+                this.ms_menu,
                 this.tsmi_menu, this.tsmi_config, this.tsmi_exit,
                 this.tsmi_downloads, this.tsmi_omie, this.tsmi_HPCM, this.tsmi_HMM, this.tsmi_HMT,
                                     this.tsmi_esios, this.tsmi_c2l,
@@ -42,12 +51,13 @@ namespace OTOI_ADD.View
 
                 this.tss_file, this.tss_download1, this.tss_download2, this.tss_utility, this.tss_help
             };
-            return controls;
         }
 
         // ----------------------------------------------------------------------------------------- 
         // ------------------------------------------ OMIE ----------------------------------------- 
         // ----------------------------------------------------------------------------------------- 
+
+        #region ## OMIE ##
 
         /// <summary>
         /// Handles the click event in [tsmi_HPC] button.
@@ -158,10 +168,13 @@ namespace OTOI_ADD.View
                 hmt.Show();
             }
         }
+        #endregion
 
         // ----------------------------------------------------------------------------------------- 
         // ----------------------------------------- ESIOS ----------------------------------------- 
         // ----------------------------------------------------------------------------------------- 
+
+        #region ## ESIOS ##
 
         /// <summary>
         /// Handles the click event in [tsmi_c2l] button.
@@ -186,13 +199,25 @@ namespace OTOI_ADD.View
             }
         }
 
+        #endregion
+
         // ----------------------------------------------------------------------------------------- 
-        // -------------------------------------- OTHER / AUX -------------------------------------- 
+        // ----------------------------------------- MENU ------------------------------------------ 
         // ----------------------------------------------------------------------------------------- 
 
+        #region ## MENU ##
+
+        /// <summary>
+        /// Opens a Configuration form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ConfigureApp(object sender, EventArgs e)
         {
-            // TODO: implement app configurations
+            Configuration c = new();
+            c.ShowDialog();
+            ThemeSwitch();
+            c.Dispose();
         }
 
         /// <summary>
@@ -243,40 +268,51 @@ namespace OTOI_ADD.View
             }
         }
 
+        /// <summary>
+        /// Opens the installation directory.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void InstallDir(object sender, EventArgs e)
         {
             OpenFolder(Environment.CurrentDirectory);
         }
 
+        /// <summary>
+        /// Opens the configurations directory.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ConfigDir(object sender, EventArgs e)
         {
             OpenFolder(GLB.FOLDER_CONFIG);
         }
 
+        /// <summary>
+        /// Opens the downloads directory.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DownloadDir(object sender, EventArgs e)
         {
             OpenFolder(GLB.FOLDER_DOWNLOADS);
         }
 
+        /// <summary>
+        /// Opens the logs directory.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void LogsDir(object sender, EventArgs e)
         {
             OpenFolder(GLB.FOLDER_LOGS);
         }
 
-        private void OpenFolder(string folderPath)
-        {
-            logger.Info(LOG.MAIN_OPEN);
-            if (Directory.Exists(folderPath))
-            {
-                ProcessStartInfo startInfo = new ProcessStartInfo
-                {
-                    Arguments = folderPath,
-                    FileName = "explorer.exe"
-                };
-                Process.Start(startInfo);
-            }
-        }
-
+        /// <summary>
+        /// Shares the log files.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SendLogs(object sender, EventArgs e)
         {
             // TODO: implementar subida/envío logs
@@ -284,6 +320,11 @@ namespace OTOI_ADD.View
             MessageBox.Show("Funcionalidad futura :)");
         }
 
+        /// <summary>
+        /// Opens the application's repository and documentation location.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Documentation(object sender, EventArgs e)
         {
             logger.Info(LOG.MAIN_DOCS);
@@ -298,6 +339,11 @@ namespace OTOI_ADD.View
             }
         }
 
+        /// <summary>
+        /// Shows a MessageBox with the application's dev info.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void About(object sender, EventArgs e)
         {
             string msg = "";
@@ -308,23 +354,125 @@ namespace OTOI_ADD.View
             MessageBox.Show(msg, cap, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        // ----------------------------------------------------------------------------------------- 
-        // ----------------------------------------- TEST ------------------------------------------ 
-        // ----------------------------------------------------------------------------------------- 
-
-        private void TEST(object sender, EventArgs e)
+        /// <summary>
+        /// Sets a better visibility for the control.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DropDownOpened(object sender, EventArgs e)
         {
-            Test t = new();
-            t.MdiParent = this;
-            t.Show();
+            ToolStripMenuItem tsmi = (ToolStripMenuItem)sender;
+            tsmi.ForeColor = ColorScheme.TSMI_FORE_L;
         }
 
-        private void SetImage()
+        /// <summary>
+        /// Sets the control visibility to its default value.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DropDownClosed(object sender, EventArgs e)
+        {
+            ToolStripMenuItem tsmi = (ToolStripMenuItem)sender;
+            if (Styler.MODE)
+            {
+                tsmi.ForeColor = ColorScheme.TSMI_FORE_D;
+            }
+            else
+            {
+                tsmi.ForeColor = ColorScheme.TSMI_FORE_L;
+            }
+        }
+
+        /// <summary>
+        /// Clears the default downloads folder.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ClearDownloads(object sender, EventArgs e)
+        {
+            // TODO : remove hardcoded text
+            DialogResult dr = MessageBox.Show("Va a eliminar todos los documentos descargados en [" + GLB.FOLDER_DOWNLOADS + "]. ¿Está seguro?", "Atención", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (dr == DialogResult.Yes)
+            {
+                try
+                {
+                    Directory.Delete(GLB.FOLDER_DOWNLOADS, true);
+                }
+                catch (IOException ex)
+                {
+                    // TODO : if a contained file is open, an empty folder will remain not erased, but all files will be removed. Check if excel behaves the same.
+                    // TODO : remove hardcoded text
+                    logger.Error("Error en eliminación");
+                }
+                Directory.CreateDirectory(GLB.FOLDER_DOWNLOADS);
+            }
+
+        }
+
+        #endregion
+
+        // ----------------------------------------------------------------------------------------- 
+        // ------------------------------------------ AUX ------------------------------------------ 
+        // ----------------------------------------------------------------------------------------- 
+
+        #region ## AUX ##
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void ChildrenStyle()
+        {
+            foreach (Generic.Generic g in this.MdiChildren)
+            {
+                if (g is OGenericDay)
+                {
+                    OGenericDay ogd = (OGenericDay)g;
+                    Styler.SetStyle(ogd.GetControls());
+                }
+                else if (g is OGenericMonth)
+                {
+                    OGenericMonth ogm = (OGenericMonth)g;
+                    Styler.SetStyle(ogm.GetControls());
+                }
+                else if (g is OGenericRange)
+                {
+                    OGenericRange ogr = (OGenericRange)g;
+                    Styler.SetStyle(ogr.GetControls());
+                }
+                else if (g is EGenericMonth)
+                {
+                    EGenericMonth egm = (EGenericMonth)g;
+                    Styler.SetStyle(egm.GetControls());
+                }
+            }
+        }
+
+        /// <summary>
+        /// Opens  a folder in file explorer.
+        /// </summary>
+        /// <param name="folderPath">Folder path to open</param>
+        private void OpenFolder(string folderPath)
+        {
+            logger.Info(LOG.MAIN_OPEN);
+            if (Directory.Exists(folderPath))
+            {
+                ProcessStartInfo startInfo = new ProcessStartInfo
+                {
+                    Arguments = folderPath,
+                    FileName = "explorer.exe"
+                };
+                Process.Start(startInfo);
+            }
+        }
+
+
+        /// <summary>
+        /// Sets this form's controls images based on the current theme mode.
+        /// </summary>
+        internal void SetImage()
         {
             if (Styler.MODE)
             {
-                this.tsmi_mode.Image = OTOI_ADD.Properties.Resources.dark;
-
                 this.tsmi_config.Image = OTOI_ADD.Properties.Resources.gear_dark;
                 this.tsmi_exit.Image = OTOI_ADD.Properties.Resources.exit_dark;
 
@@ -349,13 +497,10 @@ namespace OTOI_ADD.View
                 this.tsmi_folder.BackgroundImageLayout = ImageLayout.Stretch;
                 this.tsmi_help.BackgroundImage = OTOI_ADD.Properties.Resources.button_dark;
                 this.tsmi_help.BackgroundImageLayout = ImageLayout.Stretch;
-                this.tsmi_mode.BackgroundImage = OTOI_ADD.Properties.Resources.button_dark;
-                this.tsmi_mode.BackgroundImageLayout = ImageLayout.Stretch;
             }
             else
             {
-                this.tsmi_mode.Image = OTOI_ADD.Properties.Resources.light;
-                
+
                 this.tsmi_config.Image = OTOI_ADD.Properties.Resources.gear_light;
                 this.tsmi_exit.Image = OTOI_ADD.Properties.Resources.exit_light;
 
@@ -380,56 +525,30 @@ namespace OTOI_ADD.View
                 this.tsmi_folder.BackgroundImageLayout = ImageLayout.Stretch;
                 this.tsmi_help.BackgroundImage = OTOI_ADD.Properties.Resources.button_light;
                 this.tsmi_help.BackgroundImageLayout = ImageLayout.Stretch;
-                this.tsmi_mode.BackgroundImage = OTOI_ADD.Properties.Resources.button_light;
-                this.tsmi_mode.BackgroundImageLayout = ImageLayout.Stretch;
             }
         }
 
-        private void ModeSwitch(object sender, EventArgs e)
+        /// <summary>
+        /// Alternates the theme mode.
+        /// </summary>
+        internal void ThemeSwitch()
         {
-            if (!Styler.MODE) 
-            {
-                // Dark
-                Styler.MODE = true;
-                this.tsmi_mode.Text = "Oscuro";
-
-                SetImage();
-                
-                Styler.SetStyle(GetControls());
-                this.tsmi_mode.ForeColor = Color.Black;
-                this.tsmi_mode.BackColor = Color.Gray;
-            }
-            else
-            {
-                // Light
-                Styler.MODE = false;
-                this.tsmi_mode.Text = "Claro";
-
-                SetImage();
-
-                Styler.SetStyle(GetControls());
-                this.tsmi_mode.ForeColor = Color.Black;
-                this.tsmi_mode.BackColor = Color.White;
-            }
+            ChildrenStyle();
+            SetImage();
+            Styler.SetStyle(this.GetControls());
         }
 
-        private void DropDownOpened(object sender, EventArgs e)
-        {
-            ToolStripMenuItem tsmi = (ToolStripMenuItem)sender;
-            tsmi.ForeColor = Color.Black;
-        }
+        #endregion
 
-        private void DropDownClosed(object sender, EventArgs e)
+        // ----------------------------------------------------------------------------------------- 
+        // ----------------------------------------- TEST ------------------------------------------ 
+        // ----------------------------------------------------------------------------------------- 
+
+        private void TEST(object sender, EventArgs e)
         {
-            ToolStripMenuItem tsmi = (ToolStripMenuItem)sender;
-            if (Styler.MODE)
-            {
-                tsmi.ForeColor = ColorScheme.TSMI_TEXT_D;
-            }
-            else
-            {
-                tsmi.ForeColor = ColorScheme.TSMI_TEXT_L;
-            }
+            Test t = new();
+            t.MdiParent = this;
+            t.Show();
         }
     }
 }

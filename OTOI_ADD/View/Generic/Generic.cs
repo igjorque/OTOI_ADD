@@ -1,4 +1,5 @@
-﻿using OTOI_ADD.Code.Module.Function;
+﻿using OTOI_ADD.Code.Interface;
+using OTOI_ADD.Code.Module.Function;
 using OTOI_ADD.Code.Module.Style;
 using OTOI_ADD.Code.Variable;
 using OTOI_ADD.View.Asset;
@@ -9,7 +10,7 @@ namespace OTOI_ADD.View.Generic
     /// <summary>
     /// 
     /// </summary>
-    public partial class Generic : Form
+    public partial class Generic : Form, IControls
     {
         private static log4net.ILog logger = log4net.LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
@@ -42,12 +43,20 @@ namespace OTOI_ADD.View.Generic
         {
             this.fid = FID;
             InitializeComponent();
-            List<Object> controls = new List<Object>
+            LoadEvents();
+        }
+
+        /// <summary>
+        /// IControls implementation.
+        /// Gets this form's controls
+        /// </summary>
+        /// <returns>List of this form's controls</returns>
+        public List<Object> GetControls()
+        {
+            return new List<Object>
             {
                 this.uc_f, this.LBTitle, this.LBLink, this.BTFolder, this.LBFolder, this.CBProcess, this.CBKeep, this.BTFile, this.LBFile, this.BTAccept, this.BTCancel
             };
-            Styler.SetStyle(controls);
-            LoadEvents();
         }
 
         /// <summary>

@@ -21,13 +21,6 @@ namespace OTOI_ADD.View.Generic.ESIOS
         public EGeneric() : base()
         {
             InitializeComponent();
-
-            List<Object> controls = new List<Object>
-            {
-                this.CBUnzip
-            };
-            Styler.SetStyle(controls);
-
             ArrangeFields();
         }
 
@@ -42,6 +35,22 @@ namespace OTOI_ADD.View.Generic.ESIOS
             ArrangeFields();
             LoadFields();
             LoadEvents();
+        }
+
+
+        /// <summary>
+        /// IControls implementation.
+        /// Gets this form's controls
+        /// </summary>
+        /// <returns>List of this form's controls</returns>
+        public new List<Object> GetControls()
+        {
+            List<Object> parentControls = base.GetControls();
+            List<Object> controls = new List<Object>
+            {
+                this.CBUnzip
+            };
+            return parentControls.Concat(controls).ToList();
         }
 
         /// <summary>
@@ -82,13 +91,22 @@ namespace OTOI_ADD.View.Generic.ESIOS
         /// </summary>
         private void LoadFields()
         {
-            this.BTFile.Enabled = false;
-            this.LBFile.Enabled = false;
             this.LBTitle.Text = "Generic ESIOS form";
-            this.LBFolder.Text = VAR.CURRENT_DIRECTORY;
-            this.LBFile.Text = VAR.DEFAULT_FILE;
-            this.fb_directory.InitialDirectory = VAR.CURRENT_DIRECTORY;
-            this.sf_file.InitialDirectory = VAR.CURRENT_DIRECTORY;
+            this.LBFolder.Text = OTOI_ADD.Properties.Settings.Default.DIRECTORY;
+
+            this.CBUnzip.Checked = OTOI_ADD.Properties.Settings.Default.E_UNZIP;
+            this.CBKeep.Checked = OTOI_ADD.Properties.Settings.Default.E_KEEP;
+            this.CBProcess.Checked = OTOI_ADD.Properties.Settings.Default.E_PROCESS;
+
+            this.CBKeep.Enabled = this.CBUnzip.Checked;
+            this.CBProcess.Enabled = this.CBUnzip.Checked;
+            this.BTFile.Enabled = this.CBUnzip.Checked && this.CBProcess.Checked;
+            this.LBFile.Enabled = this.CBUnzip.Checked && this.CBProcess.Checked;
+
+            this.LBFile.Text = OTOI_ADD.Properties.Settings.Default.FILE;
+
+            this.fb_directory.InitialDirectory = OTOI_ADD.Properties.Settings.Default.DIRECTORY;
+            this.sf_file.InitialDirectory = OTOI_ADD.Properties.Settings.Default.DIRECTORY;
             this.tt_folder.SetToolTip(this.LBFolder, this.LBFolder.Text);
             this.tt_file.SetToolTip(this.LBFile, this.LBFile.Text);
         }

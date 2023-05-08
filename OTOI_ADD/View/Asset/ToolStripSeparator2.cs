@@ -27,12 +27,12 @@ namespace OTOI_ADD.View.Asset
             Color foreColor, backColor;
             if (Styler.MODE)
             {
-                foreColor = ColorScheme.TSMI_TEXT_D;
+                foreColor = ColorScheme.TSMI_FORE_D;
                 backColor = ColorScheme.TSMI_BACK_D;
             }
             else
             {
-                foreColor = ColorScheme.TSMI_TEXT_L;
+                foreColor = ColorScheme.TSMI_FORE_L;
                 backColor = ColorScheme.TSMI_BACK_L;
             }
 

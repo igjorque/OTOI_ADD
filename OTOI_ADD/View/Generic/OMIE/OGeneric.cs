@@ -19,16 +19,24 @@ namespace OTOI_ADD.View.Generic.OMIE
         public OGeneric() : base() 
         {
             InitializeComponent();
-
-            List<Object> controls = new List<Object>
-            {
-                
-            };
-            Styler.SetStyle(controls);
-
             ArrangeFields();
         }
-        
+
+        /// <summary>
+        /// IControls implementation.
+        /// Gets this form's controls
+        /// </summary>
+        /// <returns>List of this form's controls</returns>
+        public new List<Object> GetControls()
+        {
+            List<Object> parentControls = base.GetControls();
+            List<Object> controls = new List<Object>
+            {
+                // Empty list - currently no controls to add
+            };
+            return parentControls.Concat(controls).ToList();
+        }
+
         /// <summary>
         /// OGeneric form constructor.
         /// Creates a new form with a specific Form ID (FID).
@@ -43,7 +51,7 @@ namespace OTOI_ADD.View.Generic.OMIE
         }
 
         /// <summary>
-        /// 
+        /// Organises this forms controls, setting their positions.
         /// </summary>
         private void ArrangeFields()
         {
@@ -79,14 +87,20 @@ namespace OTOI_ADD.View.Generic.OMIE
         /// </summary>
         private void LoadFields()
         {
-            this.CBProcess.Checked = true;
-            this.Text = this.GetType().Name;
-            this.LBFolder.Text = VAR.CURRENT_DIRECTORY;
-            this.LBFile.Text = VAR.DEFAULT_FILE;
-            this.fb_directory.InitialDirectory = VAR.CURRENT_DIRECTORY;
+            this.CBProcess.Checked = OTOI_ADD.Properties.Settings.Default.O_PROCESS;
+            this.CBKeep.Checked = OTOI_ADD.Properties.Settings.Default.O_KEEP;
+            
+            this.LBFolder.Text = OTOI_ADD.Properties.Settings.Default.DIRECTORY;
+            this.LBFile.Text = OTOI_ADD.Properties.Settings.Default.FILE;
+
+            this.CBKeep.Enabled = this.CBProcess.Checked;
+            this.BTFile.Enabled = this.CBProcess.Checked;
+            this.LBFile.Enabled = this.CBProcess.Checked;
+
+            this.fb_directory.InitialDirectory = OTOI_ADD.Properties.Settings.Default.DIRECTORY;
             this.tt_folder.SetToolTip(this.LBFolder, this.LBFolder.Text);
             this.tt_file.SetToolTip(this.LBFile, this.LBFile.Text);
-            this.sf_file.InitialDirectory = VAR.CURRENT_DIRECTORY;
+            this.sf_file.InitialDirectory = OTOI_ADD.Properties.Settings.Default.DIRECTORY;
         }
 
         /// <summary>

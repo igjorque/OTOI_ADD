@@ -1,6 +1,51 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="OTOI_ADD.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="CFG_LOAD" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="DIRECTORY" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\OTOI_ADD\downloads</Value>
+    </Setting>
+    <Setting Name="THEME" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="LANG" Type="System.String" Scope="User">
+      <Value Profile="(Default)">ES</Value>
+    </Setting>
+    <Setting Name="START" Type="System.DateTime" Scope="User">
+      <Value Profile="(Default)">2023-01-01</Value>
+    </Setting>
+    <Setting Name="END" Type="System.DateTime" Scope="User">
+      <Value Profile="(Default)">2023-01-31</Value>
+    </Setting>
+    <Setting Name="DAY" Type="System.DateTime" Scope="User">
+      <Value Profile="(Default)">2023-01-01</Value>
+    </Setting>
+    <Setting Name="MONTH" Type="System.DateTime" Scope="User">
+      <Value Profile="(Default)">2023-01-01</Value>
+    </Setting>
+    <Setting Name="O_PROCESS" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="O_KEEP" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="E_UNZIP" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="E_KEEP" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="E_PROCESS" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="CFG_SAVE" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="FILE" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Por defecto</Value>
+    </Setting>
+  </Settings>
 </SettingsFile>

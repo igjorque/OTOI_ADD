@@ -35,40 +35,40 @@ namespace OTOI_ADD.View
             this.BackColor = ColorScheme.FORM_BACK_L;
             this.MSL.BackColor = ColorScheme.MS_BACK_L;
             this.TSMI1L.BackColor = ColorScheme.TSMI_BACK_L;
-            this.TSMI1L.ForeColor = ColorScheme.TSMI_TEXT_L;
+            this.TSMI1L.ForeColor = ColorScheme.TSMI_FORE_L;
             this.TSMI2L.BackColor = ColorScheme.TSMI_BACK_L;
-            this.TSMI2L.ForeColor = ColorScheme.TSMI_TEXT_L;
+            this.TSMI2L.ForeColor = ColorScheme.TSMI_FORE_L;
             this.LB2L.BackColor = ColorScheme.LB2_BACK_L;
-            this.LB2L.ForeColor = ColorScheme.LB2_TEXT_L;
+            this.LB2L.ForeColor = ColorScheme.LB2_FORE_L;
             this.BTL.BackColor = ColorScheme.BT_BACK_L;
-            this.BTL.ForeColor = ColorScheme.BT_TEXT_L;
+            this.BTL.ForeColor = ColorScheme.BT_FORE_L;
             this.LBL.BackColor = ColorScheme.LB_BACK_L;
-            this.LBL.ForeColor = ColorScheme.LB_TEXT_L;
+            this.LBL.ForeColor = ColorScheme.LB_FORE_L;
             this.LLL.BackColor = ColorScheme.LL_BACK_L;
             this.LLL.ActiveLinkColor = ColorScheme.LL_UNUSED_L;
             this.LLL.VisitedLinkColor = ColorScheme.LL_USED_L;
             this.CBL.BackColor = ColorScheme.CB_BACK_L;
-            this.CBL.ForeColor = ColorScheme.CB_TEXT_L;
+            this.CBL.ForeColor = ColorScheme.CB_FORE_L;
         }
         private void LoadDark()
         {
             this.FBD.BackColor = ColorScheme.FORM_BACK_D;
             this.MSD.BackColor = ColorScheme.MS_BACK_D;
             this.TSMI1D.BackColor = ColorScheme.TSMI_BACK_D;
-            this.TSMI1D.ForeColor = ColorScheme.TSMI_TEXT_D;
+            this.TSMI1D.ForeColor = ColorScheme.TSMI_FORE_D;
             this.TSMI2D.BackColor = ColorScheme.TSMI_BACK_D;
-            this.TSMI2D.ForeColor = ColorScheme.TSMI_TEXT_D;
+            this.TSMI2D.ForeColor = ColorScheme.TSMI_FORE_D;
             this.LB2D.BackColor = ColorScheme.LB2_BACK_D;
-            this.LB2D.ForeColor = ColorScheme.LB2_TEXT_D;
+            this.LB2D.ForeColor = ColorScheme.LB2_FORE_D;
             this.BTD.BackColor = ColorScheme.BT_BACK_D;
-            this.BTD.ForeColor = ColorScheme.BT_TEXT_D;
+            this.BTD.ForeColor = ColorScheme.BT_FORE_D;
             this.LBD.BackColor = ColorScheme.LB_BACK_D;
-            this.LBD.ForeColor = ColorScheme.LB_TEXT_D;
+            this.LBD.ForeColor = ColorScheme.LB_FORE_D;
             this.LLD.BackColor = ColorScheme.LL_BACK_D;
             this.LLD.ActiveLinkColor = ColorScheme.LL_UNUSED_D;
             this.LLD.VisitedLinkColor = ColorScheme.LL_USED_D;
             this.CBD.BackColor = ColorScheme.CB_BACK_D;
-            this.CBD.ForeColor = ColorScheme.CB_TEXT_D;
+            this.CBD.ForeColor = ColorScheme.CB_FORE_D;
         }
     }
 }

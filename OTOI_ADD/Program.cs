@@ -22,6 +22,7 @@ namespace OTOI_ADD
 
             // Init custom app configurations
             AppConfigManager.Initialize();
+
             // DO NOT ERASE THIS LINE - Init app configurations
             ApplicationConfiguration.Initialize();
 

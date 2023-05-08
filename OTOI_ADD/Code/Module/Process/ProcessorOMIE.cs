@@ -24,9 +24,9 @@ namespace OTOI_ADD.Code.Module.Process
             Excel.Worksheet? tws = null;
 
             DateTime daux = DateTime.Now;
-            string fpath = VAR.CURRENT_DIRECTORY + "\\OMIE_" + daux.Day + "-" + daux.Month + "-" + daux.Year + "_" + daux.Hour + "-" + daux.Minute + "-" + daux.Second + ".xls";
+            string fpath = OTOI_ADD.Properties.Settings.Default.DIRECTORY + "\\OMIE_" + daux.Day + "-" + daux.Month + "-" + daux.Year + "_" + daux.Hour + "-" + daux.Minute + "-" + daux.Second + ".xls";
             object miss = System.Reflection.Missing.Value;
-            string? path = VAR.CURRENT_DIRECTORY;
+            string? path = OTOI_ADD.Properties.Settings.Default.DIRECTORY;
             int i = 1;
 
             app = new Excel.Application();

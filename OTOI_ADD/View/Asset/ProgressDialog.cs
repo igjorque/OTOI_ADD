@@ -1,4 +1,5 @@
 ﻿using OTOI_ADD.Code.Class;
+using OTOI_ADD.Code.Interface;
 using OTOI_ADD.Code.Module.Download;
 using OTOI_ADD.Code.Module.Function;
 using OTOI_ADD.Code.Module.Process;
@@ -13,7 +14,7 @@ namespace OTOI_ADD.View.Asset
     /// <summary>
     /// ProgressDialog
     /// </summary>
-    public partial class ProgressDialog : Form
+    public partial class ProgressDialog : Form, IControls
     {
         private static log4net.ILog logger = log4net.LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
@@ -30,12 +31,21 @@ namespace OTOI_ADD.View.Asset
         public ProgressDialog()
         {
             InitializeComponent();
-            List<Object> controls = new List<Object>
+            Styler.SetStyle(this.GetControls());
+            FILES = new();
+        }
+
+        /// <summary>
+        /// IControls implementation.
+        /// Gets this form's controls
+        /// </summary>
+        /// <returns>List of this form's controls</returns>
+        public List<Object> GetControls()
+        {
+            return new List<Object>
             {
                 this.LBDownload, this.LBUrl, this.LBUrlValue, this.PBProgress, this
             };
-            Styler.SetStyle(controls);
-            FILES = new();
         }
 
         /// <summary>
@@ -189,7 +199,9 @@ namespace OTOI_ADD.View.Asset
                 if (inp.Process)
                 {
                     this.lb_download.Text = "Procesando...";
+
                     // TODO: Process ESIOS files.
+
                     if (MessageBox.Show("¿Desea eliminar los archivos descomprimidos?", "Atención", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
                         this.lb_download.Text = "Eliminando archivos descomprimidos...";

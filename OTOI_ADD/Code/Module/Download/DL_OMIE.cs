@@ -46,7 +46,6 @@ namespace OTOI_ADD.Code.Module.Download
             Uri uri;
             List<Uri> l_uri = new List<Uri>();
 
-            // TODO: refactor
             if (inp.FID != 6)
             {
                 for (DateTime currDate = inp.DateStart; DateTime.Compare(currDate, inp.DateEnd) <= 0; currDate = currDate.AddDays(1))

@@ -30,15 +30,25 @@ namespace OTOI_ADD.View.Generic.OMIE
         public OGenericMonth(int FID) : base(FID)
         {
             InitializeComponent();
+            Styler.SetStyle(this.GetControls());
+            LoadFields();
+            LoadEvents();
+        }
 
+
+        /// <summary>
+        /// IControls implementation.
+        /// Gets this form's controls
+        /// </summary>
+        /// <returns>List of this form's controls</returns>
+        public new List<Object> GetControls()
+        {
+            List<Object> parentControls = base.GetControls();
             List<Object> controls = new List<Object>
             {
                 this.MPMonth, this.uc_month
             };
-            Styler.SetStyle(controls);
-
-            LoadFields();
-            LoadEvents();
+            return parentControls.Concat(controls).ToList();
         }
 
         /// <summary>
@@ -46,7 +56,7 @@ namespace OTOI_ADD.View.Generic.OMIE
         /// </summary>
         private void LoadFields()
         {
-            this.MPMonth.Value = VAR.DATE_MONTH;
+            this.MPMonth.Value = OTOI_ADD.Properties.Settings.Default.MONTH;
         }
 
         /// <summary>
@@ -78,7 +88,7 @@ namespace OTOI_ADD.View.Generic.OMIE
             logger.Info(LOG.FORM_ERROR);
             if (this.ep_error.GetError(this.MPMonth) == "")
             {
-                VAR.DATE_MONTH = this.Month;
+                OTOI_ADD.Properties.Settings.Default.MONTH = this.Month;
                 this.BTAccept.Enabled = true;
             }
             else

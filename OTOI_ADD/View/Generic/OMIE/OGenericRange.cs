@@ -31,15 +31,25 @@ namespace OTOI_ADD.View.Generic.OMIE
         public OGenericRange(int FID) : base(FID)
         {
             InitializeComponent();
+            Styler.SetStyle(this.GetControls());
+            LoadFields();
+            LoadEvents();
+        }
 
+
+        /// <summary>
+        /// IControls implementation.
+        /// Gets this form's controls
+        /// </summary>
+        /// <returns>List of this form's controls</returns>
+        public new List<Object> GetControls()
+        {
+            List<Object> parentControls = base.GetControls();
             List<Object> controls = new List<Object>
             {
                 this.CAStart, this.CAEnd, this.uc_range
             };
-            Styler.SetStyle(controls);
-
-            LoadFields();
-            LoadEvents();
+            return parentControls.Concat(controls).ToList();
         }
 
         /// <summary>
@@ -47,8 +57,8 @@ namespace OTOI_ADD.View.Generic.OMIE
         /// </summary>
         private void LoadFields()
         {
-            this.CAStart.Value = VAR.RANGE_START;
-            this.CAEnd.Value = VAR.RANGE_END;
+            this.CAStart.Value = OTOI_ADD.Properties.Settings.Default.START;
+            this.CAEnd.Value = OTOI_ADD.Properties.Settings.Default.END;
         }
 
         /// <summary>
@@ -81,8 +91,8 @@ namespace OTOI_ADD.View.Generic.OMIE
             logger.Info(LOG.FORM_ERROR);
             if (this.ep_error.GetError(this.CAEnd) == "" && this.ep_error.GetError(this.CAStart) == "")
             {
-                VAR.RANGE_START = this.Start;
-                VAR.RANGE_END = this.End;
+                OTOI_ADD.Properties.Settings.Default.START = this.Start;
+                OTOI_ADD.Properties.Settings.Default.END = this.End;
                 this.BTAccept.Enabled = true;
             }
             else

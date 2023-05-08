@@ -65,8 +65,8 @@ namespace OTOI_ADD.View
             this.tsmi_doc = new System.Windows.Forms.ToolStripMenuItem();
             this.tss_help = new OTOI_ADD.View.Asset.ToolStripSeparator2();
             this.tsmi_about = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmi_mode = new System.Windows.Forms.ToolStripMenuItem();
             this.tt_menu = new System.Windows.Forms.ToolTip(this.components);
+            this.bt_clear = new System.Windows.Forms.ToolStripMenuItem();
             this.ms_menu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -78,8 +78,7 @@ namespace OTOI_ADD.View
             this.tsmi_menu,
             this.tsmi_downloads,
             this.tsmi_folder,
-            this.tsmi_help,
-            this.tsmi_mode});
+            this.tsmi_help});
             this.ms_menu.Location = new System.Drawing.Point(0, 0);
             this.ms_menu.Name = "ms_menu";
             this.ms_menu.Size = new System.Drawing.Size(499, 30);
@@ -89,10 +88,13 @@ namespace OTOI_ADD.View
             // tsmi_menu
             // 
             this.tsmi_menu.AutoSize = false;
+            this.tsmi_menu.BackgroundImage = global::OTOI_ADD.Properties.Resources.button_light;
+            this.tsmi_menu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.tsmi_menu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmi_config,
             this.tss_file,
             this.tsmi_exit});
+            this.tsmi_menu.Margin = new System.Windows.Forms.Padding(0, 0, 1, 0);
             this.tsmi_menu.Name = "tsmi_menu";
             this.tsmi_menu.Size = new System.Drawing.Size(70, 26);
             this.tsmi_menu.Text = "Menú";
@@ -101,7 +103,6 @@ namespace OTOI_ADD.View
             // 
             // tsmi_config
             // 
-            this.tsmi_config.Enabled = false;
             this.tsmi_config.Name = "tsmi_config";
             this.tsmi_config.Size = new System.Drawing.Size(180, 22);
             this.tsmi_config.Text = "Configuración";
@@ -122,12 +123,16 @@ namespace OTOI_ADD.View
             // tsmi_downloads
             // 
             this.tsmi_downloads.AutoSize = false;
+            this.tsmi_downloads.BackgroundImage = global::OTOI_ADD.Properties.Resources.button_light;
+            this.tsmi_downloads.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.tsmi_downloads.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmi_omie,
             this.tss_download1,
             this.tsmi_esios,
             this.tss_download2,
-            this.tsmi_downloadFolder});
+            this.tsmi_downloadFolder,
+            this.bt_clear});
+            this.tsmi_downloads.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.tsmi_downloads.Name = "tsmi_downloads";
             this.tsmi_downloads.Size = new System.Drawing.Size(70, 26);
             this.tsmi_downloads.Text = "Descargas";
@@ -204,12 +209,15 @@ namespace OTOI_ADD.View
             // tsmi_folder
             // 
             this.tsmi_folder.AutoSize = false;
+            this.tsmi_folder.BackgroundImage = global::OTOI_ADD.Properties.Resources.button_light;
+            this.tsmi_folder.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.tsmi_folder.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmi_openDir,
             this.tsmi_log,
             this.tss_utility,
             this.tsmi_old,
             this.tsmi_test});
+            this.tsmi_folder.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.tsmi_folder.Name = "tsmi_folder";
             this.tsmi_folder.Size = new System.Drawing.Size(70, 26);
             this.tsmi_folder.Text = "Carpetas";
@@ -318,11 +326,15 @@ namespace OTOI_ADD.View
             // 
             // tsmi_help
             // 
+            this.tsmi_help.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.tsmi_help.AutoSize = false;
+            this.tsmi_help.BackgroundImage = global::OTOI_ADD.Properties.Resources.button_light;
+            this.tsmi_help.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.tsmi_help.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmi_doc,
             this.tss_help,
             this.tsmi_about});
+            this.tsmi_help.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.tsmi_help.Name = "tsmi_help";
             this.tsmi_help.Size = new System.Drawing.Size(70, 26);
             this.tsmi_help.Text = "Ayuda";
@@ -348,17 +360,12 @@ namespace OTOI_ADD.View
             this.tsmi_about.Text = "Acerca de";
             this.tsmi_about.Click += new System.EventHandler(this.About);
             // 
-            // tsmi_mode
+            // bt_clear
             // 
-            this.tsmi_mode.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tsmi_mode.AutoSize = false;
-            this.tsmi_mode.BackColor = System.Drawing.Color.White;
-            this.tsmi_mode.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.tsmi_mode.Image = ((System.Drawing.Image)(resources.GetObject("tsmi_mode.Image")));
-            this.tsmi_mode.Name = "tsmi_mode";
-            this.tsmi_mode.Size = new System.Drawing.Size(80, 26);
-            this.tsmi_mode.Text = "Claro";
-            this.tsmi_mode.Click += new System.EventHandler(this.ModeSwitch);
+            this.bt_clear.Name = "bt_clear";
+            this.bt_clear.Size = new System.Drawing.Size(180, 22);
+            this.bt_clear.Text = "Limpiar descargas";
+            this.bt_clear.Click += new System.EventHandler(this.ClearDownloads);
             // 
             // Main
             // 
@@ -412,11 +419,11 @@ namespace OTOI_ADD.View
         private ToolStripMenuItem tsmi_logsDir;
         private ToolStripMenuItem tsmi_downloadFolder;
         private ToolStripMenuItem tsmi_config;
-        internal ToolStripMenuItem tsmi_mode;
         internal ToolStripSeparator2 tss_utility;
         internal ToolStripSeparator2 tss_file;
         internal ToolStripSeparator2 tss_download1;
         internal ToolStripSeparator2 tss_help;
         internal ToolStripSeparator2 tss_download2;
+        private ToolStripMenuItem bt_clear;
     }
 }
