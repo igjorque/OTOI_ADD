@@ -181,7 +181,8 @@ namespace OTOI_ADD.View
             if (!this.EVT_PAUSE) this.F_THEME = !this.F_THEME; // Inverts flag current value
 
             CheckBox cb = (CheckBox)sender;
-            Styler.SetStyle(this.GetControls(), cb.Checked);
+            Styler.MODE = cb.Checked;
+            Styler.SetStyle(this.GetControls());
         }
 
         /// <summary>
@@ -242,7 +243,6 @@ namespace OTOI_ADD.View
             if (this.F_THEME)
             {
                 OTOI_ADD.Properties.Settings.Default.THEME = this.cb_mode.Checked;
-                Styler.MODE = this.cb_mode.Checked;
             }
             if (this.F_LANG)
             {
@@ -301,6 +301,10 @@ namespace OTOI_ADD.View
             if (dr != DialogResult.Yes)
             {
                 e.Cancel = true;
+            }
+            else
+            {
+                Styler.MODE = OTOI_ADD.Properties.Settings.Default.THEME;
             }
         }
 
