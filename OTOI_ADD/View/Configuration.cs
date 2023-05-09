@@ -1,5 +1,7 @@
 ﻿using OTOI_ADD.Code.Interface;
+using OTOI_ADD.Code.Module.Function;
 using OTOI_ADD.Code.Module.Style;
+using OTOI_ADD.Code.Variable;
 
 namespace OTOI_ADD.View
 {
@@ -267,6 +269,9 @@ namespace OTOI_ADD.View
                 OTOI_ADD.Properties.Settings.Default.E_PROCESS = this.cb_epr.Checked;
             }
             InitFlags(); // Reset flags - prevents ClosingForm from popping a MessageBox
+
+            AppConfigManager.Save();
+            
             this.Close();
         }
 

@@ -20,6 +20,7 @@ namespace OTOI_ADD.Code.Module.Function
         {
             RebuildFileSystem();
             InitFileSystem();
+            LoadAppConfig();
             InitLogger();
         }
 
@@ -32,7 +33,7 @@ namespace OTOI_ADD.Code.Module.Function
         private static void RebuildFileSystem()
         {
             // USAR SOLO SI SE NECESITA BORRAR LA ESTRUCTURA
-            if (Directory.GetCreationTime(GLB.FOLDER_CONFIG) < new DateTime(2023, 5, 5, 8, 0, 0))
+            if (Directory.GetCreationTime(GLB.FOLDER_CONFIG) < new DateTime(2023, 5, 8, 6, 0, 0))
             {
                 Directory.Delete(GLB.FOLDER_CONFIG, true);
             }
@@ -54,6 +55,64 @@ namespace OTOI_ADD.Code.Module.Function
 
             // Create logger config file if not exists
             if (!File.Exists(GLB.FIL_L4N)) InitLogConfig();
+        }
+
+        /// <summary>
+        /// Loads the app config settings, if the file exists.
+        /// </summary>
+        private static void LoadAppConfig()
+        {
+            // TODO : CHECK SETTINGS LOAD/SAVE
+            if (File.Exists(GLB.FIL_CFG))
+            {
+                InitSettings();
+            } 
+            else
+            {
+                InitSettingsFile();
+                InitSettings();
+            }
+        }
+
+        // TODO: comment
+        /// <summary>
+        /// 
+        /// </summary>
+        private static void InitSettings()
+        {
+            string? line;
+            string[] lineSpl;
+            string key, value;
+
+            Dictionary<string, string> cfg = new Dictionary<string, string>();
+
+            using StreamReader sr = new StreamReader(GLB.FIL_CFG);
+            while((line = sr.ReadLine()) != null)
+            {
+                lineSpl = line.Split("=");
+                key = lineSpl[0];
+                value = lineSpl[1];
+                cfg.Add(key, value);
+            }
+
+            OTOI_ADD.Properties.Settings.Default.CFG_LOAD = Boolean.Parse(cfg["CFG_LOAD"]);
+            OTOI_ADD.Properties.Settings.Default.CFG_SAVE = Boolean.Parse(cfg["CFG_SAVE"]);
+            OTOI_ADD.Properties.Settings.Default.DIRECTORY = cfg["DIRECTORY"];
+            OTOI_ADD.Properties.Settings.Default.THEME = Boolean.Parse(cfg["THEME"]);
+            Styler.MODE = Boolean.Parse(cfg["THEME"]);
+            OTOI_ADD.Properties.Settings.Default.LANG = cfg["LANG"];
+
+            OTOI_ADD.Properties.Settings.Default.DAY = DateTime.Parse(cfg["DAY"]);
+            OTOI_ADD.Properties.Settings.Default.MONTH = DateTime.Parse(cfg["MONTH"]);
+            OTOI_ADD.Properties.Settings.Default.START = DateTime.Parse(cfg["START"]);
+            OTOI_ADD.Properties.Settings.Default.END = DateTime.Parse(cfg["END"]);
+
+            OTOI_ADD.Properties.Settings.Default.O_PROCESS = Boolean.Parse(cfg["O_PROCESS"]);
+            OTOI_ADD.Properties.Settings.Default.O_KEEP = Boolean.Parse(cfg["O_KEEP"]);
+            OTOI_ADD.Properties.Settings.Default.E_UNZIP = Boolean.Parse(cfg["E_UNZIP"]);
+            OTOI_ADD.Properties.Settings.Default.E_KEEP = Boolean.Parse(cfg["E_KEEP"]);
+            OTOI_ADD.Properties.Settings.Default.E_PROCESS = Boolean.Parse(cfg["E_PROCESS"]);
+            
         }
 
         /// <summary>
@@ -85,6 +144,31 @@ namespace OTOI_ADD.Code.Module.Function
             sw.WriteLine("</configuration>");
         }
 
+        // TODO: comment
+        /// <summary>
+        /// 
+        /// </summary>
+        private static void InitSettingsFile()
+        {
+            using FileStream fs = File.Open(GLB.FIL_CFG, FileMode.OpenOrCreate);
+            using StreamWriter sw = new(fs);
+            sw.WriteLine("CFG_LOAD=True");
+            sw.WriteLine("CFG_SAVE=True");
+            sw.WriteLine("DIRECTORY=C:\\OTOI_ADD\\downloads");
+            sw.WriteLine("FILE=Por defecto"); // TODO: remove hardcoded text
+            sw.WriteLine("THEME=False");
+            sw.WriteLine("LANG=ES");
+            sw.WriteLine("START=01/01/2023");
+            sw.WriteLine("END=31/01/2023");
+            sw.WriteLine("DAY=01/01/2023");
+            sw.WriteLine("MONTH=01/01/2023");
+            sw.WriteLine("O_PROCESS=False");
+            sw.WriteLine("O_KEEP=False");
+            sw.WriteLine("E_UNZIP=False");
+            sw.WriteLine("E_KEEP=False");
+            sw.WriteLine("E_PROCESS=False");
+        }
+
         /// <summary>
         /// Initializes the logger configuration
         /// </summary>
@@ -98,65 +182,29 @@ namespace OTOI_ADD.Code.Module.Function
         /// <summary>
         /// Saves the current app configuration params
         /// </summary>
-        /// <param name="f">Current form</param>
-        /// <param name="FID">Current form ID</param>
-        internal static void Save(Form f, int FID)
+        internal static void Save()
         {
-            if (f is OGenericDay)
+            if (File.Exists(GLB.FIL_CFG))
             {
-                OGenericDay foday = (OGenericDay)f;
-                OGenericParams(foday);
-                OTOI_ADD.Properties.Settings.Default.DAY = foday.CADay.Value;
-            } 
-            else if (f is OGenericMonth)
-            {
-                OGenericMonth fomth = (OGenericMonth)f;
-                OGenericParams(fomth);
-                OTOI_ADD.Properties.Settings.Default.MONTH = fomth.MPMonth.Value;
-            } 
-            else if (f is OGenericRange)
-            {
-                OGenericRange forng = (OGenericRange)f;
-                OGenericParams(forng);
-                OTOI_ADD.Properties.Settings.Default.START = forng.CAStart.Value;
-                OTOI_ADD.Properties.Settings.Default.END = forng.CAEnd.Value;
-            } 
-            else if (f is EGenericMonth)
-            {
-                EGenericMonth femth = (EGenericMonth)f;
-                EGenericParams(femth);
-                OTOI_ADD.Properties.Settings.Default.MONTH = femth.MPMonth.Value;
+                File.Delete(GLB.FIL_CFG);
             }
-        }
-
-        /// <summary>
-        /// Saves the common OMIE forms params.
-        /// </summary>
-        /// <param name="fo">OMIE form</param>
-        private static void OGenericParams(OGeneric fo)
-        {
-            // DL
-            OTOI_ADD.Properties.Settings.Default.DIRECTORY = fo.LBFolder.Text;
-            // PR
-            OTOI_ADD.Properties.Settings.Default.O_PROCESS = fo.CBProcess.Checked;
-            // KP
-            OTOI_ADD.Properties.Settings.Default.O_KEEP = fo.CBKeep.Checked;
-        }
-
-        /// <summary>
-        /// Saves the common ESIOS forms params.
-        /// </summary>
-        /// <param name="fe">ESIOS form</param>
-        private static void EGenericParams(EGeneric fe)
-        {
-            // DL
-            OTOI_ADD.Properties.Settings.Default.DIRECTORY = fe.LBFolder.Text;
-            // UZ
-            OTOI_ADD.Properties.Settings.Default.E_UNZIP = fe.CBUnzip.Checked;
-            // PR
-            OTOI_ADD.Properties.Settings.Default.E_PROCESS = fe.CBProcess.Checked;
-            // KP
-            OTOI_ADD.Properties.Settings.Default.E_KEEP = fe.CBKeep.Checked;
+            using FileStream fs = File.Open(GLB.FIL_CFG, FileMode.OpenOrCreate);
+            using StreamWriter sw = new StreamWriter(fs);
+            sw.WriteLine("CFG_LOAD=" + OTOI_ADD.Properties.Settings.Default.CFG_LOAD.ToString());
+            sw.WriteLine("CFG_SAVE=" + OTOI_ADD.Properties.Settings.Default.CFG_SAVE.ToString());
+            sw.WriteLine("DIRECTORY=" + OTOI_ADD.Properties.Settings.Default.DIRECTORY.ToString());
+            sw.WriteLine("FILE=" + OTOI_ADD.Properties.Settings.Default.FILE.ToString());
+            sw.WriteLine("THEME=" + OTOI_ADD.Properties.Settings.Default.THEME.ToString());
+            sw.WriteLine("LANG=" + OTOI_ADD.Properties.Settings.Default.LANG.ToString());
+            sw.WriteLine("START=" + OTOI_ADD.Properties.Settings.Default.START.ToString());
+            sw.WriteLine("END=" + OTOI_ADD.Properties.Settings.Default.END.ToString());
+            sw.WriteLine("DAY=" + OTOI_ADD.Properties.Settings.Default.DAY.ToString());
+            sw.WriteLine("MONTH=" + OTOI_ADD.Properties.Settings.Default.MONTH.ToString());
+            sw.WriteLine("O_PROCESS=" + OTOI_ADD.Properties.Settings.Default.O_PROCESS.ToString());
+            sw.WriteLine("O_KEEP=" + OTOI_ADD.Properties.Settings.Default.O_KEEP.ToString());
+            sw.WriteLine("E_UNZIP=" + OTOI_ADD.Properties.Settings.Default.E_UNZIP.ToString());
+            sw.WriteLine("E_KEEP=" + OTOI_ADD.Properties.Settings.Default.E_KEEP.ToString());
+            sw.WriteLine("E_PROCESS=" + OTOI_ADD.Properties.Settings.Default.E_PROCESS.ToString());
         }
     }
 }

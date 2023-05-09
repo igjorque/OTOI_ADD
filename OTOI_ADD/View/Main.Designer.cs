@@ -59,15 +59,15 @@ namespace OTOI_ADD.View
             this.toolStripSeparator3 = new OTOI_ADD.View.Asset.ToolStripSeparator2();
             this.tss_utility = new OTOI_ADD.View.Asset.ToolStripSeparator2();
             this.tsmi_old = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmi_help = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmi_doc = new System.Windows.Forms.ToolStripMenuItem();
-            this.tss_help_2 = new OTOI_ADD.View.Asset.ToolStripSeparator2();
-            this.tsmi_about = new System.Windows.Forms.ToolStripMenuItem();
-            this.tt_menu = new System.Windows.Forms.ToolTip(this.components);
             this.tsmi_HPC = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_HM = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmi_test = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmi_help = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmi_doc = new System.Windows.Forms.ToolStripMenuItem();
             this.tss_help_1 = new OTOI_ADD.View.Asset.ToolStripSeparator2();
+            this.tsmi_about = new System.Windows.Forms.ToolStripMenuItem();
+            this.tss_help_2 = new OTOI_ADD.View.Asset.ToolStripSeparator2();
+            this.tsmi_test = new System.Windows.Forms.ToolStripMenuItem();
+            this.tt_menu = new System.Windows.Forms.ToolTip(this.components);
             this.ms_menu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -105,19 +105,19 @@ namespace OTOI_ADD.View
             // tsmi_config
             // 
             this.tsmi_config.Name = "tsmi_config";
-            this.tsmi_config.Size = new System.Drawing.Size(180, 22);
+            this.tsmi_config.Size = new System.Drawing.Size(150, 22);
             this.tsmi_config.Text = "Configuración";
             this.tsmi_config.Click += new System.EventHandler(this.ConfigureApp);
             // 
             // tss_file
             // 
             this.tss_file.Name = "tss_file";
-            this.tss_file.Size = new System.Drawing.Size(177, 6);
+            this.tss_file.Size = new System.Drawing.Size(147, 6);
             // 
             // tsmi_exit
             // 
             this.tsmi_exit.Name = "tsmi_exit";
-            this.tsmi_exit.Size = new System.Drawing.Size(180, 22);
+            this.tsmi_exit.Size = new System.Drawing.Size(150, 22);
             this.tsmi_exit.Text = "Salir";
             this.tsmi_exit.Click += new System.EventHandler(this.Exit);
             // 
@@ -241,34 +241,34 @@ namespace OTOI_ADD.View
             this.tsmi_downloadDir,
             this.tsmi_logsDir});
             this.tsmi_openDir.Name = "tsmi_openDir";
-            this.tsmi_openDir.Size = new System.Drawing.Size(180, 22);
+            this.tsmi_openDir.Size = new System.Drawing.Size(154, 22);
             this.tsmi_openDir.Text = "Abrir directorio";
             // 
             // tsmi_installDir
             // 
             this.tsmi_installDir.Name = "tsmi_installDir";
-            this.tsmi_installDir.Size = new System.Drawing.Size(180, 22);
+            this.tsmi_installDir.Size = new System.Drawing.Size(161, 22);
             this.tsmi_installDir.Text = "Instalación";
             this.tsmi_installDir.Click += new System.EventHandler(this.InstallDir);
             // 
             // tsmi_configDir
             // 
             this.tsmi_configDir.Name = "tsmi_configDir";
-            this.tsmi_configDir.Size = new System.Drawing.Size(180, 22);
+            this.tsmi_configDir.Size = new System.Drawing.Size(161, 22);
             this.tsmi_configDir.Text = "Configuraciones";
             this.tsmi_configDir.Click += new System.EventHandler(this.ConfigDir);
             // 
             // tsmi_downloadDir
             // 
             this.tsmi_downloadDir.Name = "tsmi_downloadDir";
-            this.tsmi_downloadDir.Size = new System.Drawing.Size(180, 22);
+            this.tsmi_downloadDir.Size = new System.Drawing.Size(161, 22);
             this.tsmi_downloadDir.Text = "Descargas";
             this.tsmi_downloadDir.Click += new System.EventHandler(this.DownloadDir);
             // 
             // tsmi_logsDir
             // 
             this.tsmi_logsDir.Name = "tsmi_logsDir";
-            this.tsmi_logsDir.Size = new System.Drawing.Size(180, 22);
+            this.tsmi_logsDir.Size = new System.Drawing.Size(161, 22);
             this.tsmi_logsDir.Text = "Logs";
             this.tsmi_logsDir.Click += new System.EventHandler(this.LogsDir);
             // 
@@ -278,7 +278,7 @@ namespace OTOI_ADD.View
             this.tsmi_logSend,
             this.toolStripSeparator3});
             this.tsmi_log.Name = "tsmi_log";
-            this.tsmi_log.Size = new System.Drawing.Size(180, 22);
+            this.tsmi_log.Size = new System.Drawing.Size(154, 22);
             this.tsmi_log.Text = "Logs";
             // 
             // tsmi_logSend
@@ -298,7 +298,7 @@ namespace OTOI_ADD.View
             // 
             this.tss_utility.BackColor = System.Drawing.SystemColors.Control;
             this.tss_utility.Name = "tss_utility";
-            this.tss_utility.Size = new System.Drawing.Size(177, 6);
+            this.tss_utility.Size = new System.Drawing.Size(151, 6);
             // 
             // tsmi_old
             // 
@@ -306,8 +306,25 @@ namespace OTOI_ADD.View
             this.tsmi_HPC,
             this.tsmi_HM});
             this.tsmi_old.Name = "tsmi_old";
-            this.tsmi_old.Size = new System.Drawing.Size(180, 22);
+            this.tsmi_old.Size = new System.Drawing.Size(154, 22);
             this.tsmi_old.Text = "Antiguos";
+            // 
+            // tsmi_HPC
+            // 
+            this.tsmi_HPC.Name = "tsmi_HPC";
+            this.tsmi_HPC.Size = new System.Drawing.Size(317, 22);
+            this.tsmi_HPC.Text = "Mecanismo de ajuste Precio horario dia (HPC)";
+            this.tsmi_HPC.ToolTipText = "Hourly Price Consumers\r\nPrecio definitivo horario del mecanismo de ajuste a los c" +
+    "onsumidores en el mercado.";
+            this.tsmi_HPC.Click += new System.EventHandler(this.OpenForm_HPC);
+            // 
+            // tsmi_HM
+            // 
+            this.tsmi_HM.Name = "tsmi_HM";
+            this.tsmi_HM.Size = new System.Drawing.Size(317, 22);
+            this.tsmi_HM.Text = "Precio energía horario mensual (HM)";
+            this.tsmi_HM.ToolTipText = "Hourly Market\r\nContratación horaria mercado diario.\r\n";
+            this.tsmi_HM.Click += new System.EventHandler(this.OpenForm_HM);
             // 
             // tsmi_help
             // 
@@ -331,50 +348,33 @@ namespace OTOI_ADD.View
             // tsmi_doc
             // 
             this.tsmi_doc.Name = "tsmi_doc";
-            this.tsmi_doc.Size = new System.Drawing.Size(180, 22);
+            this.tsmi_doc.Size = new System.Drawing.Size(159, 22);
             this.tsmi_doc.Text = "Documentación";
             this.tsmi_doc.Click += new System.EventHandler(this.Documentation);
-            // 
-            // tss_help_2
-            // 
-            this.tss_help_2.Name = "tss_help_2";
-            this.tss_help_2.Size = new System.Drawing.Size(177, 6);
-            // 
-            // tsmi_about
-            // 
-            this.tsmi_about.Name = "tsmi_about";
-            this.tsmi_about.Size = new System.Drawing.Size(180, 22);
-            this.tsmi_about.Text = "Acerca de";
-            this.tsmi_about.Click += new System.EventHandler(this.About);
-            // 
-            // tsmi_HPC
-            // 
-            this.tsmi_HPC.Name = "tsmi_HPC";
-            this.tsmi_HPC.Size = new System.Drawing.Size(317, 22);
-            this.tsmi_HPC.Text = "Mecanismo de ajuste Precio horario dia (HPC)";
-            this.tsmi_HPC.ToolTipText = "Hourly Price Consumers\r\nPrecio definitivo horario del mecanismo de ajuste a los c" +
-    "onsumidores en el mercado.";
-            this.tsmi_HPC.Click += new System.EventHandler(this.OpenForm_HPC);
-            // 
-            // tsmi_HM
-            // 
-            this.tsmi_HM.Name = "tsmi_HM";
-            this.tsmi_HM.Size = new System.Drawing.Size(317, 22);
-            this.tsmi_HM.Text = "Precio energía horario mensual (HM)";
-            this.tsmi_HM.ToolTipText = "Hourly Market\r\nContratación horaria mercado diario.\r\n";
-            this.tsmi_HM.Click += new System.EventHandler(this.OpenForm_HM);
-            // 
-            // tsmi_test
-            // 
-            this.tsmi_test.Name = "tsmi_test";
-            this.tsmi_test.Size = new System.Drawing.Size(180, 22);
-            this.tsmi_test.Text = "Test";
-            this.tsmi_test.Click += new System.EventHandler(this.TEST);
             // 
             // tss_help_1
             // 
             this.tss_help_1.Name = "tss_help_1";
-            this.tss_help_1.Size = new System.Drawing.Size(177, 6);
+            this.tss_help_1.Size = new System.Drawing.Size(156, 6);
+            // 
+            // tsmi_about
+            // 
+            this.tsmi_about.Name = "tsmi_about";
+            this.tsmi_about.Size = new System.Drawing.Size(159, 22);
+            this.tsmi_about.Text = "Acerca de";
+            this.tsmi_about.Click += new System.EventHandler(this.About);
+            // 
+            // tss_help_2
+            // 
+            this.tss_help_2.Name = "tss_help_2";
+            this.tss_help_2.Size = new System.Drawing.Size(156, 6);
+            // 
+            // tsmi_test
+            // 
+            this.tsmi_test.Name = "tsmi_test";
+            this.tsmi_test.Size = new System.Drawing.Size(159, 22);
+            this.tsmi_test.Text = "Test";
+            this.tsmi_test.Click += new System.EventHandler(this.TEST);
             // 
             // Main
             // 
@@ -391,6 +391,7 @@ namespace OTOI_ADD.View
             this.Name = "Main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "OTOI - Asistente de Descarga de Datos";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SaveConfiguration);
             this.ms_menu.ResumeLayout(false);
             this.ms_menu.PerformLayout();
             this.ResumeLayout(false);

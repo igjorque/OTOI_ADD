@@ -4,9 +4,11 @@ using OTOI_ADD.Code.Module.Download;
 using OTOI_ADD.Code.Variable;
 using OTOI_ADD.View.Asset;
 using OTOI_ADD.View.ESIOS;
+using OTOI_ADD.View.Generic.ESIOS;
 using OTOI_ADD.View.Generic.OMIE;
 using OTOI_ADD.View.OMIE;
 using System.Diagnostics;
+using System.Security.Cryptography;
 
 namespace OTOI_ADD.Code.Module.Function
 {
@@ -24,7 +26,8 @@ namespace OTOI_ADD.Code.Module.Function
             logger.Info(LOG.FORM_MANAGE);
 
             // Save user input to config
-            if (OTOI_ADD.Properties.Settings.Default.CFG_SAVE) AppConfigManager.Save(f, FID);
+            SaveParams(f, FID);
+            if (OTOI_ADD.Properties.Settings.Default.CFG_SAVE) AppConfigManager.Save();
 
             // Manage forms
             switch (FID)
@@ -44,6 +47,65 @@ namespace OTOI_ADD.Code.Module.Function
                     ManageMonthOMIE(f);
                     break;
             }
+        }
+
+        private static void SaveParams(Form f, int FID)
+        {
+            if(f is OGenericDay)
+            {
+                OGenericDay ogd = (OGenericDay)f;
+                OTOI_ADD.Properties.Settings.Default.DAY = ogd.CADay.Value;
+                OGenericParams(ogd);
+            } 
+            else if (f is OGenericMonth)
+            {
+                OGenericMonth ogm = (OGenericMonth)f;
+                OTOI_ADD.Properties.Settings.Default.MONTH = ogm.MPMonth.Value;
+                OGenericParams(ogm);
+            }
+            else if (f is OGenericRange)
+            {
+                OGenericRange ogr = (OGenericRange)f;
+                OTOI_ADD.Properties.Settings.Default.START = ogr.CAStart.Value;
+                OTOI_ADD.Properties.Settings.Default.END = ogr.CAEnd.Value;
+                OGenericParams(ogr);
+            }
+            else if (f is EGenericMonth)
+            {
+                EGenericMonth egm = (EGenericMonth)f;
+                OTOI_ADD.Properties.Settings.Default.DAY = egm.MPMonth.Value;
+                EGenericParams(egm);
+            }
+        }
+
+        /// <summary>
+        /// Saves the common OMIE forms params.
+        /// </summary>
+        /// <param name="fo">OMIE form</param>
+        private static void OGenericParams(OGeneric fo)
+        {
+            // DL
+            OTOI_ADD.Properties.Settings.Default.DIRECTORY = fo.LBFolder.Text;
+            // PR
+            OTOI_ADD.Properties.Settings.Default.O_PROCESS = fo.CBProcess.Checked;
+            // KP
+            OTOI_ADD.Properties.Settings.Default.O_KEEP = fo.CBKeep.Checked;
+        }
+
+        /// <summary>
+        /// Saves the common ESIOS forms params.
+        /// </summary>
+        /// <param name="fe">ESIOS form</param>
+        private static void EGenericParams(EGeneric fe)
+        {
+            // DL
+            OTOI_ADD.Properties.Settings.Default.DIRECTORY = fe.LBFolder.Text;
+            // UZ
+            OTOI_ADD.Properties.Settings.Default.E_UNZIP = fe.CBUnzip.Checked;
+            // PR
+            OTOI_ADD.Properties.Settings.Default.E_PROCESS = fe.CBProcess.Checked;
+            // KP
+            OTOI_ADD.Properties.Settings.Default.E_KEEP = fe.CBKeep.Checked;
         }
 
         /// <summary>

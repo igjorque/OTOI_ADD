@@ -8,6 +8,7 @@ using System.Reflection;
 using OTOI_ADD.View.Generic.OMIE;
 using OTOI_ADD.View.Generic.ESIOS;
 using System.Security.Cryptography;
+using Microsoft.VisualBasic.FileIO;
 
 namespace OTOI_ADD.View
 {
@@ -539,6 +540,17 @@ namespace OTOI_ADD.View
             ChildrenStyle();
             SetImage();
             Styler.SetStyle(this.GetControls());
+        }
+
+        /// <summary>
+        /// Save configuration
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SaveConfiguration(object sender, FormClosingEventArgs e)
+        {
+            File.Copy(Environment.CurrentDirectory + Path.DirectorySeparatorChar + "OTOI_ADD.dll.config", GLB.FOLDER_CONFIG + Path.DirectorySeparatorChar + "OTOI_ADD.dll.config", true);
+            // TODO : CHECK SETTINGS LOAD/SAVE
         }
 
         #endregion
