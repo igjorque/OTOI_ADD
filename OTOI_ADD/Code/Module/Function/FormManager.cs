@@ -361,7 +361,7 @@ namespace OTOI_ADD.Code.Module.Function
                         }
                         catch (IOException e)
                         {
-                            logger.Error(LOG.MANAGE_DEL + f);
+                            logger.Error(LOG.MANAGE_DEL + f + " - " + e.Message);
                             MessageBox.Show(LOG.MANAGE_DEL + f);
                         }
                     }

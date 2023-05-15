@@ -15,7 +15,6 @@ namespace OTOI_ADD.Code.Module.Style
         /// Sets the current theme mode (light/dark) to every received control
         /// </summary>
         /// <param name="controls">List of controls to modify</param>
-        /// /// <param name="theme">Optional - forces dark theme if TRUE</param>
         internal static void SetStyle(List<Object> controls)
         {
             foreach (Object c in controls)
@@ -105,6 +104,12 @@ namespace OTOI_ADD.Code.Module.Style
                     cob = (ComboBox)c;
                     SetCOB(cob);
                 }
+                else if (c is RadioButton)
+                {
+                    RadioButton rb;
+                    rb = (RadioButton)c;
+                    SetRB(rb);
+                }
             }
         }
 
@@ -113,7 +118,6 @@ namespace OTOI_ADD.Code.Module.Style
         /// Sets a MenuStrip theme mode.
         /// </summary>
         /// <param name="ms">MenuStrip control</param>
-        /// <param name="theme">Optional - forces dark theme if TRUE</param>
         private static void SetMS(MenuStrip ms)
         {
             if (Styler.MODE) // dark
@@ -133,7 +137,6 @@ namespace OTOI_ADD.Code.Module.Style
         /// Sets a ToolStripMenuItem theme mode.
         /// </summary>
         /// <param name="tsmi">ToolStripMenuItem control</param>
-        /// <param name="theme">Optional - forces dark theme if TRUE</param>
         private static void SetTSMI(ToolStripMenuItem tsmi)
         {
             if (Styler.MODE)
@@ -153,7 +156,6 @@ namespace OTOI_ADD.Code.Module.Style
         /// Sets a Label2 theme mode.
         /// </summary>
         /// <param name="lb2">Label2 custom control</param>
-        /// <param name="theme">Optional - forces dark theme if TRUE</param>
         private static void SetLB2(Label2 lb2)
         {
             if (Styler.MODE)
@@ -173,7 +175,6 @@ namespace OTOI_ADD.Code.Module.Style
         /// Sets a Label theme mode.
         /// </summary>
         /// <param name="lb">Label control</param>
-        /// <param name="theme">Optional - forces dark theme if TRUE</param>
         private static void SetLB(Label lb)
         {
             if (Styler.MODE)
@@ -193,7 +194,6 @@ namespace OTOI_ADD.Code.Module.Style
         /// Sets a Button2 theme mode.
         /// </summary>
         /// <param name="bt2">Button2 custom control</param>
-        /// <param name="theme">Optional - forces dark theme if TRUE</param>
         private static void SetBT2(Button2 bt2)
         {
             if (Styler.MODE)
@@ -211,7 +211,6 @@ namespace OTOI_ADD.Code.Module.Style
         /// Sets a Button theme mode.
         /// </summary>
         /// <param name="bt">Button control</param>
-        /// <param name="theme">Optional - forces dark theme if TRUE</param>
         private static void SetBT(Button bt)
         {
             if (Styler.MODE)
@@ -231,7 +230,6 @@ namespace OTOI_ADD.Code.Module.Style
         /// Sets a CheckBox theme mode.
         /// </summary>
         /// <param name="cb">CheckBox control</param>
-        /// <param name="theme">Optional - forces dark theme if TRUE</param>
         private static void SetCB(CheckBox cb)
         {
             if (Styler.MODE)
@@ -251,7 +249,6 @@ namespace OTOI_ADD.Code.Module.Style
         /// Sets a LinkLabel theme mode.
         /// </summary>
         /// <param name="ll">LinkLabel control</param>
-        /// <param name="theme">Optional - forces dark theme if TRUE</param>
         private static void SetLL(LinkLabel ll)
         {
             if (Styler.MODE)
@@ -273,7 +270,6 @@ namespace OTOI_ADD.Code.Module.Style
         /// Sets a ProgressBar theme mode.
         /// </summary>
         /// <param name="pb">ProgressBar control</param>
-        /// <param name="theme">Optional - forces dark theme if TRUE</param>
         private static void SetPB(ProgressBar pb)
         {
             if (Styler.MODE)
@@ -291,7 +287,6 @@ namespace OTOI_ADD.Code.Module.Style
         /// Sets a UserControl theme mode.
         /// </summary>
         /// <param name="uc">UserControl custom control</param>
-        /// <param name="theme">Optional - forces dark theme if TRUE</param>
         private static void SetUC(UserControl uc)
         {
             if (Styler.MODE)
@@ -311,7 +306,6 @@ namespace OTOI_ADD.Code.Module.Style
         /// Sets a ToolStripSeparator theme mode.
         /// </summary>
         /// <param name="tss">ToolStripSeparator control</param>
-        /// <param name="theme">Optional - forces dark theme if TRUE</param>
         private static void SetTSS(ToolStripSeparator tss)
         {
             /*
@@ -331,7 +325,6 @@ namespace OTOI_ADD.Code.Module.Style
         /// Sets a Form theme mode.
         /// </summary>
         /// <param name="f">Form control</param>
-        /// <param name="theme">Optional - forces dark theme if TRUE</param>
         private static void SetF(Form f)
         {
             if (Styler.MODE)
@@ -349,7 +342,6 @@ namespace OTOI_ADD.Code.Module.Style
         /// Sets a ComboBox theme mode.
         /// </summary>
         /// <param name="cob">ComboBox control</param>
-        /// <param name="theme">Optional - forces dark theme if TRUE</param>
         private static void SetCOB(ComboBox cob)
         {
             if (Styler.MODE)
@@ -361,6 +353,23 @@ namespace OTOI_ADD.Code.Module.Style
             {
                 cob.BackColor = ColorScheme.COB_BACK_L;
                 cob.ForeColor = ColorScheme.COB_FORE_L;
+            }
+        }
+
+        // TODO: comment
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="rb"></param>
+        private static void SetRB(RadioButton rb)
+        {
+            if (Styler.MODE)
+            {
+                rb.ForeColor = ColorScheme.RB_FORE_D;
+            }
+            else
+            {
+                rb.ForeColor = ColorScheme.RB_FORE_L;
             }
         }
     }

@@ -25,7 +25,8 @@ namespace OTOI_ADD.Code.Module.Download
         // https://www.omie.es/sites/default/files/dados/AGNO_2022/MES_12/TXT/INT_PDBC_PRECIO_2_01_12_2022_31_12_2022.TXT
         // https://www.omie.es/sites/default/files/dados/AGNO_2023/MES_01/TXT/INT_PDBC_PRECIO_2_01_01_2023_31_01_2023.TXT
         */
-
+        // test
+        private static void nada() { }
         private static ILog logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         /// <summary>

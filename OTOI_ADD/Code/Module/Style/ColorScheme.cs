@@ -71,5 +71,8 @@ namespace OTOI_ADD.Code.Module.Style
 
         internal static readonly Color DIS_TEXT_L = Color.White;
         internal static readonly Color DIS_TEXT_D = Color.Black;
+
+        internal static readonly Color RB_FORE_L = Color.Black;
+        internal static readonly Color RB_FORE_D = Color.White;
     }
 }

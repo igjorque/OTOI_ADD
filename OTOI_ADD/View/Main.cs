@@ -40,18 +40,18 @@ namespace OTOI_ADD.View
             return new List<Object>
             {
                 this.ms_menu,
+
                 this.tsmi_menu, this.tsmi_config, this.tsmi_exit,
+                                this.tsmi_tools, this.tsmi_logs, this.tsmi_delete,
                 this.tsmi_downloads, this.tsmi_omie, this.tsmi_HPCM, this.tsmi_HMM, this.tsmi_HMT,
                                     this.tsmi_esios, this.tsmi_c2l,
                                     this.tsmi_downloadFolder,
-                                    this.tsmi_clear,
+
                 this.tsmi_folder, this.tsmi_openDir, this.tsmi_installDir, this.tsmi_configDir, this.tsmi_downloadDir, this.tsmi_logsDir,
-                                    this.tsmi_log, this.tsmi_logSend,
-                                    this.tsmi_old, this.tsmi_HPC, this.tsmi_HM,
-                                    this.tsmi_test,
+
                 this.tsmi_help, this.tsmi_doc, this.tsmi_about,
 
-                this.tss_file, this.tss_download1, this.tss_download2, this.tss_utility, this.tss_help_2, this.tss_help_2, 
+                this.tss_file, this.tss_download1, this.tss_download2, this.tss_help_2, this.tss_help_2, 
                 
                 this.tsmi_test // TODO: delete
             };
@@ -72,7 +72,7 @@ namespace OTOI_ADD.View
         private void OpenForm_HPC(object sender, EventArgs e)
         {
             logger.Info(LOG.MAIN_HPC);
-            HPC hpc = new HPC();
+            HPC hpc = new ();
             hpc.Name = "f_hpc";
             if (FormExists(hpc.Name))
             {
@@ -95,7 +95,7 @@ namespace OTOI_ADD.View
         private void OpenForm_HPCM(object sender, EventArgs e)
         {
             logger.Info(LOG.MAIN_HPCM);
-            HPCM hpcm = new HPCM();
+            HPCM hpcm = new ();
             hpcm.Name = "f_hpcm";
             if (FormExists(hpcm.Name))
             {
@@ -119,7 +119,7 @@ namespace OTOI_ADD.View
         private void OpenForm_HM(object sender, EventArgs e)
         {
             logger.Info(LOG.MAIN_HM);
-            HM hm = new HM();
+            HM hm = new();
             hm.Name = "f_hm";
             if (FormExists(hm.Name))
             {
@@ -142,7 +142,7 @@ namespace OTOI_ADD.View
         private void OpenForm_HMM(object sender, EventArgs e)
         {
             logger.Info(LOG.MAIN_HMM);
-            HMM hmm = new HMM();
+            HMM hmm = new();
             hmm.Name = "f_hmm";
             if (FormExists(hmm.Name))
             {
@@ -222,6 +222,30 @@ namespace OTOI_ADD.View
             c.ShowDialog();
             ThemeSwitch();
             c.Dispose();
+        }
+
+        // TODO: comment
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OpenLogsForm(object sender, EventArgs e)
+        {
+
+        }
+
+        // TODO: comment
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OpenDeleteForm(object sender, EventArgs e)
+        {
+            Deletion del = new Deletion();
+            del.MdiParent = this;
+            del.Show();
         }
 
         /// <summary>
@@ -386,33 +410,6 @@ namespace OTOI_ADD.View
                 tsmi.ForeColor = ColorScheme.TSMI_FORE_L;
             }
         }
-
-        /// <summary>
-        /// Clears the default downloads folder.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ClearDownloads(object sender, EventArgs e)
-        {
-            // TODO : remove hardcoded text
-            DialogResult dr = MessageBox.Show("Va a eliminar todos los documentos descargados en [" + GLB.FOLDER_DOWNLOADS + "]. ¿Está seguro?", "Atención", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-            if (dr == DialogResult.Yes)
-            {
-                try
-                {
-                    Directory.Delete(GLB.FOLDER_DOWNLOADS, true);
-                }
-                catch (IOException ex)
-                {
-                    // TODO : if a contained file is open, an empty folder will remain not erased, but all files will be removed. Check if excel behaves the same.
-                    // TODO : remove hardcoded text
-                    logger.Error("Error en eliminación");
-                }
-                Directory.CreateDirectory(GLB.FOLDER_DOWNLOADS);
-            }
-
-        }
-
         #endregion
 
         // ----------------------------------------------------------------------------------------- 
@@ -478,18 +475,33 @@ namespace OTOI_ADD.View
             if (Styler.MODE)
             {
                 this.tsmi_config.Image = OTOI_ADD.Properties.Resources.gear_dark;
+
+                this.tsmi_tools.Image = OTOI_ADD.Properties.Resources.tool_dark;
+                this.tsmi_logs.Image = OTOI_ADD.Properties.Resources.log_dark;
+                this.tsmi_delete.Image = OTOI_ADD.Properties.Resources.delete_dark;
+
                 this.tsmi_exit.Image = OTOI_ADD.Properties.Resources.exit_dark;
 
                 this.tsmi_downloadFolder.Image = OTOI_ADD.Properties.Resources.folder_dark;
 
-                this.tsmi_log.Image = OTOI_ADD.Properties.Resources.log_dark;
+                this.tsmi_logs.Image = OTOI_ADD.Properties.Resources.log_dark;
+
+                this.tsmi_omie.Image = OTOI_ADD.Properties.Resources.get_dark;
+                this.tsmi_HPCM.Image = OTOI_ADD.Properties.Resources.get_dark;
+                this.tsmi_HMM.Image = OTOI_ADD.Properties.Resources.get_dark;
+                this.tsmi_HMT.Image = OTOI_ADD.Properties.Resources.get_dark;
+
+                this.tsmi_esios.Image = OTOI_ADD.Properties.Resources.get_dark;
+                this.tsmi_c2l.Image = OTOI_ADD.Properties.Resources.get_dark;
 
                 this.tsmi_openDir.Image = OTOI_ADD.Properties.Resources.folder_dark;
+
                 this.tsmi_installDir.Image = OTOI_ADD.Properties.Resources.folder_dark;
                 this.tsmi_configDir.Image = OTOI_ADD.Properties.Resources.folder_dark;
                 this.tsmi_downloadDir.Image = OTOI_ADD.Properties.Resources.folder_dark;
                 this.tsmi_logsDir.Image = OTOI_ADD.Properties.Resources.folder_dark;
 
+                this.tsmi_help.Image = OTOI_ADD.Properties.Resources.help_dark;
                 this.tsmi_doc.Image = OTOI_ADD.Properties.Resources.file_dark;
                 this.tsmi_about.Image = OTOI_ADD.Properties.Resources.about_dark;
 
@@ -504,20 +516,34 @@ namespace OTOI_ADD.View
             }
             else
             {
-
                 this.tsmi_config.Image = OTOI_ADD.Properties.Resources.gear_light;
+
+                this.tsmi_tools.Image = OTOI_ADD.Properties.Resources.tool_light;
+                this.tsmi_logs.Image = OTOI_ADD.Properties.Resources.log_light;
+                this.tsmi_delete.Image = OTOI_ADD.Properties.Resources.delete_light;
+
                 this.tsmi_exit.Image = OTOI_ADD.Properties.Resources.exit_light;
 
                 this.tsmi_downloadFolder.Image = OTOI_ADD.Properties.Resources.folder_light;
 
-                this.tsmi_log.Image = OTOI_ADD.Properties.Resources.log_light;
+                this.tsmi_logs.Image = OTOI_ADD.Properties.Resources.log_light;
+
+                this.tsmi_omie.Image = OTOI_ADD.Properties.Resources.get_light;
+                this.tsmi_HPCM.Image = OTOI_ADD.Properties.Resources.get_light;
+                this.tsmi_HMM.Image = OTOI_ADD.Properties.Resources.get_light;
+                this.tsmi_HMT.Image = OTOI_ADD.Properties.Resources.get_light;
+
+                this.tsmi_esios.Image = OTOI_ADD.Properties.Resources.get_light;
+                this.tsmi_c2l.Image = OTOI_ADD.Properties.Resources.get_light;
 
                 this.tsmi_openDir.Image = OTOI_ADD.Properties.Resources.folder_light;
+
                 this.tsmi_installDir.Image = OTOI_ADD.Properties.Resources.folder_light;
                 this.tsmi_configDir.Image = OTOI_ADD.Properties.Resources.folder_light;
                 this.tsmi_downloadDir.Image = OTOI_ADD.Properties.Resources.folder_light;
                 this.tsmi_logsDir.Image = OTOI_ADD.Properties.Resources.folder_light;
 
+                this.tsmi_help.Image = OTOI_ADD.Properties.Resources.help_light;
                 this.tsmi_doc.Image = OTOI_ADD.Properties.Resources.file_light;
                 this.tsmi_about.Image = OTOI_ADD.Properties.Resources.about_light;
 
@@ -541,18 +567,6 @@ namespace OTOI_ADD.View
             SetImage();
             Styler.SetStyle(this.GetControls());
         }
-
-        /// <summary>
-        /// Save configuration
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void SaveConfiguration(object sender, FormClosingEventArgs e)
-        {
-            File.Copy(Environment.CurrentDirectory + Path.DirectorySeparatorChar + "OTOI_ADD.dll.config", GLB.FOLDER_CONFIG + Path.DirectorySeparatorChar + "OTOI_ADD.dll.config", true);
-            // TODO : CHECK SETTINGS LOAD/SAVE
-        }
-
         #endregion
 
         // ----------------------------------------------------------------------------------------- 
@@ -564,6 +578,12 @@ namespace OTOI_ADD.View
             Test t = new();
             t.MdiParent = this;
             t.Show();
+        }
+
+        private void Main_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Form f = (Form)sender;
+            f.Dispose();
         }
     }
 }
