@@ -1,11 +1,4 @@
-﻿using Google.Apis.Util;
-using Microsoft.Office.Interop.Excel;
-using OTOI_ADD.Code.Module.Style;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using OTOI_ADD.Code.Module.Style;
 
 namespace OTOI_ADD.View.Asset
 {
@@ -19,7 +12,7 @@ namespace OTOI_ADD.View.Asset
         private void ExtendedToolStripSeparator_Paint(object? sender, PaintEventArgs e)
         {
             // Get the separator's width and height.
-            ToolStripSeparator toolStripSeparator = (ToolStripSeparator)sender;
+            ToolStripSeparator toolStripSeparator = (ToolStripSeparator)(sender ?? new());
             int width = toolStripSeparator.Width;
             int height = toolStripSeparator.Height;
 

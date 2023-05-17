@@ -174,20 +174,20 @@ namespace OTOI_ADD.View
         /// </summary>
         /// <param name="size"></param>
         /// <returns></returns>
-        private string ByteToString(long size)
+        private static string ByteToString(long size)
         {
             string byteString = size + " B";
             if (size > 1024)
             {
-                size = size / 1024;
+                size /= 1024;
                 byteString = size + " KB";
                 if (size > 1024)
                 {
-                    size = size / 1024;
+                    size /= 1024;
                     byteString = size + " MB";
                     if (size > 1024)
                     {
-                        size = size / 1024;
+                        size /= 1024;
                         byteString = size + " GB";
                     }
                 }

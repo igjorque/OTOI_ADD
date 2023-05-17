@@ -46,9 +46,7 @@ namespace OTOI_ADD.View.Asset.Control
         {
             if (m.Msg == WM_NOFITY)
             {
-#pragma warning disable CS8605 // Conversión unboxing a un valor posiblemente NULL.
-                var nmhdr = (NMHDR)Marshal.PtrToStructure(m.LParam, typeof(NMHDR));
-#pragma warning restore CS8605 // Conversión unboxing a un valor posiblemente NULL.
+                var nmhdr = (NMHDR)(Marshal.PtrToStructure(m.LParam, typeof(NMHDR)) ?? new());
                 switch (nmhdr.code)
                 {
                     // detect pop-up display and switch view to month selection
@@ -62,9 +60,7 @@ namespace OTOI_ADD.View.Asset.Control
                     // detect month selection and close the pop-up
                     case MCN_VIEWCHANGE:
                         {
-#pragma warning disable CS8605 // Conversión unboxing a un valor posiblemente NULL.
-                            var nmviewchange = (NMVIEWCHANGE)Marshal.PtrToStructure(m.LParam, typeof(NMVIEWCHANGE));
-#pragma warning restore CS8605 // Conversión unboxing a un valor posiblemente NULL.
+                            var nmviewchange = (NMVIEWCHANGE)(Marshal.PtrToStructure(m.LParam, typeof(NMVIEWCHANGE)) ?? new());
                             if (nmviewchange.dwOldView == 1 && nmviewchange.dwNewView == 0)
                             {
                                 SendMessage(Handle, DTM_CLOSEMONTHCAL, IntPtr.Zero, IntPtr.Zero);

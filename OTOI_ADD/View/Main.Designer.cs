@@ -61,7 +61,6 @@ namespace OTOI_ADD.View
             this.tss_help_1 = new OTOI_ADD.View.Asset.ToolStripSeparator2();
             this.tsmi_about = new System.Windows.Forms.ToolStripMenuItem();
             this.tss_help_2 = new OTOI_ADD.View.Asset.ToolStripSeparator2();
-            this.tsmi_test = new System.Windows.Forms.ToolStripMenuItem();
             this.tt_menu = new System.Windows.Forms.ToolTip(this.components);
             this.ms_menu.SuspendLayout();
             this.SuspendLayout();
@@ -166,7 +165,7 @@ namespace OTOI_ADD.View
             this.tsmi_HMM,
             this.tsmi_HMT});
             this.tsmi_omie.Name = "tsmi_omie";
-            this.tsmi_omie.Size = new System.Drawing.Size(145, 22);
+            this.tsmi_omie.Size = new System.Drawing.Size(180, 22);
             this.tsmi_omie.Text = "OMIE";
             // 
             // tsmi_HPCM
@@ -197,14 +196,14 @@ namespace OTOI_ADD.View
             // tss_download1
             // 
             this.tss_download1.Name = "tss_download1";
-            this.tss_download1.Size = new System.Drawing.Size(142, 6);
+            this.tss_download1.Size = new System.Drawing.Size(177, 6);
             // 
             // tsmi_esios
             // 
             this.tsmi_esios.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmi_c2l});
             this.tsmi_esios.Name = "tsmi_esios";
-            this.tsmi_esios.Size = new System.Drawing.Size(145, 22);
+            this.tsmi_esios.Size = new System.Drawing.Size(180, 22);
             this.tsmi_esios.Text = "ESIOS";
             // 
             // tsmi_c2l
@@ -217,12 +216,12 @@ namespace OTOI_ADD.View
             // tss_download2
             // 
             this.tss_download2.Name = "tss_download2";
-            this.tss_download2.Size = new System.Drawing.Size(142, 6);
+            this.tss_download2.Size = new System.Drawing.Size(177, 6);
             // 
             // tsmi_downloadFolder
             // 
             this.tsmi_downloadFolder.Name = "tsmi_downloadFolder";
-            this.tsmi_downloadFolder.Size = new System.Drawing.Size(145, 22);
+            this.tsmi_downloadFolder.Size = new System.Drawing.Size(180, 22);
             this.tsmi_downloadFolder.Text = "Ver descargas";
             this.tsmi_downloadFolder.Click += new System.EventHandler(this.DownloadDir);
             // 
@@ -248,7 +247,7 @@ namespace OTOI_ADD.View
             this.tsmi_downloadDir,
             this.tsmi_logsDir});
             this.tsmi_openDir.Name = "tsmi_openDir";
-            this.tsmi_openDir.Size = new System.Drawing.Size(154, 22);
+            this.tsmi_openDir.Size = new System.Drawing.Size(180, 22);
             this.tsmi_openDir.Text = "Abrir directorio";
             // 
             // tsmi_installDir
@@ -289,8 +288,7 @@ namespace OTOI_ADD.View
             this.tsmi_doc,
             this.tss_help_1,
             this.tsmi_about,
-            this.tss_help_2,
-            this.tsmi_test});
+            this.tss_help_2});
             this.tsmi_help.Image = global::OTOI_ADD.Properties.Resources.help_light;
             this.tsmi_help.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.tsmi_help.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
@@ -303,33 +301,26 @@ namespace OTOI_ADD.View
             // tsmi_doc
             // 
             this.tsmi_doc.Name = "tsmi_doc";
-            this.tsmi_doc.Size = new System.Drawing.Size(159, 22);
+            this.tsmi_doc.Size = new System.Drawing.Size(180, 22);
             this.tsmi_doc.Text = "Documentación";
             this.tsmi_doc.Click += new System.EventHandler(this.Documentation);
             // 
             // tss_help_1
             // 
             this.tss_help_1.Name = "tss_help_1";
-            this.tss_help_1.Size = new System.Drawing.Size(156, 6);
+            this.tss_help_1.Size = new System.Drawing.Size(177, 6);
             // 
             // tsmi_about
             // 
             this.tsmi_about.Name = "tsmi_about";
-            this.tsmi_about.Size = new System.Drawing.Size(159, 22);
+            this.tsmi_about.Size = new System.Drawing.Size(180, 22);
             this.tsmi_about.Text = "Acerca de";
             this.tsmi_about.Click += new System.EventHandler(this.About);
             // 
             // tss_help_2
             // 
             this.tss_help_2.Name = "tss_help_2";
-            this.tss_help_2.Size = new System.Drawing.Size(156, 6);
-            // 
-            // tsmi_test
-            // 
-            this.tsmi_test.Name = "tsmi_test";
-            this.tsmi_test.Size = new System.Drawing.Size(159, 22);
-            this.tsmi_test.Text = "Test";
-            this.tsmi_test.Click += new System.EventHandler(this.TEST);
+            this.tss_help_2.Size = new System.Drawing.Size(177, 6);
             // 
             // Main
             // 
@@ -381,7 +372,6 @@ namespace OTOI_ADD.View
         internal ToolStripSeparator2 tss_help_2;
         internal ToolStripSeparator2 tss_download2;
         internal ToolStripSeparator2 tss_help_1;
-        private ToolStripMenuItem tsmi_test;
         internal ToolStripMenuItem tsmi_help;
         private ToolStripMenuItem tsmi_tools;
         private ToolStripMenuItem tsmi_logs;

@@ -1,7 +1,7 @@
 ﻿using OTOI_ADD.Code.Module.Function;
-using OTOI_ADD.Code.Module.Style;
 using OTOI_ADD.Code.Variable;
 using System.Reflection;
+using Prop = OTOI_ADD.Properties.Settings;
 
 namespace OTOI_ADD.View.Generic.OMIE
 {
@@ -56,30 +56,30 @@ namespace OTOI_ADD.View.Generic.OMIE
         private void ArrangeFields()
         {
             // LBTitle
-            this.LBTitle.Location = new System.Drawing.Point(1, 6);
+            this.LBTitle.Location = new Point(1, 6);
             // LBLink
-            this.LBLink.Location = new System.Drawing.Point(285, 18);
+            this.LBLink.Location = new Point(285, 18);
 
             // BTFolder
-            this.BTFolder.Location = new System.Drawing.Point(1, 82);
+            this.BTFolder.Location = new Point(1, 82);
             // LBFolder
-            this.LBFolder.Location = new System.Drawing.Point(113, 83);
+            this.LBFolder.Location = new Point(113, 83);
 
             // CBProcess
-            this.CBProcess.Location = new System.Drawing.Point(8, 110);
+            this.CBProcess.Location = new Point(8, 110);
 
             // CBKeep
-            this.CBKeep.Location = new System.Drawing.Point(8, 138);
+            this.CBKeep.Location = new Point(8, 138);
 
             // BTFile
-            this.BTFile.Location = new System.Drawing.Point(1, 166);
+            this.BTFile.Location = new Point(1, 166);
             // LBFile
-            this.LBFile.Location = new System.Drawing.Point(113, 167);
+            this.LBFile.Location = new Point(113, 167);
 
             // BTAccept
-            this.BTAccept.Location = new System.Drawing.Point(64, 198);
+            this.BTAccept.Location = new Point(64, 198);
             // BTCancel
-            this.BTCancel.Location = new System.Drawing.Point(176, 198);
+            this.BTCancel.Location = new Point(176, 198);
         }
 
         /// <summary>
@@ -87,20 +87,20 @@ namespace OTOI_ADD.View.Generic.OMIE
         /// </summary>
         private void LoadFields()
         {
-            this.CBProcess.Checked = OTOI_ADD.Properties.Settings.Default.O_PROCESS;
-            this.CBKeep.Checked = OTOI_ADD.Properties.Settings.Default.O_KEEP;
+            this.CBProcess.Checked = Prop.Default.O_PROCESS;
+            this.CBKeep.Checked = Prop.Default.O_KEEP;
             
-            this.LBFolder.Text = OTOI_ADD.Properties.Settings.Default.DIRECTORY;
-            this.LBFile.Text = OTOI_ADD.Properties.Settings.Default.FILE;
+            this.LBFolder.Text = Prop.Default.DIRECTORY;
+            this.LBFile.Text = Prop.Default.FILE;
 
             this.CBKeep.Enabled = this.CBProcess.Checked;
             this.BTFile.Enabled = this.CBProcess.Checked;
             this.LBFile.Enabled = this.CBProcess.Checked;
 
-            this.fb_directory.InitialDirectory = OTOI_ADD.Properties.Settings.Default.DIRECTORY;
+            this.fb_directory.InitialDirectory = Prop.Default.DIRECTORY;
             this.tt_folder.SetToolTip(this.LBFolder, this.LBFolder.Text);
             this.tt_file.SetToolTip(this.LBFile, this.LBFile.Text);
-            this.sf_file.InitialDirectory = OTOI_ADD.Properties.Settings.Default.DIRECTORY;
+            this.sf_file.InitialDirectory = Prop.Default.DIRECTORY;
         }
 
         /// <summary>

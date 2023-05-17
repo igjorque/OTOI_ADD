@@ -6,7 +6,7 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
-    <ApplicationIcon>ur_icon.ico</ApplicationIcon>
+    <ApplicationIcon>Resource\ur_icon.ico</ApplicationIcon>
     <PackageIcon>ur_icon.ico</PackageIcon>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <StartupObject>OTOI_ADD.Program</StartupObject>
@@ -25,7 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="ur_icon.ico" />
+    <Content Include="Resource\ur_icon.ico" />
   </ItemGroup>
 
   <ItemGroup>
@@ -33,7 +33,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Google.Apis.Core" Version="1.60.0" />
     <PackageReference Include="log4net" Version="2.0.15" />
   </ItemGroup>
 
@@ -70,15 +69,12 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>App.Designer.cs</LastGenOutput>
     </None>
-    <None Update="log4net.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Update="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="ur_icon.ico">
+    <None Update="Resource\ur_icon.ico">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>

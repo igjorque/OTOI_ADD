@@ -1,7 +1,7 @@
 ﻿using OTOI_ADD.Code.Interface;
 using OTOI_ADD.Code.Module.Function;
 using OTOI_ADD.Code.Module.Style;
-using OTOI_ADD.Code.Variable;
+using Prop = OTOI_ADD.Properties.Settings;
 
 namespace OTOI_ADD.View
 {
@@ -88,17 +88,17 @@ namespace OTOI_ADD.View
         /// </summary>
         private void LoadConfig()
         {
-            this.cb_load_config.Checked = OTOI_ADD.Properties.Settings.Default.CFG_LOAD;
-            this.lb_download.Text = OTOI_ADD.Properties.Settings.Default.DIRECTORY;
-            this.cb_mode.Checked = OTOI_ADD.Properties.Settings.Default.THEME;
-            this.cb_lang.SelectedIndex = this.cb_lang.Items.IndexOf(OTOI_ADD.Properties.Settings.Default.LANG);
+            this.cb_load_config.Checked = Prop.Default.CFG_LOAD;
+            this.lb_download.Text = Prop.Default.DIRECTORY;
+            this.cb_mode.Checked = Prop.Default.THEME;
+            this.cb_lang.SelectedIndex = this.cb_lang.Items.IndexOf(Prop.Default.LANG);
 
-            this.cb_opr.Checked = OTOI_ADD.Properties.Settings.Default.O_PROCESS;
-            this.cb_okp.Checked = OTOI_ADD.Properties.Settings.Default.O_KEEP;
+            this.cb_opr.Checked = Prop.Default.O_PROCESS;
+            this.cb_okp.Checked = Prop.Default.O_KEEP;
 
-            this.cb_euz.Checked = OTOI_ADD.Properties.Settings.Default.E_UNZIP;
-            this.cb_ekp.Checked = OTOI_ADD.Properties.Settings.Default.E_KEEP;
-            this.cb_epr.Checked = OTOI_ADD.Properties.Settings.Default.E_PROCESS;
+            this.cb_euz.Checked = Prop.Default.E_UNZIP;
+            this.cb_ekp.Checked = Prop.Default.E_KEEP;
+            this.cb_epr.Checked = Prop.Default.E_PROCESS;
         }
 
         /// <summary>
@@ -230,43 +230,43 @@ namespace OTOI_ADD.View
         {
             if (this.F_LOAD)
             {
-                OTOI_ADD.Properties.Settings.Default.CFG_LOAD = this.cb_load_config.Checked;
+                Prop.Default.CFG_LOAD = this.cb_load_config.Checked;
             }
             if (this.F_SAVE)
             {
-                OTOI_ADD.Properties.Settings.Default.CFG_SAVE = this.cb_save_config.Checked;
+                Prop.Default.CFG_SAVE = this.cb_save_config.Checked;
             }
             if (this.F_FOLDER)
             {
-                OTOI_ADD.Properties.Settings.Default.DIRECTORY = this.lb_download.Text;
+                Prop.Default.DIRECTORY = this.lb_download.Text;
             }
             if (this.F_THEME)
             {
-                OTOI_ADD.Properties.Settings.Default.THEME = this.cb_mode.Checked;
+                Prop.Default.THEME = this.cb_mode.Checked;
             }
             if (this.F_LANG)
             {
-                OTOI_ADD.Properties.Settings.Default.LANG = this.cb_lang.SelectedText;
+                Prop.Default.LANG = this.cb_lang.SelectedText;
             }
             if (this.F_OPR)
             {
-                OTOI_ADD.Properties.Settings.Default.O_PROCESS = this.cb_opr.Checked;
+                Prop.Default.O_PROCESS = this.cb_opr.Checked;
             }
             if (this.F_OKP)
             {
-                OTOI_ADD.Properties.Settings.Default.O_KEEP = this.cb_okp.Checked;
+                Prop.Default.O_KEEP = this.cb_okp.Checked;
             }
             if (this.F_EUZ)
             {
-                OTOI_ADD.Properties.Settings.Default.E_UNZIP = this.cb_euz.Checked;
+                Prop.Default.E_UNZIP = this.cb_euz.Checked;
             }
             if (this.F_EKP)
             {
-                OTOI_ADD.Properties.Settings.Default.E_KEEP = this.cb_ekp.Checked;
+                Prop.Default.E_KEEP = this.cb_ekp.Checked;
             }
             if (this.F_EPR)
             {
-                OTOI_ADD.Properties.Settings.Default.E_PROCESS = this.cb_epr.Checked;
+                Prop.Default.E_PROCESS = this.cb_epr.Checked;
             }
             InitFlags(); // Reset flags - prevents ClosingForm from popping a MessageBox
 
@@ -304,7 +304,7 @@ namespace OTOI_ADD.View
             }
             else
             {
-                Styler.MODE = OTOI_ADD.Properties.Settings.Default.THEME;
+                Styler.MODE = Prop.Default.THEME;
             }
         }
 

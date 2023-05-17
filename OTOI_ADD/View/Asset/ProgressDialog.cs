@@ -5,7 +5,6 @@ using OTOI_ADD.Code.Module.Function;
 using OTOI_ADD.Code.Module.Process;
 using OTOI_ADD.Code.Module.Style;
 using OTOI_ADD.Code.Variable;
-using System.Diagnostics;
 using System.IO.Compression;
 using System.Reflection;
 
@@ -97,7 +96,7 @@ namespace OTOI_ADD.View.Asset
             this.pb_progress.Step = 1;
 
             // Prevent user from flooding the selected directory (default: desktop)
-            auxpath = inp.DestDL + Path.DirectorySeparatorChar + "OMIE_" + daux.Day + "-" + daux.Month + "-" + daux.Year + "_" + daux.Hour + "-" + daux.Minute + "-" + daux.Second;
+            auxpath = $@"{inp.DestDL}\OMIE_{daux.Day}-{daux.Month}-{daux.Year}_{daux.Hour}-{daux.Minute}-{daux.Second}";
             Directory.CreateDirectory(auxpath);
             inp.DestDL = auxpath;
 
@@ -119,6 +118,7 @@ namespace OTOI_ADD.View.Asset
             // Process files
             if (inp.Process)
             {
+                // TODO: hardcoded text
                 this.Text = "Procesando";
                 this.lb_download.Text = "Procesando los datos descargados...";
                 ProcessorOMIE.Process(FILES, this.pb_progress);
@@ -164,8 +164,8 @@ namespace OTOI_ADD.View.Asset
             inp.DestDL = auxpath;
 
             // Build file path
-            this.lb_url_value.Text = "C2 liquicomun - " + inp.DateStart.Month + "/" + inp.DateStart.Year;
-            file = inp.DestDL + Path.DirectorySeparatorChar + filename;
+            this.lb_url_value.Text = $"C2 liquicomun - {inp.DateStart.Month}/{inp.DateStart.Year}";
+            file = $"{inp.DestDL}/{filename}";
 
             // Download file
             Downloader.Download(file, uri);
@@ -185,6 +185,7 @@ namespace OTOI_ADD.View.Asset
             // Unzip?
             if (inp.Unzip)
             {
+                // TODO: hardcoded text
                 this.lb_download.Text = "Extrayendo archivos...";
                 ZipFile.ExtractToDirectory(file, inp.DestDL);
 
@@ -228,20 +229,20 @@ namespace OTOI_ADD.View.Asset
         /// <returns>Built file name</returns>
         private static string FName(string file)
         {
-            string result = "";
+            string result;
             string[] aux = file.Split("_");
 
             if (file.Contains(GLB.URI_HPC)) // is HPC
             {
-                result = "HPC_" + aux[7] + "-" + aux[5] + "-" + aux[6] + ".txt";
+                result = $"HPC_{aux[7]}-{aux[5]}-{aux[6]}.txt";
             }
             else if (file.Contains(GLB.URI_HM)) // is HM
             {
-                result = "HM_" + aux[8] + "-" + aux[6] + "-" + aux[7] + ".txt";
+                result = $"HPC_{aux[8]}-{aux[6]}-{aux[7]}.txt";          
             }
             else // GLB.URI_HMT - is HMT
             {
-                result = "HMT_" + aux[5] + "-" + aux[6] + ".txt";
+                result = $"HMT_{aux[5]}-{aux[6]}.txt";
             }
             return result;
         }

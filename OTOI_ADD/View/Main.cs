@@ -2,13 +2,12 @@ using OTOI_ADD.Code.Interface;
 using OTOI_ADD.Code.Module.Style;
 using OTOI_ADD.Code.Variable;
 using OTOI_ADD.View.ESIOS;
+using OTOI_ADD.View.Generic.ESIOS;
+using OTOI_ADD.View.Generic.OMIE;
 using OTOI_ADD.View.OMIE;
 using System.Diagnostics;
 using System.Reflection;
-using OTOI_ADD.View.Generic.OMIE;
-using OTOI_ADD.View.Generic.ESIOS;
-using System.Security.Cryptography;
-using Microsoft.VisualBasic.FileIO;
+using Res = OTOI_ADD.Properties.Resources;
 
 namespace OTOI_ADD.View
 {
@@ -51,9 +50,7 @@ namespace OTOI_ADD.View
 
                 this.tsmi_help, this.tsmi_doc, this.tsmi_about,
 
-                this.tss_file, this.tss_download1, this.tss_download2, this.tss_help_2, this.tss_help_2, 
-                
-                this.tsmi_test // TODO: delete
+                this.tss_file, this.tss_download1, this.tss_download2, this.tss_help_2, this.tss_help_2,
             };
         }
 
@@ -72,8 +69,10 @@ namespace OTOI_ADD.View
         private void OpenForm_HPC(object sender, EventArgs e)
         {
             logger.Info(LOG.MAIN_HPC);
-            HPC hpc = new ();
-            hpc.Name = "f_hpc";
+            HPC hpc = new()
+            {
+                Name = "f_hpc"
+            };
             if (FormExists(hpc.Name))
             {
                 GiveFocus(hpc.Name);
@@ -95,8 +94,10 @@ namespace OTOI_ADD.View
         private void OpenForm_HPCM(object sender, EventArgs e)
         {
             logger.Info(LOG.MAIN_HPCM);
-            HPCM hpcm = new ();
-            hpcm.Name = "f_hpcm";
+            HPCM hpcm = new()
+            {
+                Name = "f_hpcm"
+            };
             if (FormExists(hpcm.Name))
             {
                 GiveFocus(hpcm.Name);
@@ -119,8 +120,10 @@ namespace OTOI_ADD.View
         private void OpenForm_HM(object sender, EventArgs e)
         {
             logger.Info(LOG.MAIN_HM);
-            HM hm = new();
-            hm.Name = "f_hm";
+            HM hm = new()
+            {
+                Name = "f_hm"
+            };
             if (FormExists(hm.Name))
             {
                 GiveFocus(hm.Name);
@@ -142,8 +145,10 @@ namespace OTOI_ADD.View
         private void OpenForm_HMM(object sender, EventArgs e)
         {
             logger.Info(LOG.MAIN_HMM);
-            HMM hmm = new();
-            hmm.Name = "f_hmm";
+            HMM hmm = new()
+            {
+                Name = "f_hmm"
+            };
             if (FormExists(hmm.Name))
             {
                 GiveFocus(hmm.Name);
@@ -159,8 +164,10 @@ namespace OTOI_ADD.View
         private void OpenForm_HMT(object sender, EventArgs e)
         {
             logger.Info(LOG.MAIN_HMT);
-            HMT hmt = new();
-            hmt.Name = "f_hmt";
+            HMT hmt = new()
+            {
+                Name = "f_hmt"
+            };
             if (FormExists(hmt.Name))
             {
                 GiveFocus(hmt.Name);
@@ -189,8 +196,10 @@ namespace OTOI_ADD.View
         private void OpenForm_C2L(object sender, EventArgs e)
         {
             logger.Info(LOG.MAIN_C2L);
-            C2L c2l = new();
-            c2l.Name = "f_c2l";
+            C2L c2l = new()
+            {
+                Name = "f_c2l"
+            };
             if (FormExists(c2l.Name))
             {
                 GiveFocus(c2l.Name);
@@ -232,7 +241,7 @@ namespace OTOI_ADD.View
         /// <param name="e"></param>
         private void OpenLogsForm(object sender, EventArgs e)
         {
-
+            // TODO: implement
         }
 
         // TODO: comment
@@ -243,8 +252,10 @@ namespace OTOI_ADD.View
         /// <param name="e"></param>
         private void OpenDeleteForm(object sender, EventArgs e)
         {
-            Deletion del = new Deletion();
-            del.MdiParent = this;
+            Deletion del = new()
+            {
+                MdiParent = this
+            };
             del.Show();
         }
 
@@ -345,7 +356,6 @@ namespace OTOI_ADD.View
         {
             // TODO: implementar subida/envío logs
             logger.Info(LOG.MAIN_SEND);
-            MessageBox.Show("Funcionalidad futura :)");
         }
 
         /// <summary>
@@ -423,26 +433,22 @@ namespace OTOI_ADD.View
         /// </summary>
         private void ChildrenStyle()
         {
-            foreach (Generic.Generic g in this.MdiChildren)
+            foreach (Generic.Generic g in MdiChildren.Cast<Generic.Generic>())
             {
-                if (g is OGenericDay)
+                if (g is OGenericDay ogd)
                 {
-                    OGenericDay ogd = (OGenericDay)g;
                     Styler.SetStyle(ogd.GetControls());
                 }
-                else if (g is OGenericMonth)
+                else if (g is OGenericMonth ogm)
                 {
-                    OGenericMonth ogm = (OGenericMonth)g;
                     Styler.SetStyle(ogm.GetControls());
                 }
-                else if (g is OGenericRange)
+                else if (g is OGenericRange ogr)
                 {
-                    OGenericRange ogr = (OGenericRange)g;
                     Styler.SetStyle(ogr.GetControls());
                 }
-                else if (g is EGenericMonth)
+                else if (g is EGenericMonth egm)
                 {
-                    EGenericMonth egm = (EGenericMonth)g;
                     Styler.SetStyle(egm.GetControls());
                 }
             }
@@ -452,12 +458,12 @@ namespace OTOI_ADD.View
         /// Opens  a folder in file explorer.
         /// </summary>
         /// <param name="folderPath">Folder path to open</param>
-        private void OpenFolder(string folderPath)
+        private static void OpenFolder(string folderPath)
         {
             logger.Info(LOG.MAIN_OPEN);
             if (Directory.Exists(folderPath))
             {
-                ProcessStartInfo startInfo = new ProcessStartInfo
+                ProcessStartInfo startInfo = new()
                 {
                     Arguments = folderPath,
                     FileName = "explorer.exe"
@@ -474,86 +480,86 @@ namespace OTOI_ADD.View
         {
             if (Styler.MODE)
             {
-                this.tsmi_config.Image = OTOI_ADD.Properties.Resources.gear_dark;
+                this.tsmi_config.Image = Res.gear_dark;
 
-                this.tsmi_tools.Image = OTOI_ADD.Properties.Resources.tool_dark;
-                this.tsmi_logs.Image = OTOI_ADD.Properties.Resources.log_dark;
-                this.tsmi_delete.Image = OTOI_ADD.Properties.Resources.delete_dark;
+                this.tsmi_tools.Image = Res.tool_dark;
+                this.tsmi_logs.Image = Res.log_dark;
+                this.tsmi_delete.Image = Res.delete_dark;
 
-                this.tsmi_exit.Image = OTOI_ADD.Properties.Resources.exit_dark;
+                this.tsmi_exit.Image = Res.exit_dark;
 
-                this.tsmi_downloadFolder.Image = OTOI_ADD.Properties.Resources.folder_dark;
+                this.tsmi_downloadFolder.Image = Res.folder_dark;
 
-                this.tsmi_logs.Image = OTOI_ADD.Properties.Resources.log_dark;
+                this.tsmi_logs.Image = Res.log_dark;
 
-                this.tsmi_omie.Image = OTOI_ADD.Properties.Resources.get_dark;
-                this.tsmi_HPCM.Image = OTOI_ADD.Properties.Resources.get_dark;
-                this.tsmi_HMM.Image = OTOI_ADD.Properties.Resources.get_dark;
-                this.tsmi_HMT.Image = OTOI_ADD.Properties.Resources.get_dark;
+                this.tsmi_omie.Image = Res.get_dark;
+                this.tsmi_HPCM.Image = Res.get_dark;
+                this.tsmi_HMM.Image = Res.get_dark;
+                this.tsmi_HMT.Image = Res.get_dark;
 
-                this.tsmi_esios.Image = OTOI_ADD.Properties.Resources.get_dark;
-                this.tsmi_c2l.Image = OTOI_ADD.Properties.Resources.get_dark;
+                this.tsmi_esios.Image = Res.get_dark;
+                this.tsmi_c2l.Image = Res.get_dark;
 
-                this.tsmi_openDir.Image = OTOI_ADD.Properties.Resources.folder_dark;
+                this.tsmi_openDir.Image = Res.folder_dark;
 
-                this.tsmi_installDir.Image = OTOI_ADD.Properties.Resources.folder_dark;
-                this.tsmi_configDir.Image = OTOI_ADD.Properties.Resources.folder_dark;
-                this.tsmi_downloadDir.Image = OTOI_ADD.Properties.Resources.folder_dark;
-                this.tsmi_logsDir.Image = OTOI_ADD.Properties.Resources.folder_dark;
+                this.tsmi_installDir.Image = Res.folder_dark;
+                this.tsmi_configDir.Image = Res.folder_dark;
+                this.tsmi_downloadDir.Image = Res.folder_dark;
+                this.tsmi_logsDir.Image = Res.folder_dark;
 
-                this.tsmi_help.Image = OTOI_ADD.Properties.Resources.help_dark;
-                this.tsmi_doc.Image = OTOI_ADD.Properties.Resources.file_dark;
-                this.tsmi_about.Image = OTOI_ADD.Properties.Resources.about_dark;
+                this.tsmi_help.Image = Res.help_dark;
+                this.tsmi_doc.Image = Res.file_dark;
+                this.tsmi_about.Image = Res.about_dark;
 
-                this.tsmi_menu.BackgroundImage = OTOI_ADD.Properties.Resources.button_dark;
+                this.tsmi_menu.BackgroundImage = Res.button_dark;
                 this.tsmi_menu.BackgroundImageLayout = ImageLayout.Stretch;
-                this.tsmi_downloads.BackgroundImage = OTOI_ADD.Properties.Resources.button_dark;
+                this.tsmi_downloads.BackgroundImage = Res.button_dark;
                 this.tsmi_downloads.BackgroundImageLayout = ImageLayout.Stretch;
-                this.tsmi_folder.BackgroundImage = OTOI_ADD.Properties.Resources.button_dark;
+                this.tsmi_folder.BackgroundImage = Res.button_dark;
                 this.tsmi_folder.BackgroundImageLayout = ImageLayout.Stretch;
-                this.tsmi_help.BackgroundImage = OTOI_ADD.Properties.Resources.button_dark;
+                this.tsmi_help.BackgroundImage = Res.button_dark;
                 this.tsmi_help.BackgroundImageLayout = ImageLayout.Stretch;
             }
             else
             {
-                this.tsmi_config.Image = OTOI_ADD.Properties.Resources.gear_light;
+                this.tsmi_config.Image = Res.gear_light;
 
-                this.tsmi_tools.Image = OTOI_ADD.Properties.Resources.tool_light;
-                this.tsmi_logs.Image = OTOI_ADD.Properties.Resources.log_light;
-                this.tsmi_delete.Image = OTOI_ADD.Properties.Resources.delete_light;
+                this.tsmi_tools.Image = Res.tool_light;
+                this.tsmi_logs.Image = Res.log_light;
+                this.tsmi_delete.Image = Res.delete_light;
 
-                this.tsmi_exit.Image = OTOI_ADD.Properties.Resources.exit_light;
+                this.tsmi_exit.Image = Res.exit_light;
 
-                this.tsmi_downloadFolder.Image = OTOI_ADD.Properties.Resources.folder_light;
+                this.tsmi_downloadFolder.Image = Res.folder_light;
 
-                this.tsmi_logs.Image = OTOI_ADD.Properties.Resources.log_light;
+                this.tsmi_logs.Image = Res.log_light;
 
-                this.tsmi_omie.Image = OTOI_ADD.Properties.Resources.get_light;
-                this.tsmi_HPCM.Image = OTOI_ADD.Properties.Resources.get_light;
-                this.tsmi_HMM.Image = OTOI_ADD.Properties.Resources.get_light;
-                this.tsmi_HMT.Image = OTOI_ADD.Properties.Resources.get_light;
+                this.tsmi_omie.Image = Res.get_light;
+                this.tsmi_HPCM.Image = Res.get_light;
+                this.tsmi_HMM.Image = Res.get_light;
+                this.tsmi_HMT.Image = Res.get_light;
 
-                this.tsmi_esios.Image = OTOI_ADD.Properties.Resources.get_light;
-                this.tsmi_c2l.Image = OTOI_ADD.Properties.Resources.get_light;
+                this.tsmi_esios.Image = Res.get_light;
+                this.tsmi_c2l.Image = Res.get_light;
 
-                this.tsmi_openDir.Image = OTOI_ADD.Properties.Resources.folder_light;
+                this.tsmi_openDir.Image = Res.folder_light;
 
-                this.tsmi_installDir.Image = OTOI_ADD.Properties.Resources.folder_light;
-                this.tsmi_configDir.Image = OTOI_ADD.Properties.Resources.folder_light;
-                this.tsmi_downloadDir.Image = OTOI_ADD.Properties.Resources.folder_light;
-                this.tsmi_logsDir.Image = OTOI_ADD.Properties.Resources.folder_light;
+                this.tsmi_installDir.Image = Res.folder_light;
+                this.tsmi_configDir.Image = Res.folder_light;
+                this.tsmi_downloadDir.Image = Res.folder_light;
+                this.tsmi_logsDir.Image = Res.folder_light;
 
-                this.tsmi_help.Image = OTOI_ADD.Properties.Resources.help_light;
-                this.tsmi_doc.Image = OTOI_ADD.Properties.Resources.file_light;
-                this.tsmi_about.Image = OTOI_ADD.Properties.Resources.about_light;
+                this.tsmi_help.Image = Res.help_light;
+                this.tsmi_doc.Image = Res.file_light;
+                this.tsmi_about.Image = Res.about_light;
 
-                this.tsmi_menu.BackgroundImage = OTOI_ADD.Properties.Resources.button_light;
+                this.tsmi_menu.BackgroundImage = Res.button_light;
                 this.tsmi_menu.BackgroundImageLayout = ImageLayout.Stretch;
-                this.tsmi_downloads.BackgroundImage = OTOI_ADD.Properties.Resources.button_light;
+                this.tsmi_downloads.BackgroundImage = Res.button_light;
                 this.tsmi_downloads.BackgroundImageLayout = ImageLayout.Stretch;
-                this.tsmi_folder.BackgroundImage = OTOI_ADD.Properties.Resources.button_light;
+                this.tsmi_folder.BackgroundImage = Res.button_light;
                 this.tsmi_folder.BackgroundImageLayout = ImageLayout.Stretch;
-                this.tsmi_help.BackgroundImage = OTOI_ADD.Properties.Resources.button_light;
+                this.tsmi_help.BackgroundImage = Res.button_light;
                 this.tsmi_help.BackgroundImageLayout = ImageLayout.Stretch;
             }
         }
@@ -569,21 +575,17 @@ namespace OTOI_ADD.View
         }
         #endregion
 
-        // ----------------------------------------------------------------------------------------- 
-        // ----------------------------------------- TEST ------------------------------------------ 
-        // ----------------------------------------------------------------------------------------- 
-
-        private void TEST(object sender, EventArgs e)
-        {
-            Test t = new();
-            t.MdiParent = this;
-            t.Show();
-        }
-
+        // TODO: comment
         private void Main_FormClosed(object sender, FormClosedEventArgs e)
         {
             Form f = (Form)sender;
             f.Dispose();
         }
+
+        // ----------------------------------------------------------------------------------------- 
+        // ----------------------------------------- TEST ------------------------------------------ 
+        // ----------------------------------------------------------------------------------------- 
+
+        // None
     }
 }
