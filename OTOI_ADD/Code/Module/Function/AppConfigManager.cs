@@ -2,14 +2,13 @@
 using log4net.Config;
 using OTOI_ADD.Code.Module.Style;
 using OTOI_ADD.Code.Variable;
-using OTOI_ADD.View.Generic.ESIOS;
-using OTOI_ADD.View.Generic.OMIE;
 using System.Reflection;
+using Prop = OTOI_ADD.Properties.Settings;
 
 namespace OTOI_ADD.Code.Module.Function
 {
     /// <summary>
-    /// Application Configuration Manager
+    /// Application Configuration Manager class
     /// </summary>
     internal static class AppConfigManager
     {
@@ -54,7 +53,7 @@ namespace OTOI_ADD.Code.Module.Function
             if (!Directory.Exists(GLB.FOLDER_DOWNLOADS)) Directory.CreateDirectory(GLB.FOLDER_DOWNLOADS);
 
             // Create logger config file if not exists
-            if (!File.Exists(GLB.FIL_L4N)) InitLogConfig();
+            if (!File.Exists(GLB.FILE_L4N)) InitLogConfig();
         }
 
         /// <summary>
@@ -62,8 +61,7 @@ namespace OTOI_ADD.Code.Module.Function
         /// </summary>
         private static void LoadAppConfig()
         {
-            // TODO : CHECK SETTINGS LOAD/SAVE
-            if (File.Exists(GLB.FIL_CFG))
+            if (File.Exists(GLB.FILE_CONFIG))
             {
                 InitSettings();
             } 
@@ -74,9 +72,8 @@ namespace OTOI_ADD.Code.Module.Function
             }
         }
 
-        // TODO: comment
         /// <summary>
-        /// 
+        /// Initializes the application settings using a config file.
         /// </summary>
         private static void InitSettings()
         {
@@ -86,7 +83,7 @@ namespace OTOI_ADD.Code.Module.Function
 
             Dictionary<string, string> cfg = new Dictionary<string, string>();
 
-            using StreamReader sr = new StreamReader(GLB.FIL_CFG);
+            using StreamReader sr = new StreamReader(GLB.FILE_CONFIG);
             while((line = sr.ReadLine()) != null)
             {
                 lineSpl = line.Split("=");
@@ -95,23 +92,23 @@ namespace OTOI_ADD.Code.Module.Function
                 cfg.Add(key, value);
             }
 
-            OTOI_ADD.Properties.Settings.Default.CFG_LOAD = Boolean.Parse(cfg["CFG_LOAD"]);
-            OTOI_ADD.Properties.Settings.Default.CFG_SAVE = Boolean.Parse(cfg["CFG_SAVE"]);
-            OTOI_ADD.Properties.Settings.Default.DIRECTORY = cfg["DIRECTORY"];
-            OTOI_ADD.Properties.Settings.Default.THEME = Boolean.Parse(cfg["THEME"]);
+            Prop.Default.CFG_LOAD = Boolean.Parse(cfg["CFG_LOAD"]);
+            Prop.Default.CFG_SAVE = Boolean.Parse(cfg["CFG_SAVE"]);
+            Prop.Default.DIRECTORY = cfg["DIRECTORY"];
+            Prop.Default.THEME = Boolean.Parse(cfg["THEME"]);
             Styler.MODE = Boolean.Parse(cfg["THEME"]);
-            OTOI_ADD.Properties.Settings.Default.LANG = cfg["LANG"];
+            Prop.Default.LANG = cfg["LANG"];
 
-            OTOI_ADD.Properties.Settings.Default.DAY = DateTime.Parse(cfg["DAY"]);
-            OTOI_ADD.Properties.Settings.Default.MONTH = DateTime.Parse(cfg["MONTH"]);
-            OTOI_ADD.Properties.Settings.Default.START = DateTime.Parse(cfg["START"]);
-            OTOI_ADD.Properties.Settings.Default.END = DateTime.Parse(cfg["END"]);
+            Prop.Default.DAY = DateTime.Parse(cfg["DAY"]);
+            Prop.Default.MONTH = DateTime.Parse(cfg["MONTH"]);
+            Prop.Default.START = DateTime.Parse(cfg["START"]);
+            Prop.Default.END = DateTime.Parse(cfg["END"]);
 
-            OTOI_ADD.Properties.Settings.Default.O_PROCESS = Boolean.Parse(cfg["O_PROCESS"]);
-            OTOI_ADD.Properties.Settings.Default.O_KEEP = Boolean.Parse(cfg["O_KEEP"]);
-            OTOI_ADD.Properties.Settings.Default.E_UNZIP = Boolean.Parse(cfg["E_UNZIP"]);
-            OTOI_ADD.Properties.Settings.Default.E_KEEP = Boolean.Parse(cfg["E_KEEP"]);
-            OTOI_ADD.Properties.Settings.Default.E_PROCESS = Boolean.Parse(cfg["E_PROCESS"]);
+            Prop.Default.O_PROCESS = Boolean.Parse(cfg["O_PROCESS"]);
+            Prop.Default.O_KEEP = Boolean.Parse(cfg["O_KEEP"]);
+            Prop.Default.E_UNZIP = Boolean.Parse(cfg["E_UNZIP"]);
+            Prop.Default.E_KEEP = Boolean.Parse(cfg["E_KEEP"]);
+            Prop.Default.E_PROCESS = Boolean.Parse(cfg["E_PROCESS"]);
             
         }
 
@@ -120,7 +117,7 @@ namespace OTOI_ADD.Code.Module.Function
         /// </summary>
         private static void InitLogConfig()
         {
-            using FileStream fs = File.Open(GLB.FIL_L4N, FileMode.OpenOrCreate);
+            using FileStream fs = File.Open(GLB.FILE_L4N, FileMode.OpenOrCreate);
             using StreamWriter sw = new(fs);
             sw.WriteLine("<?xml version=\"1.0\" encoding=\"utf-8\" ?>");
             sw.WriteLine("<configuration>");
@@ -130,7 +127,7 @@ namespace OTOI_ADD.Code.Module.Function
             sw.WriteLine("          <appender-ref ref=\"all_logs_file\" />");
             sw.WriteLine("      </root>");
             sw.WriteLine("      <appender name=\"all_logs_file\" type=\"log4net.Appender.RollingFileAppender\">");
-            sw.WriteLine("          <file value=\"" + GLB.LOC_LOG + "\" />");
+            sw.WriteLine("          <file value=\"" + GLB.LOCATION_LOG + "\" />");
             sw.WriteLine("          <datePattern value=\"'log_'dd-MM-yyyy'.log'\" />");
             sw.WriteLine("          <staticLogFileName value=\"false\" />");
             sw.WriteLine("          <appendToFile value=\"true\" />");
@@ -144,13 +141,12 @@ namespace OTOI_ADD.Code.Module.Function
             sw.WriteLine("</configuration>");
         }
 
-        // TODO: comment
         /// <summary>
-        /// 
+        /// Creates the applications settings file
         /// </summary>
         private static void InitSettingsFile()
         {
-            using FileStream fs = File.Open(GLB.FIL_CFG, FileMode.OpenOrCreate);
+            using FileStream fs = File.Open(GLB.FILE_CONFIG, FileMode.OpenOrCreate);
             using StreamWriter sw = new(fs);
             sw.WriteLine("CFG_LOAD=True");
             sw.WriteLine("CFG_SAVE=True");
@@ -175,7 +171,7 @@ namespace OTOI_ADD.Code.Module.Function
         private static void InitLogger()
         {
             var logRepository = LogManager.GetRepository(Assembly.GetEntryAssembly());
-            XmlConfigurator.Configure(logRepository, new FileInfo(GLB.FIL_L4N));
+            XmlConfigurator.Configure(logRepository, new FileInfo(GLB.FILE_L4N));
         }
         #endregion
 
@@ -184,27 +180,27 @@ namespace OTOI_ADD.Code.Module.Function
         /// </summary>
         internal static void Save()
         {
-            if (File.Exists(GLB.FIL_CFG))
+            if (File.Exists(GLB.FILE_CONFIG))
             {
-                File.Delete(GLB.FIL_CFG);
+                File.Delete(GLB.FILE_CONFIG);
             }
-            using FileStream fs = File.Open(GLB.FIL_CFG, FileMode.OpenOrCreate);
+            using FileStream fs = File.Open(GLB.FILE_CONFIG, FileMode.OpenOrCreate);
             using StreamWriter sw = new StreamWriter(fs);
-            sw.WriteLine("CFG_LOAD=" + OTOI_ADD.Properties.Settings.Default.CFG_LOAD.ToString());
-            sw.WriteLine("CFG_SAVE=" + OTOI_ADD.Properties.Settings.Default.CFG_SAVE.ToString());
-            sw.WriteLine("DIRECTORY=" + OTOI_ADD.Properties.Settings.Default.DIRECTORY.ToString());
-            sw.WriteLine("FILE=" + OTOI_ADD.Properties.Settings.Default.FILE.ToString());
-            sw.WriteLine("THEME=" + OTOI_ADD.Properties.Settings.Default.THEME.ToString());
-            sw.WriteLine("LANG=" + OTOI_ADD.Properties.Settings.Default.LANG.ToString());
-            sw.WriteLine("START=" + OTOI_ADD.Properties.Settings.Default.START.ToString());
-            sw.WriteLine("END=" + OTOI_ADD.Properties.Settings.Default.END.ToString());
-            sw.WriteLine("DAY=" + OTOI_ADD.Properties.Settings.Default.DAY.ToString());
-            sw.WriteLine("MONTH=" + OTOI_ADD.Properties.Settings.Default.MONTH.ToString());
-            sw.WriteLine("O_PROCESS=" + OTOI_ADD.Properties.Settings.Default.O_PROCESS.ToString());
-            sw.WriteLine("O_KEEP=" + OTOI_ADD.Properties.Settings.Default.O_KEEP.ToString());
-            sw.WriteLine("E_UNZIP=" + OTOI_ADD.Properties.Settings.Default.E_UNZIP.ToString());
-            sw.WriteLine("E_KEEP=" + OTOI_ADD.Properties.Settings.Default.E_KEEP.ToString());
-            sw.WriteLine("E_PROCESS=" + OTOI_ADD.Properties.Settings.Default.E_PROCESS.ToString());
+            sw.WriteLine("CFG_LOAD=" + Prop.Default.CFG_LOAD.ToString());
+            sw.WriteLine("CFG_SAVE=" + Prop.Default.CFG_SAVE.ToString());
+            sw.WriteLine("DIRECTORY=" + Prop.Default.DIRECTORY.ToString());
+            sw.WriteLine("FILE=" + Prop.Default.FILE.ToString());
+            sw.WriteLine("THEME=" + Prop.Default.THEME.ToString());
+            sw.WriteLine("LANG=" + Prop.Default.LANG.ToString());
+            sw.WriteLine("START=" + Prop.Default.START.ToString());
+            sw.WriteLine("END=" + Prop.Default.END.ToString());
+            sw.WriteLine("DAY=" + Prop.Default.DAY.ToString());
+            sw.WriteLine("MONTH=" + Prop.Default.MONTH.ToString());
+            sw.WriteLine("O_PROCESS=" + Prop.Default.O_PROCESS.ToString());
+            sw.WriteLine("O_KEEP=" + Prop.Default.O_KEEP.ToString());
+            sw.WriteLine("E_UNZIP=" + Prop.Default.E_UNZIP.ToString());
+            sw.WriteLine("E_KEEP=" + Prop.Default.E_KEEP.ToString());
+            sw.WriteLine("E_PROCESS=" + Prop.Default.E_PROCESS.ToString());
         }
     }
 }

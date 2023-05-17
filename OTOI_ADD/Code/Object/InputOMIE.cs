@@ -1,9 +1,13 @@
 ﻿using log4net;
+using OTOI_ADD.Code.Module.Function;
 using OTOI_ADD.Code.Variable;
 using OTOI_ADD.View.Generic.OMIE;
 
 namespace OTOI_ADD.Code.Class
 {
+    /// <summary>
+    /// OMIE Input class
+    /// </summary>
     internal class InputOMIE : Input
     {
         private static ILog logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
@@ -44,7 +48,7 @@ namespace OTOI_ADD.Code.Class
         /// Builds an [Input] object using a MultiGeneric type form's fields.
         /// </summary>
         /// <param name="ogm">MultiGeneric form</param>
-        public InputOMIE(OGenericMonth ogm) : base(ogm.FID, ogm.Month, ogm.LBFolder.Text, ogm.CBKeep.Checked, ogm.CBProcess.Checked)
+        public InputOMIE(OGenericMonth ogm) : base(ogm.FID, Auxiliary.MonthStart(ogm.Month), Auxiliary.MonthEnd(ogm.Month), ogm.LBFolder.Text, ogm.CBKeep.Checked, ogm.CBProcess.Checked)
         {
             logger.Info(LOG.OMIE_MONTH);
             this.destFile = ogm.LBFile.Text;

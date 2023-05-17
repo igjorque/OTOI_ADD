@@ -231,15 +231,15 @@ namespace OTOI_ADD.View.Asset
             string result = "";
             string[] aux = file.Split("_");
 
-            if (file.Contains(GLB.HPC_URI)) // is HPC
+            if (file.Contains(GLB.URI_HPC)) // is HPC
             {
                 result = "HPC_" + aux[7] + "-" + aux[5] + "-" + aux[6] + ".txt";
             }
-            else if (file.Contains(GLB.HM_URI)) // is HM
+            else if (file.Contains(GLB.URI_HM)) // is HM
             {
                 result = "HM_" + aux[8] + "-" + aux[6] + "-" + aux[7] + ".txt";
             }
-            else // GLB.HMT_URI - is HMT
+            else // GLB.URI_HMT - is HMT
             {
                 result = "HMT_" + aux[5] + "-" + aux[6] + ".txt";
             }

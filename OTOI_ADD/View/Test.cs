@@ -47,8 +47,8 @@ namespace OTOI_ADD.View
             this.LLL.BackColor = ColorScheme.LL_BACK_L;
             this.LLL.ActiveLinkColor = ColorScheme.LL_UNUSED_L;
             this.LLL.VisitedLinkColor = ColorScheme.LL_USED_L;
-            this.CBL.BackColor = ColorScheme.CB_BACK_L;
-            this.CBL.ForeColor = ColorScheme.CB_FORE_L;
+            this.CBL.BackColor = ColorScheme.CHB_BACK_L;
+            this.CBL.ForeColor = ColorScheme.CHB_FORE_L;
         }
         private void LoadDark()
         {
@@ -67,8 +67,8 @@ namespace OTOI_ADD.View
             this.LLD.BackColor = ColorScheme.LL_BACK_D;
             this.LLD.ActiveLinkColor = ColorScheme.LL_UNUSED_D;
             this.LLD.VisitedLinkColor = ColorScheme.LL_USED_D;
-            this.CBD.BackColor = ColorScheme.CB_BACK_D;
-            this.CBD.ForeColor = ColorScheme.CB_FORE_D;
+            this.CBD.BackColor = ColorScheme.CHB_BACK_D;
+            this.CBD.ForeColor = ColorScheme.CHB_FORE_D;
         }
     }
 }

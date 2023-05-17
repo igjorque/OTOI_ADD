@@ -15,7 +15,7 @@ namespace OTOI_ADD.View.ESIOS
         /// <summary>
         /// Empty C2Liquicomun form constructor.
         /// </summary>
-        public C2L() : base(GLB.C2L_FID)
+        public C2L() : base(GLB.FID_C2L)
         {
             logger.Info(LOG.C2L_BUILD);
             InitializeComponent();
@@ -27,7 +27,7 @@ namespace OTOI_ADD.View.ESIOS
         /// </summary>
         private void LoadFields()
         {
-            this.LBTitle.Text = GLB.C2L_TITLE;
+            this.LBTitle.Text = GLB.TITLE_C2L;
         }
     }
 }

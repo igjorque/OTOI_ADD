@@ -13,47 +13,47 @@
 
         // HPC
         /// <summary>
-        /// HPC form ID
+        /// HPC form ID (1)
         /// </summary>
-        internal static readonly int HPC_FID = 1;
+        internal static readonly int FID_HPC = 1;
         /// <summary>
-        /// HPCM form ID
+        /// HPCM form ID (2)
         /// </summary>
-        internal static readonly int HPCM_FID = 2;
+        internal static readonly int FID_HPCM = 2;
         /// <summary>
         /// HPC uri substring
         /// </summary>
-        internal static readonly string HPC_URI = "INT_MAJ_EV_H";
+        internal static readonly string URI_HPC = "INT_MAJ_EV_H";
         /// <summary>
         /// HPC form default title
         /// </summary>
-        internal static readonly string HPC_TITLE = "Precio definitivo horario del mecanismo de ajuste a los consumidores en el mercado";
+        internal static readonly string TITLE_HPC = "Precio definitivo horario del mecanismo de ajuste a los consumidores en el mercado";
         
         // HM
         /// <summary>
-        /// HM form ID
+        /// HM form ID (3)
         /// </summary>
-        internal static readonly int HM_FID = 3;
+        internal static readonly int FID_HM = 3;
         /// <summary>
-        /// HMM form ID
+        /// HMM form ID (4)
         /// </summary>
-        internal static readonly int HMM_FID = 4;
+        internal static readonly int FID_HMM = 4;
         /// <summary>
         /// HM uri substring
         /// </summary>
-        internal static readonly string HM_URI = "INT_PBC_EV_H_1";
+        internal static readonly string URI_HM = "INT_PBC_EV_H_1";
         /// <summary>
-        /// HMT form ID
+        /// HMT form ID (6)
         /// </summary>
-        internal static readonly int HMT_FID = 6;
+        internal static readonly int FID_HMT = 6;
         /// <summary>
         /// HMT uri substring
         /// </summary>
-        internal static readonly string HMT_URI = "INT_PDBC_PRECIO_5";
+        internal static readonly string URI_HMT = "INT_PDBC_PRECIO_5";
         /// <summary>
         /// HM form default title
         /// </summary>
-        internal static readonly string HM_TITLE = "Precio horario del mercado";
+        internal static readonly string TITLE_HM = "Precio horario del mercado";
         
         #endregion
 
@@ -62,13 +62,13 @@
 
         // C2L
         /// <summary>
-        /// C2L form ID
+        /// C2L form ID (5)
         /// </summary>
-        internal static readonly int C2L_FID = 5;
+        internal static readonly int FID_C2L = 5;
         /// <summary>
         /// C2L form default title
         /// </summary>
-        internal static readonly string C2L_TITLE = "C2 Liquicomun";
+        internal static readonly string TITLE_C2L = "C2 Liquicomun";
         #endregion
 
         // DEFAULTS
@@ -82,7 +82,7 @@
         /// <summary>
         /// ADDs default folder
         /// </summary>
-        private static readonly string def_folder = "\\OTOI_ADD";
+        private static readonly string def_folder = @"\OTOI_ADD";
         /// <summary>
         /// ADDs default config/downloads path
         /// </summary>
@@ -92,35 +92,35 @@
         /// <summary>
         /// ADDs config folder path
         /// </summary>
-        internal static readonly string FOLDER_CONFIG = FOLDER_DEFAULT + "\\config";
+        internal static readonly string FOLDER_CONFIG = $@"{FOLDER_DEFAULT}\config";
         /// <summary>
         /// Logs folder name
         /// </summary>
-        private static readonly string log_fld_name = "\\logs";
+        private static readonly string log_fld_name = @"\logs";
         /// <summary>
         /// ADDs logs destination folder path
         /// </summary>
-        internal static readonly string FOLDER_LOGS = FOLDER_DEFAULT + log_fld_name;
+        internal static readonly string FOLDER_LOGS = $"{FOLDER_DEFAULT}{log_fld_name}";
         /// <summary>
         /// ADDs default downloads path
         /// </summary>
-        internal static readonly string FOLDER_DOWNLOADS = FOLDER_DEFAULT + "\\downloads";
+        internal static readonly string FOLDER_DOWNLOADS = $@"{FOLDER_DEFAULT}\downloads";
 
         // Config files
         /// <summary>
         /// ADDs general config file path
         /// </summary>
-        internal static readonly string FIL_CFG = FOLDER_CONFIG + "\\app_params.config";
+        internal static readonly string FILE_CONFIG = $@"{FOLDER_CONFIG}\app_params.config";
         /// <summary>
         /// ADDs logger config file path
         /// </summary>
-        internal static readonly string FIL_L4N = FOLDER_CONFIG + "\\log4net.config";
+        internal static readonly string FILE_L4N = $@"{FOLDER_CONFIG}\log4net.config";
 
         // Default log file location
         /// <summary>
         /// Logger configs log full path
         /// </summary>
-        internal static readonly string LOC_LOG = unit +"\\"+ def_folder +"\\"+ log_fld_name +"\\";
+        internal static readonly string LOCATION_LOG = $@"{unit}\{def_folder}\{log_fld_name}\";
         #endregion
 
         // ABOUT

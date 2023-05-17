@@ -1,7 +1,11 @@
 ﻿using OTOI_ADD.View.Asset.Control;
+using System.Text;
 
 namespace OTOI_ADD.Code.Module.Function
 {
+    /// <summary>
+    /// Auxiliary class
+    /// </summary>
     internal static class Auxiliary
     {
         /// <summary>
@@ -50,16 +54,17 @@ namespace OTOI_ADD.Code.Module.Function
         /// <param name="ep_error">Error indicator</param>
         internal static void ValidateStart(DateTimePicker ca_date_start, ErrorProvider ep_error)
         {
-            string err = "";
+            // TODO: hardcoded text
+            StringBuilder errBuilder = new StringBuilder();
             if (DateTime.Compare(ca_date_start.Value, DateTime.Parse("1/1/2018")) < 0)
             {
-                err += "La fecha debe ser posterior a [01/01/2018]. ";
+                errBuilder.Append("La fecha debe ser posterior a [01/01/2018]. ");
             }
             if (DateTime.Compare(ca_date_start.Value, DateTime.Today) >= 0)
             {
-                err += "La fecha debe ser previa a [" + DateTime.Today.ToShortDateString() + "]. ";
+                errBuilder.Append($"La fecha debe ser previa a [{DateTime.Today.ToShortDateString()}]. ");
             }
-            ep_error.SetError(ca_date_start, err);
+            ep_error.SetError(ca_date_start, errBuilder.ToString());
         }
 
         /// <summary>
@@ -71,21 +76,22 @@ namespace OTOI_ADD.Code.Module.Function
         /// <param name="ep_error">Error indicator</param>
         internal static void ValidateEnd(DateTimePicker start, DateTimePicker end, ErrorProvider ep_error)
         {
-            string err = "";
+            // TODO: hardcoded text
+            StringBuilder errBuilder = new StringBuilder();
             if (DateTime.Compare(end.Value, DateTime.Parse("1/1/2018")) < 0)
             {
-                err += "La fecha debe ser posterior a [01/01/2018]. ";
+                errBuilder.Append("La fecha debe ser posterior a [01/01/2018]. ");
             }
             if (DateTime.Compare(end.Value, DateTime.Today) >= 0)
             {
-                err += "La fecha debe ser previa a [" + DateTime.Today.ToShortDateString() + "]. ";
+                errBuilder.Append($"La fecha debe ser previa a [{DateTime.Today.ToShortDateString()}]. ");
             }
             if (DateTime.Compare(start.Value, end.Value) > 0)
             {
-                err += "La fecha inicial no puede ser posterior a la fecha final.";
+                errBuilder.Append("La fecha inicial no puede ser posterior a la fecha final.");
             }
-            ep_error.SetError(start, err);
-            ep_error.SetError(end, err);
+            ep_error.SetError(start, errBuilder.ToString());
+            ep_error.SetError(end, errBuilder.ToString());
         }
 
         /// <summary>
@@ -100,34 +106,35 @@ namespace OTOI_ADD.Code.Module.Function
         /// <param name="ep_error">Error indicator</param>
         internal static void ValidateRange(DateTimePicker start, DateTimePicker end, ErrorProvider ep_error)
         {
-            string errStr = "";
-            string errEnd = "";
+            // TODO: hardcoded text
+            StringBuilder errStrBuilder = new StringBuilder();
+            StringBuilder errEndBuilder = new StringBuilder();
             // VALIDATION - START
             if (DateTime.Compare(start.Value, DateTime.Parse("1/1/2018")) < 0)
             {
-                errStr += "La fecha inicial debe ser posterior a [01/01/2018]. ";
+                errStrBuilder.Append("La fecha inicial debe ser posterior a [01/01/2018]. ");
             }
             if (DateTime.Compare(start.Value, DateTime.Today) >= 0)
             {
-                errStr += "La fecha inicial debe ser previa a [" + DateTime.Today.ToShortDateString() + "]. ";
+                errStrBuilder.Append($"La fecha inicial debe ser previa a [{DateTime.Today.ToShortDateString()}]. ");
             }
             // VALIDATION - END
             if (DateTime.Compare(end.Value, DateTime.Parse("1/1/2018")) < 0)
             {
-                errEnd += "La fecha final debe ser posterior a [01/01/2018]. ";
+                errEndBuilder.Append("La fecha final debe ser posterior a [01/01/2018]. ");
             }
             if (DateTime.Compare(end.Value, DateTime.Today) >= 0)
             {
-                errEnd += "La fecha final debe ser previa a [" + DateTime.Today.ToShortDateString() + "]. ";
+                errEndBuilder.Append($"La fecha final debe ser previa a [{DateTime.Today.ToShortDateString()}]. ");
             }
             // VALIDATION - RANGE
             if (DateTime.Compare(start.Value, end.Value) > 0)
             {
-                errStr += "La fecha inicial no puede ser posterior a la fecha final.";
-                errEnd += "La fecha final no puede ser anterior a la fecha inicial.";
+                errStrBuilder.Append("La fecha inicial no puede ser posterior a la fecha final.");
+                errEndBuilder.Append("La fecha final no puede ser anterior a la fecha inicial.");
             }
-            ep_error.SetError(start, errStr);
-            ep_error.SetError(end, errEnd);
+            ep_error.SetError(start, errStrBuilder.ToString());
+            ep_error.SetError(end, errEndBuilder.ToString());
         }
 
         /// <summary>
@@ -138,16 +145,17 @@ namespace OTOI_ADD.Code.Module.Function
         /// <param name="ep_error">Error indicator</param>
         internal static void ValidateMonth(MonthPicker mp, ErrorProvider ep_error)
         {
-            string err = "";
+            // TODO: hardcoded text
+            StringBuilder errBuilder = new StringBuilder();
             if (DateTime.Compare(mp.Value, DateTime.Parse("1/1/2018")) < 0)
             {
-                err += "La fecha debe ser posterior a [01/01/2018]. ";
+                errBuilder.Append("La fecha debe ser posterior a [01/01/2018]. ");
             }
             if (mp.Value.Year >= DateTime.Today.Year && mp.Value.Month >= DateTime.Today.Month)
             {
-                err += "El mes seleccionado debe ser previo al actual. ";
+                errBuilder.Append("El mes seleccionado debe ser previo al actual. ");
             }
-            ep_error.SetError(mp, err);
+            ep_error.SetError(mp, errBuilder.ToString());
         }
 
         /// <summary>
@@ -168,126 +176,14 @@ namespace OTOI_ADD.Code.Module.Function
             return diff;
         }
 
-        // ---------------------------------------------------------------------------------
-        // -------------------------------- Old Functions ----------------------------------
-        // ---------------------------------------------------------------------------------
-        /*
-        /// <summary>
-        /// Converts the string representing a month to an equivalent integer.
-        /// </summary>
-        /// <param name="m">Month as string to be converted.</param>
-        /// <returns>Month as integer.</returns>
-        internal static int MonthToInt(string m)
+        // TODO: comment
+        internal static DateTime MonthStart(DateTime month)
         {
-            Dictionary<string, int> month = new()
-            {
-                { "enero", 1 },
-                { "febrero", 2 },
-                { "marzo", 3 },
-                { "abril", 4 },
-                { "mayo", 5 },
-                { "junio", 6 },
-                { "julio", 7 },
-                { "agosto", 8 },
-                { "septiembre", 9 },
-                { "octubre", 10 },
-                { "noviembre", 11 },
-                { "diciembre", 12 }
-            };
-
-            return month[m.ToLower()];
+            return new DateTime(month.Year, month.Month, 1);
         }
-
-        /// <summary>
-        /// Converts the integer representing a month to an equivalent string.
-        /// </summary>
-        /// <param name="m">Month as integer to be converted.</param>
-        /// <returns>Month as string.</returns>
-        internal static string IntToMonth(int m)
+        internal static DateTime MonthEnd(DateTime month)
         {
-            Dictionary<string, int> month = new()
-            {
-                { "enero", 1 },
-                { "febrero", 2 },
-                { "marzo", 3 },
-                { "abril", 4 },
-                { "mayo", 5 },
-                { "junio", 6 },
-                { "julio", 7 },
-                { "agosto", 8 },
-                { "septiembre", 9 },
-                { "octubre", 10 },
-                { "noviembre", 11 },
-                { "diciembre", 12 }
-            };
-
-            return month.ElementAt(m).Key;
+            return new DateTime(month.Year, month.Month, DateTime.DaysInMonth(month.Year, month.Month));
         }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="start"></param>
-        /// <returns></returns>
-        internal static DateTime DateStart(DateTime start)
-        {
-            if (DateTime.Compare(start, DateTime.Today) > 0)
-            {
-                start = DateTime.Today.AddDays(-1);
-            }
-            if (DateTime.Compare(start, new DateTime(2018, 1, 1)) < 0)
-            {
-                start = new DateTime(2018, 1, 1);
-            }
-            return start;
-        }
-
-        /// <summary>
-        /// If the entered date is after [Today], returns the day before [Today].
-        /// </summary>
-        /// <param name="end">Entered date to compare.</param>
-        /// <returns>[end] or [Today] - 1.</returns>
-        internal static DateTime DateEnd(DateTime end)
-        {
-            if (DateTime.Compare(end, DateTime.Today) > 0)
-            {
-                end = DateTime.Today.AddDays(-1);
-            }
-            if (DateTime.Compare(end, new DateTime(2018, 1, 1)) < 0)
-            {
-                end = new DateTime(2018, 1, 1);
-            }
-            return end;
-        }
-
-        internal static Dictionary<string, object> InitFields(int FID, DateTime start, DateTime end, string file, string download, bool keep, bool process)
-        {
-            Dictionary<string, object> fields = new()
-            {
-                { "FID", FID },
-                { "start", start },
-                { "end", end },
-                { "file", file },
-                { "download", download },
-                { "keep", keep },
-                { "process", process }
-            };
-            return fields;
-        }
-
-        internal static Dictionary<string, object> InitFields(int FID, DateTime start, DateTime end, string download, bool keep, bool unzip)
-        {
-            Dictionary<string, object> fields = new()
-            {
-                { "FID", FID },
-                { "start", start },
-                { "end", end },
-                { "download", download },
-                { "keep", keep },
-                { "unzip", unzip }
-            };
-            return fields;
-        }
-        */
     }
 }

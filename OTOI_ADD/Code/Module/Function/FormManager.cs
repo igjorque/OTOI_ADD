@@ -8,10 +8,13 @@ using OTOI_ADD.View.Generic.ESIOS;
 using OTOI_ADD.View.Generic.OMIE;
 using OTOI_ADD.View.OMIE;
 using System.Diagnostics;
-using System.Security.Cryptography;
+using Prop = OTOI_ADD.Properties.Settings;
 
 namespace OTOI_ADD.Code.Module.Function
 {
+    /// <summary>
+    /// Form Manager class
+    /// </summary>
     internal static class FormManager
     {
         private static ILog logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
@@ -27,7 +30,7 @@ namespace OTOI_ADD.Code.Module.Function
 
             // Save user input to config
             SaveParams(f, FID);
-            if (OTOI_ADD.Properties.Settings.Default.CFG_SAVE) AppConfigManager.Save();
+            if (Prop.Default.CFG_SAVE) AppConfigManager.Save();
 
             // Manage forms
             switch (FID)
@@ -49,31 +52,36 @@ namespace OTOI_ADD.Code.Module.Function
             }
         }
 
+        /// <summary>
+        /// Calls the correspondent function to save the form's parameters
+        /// </summary>
+        /// <param name="f">Form to save</param>
+        /// <param name="FID">Form's FID</param>
         private static void SaveParams(Form f, int FID)
         {
             if(f is OGenericDay)
             {
                 OGenericDay ogd = (OGenericDay)f;
-                OTOI_ADD.Properties.Settings.Default.DAY = ogd.CADay.Value;
+                Prop.Default.DAY = ogd.CADay.Value;
                 OGenericParams(ogd);
             } 
             else if (f is OGenericMonth)
             {
                 OGenericMonth ogm = (OGenericMonth)f;
-                OTOI_ADD.Properties.Settings.Default.MONTH = ogm.MPMonth.Value;
+                Prop.Default.MONTH = ogm.MPMonth.Value;
                 OGenericParams(ogm);
             }
             else if (f is OGenericRange)
             {
                 OGenericRange ogr = (OGenericRange)f;
-                OTOI_ADD.Properties.Settings.Default.START = ogr.CAStart.Value;
-                OTOI_ADD.Properties.Settings.Default.END = ogr.CAEnd.Value;
+                Prop.Default.START = ogr.CAStart.Value;
+                Prop.Default.END = ogr.CAEnd.Value;
                 OGenericParams(ogr);
             }
             else if (f is EGenericMonth)
             {
                 EGenericMonth egm = (EGenericMonth)f;
-                OTOI_ADD.Properties.Settings.Default.DAY = egm.MPMonth.Value;
+                Prop.Default.DAY = egm.MPMonth.Value;
                 EGenericParams(egm);
             }
         }
@@ -85,11 +93,11 @@ namespace OTOI_ADD.Code.Module.Function
         private static void OGenericParams(OGeneric fo)
         {
             // DL
-            OTOI_ADD.Properties.Settings.Default.DIRECTORY = fo.LBFolder.Text;
+            Prop.Default.DIRECTORY = fo.LBFolder.Text;
             // PR
-            OTOI_ADD.Properties.Settings.Default.O_PROCESS = fo.CBProcess.Checked;
+            Prop.Default.O_PROCESS = fo.CBProcess.Checked;
             // KP
-            OTOI_ADD.Properties.Settings.Default.O_KEEP = fo.CBKeep.Checked;
+            Prop.Default.O_KEEP = fo.CBKeep.Checked;
         }
 
         /// <summary>
@@ -99,13 +107,13 @@ namespace OTOI_ADD.Code.Module.Function
         private static void EGenericParams(EGeneric fe)
         {
             // DL
-            OTOI_ADD.Properties.Settings.Default.DIRECTORY = fe.LBFolder.Text;
+            Prop.Default.DIRECTORY = fe.LBFolder.Text;
             // UZ
-            OTOI_ADD.Properties.Settings.Default.E_UNZIP = fe.CBUnzip.Checked;
+            Prop.Default.E_UNZIP = fe.CBUnzip.Checked;
             // PR
-            OTOI_ADD.Properties.Settings.Default.E_PROCESS = fe.CBProcess.Checked;
+            Prop.Default.E_PROCESS = fe.CBProcess.Checked;
             // KP
-            OTOI_ADD.Properties.Settings.Default.E_KEEP = fe.CBKeep.Checked;
+            Prop.Default.E_KEEP = fe.CBKeep.Checked;
         }
 
         /// <summary>

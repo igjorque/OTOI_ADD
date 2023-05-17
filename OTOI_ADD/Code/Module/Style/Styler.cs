@@ -2,6 +2,9 @@
 
 namespace OTOI_ADD.Code.Module.Style
 {
+    /// <summary>
+    /// Styler class
+    /// </summary>
     internal static class Styler
     {
         // Current Styler MODE - by default, false (light theme)
@@ -19,96 +22,57 @@ namespace OTOI_ADD.Code.Module.Style
         {
             foreach (Object c in controls)
             {
-                // Main form
-                if (c is MenuStrip)
+                if (c is MenuStrip strip)
                 {
-                    MenuStrip ms;
-                    ms = (MenuStrip)c;
-                    SetMS(ms);
+                    SetMS(strip);
                 } 
-                else if (c is ToolStripMenuItem)
+                else if (c is ToolStripMenuItem item)
                 {
-                    ToolStripMenuItem tsmi;
-                    tsmi = (ToolStripMenuItem)c;
-                    SetTSMI(tsmi);
+                    SetTSMI(item);
                 }
-                else if (c is Label2)
+                else if (c is Label2 label2)
                 {
-                    Label2 lb2;
-                    lb2 = (Label2)c;
-                    SetLB2(lb2);
+                    SetLB2(label2);
                 }
-                else if (c is Label && c is not Label2 && c is not LinkLabel)
+                else if (c is Label label1 and not Label2 and not LinkLabel)
                 {
-                    Label lb;
-                    lb = (Label)c;
-                    SetLB(lb);
+                    SetLB(label1);
                 }
-                else if (c is Button2)
+                else if (c is Button2 button2)
                 {
-                    Button2 bt2;
-                    bt2 = (Button2)c;
-                    SetBT2(bt2);
+                    SetBT2(button2);
                 }
-                else if (c is Button && c is not Button2)
+                else if (c is Button button1 && c is not Button2)
                 {
-                    Button bt;
-                    bt = (Button)c;
-                    SetBT(bt);
+                    SetBT(button1);
                 }
-                else if (c is CheckBox)
+                else if (c is CheckBox checkbox)
                 {
-                    CheckBox cb;
-                    cb = (CheckBox)c;
-                    SetCB(cb);
+                    SetCB(checkbox);
                 }
-                else if (c is LinkLabel)
+                else if (c is LinkLabel link)
                 {
-                    LinkLabel ll;
-                    ll = (LinkLabel)c;
-                    SetLL(ll);
+                    SetLL(link);
                 }
-                else if (c is ProgressBar)
+                else if (c is ProgressBar bar)
                 {
-                    ProgressBar pb;
-                    pb = (ProgressBar)c;
-                    SetPB(pb);
+                    SetPB(bar);
                 }
-                else if (c is UserControl)
+                else if (c is UserControl user)
                 {
-                    UserControl uc;
-                    uc = (UserControl)c;
-                    SetUC(uc);
+                    SetUC(user);
                 }
-                else if (c is ToolStripSeparator)
+                else if (c is Form form)
                 {
-                    ToolStripSeparator tss;
-                    tss = (ToolStripSeparator)c;
-                    SetTSS(tss);
+                    SetF(form);
                 }
-                else if (c is LinkLabel)
+                else if (c is ComboBox box)
                 {
-                    LinkLabel ll;
-                    ll = (LinkLabel)c;
-                    SetLL(ll);
+                    SetCOB(box);
                 }
-                else if (c is Form)
+                else if (c is RadioButton radio)
                 {
-                    Form f;
-                    f = (Form)c;
-                    SetF(f);
-                }
-                else if (c is ComboBox)
-                {
-                    ComboBox cob;
-                    cob = (ComboBox)c;
-                    SetCOB(cob);
-                }
-                else if (c is RadioButton)
-                {
-                    RadioButton rb;
-                    rb = (RadioButton)c;
-                    SetRB(rb);
+                    SetRB(radio);
                 }
             }
         }
@@ -234,13 +198,13 @@ namespace OTOI_ADD.Code.Module.Style
         {
             if (Styler.MODE)
             {
-                cb.BackColor = ColorScheme.CB_BACK_D;
-                cb.ForeColor = ColorScheme.CB_FORE_D;
+                cb.BackColor = ColorScheme.CHB_BACK_D;
+                cb.ForeColor = ColorScheme.CHB_FORE_D;
             }
             else
             {
-                cb.BackColor = ColorScheme.CB_BACK_L;
-                cb.ForeColor = ColorScheme.CB_FORE_L;
+                cb.BackColor = ColorScheme.CHB_BACK_L;
+                cb.ForeColor = ColorScheme.CHB_FORE_L;
             }
         }
 
@@ -301,25 +265,6 @@ namespace OTOI_ADD.Code.Module.Style
             }
         }
 
-        // ToolStripSeparator
-        /// <summary>
-        /// Sets a ToolStripSeparator theme mode.
-        /// </summary>
-        /// <param name="tss">ToolStripSeparator control</param>
-        private static void SetTSS(ToolStripSeparator tss)
-        {
-            /*
-            if (Styler.MODE)
-            {
-                tss.Visible = false;
-            }
-            else
-            {
-                tss.Visible = true;
-            }
-            */
-        }
-
         // Form
         /// <summary>
         /// Sets a Form theme mode.
@@ -356,11 +301,11 @@ namespace OTOI_ADD.Code.Module.Style
             }
         }
 
-        // TODO: comment
+        // RadioButton
         /// <summary>
-        /// 
+        /// Sets a RadioButton theme mode.
         /// </summary>
-        /// <param name="rb"></param>
+        /// <param name="rb">RadioButton control</param>
         private static void SetRB(RadioButton rb)
         {
             if (Styler.MODE)
