@@ -32,10 +32,14 @@ namespace OTOI_ADD.Code.Module.Function
         private static void RebuildFileSystem()
         {
             // USAR SOLO SI SE NECESITA BORRAR LA ESTRUCTURA
-            if (Directory.GetCreationTime(GLB.FOLDER_CONFIG) < new DateTime(2023, 5, 8, 6, 0, 0))
+            if (Directory.Exists(GLB.FOLDER_CONFIG))
             {
-                Directory.Delete(GLB.FOLDER_CONFIG, true);
+                if (Directory.GetCreationTime(GLB.FOLDER_CONFIG) < new DateTime(2023, 5, 8, 6, 0, 0))
+                {
+                    Directory.Delete(GLB.FOLDER_CONFIG, true);
+                }
             }
+            
         }
 
         /// <summary>
