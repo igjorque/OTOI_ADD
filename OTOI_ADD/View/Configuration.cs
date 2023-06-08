@@ -108,40 +108,29 @@ namespace OTOI_ADD.View
         /// <param name="e"></param>
         private void ConfigLoadChanged(object sender, EventArgs e)
         {
-            if (!this.EVT_PAUSE) this.F_LOAD = !this.F_LOAD;
+            if (!this.EVT_PAUSE)
+            {
+                this.F_LOAD = !this.F_LOAD;
+                ControlStatus(this.cb_load_config.Checked);
+            }
+        }
 
-            if (this.cb_load_config.Checked)
-            {
-                this.cb_save_config.Enabled = true;
-                this.bt_download.Enabled = true;
-                this.lb_download.Enabled = true;
-                this.cb_mode.Enabled = true;
-                this.lb_lang.Enabled = true;
-                this.cb_lang.Enabled = true;
-                this.lb_section2.Enabled = true;
-                this.lb_section3.Enabled = true;
-                this.cb_opr.Enabled = true;
-                this.cb_okp.Enabled = true;
-                this.cb_euz.Enabled = true;
-                this.cb_ekp.Enabled = true;
-                this.cb_epr.Enabled = true;
-            }
-            else
-            {
-                this.cb_save_config.Enabled = false;
-                this.bt_download.Enabled = false;
-                this.lb_download.Enabled = false;
-                this.cb_mode.Enabled = false;
-                this.lb_lang.Enabled = false;
-                this.cb_lang.Enabled = false;
-                this.lb_section2.Enabled = false;
-                this.lb_section3.Enabled = false;
-                this.cb_opr.Enabled = false;
-                this.cb_okp.Enabled = false;
-                this.cb_euz.Enabled = false;
-                this.cb_ekp.Enabled = false;
-                this.cb_epr.Enabled = false;
-            }
+        // TODO: comment
+        private void ControlStatus(bool status)
+        {
+            this.cb_save_config.Enabled = status;
+            this.bt_download.Enabled = status;
+            this.lb_download.Enabled = status;
+            this.cb_mode.Enabled = status;
+            this.lb_lang.Enabled = status;
+            this.cb_lang.Enabled = status;
+            this.lb_section2.Enabled = status;
+            this.lb_section3.Enabled = status;
+            this.cb_opr.Enabled = status;
+            this.cb_okp.Enabled = status;
+            this.cb_euz.Enabled = status;
+            this.cb_ekp.Enabled = status;
+            this.cb_epr.Enabled = status;
         }
 
         /// <summary>
@@ -228,50 +217,23 @@ namespace OTOI_ADD.View
         /// <param name="e"></param>
         private void Accept(object sender, EventArgs e)
         {
-            if (this.F_LOAD)
+            if (Flags())
             {
-                Prop.Default.CFG_LOAD = this.cb_load_config.Checked;
-            }
-            if (this.F_SAVE)
-            {
-                Prop.Default.CFG_SAVE = this.cb_save_config.Checked;
-            }
-            if (this.F_FOLDER)
-            {
-                Prop.Default.DIRECTORY = this.lb_download.Text;
-            }
-            if (this.F_THEME)
-            {
-                Prop.Default.THEME = this.cb_mode.Checked;
-            }
-            if (this.F_LANG)
-            {
-                Prop.Default.LANG = this.cb_lang.SelectedText;
-            }
-            if (this.F_OPR)
-            {
-                Prop.Default.O_PROCESS = this.cb_opr.Checked;
-            }
-            if (this.F_OKP)
-            {
-                Prop.Default.O_KEEP = this.cb_okp.Checked;
-            }
-            if (this.F_EUZ)
-            {
-                Prop.Default.E_UNZIP = this.cb_euz.Checked;
-            }
-            if (this.F_EKP)
-            {
-                Prop.Default.E_KEEP = this.cb_ekp.Checked;
-            }
-            if (this.F_EPR)
-            {
-                Prop.Default.E_PROCESS = this.cb_epr.Checked;
-            }
-            InitFlags(); // Reset flags - prevents ClosingForm from popping a MessageBox
+                if (this.F_LOAD) Prop.Default.CFG_LOAD = this.cb_load_config.Checked;
+                if (this.F_SAVE) Prop.Default.CFG_SAVE = this.cb_save_config.Checked;
+                if (this.F_FOLDER) Prop.Default.DIRECTORY = this.lb_download.Text;
+                if (this.F_THEME) Prop.Default.THEME = this.cb_mode.Checked;
+                if (this.F_LANG) Prop.Default.LANG = this.cb_lang.SelectedText;
+                if (this.F_OPR) Prop.Default.O_PROCESS = this.cb_opr.Checked;
+                if (this.F_OKP) Prop.Default.O_KEEP = this.cb_okp.Checked;
+                if (this.F_EUZ) Prop.Default.E_UNZIP = this.cb_euz.Checked;
+                if (this.F_EKP) Prop.Default.E_KEEP = this.cb_ekp.Checked;
+                if (this.F_EPR) Prop.Default.E_PROCESS = this.cb_epr.Checked;
 
-            AppConfigManager.Save();
-            
+                InitFlags(); // Reset flags - prevents ClosingForm from popping a MessageBox
+
+                AppConfigManager.Save();
+            }
             this.Close();
         }
 
