@@ -272,7 +272,11 @@ namespace OTOI_ADD.View
                 {
                     foreach (FileInfo file in dir.GetFiles())
                     {
-                        file.Delete();
+                        try
+                        {
+                            file.Delete();
+                        }
+                        catch (IOException) { }
                     }
                     if (dir.GetFiles().Length == 0)
                     {

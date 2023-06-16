@@ -95,8 +95,9 @@ namespace OTOI_ADD.View.Asset
             this.pb_progress.Value = 0;
             this.pb_progress.Step = 1;
 
+            string formID = GetFormID(inp.FID);
             // Prevent user from flooding the selected directory (default: desktop)
-            auxpath = $@"{inp.DestDL}\OMIE_{daux.Day}-{daux.Month}-{daux.Year}_{daux.Hour}-{daux.Minute}-{daux.Second}";
+            auxpath = $@"{inp.DestDL}\OMIE_{formID}_{daux.Day}-{daux.Month}-{daux.Year}_{daux.Hour}-{daux.Minute}-{daux.Second}";
             Directory.CreateDirectory(auxpath);
             inp.DestDL = auxpath;
 
@@ -121,7 +122,7 @@ namespace OTOI_ADD.View.Asset
                 // TODO: hardcoded text
                 this.Text = "Procesando";
                 this.lb_download.Text = "Procesando los datos descargados...";
-                ProcessorOMIE.Process(FILES, this.pb_progress);
+                ProcessorOMIE.Process(inp, FILES, this.pb_progress);
             }
 
             // Delete? downloaded files
@@ -142,6 +143,14 @@ namespace OTOI_ADD.View.Asset
             this.bt_accept.Visible = true;
         }
 
+        private string GetFormID(int FID)
+        {
+            if (FID == GLB.FID_HPCM) return "HPCM";
+            else if (FID == GLB.FID_HMM) return "HMM";
+            else if (FID == GLB.FID_HMT) return "HMT";
+            return "";
+        }
+
         /// <summary>
         /// Manages the download process.
         /// </summary>
@@ -152,7 +161,7 @@ namespace OTOI_ADD.View.Asset
         {
             logger.Info(LOG.PROGRESS_ESIOS);
             List<string> zipContent = new();
-            string file = "", auxpath = "";
+            string file = "", auxpath = "", zip = "";
             this.pb_progress.Minimum = 0;
             this.pb_progress.Maximum = 1;
             this.pb_progress.Value = 0;
@@ -165,16 +174,17 @@ namespace OTOI_ADD.View.Asset
 
             // Build file path
             this.lb_url_value.Text = $"C2 liquicomun - {inp.DateStart.Month}/{inp.DateStart.Year}";
-            file = $"{inp.DestDL}/{filename}";
+            file = $@"{inp.DestDL}{Path.DirectorySeparatorChar}{filename}.zip";
 
             // Download file
             Downloader.Download(file, uri);
             FILES.Add(file);
+            zip = inp.DestDL + Path.DirectorySeparatorChar + filename + ".zip";
 
             this.pb_progress.PerformStep();
             await Task.Delay(25);
 
-            using (ZipArchive archive = ZipFile.OpenRead(file))
+            using (ZipArchive archive = ZipFile.OpenRead(zip))
             {
                 foreach (ZipArchiveEntry entry in archive.Entries)
                 {
@@ -194,6 +204,14 @@ namespace OTOI_ADD.View.Asset
                 {
                     this.lb_download.Text = "Eliminando archivo...";
                     File.Delete(file);
+                    DirectoryInfo di = new DirectoryInfo(inp.DestDL);
+                    foreach (var f in di.GetFiles())
+                    {
+                        if (!(f.Name.Contains("C2_perd20TD_") || f.Name.Contains("C2_perd30TD_") || f.Name.Contains("C2_perd61TD_") || f.Name.Contains("C2_prmajadq_")))
+                        {
+                            f.Delete();
+                        }
+                    }
                 }
 
                 // Process?
@@ -201,16 +219,11 @@ namespace OTOI_ADD.View.Asset
                 {
                     this.lb_download.Text = "Procesando...";
 
-                    // TODO: Process ESIOS files.
+                    // Files previous to conversion
+                    DirectoryInfo di = new DirectoryInfo(inp.DestDL);
+                    FileInfo[] fi = di.GetFiles(); 
 
-                    if (MessageBox.Show("¿Desea eliminar los archivos descomprimidos?", "Atención", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                    {
-                        this.lb_download.Text = "Eliminando archivos descomprimidos...";
-                        foreach (string zf in zipContent)
-                        {
-                            File.Delete(zf);
-                        }
-                    }
+                    ProcessorESIOS.Process(inp, this.pb_progress);
                 }
             }
             this.Text = "Finalizado";
@@ -238,13 +251,18 @@ namespace OTOI_ADD.View.Asset
             }
             else if (file.Contains(GLB.URI_HM)) // is HM
             {
-                result = $"HPC_{aux[8]}-{aux[6]}-{aux[7]}.txt";          
+                result = $"HM_{aux[8]}-{aux[6]}-{aux[7]}.txt";          
             }
             else // GLB.URI_HMT - is HMT
             {
                 result = $"HMT_{aux[5]}-{aux[6]}.txt";
             }
             return result;
+        }
+
+        private void KeepSelected()
+        {
+
         }
     }
 }

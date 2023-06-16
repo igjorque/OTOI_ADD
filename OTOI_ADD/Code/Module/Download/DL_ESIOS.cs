@@ -36,23 +36,20 @@ namespace OTOI_ADD.Code.Module.Download
         {
             logger.Info(LOG.DOWNLOAD_ESIOS_MANAGE);
 
-            string yea, mth, day;
+            string yea, mth;
 
             yea = inp.DateStart.Year.ToString();
             mth = Auxiliary.FormatMonth(inp.DateStart.Month);
-            day = Auxiliary.FormatDay(inp.DateStart.Day);
-            string start = $"{yea}-{mth}-{day}";
+            string start = $"{yea}-{mth}-01";
 
             yea = inp.DateEnd.Year.ToString();
             mth = Auxiliary.FormatMonth(inp.DateEnd.Month);
-            day = Auxiliary.FormatDay(inp.DateEnd.Day);
-            string end = $"{yea}-{mth}-{day}";
+            string end = $"{yea}-{mth}-28";
 
-            string uristr = $"https://api.esios.ree.es/archives/8/download?date_type=publicacion&end_date={end}T23%3A59%3A59%2B00%3A00&locale=es&start_date={start}T00%3A00%3A00%2B00%3A00";
+            string uristr = $@"https://api.esios.ree.es/archives/8/download?date_type=datos&end_date={end}T23%3A59%3A59%2B00%3A00&locale=es&start_date={start}T00%3A00%3A00%2B00%3A00";
             Uri uri = new(uristr);
-            // end format: 2023-01-12 |||| start format: 2022-09-01
             DateTime daux = DateTime.Now;
-            string filename = $"C2_liquicomun_{mth}-{yea}_{daux.Hour}-{daux.Minute}-{daux.Second}.zip";
+            string filename = $"C2_liquicomun_{mth}-{yea}_{daux.Hour}-{daux.Minute}-{daux.Second}";
 
             ProgressDialog pd = new(inp, uri, filename);
             pd.ShowDialog();
