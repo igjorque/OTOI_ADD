@@ -1,4 +1,4 @@
-﻿namespace OTOI_ADD.View.Asset
+﻿namespace ADD_Frontend.View.Asset
 {
     partial class Date_Month
     {
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.mp_month = new OTOI_ADD.View.Asset.Control.MonthPicker();
+            this.mp_month = new ADD_Frontend.View.Asset.Control.MonthPicker();
             this.lb_date = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 

@@ -1,10 +1,10 @@
-﻿using OTOI_ADD.Code.Module.Function;
-using OTOI_ADD.Code.Module.Style;
-using OTOI_ADD.Code.Variable;
-using OTOI_ADD.View.Asset.Control;
+﻿using ADD_Backend.Function;
+using ADD_Backend.Variable;
+using ADD_Frontend.Code.Module.Style;
+using ADD_Frontend.View.Asset.Control;
 using System.Reflection;
 
-namespace OTOI_ADD.View.Generic.OMIE
+namespace ADD_Frontend.View.Generic.OMIE
 {
     /// <summary>
     /// OGenericMonth
@@ -56,7 +56,7 @@ namespace OTOI_ADD.View.Generic.OMIE
         /// </summary>
         private void LoadFields()
         {
-            this.MPMonth.Value = OTOI_ADD.Properties.Settings.Default.MONTH;
+            this.MPMonth.Value = ADD_Frontend.Properties.Settings.Default.MONTH;
         }
 
         /// <summary>
@@ -88,7 +88,7 @@ namespace OTOI_ADD.View.Generic.OMIE
             logger.Info(LOG.FORM_ERROR);
             if (this.ep_error.GetError(this.MPMonth) == "")
             {
-                OTOI_ADD.Properties.Settings.Default.MONTH = this.Month;
+                ADD_Frontend.Properties.Settings.Default.MONTH = this.Month;
                 this.BTAccept.Enabled = true;
             }
             else

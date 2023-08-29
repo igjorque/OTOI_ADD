@@ -1,10 +1,10 @@
-﻿using OTOI_ADD.Code.Module.Function;
-using OTOI_ADD.Code.Module.Style;
-using OTOI_ADD.Code.Variable;
-using OTOI_ADD.View.Asset.Control;
+﻿using ADD_Backend.Function;
+using ADD_Frontend.Code.Module.Style;
+using ADD_Backend.Variable;
+using ADD_Frontend.View.Asset.Control;
 using System.Reflection;
 
-namespace OTOI_ADD.View.Generic.ESIOS
+namespace ADD_Frontend.View.Generic.ESIOS
 {
     /// <summary>
     /// EGenericMonth
@@ -57,7 +57,7 @@ namespace OTOI_ADD.View.Generic.ESIOS
         private void LoadFields()
         {
             this.LBTitle.Text = "EGenericMonth ESIOS form";
-            this.MPMonth.Value = OTOI_ADD.Properties.Settings.Default.MONTH;
+            this.MPMonth.Value = ADD_Frontend.Properties.Settings.Default.MONTH;
         }
 
         private void LoadEvents()
@@ -86,7 +86,7 @@ namespace OTOI_ADD.View.Generic.ESIOS
             logger.Info(LOG.FORM_ERROR);
             if (this.ep_error.GetError(this.MPMonth) == "")
             {
-                OTOI_ADD.Properties.Settings.Default.MONTH = this.Month;
+                ADD_Frontend.Properties.Settings.Default.MONTH = this.Month;
                 this.BTAccept.Enabled = true;
             }
             else
